@@ -58,7 +58,8 @@
     "next": "下一个",
     "startFormEditing": "开始表格编辑",
     "exitFormEditing": "退出表格编辑模式",
-    "exit": "出口"
+    "exit": "出口",
+    "markAllRead": "将所有内容标记为已读"
   },
   "annotation": {
     "areaMeasurement": "面积测量",
@@ -89,7 +90,9 @@
     "underline": "下划线",
     "custom": "自定义",
     "rubberStamp": "橡皮图章",
-    "note": "注意"
+    "note": "注意",
+    "link": "链接",
+    "other": "其他"
   },
   "rubberStamp": {
     "Approved": "已批准",
@@ -133,6 +136,8 @@
     "redaction": "新版本",
     "viewControlsOverlay": "调整浏览方式",
     "calibration": "校准",
+    "zoomOverlay": "缩放叠加",
+    "textPopup": "文字弹出",
     "createStampButton": "创建新图章",
     "filter": "过滤"
   },
@@ -164,12 +169,16 @@
     "insertTextHere": "在这里插入文字",
     "imageSignatureAcceptedFileTypes": "仅接受{{acceptedFileTypes}}",
     "enterMeasurement": "在两点之间输入测量值",
+    "errorEnterMeasurement": "您输入的数字无效，您可以输入7.5或7 1/2之类的值",
     "linkURLorPage": "链接网址或页面",
     "enterReplacementText": "输入您要替换的文字",
-    "sortBy": "排序方式"
+    "sortBy": "排序方式",
+    "emptyCustomStampInput": "印章文字不能为空",
+    "unpostedComment": "未发布评论"
   },
   "option": {
     "notesOrder": {
+      "dropdownLabel": "排序订单清单",
       "position": "位置",
       "time": "时间",
       "status": "状态",
@@ -177,6 +186,7 @@
       "type": "类型"
     },
     "toolbarGroup": {
+      "dropdownLabel": "工具栏组",
       "toolbarGroup-View": "视图",
       "toolbarGroup-Annotate": "注释",
       "toolbarGroup-Shapes": "形状",
@@ -188,6 +198,9 @@
       "StrokeColor": "边框颜色",
       "FillColor": "填充颜色",
       "TextColor": "文本颜色"
+    },
+    "colorPalette": {
+      "colorLabel": "颜色"
     },
     "displayMode": {
       "layout": "布局",
@@ -214,14 +227,20 @@
     },
     "print": {
       "all": "全部",
-      "current": "当前",
+      "current": "当前页面",
       "pages": "页数",
+      "view": "目前来看",
       "pageQuality": "打印质量",
       "qualityNormal": "正常",
       "qualityHigh": "高",
       "includeAnnotations": "包括注释",
       "includeComments": "包括评论",
       "addWatermarkSettings": "添加水印设置"
+    },
+    "printInfo": {
+      "author": "作者",
+      "subject": "学科",
+      "date": "日期"
     },
     "redaction": {
       "markForRedaction": "标记为编辑"
@@ -230,6 +249,11 @@
       "caseSensitive": "区分大小写",
       "wholeWordOnly": "整个词语",
       "wildcard": "通配符"
+    },
+    "toolsOverlay": {
+      "currentStamp": "目前的邮票",
+      "currentSignature": "当前签名",
+      "signatureAltText": "签名"
     },
     "stampOverlay": {
       "addStamp": "添加新邮票"
@@ -298,7 +322,16 @@
       "text": "文本",
       "style": "样式",
       "resetAllSettings": "重置所有设置",
-      "font": "字形"
+      "font": "字形",
+      "locations": {
+        "center": "中央",
+        "topLeft": "左上方",
+        "topRight": "右上",
+        "topCenter": "顶尖中心",
+        "bottomLeft": "左下方",
+        "bottomRight": "右下",
+        "bottomCenter": "底部中心"
+      }
     },
     "thumbnailPanel": {
       "delete": "删除",
@@ -333,6 +366,10 @@
     "selectPage": {
       "selectTitle": "未选择页面",
       "selectMessage": "请选择页面，然后重试。"
+    },
+    "colorPicker": {
+      "deleteTitle": "删除自定义颜色",
+      "deleteMessage": "删除所选的自定义颜色？它将从您的调色板中删除。"
     }
   },
   "shortcut": {
@@ -355,6 +392,7 @@
     "squiggly": "(G)",
     "stamp": "(I)",
     "redo": "（Ctrl Shift Z）",
+    "redo_windows": "(Ctrl Y)",
     "undo": "（Ctrl Z）",
     "stickyNote": "(N)",
     "strikeout": "(K)",
@@ -364,7 +402,7 @@
     "richText": {
       "bold": "（Ctrl B）",
       "italic": "（Ctrl I）",
-      "underline": "（Ctrl L）",
+      "underline": "（Ctrl U）",
       "strikeout": "（Ctrl K）"
     }
   },
@@ -416,6 +454,98 @@
       "4": "周四",
       "5": "周五",
       "6": "周六"
+    }
+  },
+  "digitalSignatureModal": {
+    "certification": "认证证书",
+    "Certification": "资质认证",
+    "signature": "签名",
+    "Signature": "签名",
+    "valid": "有效",
+    "invalid": "无效",
+    "unknown": "未知",
+    "title": "{{type}}属性",
+    "header": {
+      "documentIntegrity": "文件完整性",
+      "identitiesTrust": "身份与信任",
+      "generalErrors": "一般错误",
+      "digestStatus": "摘要状态"
+    },
+    "digestAlgorithm": {
+      "preamble": "用于签名签名的摘要算法：",
+      "unknown": "用于签名签名的摘要算法未知。"
+    },
+    "trustVerification": {
+      "none": "没有详细的信任验证结果。",
+      "current": "尝试针对当前时间进行信任验证",
+      "signing": "尝试进行有关签名时间的信任验证：{{trustVerificationTime}}",
+      "timestamp": "尝试针对安全嵌入式时间戳记进行信任验证：{{trustVerificationTime}}"
+    },
+    "signerIdentity": {
+      "preamble": "签名者的身份是",
+      "valid": "有效。",
+      "unknown": "未知。"
+    },
+    "summaryBox": {
+      "summary": "数字{{type}}是{{status}}",
+      "signedBy": "，由{{name}}签名"
+    }
+  },
+  "digitalSignatureVerification": {
+    "certifier": "证明",
+    "certified": "认证的",
+    "Certified": "已认证",
+    "signer": "标志",
+    "signed": "签",
+    "Signed": "签",
+    "by": "通过",
+    "on": "上",
+    "disallowedChange": "不允许更改：{{type}}，objnum：{{objnum}}",
+    "trustVerification": {
+      "current": "验证时间为当前时间",
+      "signing": "验证时间是来自签名者计算机上的时钟",
+      "timestamp": "验证时间来自文档中嵌入的安全时间戳",
+      "verifiedTrust": "信任验证结果：已验证",
+      "noTrustVerification": "没有详细的信任验证结果。"
+    },
+    "permissionStatus": {
+      "noPermissionsStatus": "没有权限状态可以报告。",
+      "permissionsVerificationDisabled": "权限验证已被禁用。",
+      "hasAllowedChanges": "该文档具有签名权限设置所允许的更改。",
+      "invalidatedByDisallowedChanges": "文档具有签名权限设置不允许的更改。",
+      "unmodified": "该文档自从"
+    },
+    "trustStatus": {
+      "trustVerified": "已成功建立对{{verificationType}}的信任。",
+      "untrusted": "无法建立信任。",
+      "trustVerificationDisabled": "信任验证已被禁用。",
+      "noTrustStatus": "没有可报告的信任状态。"
+    },
+    "digestStatus": {
+      "digestInvalid": "摘要不正确。",
+      "digestVerified": "摘要是正确的。",
+      "digestVerificationDisabled": "摘要验证已禁用。",
+      "weakDigestAlgorithmButDigestVerifiable": "摘要是正确的，但摘要算法较弱且不安全。",
+      "noDigestStatus": "没有摘要状态可报告。",
+      "unsupportedEncoding": "没有安装的SignatureHandler能够识别签名的编码"
+    },
+    "documentStatus": {
+      "noError": "没有一般错误要报告。",
+      "corruptFile": "SignatureHandler报告文件损坏。",
+      "unsigned": "签名尚未进行加密签名。",
+      "badByteRanges": "SignatureHandler报告数字签名中ByteRanges中的损坏。",
+      "corruptCryptographicContents": "SignatureHandler报告数字签名内容中的损坏。"
+    },
+    "signatureDetails": {
+      "signatureDetails": "签名细节",
+      "contactInformation": "联系信息",
+      "location": "位置",
+      "reason": "原因",
+      "signingTime": "签约时间",
+      "noContactInformation": "没有提供联系信息",
+      "noLocation": "没有提供位置",
+      "noReason": "没有提供原因",
+      "noSigningTime": "找不到签名时间"
     }
   }
 }

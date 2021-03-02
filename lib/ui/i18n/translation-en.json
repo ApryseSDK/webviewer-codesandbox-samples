@@ -58,7 +58,8 @@
     "next": "Next",
     "startFormEditing": "Start Form Editing",
     "exitFormEditing": "Exit Form Editing Mode",
-    "exit": "Exit"
+    "exit": "Exit",
+    "markAllRead": "Mark all as read"
   },
   "annotation": {
     "areaMeasurement": "Area",
@@ -89,7 +90,9 @@
     "underline": "Underline",
     "custom": "Custom",
     "rubberStamp": "Rubber Stamp",
-    "note": "Note"
+    "note": "Note",
+    "link": "Link",
+    "other": "Other"
   },
   "rubberStamp": {
     "Approved": "Approved",
@@ -133,6 +136,8 @@
     "redaction": "Redaction",
     "viewControlsOverlay": "View Controls",
     "calibration": "Calibration",
+    "zoomOverlay": "Zoom Overlay",
+    "textPopup": "Text Popup",
     "createStampButton": "Create New Stamp",
     "filter": "Filter"
   },
@@ -164,12 +169,16 @@
     "insertTextHere": "Insert text here",
     "imageSignatureAcceptedFileTypes": "Only {{acceptedFileTypes}} are accepted",
     "enterMeasurement": "Enter measurement between the two points",
+    "errorEnterMeasurement": "The number you have entered is invalid, you can enter values like 7.5 or 7 1/2",
     "linkURLorPage": "Link URL or a Page",
     "enterReplacementText": "Enter the text you want to replace",
-    "sortBy": "Sort by"
+    "sortBy": "Sort by",
+    "emptyCustomStampInput": "Stamp text cannot be empty",
+    "unpostedComment": "Unposted Comment"
   },
   "option": {
     "notesOrder": {
+      "dropdownLabel": "Sort Order List",
       "position": "Position",
       "time": "Time",
       "status": "Status",
@@ -177,6 +186,7 @@
       "type": "Type"
     },
     "toolbarGroup": {
+      "dropdownLabel": "Toolbar Groups",
       "toolbarGroup-View": "View",
       "toolbarGroup-Annotate": "Annotate",
       "toolbarGroup-Shapes": "Shapes",
@@ -188,6 +198,9 @@
       "StrokeColor": "Stroke",
       "FillColor": "Fill",
       "TextColor": "Text"
+    },
+    "colorPalette": {
+      "colorLabel": "Color"
     },
     "displayMode": {
       "layout": "Page Layout",
@@ -214,14 +227,20 @@
     },
     "print": {
       "all": "All",
-      "current": "Current",
+      "current": "Current Page",
       "pages": "Pages to print",
+      "view": "Current View",
       "pageQuality": "Print Quality",
       "qualityNormal": "Normal",
       "qualityHigh": "High",
       "includeAnnotations": "Include annotations",
       "includeComments": "Include comments",
       "addWatermarkSettings": "Add Watermark"
+    },
+    "printInfo": {
+      "author": "Author",
+      "subject": "Subject",
+      "date": "Date"
     },
     "redaction": {
       "markForRedaction": "Mark for redaction"
@@ -230,6 +249,11 @@
       "caseSensitive": "Case sensitive",
       "wholeWordOnly": "Whole word",
       "wildcard": "Wildcard"
+    },
+    "toolsOverlay": {
+      "currentStamp": "Current Stamp",
+      "currentSignature": "Current Signature",
+      "signatureAltText": "Signature"
     },
     "stampOverlay": {
       "addStamp": "Add New Stamp"
@@ -298,7 +322,16 @@
       "text": "Text",
       "style": "Style",
       "resetAllSettings": "Reset All Settings",
-      "font": "Font"
+      "font": "Font",
+      "locations": {
+        "center": "Center",
+        "topLeft": "Top Left",
+        "topRight": "Top Right",
+        "topCenter": "Top Center",
+        "bottomLeft": "Bottom Left",
+        "bottomRight": "Bottom Right",
+        "bottomCenter": "Bottom Center"
+      }
     },
     "thumbnailPanel": {
       "delete": "Delete",
@@ -333,6 +366,10 @@
     "selectPage": {
       "selectTitle": "No Pages Selected",
       "selectMessage": "Please select pages and try again."
+    },
+    "colorPicker": {
+      "deleteTitle": "Delete custom color",
+      "deleteMessage": "Delete the selected custom color? It will be removed from your color palette."
     }
   },
   "shortcut": {
@@ -355,6 +392,7 @@
     "squiggly": "(G)",
     "stamp": "(I)",
     "redo": "(Ctrl Shift Z)",
+    "redo_windows": "(Ctrl Y)",
     "undo": "(Ctrl Z)",
     "stickyNote": "(N)",
     "strikeout": "(K)",
@@ -364,7 +402,7 @@
     "richText": {
       "bold": "(Ctrl B)",
       "italic": "(Ctrl I)",
-      "underline": "(Ctrl L)",
+      "underline": "(Ctrl U)",
       "strikeout": "(Ctrl K)"
     }
   },
@@ -399,7 +437,115 @@
       "November",
       "December"
     ],
-    "weekdays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    "weekdaysShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    "weekdays": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "weekdaysShort": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ]
+  },
+  "digitalSignatureModal": {
+    "certification": "certification",
+    "Certification": "Certification",
+    "signature": "signature",
+    "Signature": "Signature",
+    "valid": "valid",
+    "invalid": "invalid",
+    "unknown": "unknown",
+    "title": "{{type}} Properties",
+    "header": {
+      "documentIntegrity": "Document Integrity",
+      "identitiesTrust": "Identities & Trust",
+      "generalErrors": "General Errors",
+      "digestStatus": "Digest Status"
+    },
+    "digestAlgorithm": {
+      "preamble": "The digest algorithm that was used to sign the signature: ",
+      "unknown": "The digest algorithm that was used to sign the signature is unknown."
+    },
+    "trustVerification": {
+      "none": "No detailed trust verification result available.",
+      "current": "Trust verification attempted with respect to current time",
+      "signing": "Trust verification attempted with respect to signing time: {{trustVerificationTime}}",
+      "timestamp": "Trust verification attempted with respect to secure embedded timestamp: {{trustVerificationTime}}"
+    },
+    "signerIdentity": {
+      "preamble": "The signer's identity is ",
+      "valid": "valid.",
+      "unknown": "unknown."
+    },
+    "summaryBox": {
+      "summary": "Digital {{type}} is {{status}}",
+      "signedBy": ", signed by {{name}}"
+    }
+  },
+  "digitalSignatureVerification": {
+    "certifier": "certifier",
+    "certified": "certified",
+    "Certified": "Certified",
+    "signer": "signer",
+    "signed": "signed",
+    "Signed": "Signed",
+    "by": "by",
+    "on": "on",
+    "disallowedChange": "Disallowed Change: {{type}}, objnum: {{objnum}}",
+    "trustVerification": {
+      "current": "Verification time used was the current time",
+      "signing": "Verification time is from the clock on the signer's computer",
+      "timestamp": "Verification time is from the secure timestamp embedded in the document",
+      "verifiedTrust": "Trust verification result: Verified",
+      "noTrustVerification": "No detailed trust verification result available."
+    },
+    "permissionStatus": {
+      "noPermissionsStatus": "No permissions status to report.",
+      "permissionsVerificationDisabled": "Permissions verification has been disabled.",
+      "hasAllowedChanges": "The document has changes that are allowed by the signatures permissions settings.",
+      "invalidatedByDisallowedChanges": "The document has changes that are disallowed by the signatures permissions settings.",
+      "unmodified": "The document has not been modified since it was"
+    },
+    "trustStatus": {
+      "trustVerified": "Established trust in {{verificationType}} successfully.",
+      "untrusted": "Trust could not be established.",
+      "trustVerificationDisabled": "Trust verification has been disabled.",
+      "noTrustStatus": "No trust status to report."
+    },
+    "digestStatus": {
+      "digestInvalid": "The digest is incorrect.",
+      "digestVerified": "The digest is correct.",
+      "digestVerificationDisabled": "Digest verification has been disabled.",
+      "weakDigestAlgorithmButDigestVerifiable": "The digest is correct, but the digest algorithm is weak and not secure.",
+      "noDigestStatus": "No digest status to report.",
+      "unsupportedEncoding": "No installed SignatureHandler was able to recognize the signature's encoding"
+    },
+    "documentStatus": {
+      "noError": "No general error to report.",
+      "corruptFile": "SignatureHandler reported file corruption.",
+      "unsigned": "The signature has not yet been cryptographically signed.",
+      "badByteRanges": "SignatureHandler reports corruption in the ByteRanges in the digital signature.",
+      "corruptCryptographicContents": "SignatureHandler reports corruption in the Contents of the digital signature."
+    },
+    "signatureDetails": {
+      "signatureDetails": "Signature Details",
+      "contactInformation": "Contact Information",
+      "location": "Location",
+      "reason": "Reason",
+      "signingTime": "Signing Time",
+      "noContactInformation": "No contact information provided",
+      "noLocation": "No location provided",
+      "noReason": "No reason provided",
+      "noSigningTime": "No signing time found"
+    }
   }
 }
