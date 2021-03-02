@@ -58,7 +58,8 @@
     "next": "следующий",
     "startFormEditing": "Начать редактирование формы",
     "exitFormEditing": "Выйти из режима редактирования формы",
-    "exit": "Выход"
+    "exit": "Выход",
+    "markAllRead": "Отметить все как прочитанные"
   },
   "annotation": {
     "areaMeasurement": "Площадь",
@@ -89,7 +90,9 @@
     "underline": "Подчеркнуть",
     "custom": "Свой стиль",
     "rubberStamp": "Штамп",
-    "note": "Заметка"
+    "note": "Заметка",
+    "link": "Ссылка на сайт",
+    "other": "Другие"
   },
   "rubberStamp": {
     "Approved": "Одобренный",
@@ -133,6 +136,8 @@
     "redaction": "Редактировать",
     "viewControlsOverlay": "Изменить вид",
     "calibration": "калибровка",
+    "zoomOverlay": "Наложение масштаба",
+    "textPopup": "Текстовое всплывающее окно",
     "createStampButton": "Создать новую марку",
     "filter": "Фильтр"
   },
@@ -164,12 +169,16 @@
     "insertTextHere": "Вставьте текст здесь",
     "imageSignatureAcceptedFileTypes": "Только {{acceptFileTypes}} принимаются",
     "enterMeasurement": "Введите измерение между двумя точками",
+    "errorEnterMeasurement": "Введенное вами число недействительно, вы можете ввести такие значения, как 7,5 или 7 1/2.",
     "linkURLorPage": "Ссылка URL или страница",
     "enterReplacementText": "Введите текст, который хотите заменить",
-    "sortBy": "Сортировать по"
+    "sortBy": "Сортировать по",
+    "emptyCustomStampInput": "Текст штампа не может быть пустым",
+    "unpostedComment": "Неопубликованный комментарий"
   },
   "option": {
     "notesOrder": {
+      "dropdownLabel": "Список порядка сортировки",
       "position": "Позиция",
       "time": "Время",
       "status": "Статус",
@@ -177,6 +186,7 @@
       "type": "Тип"
     },
     "toolbarGroup": {
+      "dropdownLabel": "Группы панелей инструментов",
       "toolbarGroup-View": "Посмотреть",
       "toolbarGroup-Annotate": "Пометки",
       "toolbarGroup-Shapes": "Формы",
@@ -188,6 +198,9 @@
       "StrokeColor": "Цвет границ",
       "FillColor": "Цвет заливки",
       "TextColor": "Цвет текста"
+    },
+    "colorPalette": {
+      "colorLabel": "Цвет"
     },
     "displayMode": {
       "layout": "Расположение",
@@ -214,14 +227,20 @@
     },
     "print": {
       "all": "Все",
-      "current": "Текущий",
+      "current": "Текущая страница",
       "pages": "Страницы",
+      "view": "Текущий вид",
       "pageQuality": "Качество печати",
       "qualityNormal": "Нормальный",
       "qualityHigh": "Высокая",
       "includeAnnotations": "Включить аннотации",
       "includeComments": "Приложить комментарии",
       "addWatermarkSettings": "Добавить настройки водяного знака"
+    },
+    "printInfo": {
+      "author": "Автор",
+      "subject": "Предмет",
+      "date": "Дата"
     },
     "redaction": {
       "markForRedaction": "Пометить для редактирования"
@@ -230,6 +249,11 @@
       "caseSensitive": "С учетом регистра",
       "wholeWordOnly": "Всё слово",
       "wildcard": "Поиск по шаблону"
+    },
+    "toolsOverlay": {
+      "currentStamp": "Текущая печать",
+      "currentSignature": "Текущая подпись",
+      "signatureAltText": "Подпись"
     },
     "stampOverlay": {
       "addStamp": "Добавить новый штамп"
@@ -298,7 +322,16 @@
       "text": "Текст",
       "style": "Стиль",
       "resetAllSettings": "Сбросить все настройки",
-      "font": "шрифт"
+      "font": "шрифт",
+      "locations": {
+        "center": "Центр",
+        "topLeft": "Верхний левый",
+        "topRight": "В правом верхнем углу",
+        "topCenter": "Верхний центр",
+        "bottomLeft": "Левая нижняя",
+        "bottomRight": "Внизу справа",
+        "bottomCenter": "Внизу по центру"
+      }
     },
     "thumbnailPanel": {
       "delete": "удалять",
@@ -333,6 +366,10 @@
     "selectPage": {
       "selectTitle": "Страницы не выбраны",
       "selectMessage": "Пожалуйста, выберите страницы и попробуйте еще раз."
+    },
+    "colorPicker": {
+      "deleteTitle": "Удалить собственный цвет",
+      "deleteMessage": "Удалить выбранный пользовательский цвет? Он будет удален из вашей цветовой палитры."
     }
   },
   "shortcut": {
@@ -355,6 +392,7 @@
     "squiggly": "(G)",
     "stamp": "(I)",
     "redo": "(Ctrl Shift Z)",
+    "redo_windows": "(Ctrl Y)",
     "undo": "(Ctrl Z)",
     "stickyNote": "(N)",
     "strikeout": "(K)",
@@ -364,7 +402,7 @@
     "richText": {
       "bold": "(Ctrl B)",
       "italic": "(Ctrl I)",
-      "underline": "(Ctrl L)",
+      "underline": "(Ctrl U)",
       "strikeout": "(Ctrl K)"
     }
   },
@@ -416,6 +454,98 @@
       "4": "чт",
       "5": "пт",
       "6": "сб"
+    }
+  },
+  "digitalSignatureModal": {
+    "certification": "сертификация",
+    "Certification": "Сертификация",
+    "signature": "подпись",
+    "Signature": "Подпись",
+    "valid": "действительный",
+    "invalid": "недействительным",
+    "unknown": "неизвестно",
+    "title": "{{type}} Свойства",
+    "header": {
+      "documentIntegrity": "Целостность документа",
+      "identitiesTrust": "Личность и доверие",
+      "generalErrors": "Общие ошибки",
+      "digestStatus": "Статус дайджеста"
+    },
+    "digestAlgorithm": {
+      "preamble": "Алгоритм дайджеста, который использовался для подписи подписи:",
+      "unknown": "Алгоритм дайджеста, который использовался для подписи подписи, неизвестен."
+    },
+    "trustVerification": {
+      "none": "Нет подробных результатов проверки доверия.",
+      "current": "Попытка проверки доверия относительно текущего времени",
+      "signing": "Попытка проверки доверия в отношении времени подписи: {{trustVerificationTime}}",
+      "timestamp": "Попытка проверки доверия в отношении защищенной встроенной отметки времени: {{trustVerificationTime}}"
+    },
+    "signerIdentity": {
+      "preamble": "Личность подписавшего",
+      "valid": "действительный.",
+      "unknown": "неизвестно."
+    },
+    "summaryBox": {
+      "summary": "Цифровой {{type}} - это {{status}}",
+      "signedBy": ", подписанный {{name}}"
+    }
+  },
+  "digitalSignatureVerification": {
+    "certifier": "удостоверять",
+    "certified": "проверенный",
+    "Certified": "Проверенный",
+    "signer": "подписать",
+    "signed": "подписанный",
+    "Signed": "Подписано",
+    "by": "по",
+    "on": "на",
+    "disallowedChange": "Запрещенное изменение: {{type}}, objnum: {{objnum}}",
+    "trustVerification": {
+      "current": "Использованное время проверки было текущим.",
+      "signing": "Время подтверждения - по часам на компьютере подписавшего.",
+      "timestamp": "Время проверки берется из безопасной отметки времени, встроенной в документ.",
+      "verifiedTrust": "Результат проверки доверия: Проверено",
+      "noTrustVerification": "Нет подробных результатов проверки доверия."
+    },
+    "permissionStatus": {
+      "noPermissionsStatus": "Нет статуса разрешений для сообщения.",
+      "permissionsVerificationDisabled": "Проверка разрешений отключена.",
+      "hasAllowedChanges": "В документе есть изменения, которые разрешены настройками разрешений на подпись.",
+      "invalidatedByDisallowedChanges": "В документе есть изменения, которые запрещены настройками разрешений на подпись.",
+      "unmodified": "Документ не изменялся с момента его"
+    },
+    "trustStatus": {
+      "trustVerified": "Установлено доверие к {{verificationType}} успешно.",
+      "untrusted": "Доверие не могло быть установлено.",
+      "trustVerificationDisabled": "Проверка доверия отключена.",
+      "noTrustStatus": "Нет статуса доверия для сообщения."
+    },
+    "digestStatus": {
+      "digestInvalid": "Дайджест неверен.",
+      "digestVerified": "Дайджест правильный.",
+      "digestVerificationDisabled": "Дайджест-проверка отключена.",
+      "weakDigestAlgorithmButDigestVerifiable": "Дайджест правильный, но алгоритм дайджеста слабый и небезопасный.",
+      "noDigestStatus": "Нет сведений о состоянии дайджеста.",
+      "unsupportedEncoding": "Установленный SignatureHandler не смог распознать кодировку подписи."
+    },
+    "documentStatus": {
+      "noError": "Нет общей ошибки для сообщения.",
+      "corruptFile": "SignatureHandler сообщил о повреждении файла.",
+      "unsigned": "Подпись еще не была криптографически подписана.",
+      "badByteRanges": "SignatureHandler сообщает о повреждении ByteRanges в цифровой подписи.",
+      "corruptCryptographicContents": "SignatureHandler сообщает о повреждении содержимого цифровой подписи."
+    },
+    "signatureDetails": {
+      "signatureDetails": "Детали подписи",
+      "contactInformation": "Контакты",
+      "location": "Расположение",
+      "reason": "Причина",
+      "signingTime": "Время подписания",
+      "noContactInformation": "Контактная информация не указана",
+      "noLocation": "Местоположение не указано",
+      "noReason": "Причина не указана",
+      "noSigningTime": "Время подписи не найдено"
     }
   }
 }

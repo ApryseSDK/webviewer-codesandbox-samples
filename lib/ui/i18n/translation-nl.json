@@ -58,7 +58,8 @@
     "next": "De volgende",
     "startFormEditing": "Begin met het bewerken van formulieren",
     "exitFormEditing": "Sluit de modus voor het bewerken van formulieren af",
-    "exit": "Uitgang"
+    "exit": "Uitgang",
+    "markAllRead": "Markeer alles als gelezen"
   },
   "annotation": {
     "areaMeasurement": "Oppervlaktemeting",
@@ -89,7 +90,9 @@
     "underline": "Onderstrepen",
     "custom": "maatwerk",
     "rubberStamp": "Rubberen stempel",
-    "note": "Notitie"
+    "note": "Notitie",
+    "link": "Koppeling",
+    "other": "Andere"
   },
   "rubberStamp": {
     "Approved": "Goedgekeurd",
@@ -133,6 +136,8 @@
     "redaction": "Redigeren",
     "viewControlsOverlay": "Scherm opties",
     "calibration": "ijking",
+    "zoomOverlay": "Zoom-overlay",
+    "textPopup": "Tekstpop-up",
     "createStampButton": "Maak een nieuwe stempel",
     "filter": "Filter"
   },
@@ -164,12 +169,16 @@
     "insertTextHere": "Vul hier tekst in",
     "imageSignatureAcceptedFileTypes": "Alleen {{AcceptFileTypes}} worden geaccepteerd",
     "enterMeasurement": "Voer de meting tussen de twee punten in",
+    "errorEnterMeasurement": "Het getal dat je hebt ingevoerd is ongeldig, je kunt waarden invoeren zoals 7,5 of 7 1/2",
     "linkURLorPage": "Link-URL of een pagina",
     "enterReplacementText": "Voer de tekst in die u wilt vervangen",
-    "sortBy": "Sorteer op"
+    "sortBy": "Sorteer op",
+    "emptyCustomStampInput": "Stempel tekst mag niet leeg zijn",
+    "unpostedComment": "Niet-geplaatste reactie"
   },
   "option": {
     "notesOrder": {
+      "dropdownLabel": "Sorteer Bestellijst",
       "position": "Positie",
       "time": "Tijd",
       "status": "Toestand",
@@ -177,6 +186,7 @@
       "type": "Type"
     },
     "toolbarGroup": {
+      "dropdownLabel": "Werkbalkgroepen",
       "toolbarGroup-View": "Visie",
       "toolbarGroup-Annotate": "Annoteren",
       "toolbarGroup-Shapes": "Vormen",
@@ -188,6 +198,9 @@
       "StrokeColor": "Rand kleur",
       "FillColor": "Vulling kleur",
       "TextColor": "Tekst kleur"
+    },
+    "colorPalette": {
+      "colorLabel": "Kleur"
     },
     "displayMode": {
       "layout": "Layout",
@@ -214,14 +227,20 @@
     },
     "print": {
       "all": "Alles",
-      "current": "Huidige",
+      "current": "Huidige pagina",
       "pages": "Pagina's",
+      "view": "Huidige weergave",
       "pageQuality": "Print kwaliteit",
       "qualityNormal": "Normaal",
       "qualityHigh": "Hoog",
       "includeAnnotations": "Voeg annotaties toe",
       "includeComments": "Inclusief commentaar",
       "addWatermarkSettings": "Watermerkinstellingen toevoegen"
+    },
+    "printInfo": {
+      "author": "Schrijver",
+      "subject": "Onderwerpen",
+      "date": "Datum"
     },
     "redaction": {
       "markForRedaction": "Markeren voor redactie"
@@ -230,6 +249,11 @@
       "caseSensitive": "Hoofdlettergevoelig",
       "wholeWordOnly": "Hele woorden",
       "wildcard": "wildcard"
+    },
+    "toolsOverlay": {
+      "currentStamp": "Huidige Stempel",
+      "currentSignature": "Huidige Handtekening",
+      "signatureAltText": "Handtekening"
     },
     "stampOverlay": {
       "addStamp": "Nieuwe stempel toevoegen"
@@ -298,7 +322,16 @@
       "text": "Tekst",
       "style": "Stijl",
       "resetAllSettings": "Reset alle instellingen",
-      "font": "doopvont"
+      "font": "doopvont",
+      "locations": {
+        "center": "Centrum",
+        "topLeft": "Linksboven",
+        "topRight": "Rechtsboven",
+        "topCenter": "Midden boven",
+        "bottomLeft": "Linksonder",
+        "bottomRight": "Rechts onder",
+        "bottomCenter": "Middenonder"
+      }
     },
     "thumbnailPanel": {
       "delete": "Delete",
@@ -333,6 +366,10 @@
     "selectPage": {
       "selectTitle": "Geen pagina's geselecteerd",
       "selectMessage": "Selecteer pagina's en probeer het opnieuw."
+    },
+    "colorPicker": {
+      "deleteTitle": "Aangepaste kleur verwijderen",
+      "deleteMessage": "De geselecteerde aangepaste kleur verwijderen? Het wordt verwijderd uit uw kleurenpalet."
     }
   },
   "shortcut": {
@@ -355,6 +392,7 @@
     "squiggly": "(G)",
     "stamp": "(I)",
     "redo": "(Ctrl Shift Z)",
+    "redo_windows": "(Ctrl Y)",
     "undo": "(Ctrl Z)",
     "stickyNote": "(N)",
     "strikeout": "(K)",
@@ -364,7 +402,7 @@
     "richText": {
       "bold": "(Ctrl B)",
       "italic": "(Ctrl I)",
-      "underline": "(Ctrl L)",
+      "underline": "(Ctrl U)",
       "strikeout": "(Ctrl K)"
     }
   },
@@ -416,6 +454,98 @@
       "4": "do.",
       "5": "vr.",
       "6": "za."
+    }
+  },
+  "digitalSignatureModal": {
+    "certification": "certificering",
+    "Certification": "Certificatie",
+    "signature": "handtekening",
+    "Signature": "Handtekening",
+    "valid": "Geldig",
+    "invalid": "ongeldig",
+    "unknown": "onbekend",
+    "title": "{{type}} Eigenschappen",
+    "header": {
+      "documentIntegrity": "Documentintegriteit",
+      "identitiesTrust": "Identiteiten en vertrouwen",
+      "generalErrors": "Algemene fouten",
+      "digestStatus": "Digest-status"
+    },
+    "digestAlgorithm": {
+      "preamble": "Het digest-algoritme dat is gebruikt om de handtekening te ondertekenen:",
+      "unknown": "Het digest-algoritme dat is gebruikt om de handtekening te ondertekenen, is onbekend."
+    },
+    "trustVerification": {
+      "none": "Geen gedetailleerd betrouwbaarheidsverificatieresultaat beschikbaar.",
+      "current": "Vertrouwensverificatie geprobeerd met betrekking tot de huidige tijd",
+      "signing": "Vertrouwensverificatie geprobeerd met betrekking tot ondertekeningstijd: {{trustVerificationTime}}",
+      "timestamp": "Vertrouwensverificatie geprobeerd met betrekking tot beveiligd ingesloten tijdstempel: {{trustVerificationTime}}"
+    },
+    "signerIdentity": {
+      "preamble": "De identiteit van de ondertekenaar is",
+      "valid": "Geldig.",
+      "unknown": "onbekend."
+    },
+    "summaryBox": {
+      "summary": "Digitaal {{type}} is {{status}}",
+      "signedBy": ", ondertekend door {{name}}"
+    }
+  },
+  "digitalSignatureVerification": {
+    "certifier": "certificeren",
+    "certified": "gecertificeerd",
+    "Certified": "Gecertificeerd",
+    "signer": "teken",
+    "signed": "ondertekend",
+    "Signed": "Gesigneerd",
+    "by": "door",
+    "on": "Aan",
+    "disallowedChange": "Niet-toegestane wijziging: {{type}}, objnum: {{objnum}}",
+    "trustVerification": {
+      "current": "De gebruikte verificatietijd was de huidige tijd",
+      "signing": "De verificatietijd is van de klok op de computer van de ondertekenaar",
+      "timestamp": "De verificatietijd is afkomstig van het beveiligde tijdstempel dat in het document is ingesloten",
+      "verifiedTrust": "Resultaat van vertrouwensverificatie: geverifieerd",
+      "noTrustVerification": "Geen gedetailleerd betrouwbaarheidsverificatieresultaat beschikbaar."
+    },
+    "permissionStatus": {
+      "noPermissionsStatus": "Geen machtigingsstatus om te rapporteren.",
+      "permissionsVerificationDisabled": "Machtigingsverificatie is uitgeschakeld.",
+      "hasAllowedChanges": "Het document heeft wijzigingen die zijn toegestaan door de machtigingsinstellingen voor handtekeningen.",
+      "invalidatedByDisallowedChanges": "Het document bevat wijzigingen die niet zijn toegestaan door de machtigingsinstellingen voor handtekeningen.",
+      "unmodified": "Het document is niet gewijzigd sinds het was"
+    },
+    "trustStatus": {
+      "trustVerified": "Succesvol vertrouwen gevestigd in {{verificatieType}}.",
+      "untrusted": "Vertrouwen kon niet worden gevestigd.",
+      "trustVerificationDisabled": "Vertrouwensverificatie is uitgeschakeld.",
+      "noTrustStatus": "Geen vertrouwensstatus om te melden."
+    },
+    "digestStatus": {
+      "digestInvalid": "De samenvatting is onjuist.",
+      "digestVerified": "De samenvatting is correct.",
+      "digestVerificationDisabled": "Digest-verificatie is uitgeschakeld.",
+      "weakDigestAlgorithmButDigestVerifiable": "De samenvatting is correct, maar het algoritme voor de samenvatting is zwak en niet veilig.",
+      "noDigestStatus": "Geen overzichtsstatus om te rapporteren.",
+      "unsupportedEncoding": "Geen enkele geïnstalleerde SignatureHandler kon de codering van de handtekening herkennen"
+    },
+    "documentStatus": {
+      "noError": "Geen algemene fout te melden.",
+      "corruptFile": "SignatureHandler meldde bestandscorruptie.",
+      "unsigned": "De handtekening is nog niet cryptografisch ondertekend.",
+      "badByteRanges": "SignatureHandler meldt corruptie in de ByteRanges in de digitale handtekening.",
+      "corruptCryptographicContents": "SignatureHandler meldt corruptie in de inhoud van de digitale handtekening."
+    },
+    "signatureDetails": {
+      "signatureDetails": "Handtekening Details",
+      "contactInformation": "Contactgegevens",
+      "location": "Plaats",
+      "reason": "Reden",
+      "signingTime": "Ondertekeningstijd",
+      "noContactInformation": "Geen contactgegevens verstrekt",
+      "noLocation": "Geen locatie opgegeven",
+      "noReason": "Geen reden opgegeven",
+      "noSigningTime": "Geen ondertekeningstijd gevonden"
     }
   }
 }
