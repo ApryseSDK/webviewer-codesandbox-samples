@@ -58,7 +58,8 @@
     "next": "下一個",
     "startFormEditing": "開始表格編輯",
     "exitFormEditing": "退出表格編輯模式",
-    "exit": "出口"
+    "exit": "出口",
+    "markAllRead": "將所有內容標記為已讀"
   },
   "annotation": {
     "areaMeasurement": "測量面積",
@@ -89,7 +90,9 @@
     "underline": "底線",
     "custom": "自訂",
     "rubberStamp": "橡皮圖章",
-    "note": "注意"
+    "note": "注意",
+    "link": "鏈接",
+    "other": "其他"
   },
   "rubberStamp": {
     "Approved": "已批准",
@@ -133,6 +136,8 @@
     "redaction": "修訂",
     "viewControlsOverlay": "查看權限",
     "calibration": "校準",
+    "zoomOverlay": "縮放疊加",
+    "textPopup": "文字彈出",
     "createStampButton": "創建新圖章",
     "filter": "過濾"
   },
@@ -164,12 +169,16 @@
     "insertTextHere": "在這裡插入文字",
     "imageSignatureAcceptedFileTypes": "僅接受{{acceptedFileTypes}}",
     "enterMeasurement": "在兩點之間輸入測量值",
+    "errorEnterMeasurement": "您輸入的數字無效，您可以輸入7.5或7 1/2之類的值",
     "linkURLorPage": "鏈接網址或頁面",
     "enterReplacementText": "輸入您要替換的文字",
-    "sortBy": "排序方式"
+    "sortBy": "排序方式",
+    "emptyCustomStampInput": "印章文字不能為空",
+    "unpostedComment": "未發布評論"
   },
   "option": {
     "notesOrder": {
+      "dropdownLabel": "排序訂單清單",
       "position": "位置",
       "time": "時間",
       "status": "狀態",
@@ -177,6 +186,7 @@
       "type": "類型"
     },
     "toolbarGroup": {
+      "dropdownLabel": "工具欄組",
       "toolbarGroup-View": "視圖",
       "toolbarGroup-Annotate": "註釋",
       "toolbarGroup-Shapes": "形狀",
@@ -188,6 +198,9 @@
       "StrokeColor": "邊框顏色",
       "FillColor": "填充顏色",
       "TextColor": "文字顏色"
+    },
+    "colorPalette": {
+      "colorLabel": "顏色"
     },
     "displayMode": {
       "layout": "版面",
@@ -214,14 +227,20 @@
     },
     "print": {
       "all": "全部",
-      "current": "目前",
+      "current": "當前頁面",
       "pages": "頁面",
+      "view": "目前來看",
       "pageQuality": "打印質量",
       "qualityNormal": "正常",
       "qualityHigh": "高",
       "includeAnnotations": "包括註釋",
       "includeComments": "包括評論",
       "addWatermarkSettings": "添加水印設置"
+    },
+    "printInfo": {
+      "author": "作者",
+      "subject": "學科",
+      "date": "日期"
     },
     "redaction": {
       "markForRedaction": "標示為修訂"
@@ -230,6 +249,11 @@
       "caseSensitive": "區分大小寫",
       "wholeWordOnly": "全字相符",
       "wildcard": "通配符"
+    },
+    "toolsOverlay": {
+      "currentStamp": "目前的郵票",
+      "currentSignature": "當前簽名",
+      "signatureAltText": "簽名"
     },
     "stampOverlay": {
       "addStamp": "添加新郵票"
@@ -298,7 +322,16 @@
       "text": "文本",
       "style": "樣式",
       "resetAllSettings": "重置所有設置",
-      "font": "字形"
+      "font": "字形",
+      "locations": {
+        "center": "中央",
+        "topLeft": "左上方",
+        "topRight": "右上",
+        "topCenter": "頂尖中心",
+        "bottomLeft": "左下方",
+        "bottomRight": "右下",
+        "bottomCenter": "底部中心"
+      }
     },
     "thumbnailPanel": {
       "delete": "刪除",
@@ -333,6 +366,10 @@
     "selectPage": {
       "selectTitle": "未選擇頁面",
       "selectMessage": "請選擇頁面，然後重試。"
+    },
+    "colorPicker": {
+      "deleteTitle": "刪除自定義顏色",
+      "deleteMessage": "刪除所選的自定義顏色？它將從您的調色板中刪除。"
     }
   },
   "shortcut": {
@@ -355,6 +392,7 @@
     "squiggly": "(G)",
     "stamp": "(I)",
     "redo": "（Ctrl Shift Z）",
+    "redo_windows": "(Ctrl Y)",
     "undo": "（Ctrl Z）",
     "stickyNote": "(N)",
     "strikeout": "(K)",
@@ -364,7 +402,7 @@
     "richText": {
       "bold": "（Ctrl B）",
       "italic": "（Ctrl I）",
-      "underline": "（Ctrl L）",
+      "underline": "（Ctrl U）",
       "strikeout": "（Ctrl K）"
     }
   },
@@ -416,6 +454,98 @@
       "4": "週四",
       "5": "週五",
       "6": "週六"
+    }
+  },
+  "digitalSignatureModal": {
+    "certification": "認證證書",
+    "Certification": "資質認證",
+    "signature": "簽名",
+    "Signature": "簽名",
+    "valid": "有效",
+    "invalid": "無效",
+    "unknown": "未知",
+    "title": "{{type}}屬性",
+    "header": {
+      "documentIntegrity": "文件完整性",
+      "identitiesTrust": "身份與信任",
+      "generalErrors": "一般錯誤",
+      "digestStatus": "摘要狀態"
+    },
+    "digestAlgorithm": {
+      "preamble": "用於簽名簽名的摘要算法：",
+      "unknown": "用於簽名簽名的摘要算法未知。"
+    },
+    "trustVerification": {
+      "none": "沒有詳細的信任驗證結果。",
+      "current": "嘗試針對當前時間進行信任驗證",
+      "signing": "嘗試進行有關簽名時間的信任驗證：{{trustVerificationTime}}",
+      "timestamp": "嘗試針對安全嵌入式時間戳記進行信任驗證：{{trustVerificationTime}}"
+    },
+    "signerIdentity": {
+      "preamble": "簽名者的身份是",
+      "valid": "有效。",
+      "unknown": "未知。"
+    },
+    "summaryBox": {
+      "summary": "數字{{type}}是{{status}}",
+      "signedBy": "，由{{name}}簽名"
+    }
+  },
+  "digitalSignatureVerification": {
+    "certifier": "證明",
+    "certified": "認證的",
+    "Certified": "已認證",
+    "signer": "標誌",
+    "signed": "簽",
+    "Signed": "簽",
+    "by": "通過",
+    "on": "上",
+    "disallowedChange": "不允許更改：{{type}}，objnum：{{objnum}}",
+    "trustVerification": {
+      "current": "驗證時間為當前時間",
+      "signing": "驗證時間是來自簽名者計算機上的時鐘",
+      "timestamp": "驗證時間來自文檔中嵌入的安全時間戳",
+      "verifiedTrust": "信任驗證結果：已驗證",
+      "noTrustVerification": "沒有詳細的信任驗證結果。"
+    },
+    "permissionStatus": {
+      "noPermissionsStatus": "沒有權限狀態可以報告。",
+      "permissionsVerificationDisabled": "權限驗證已被禁用。",
+      "hasAllowedChanges": "該文檔具有簽名權限設置所允許的更改。",
+      "invalidatedByDisallowedChanges": "文檔具有簽名權限設置不允許的更改。",
+      "unmodified": "該文檔自從"
+    },
+    "trustStatus": {
+      "trustVerified": "已成功建立對{{verificationType}}的信任。",
+      "untrusted": "無法建立信任。",
+      "trustVerificationDisabled": "信任驗證已被禁用。",
+      "noTrustStatus": "沒有可報告的信任狀態。"
+    },
+    "digestStatus": {
+      "digestInvalid": "摘要不正確。",
+      "digestVerified": "摘要是正確的。",
+      "digestVerificationDisabled": "摘要驗證已禁用。",
+      "weakDigestAlgorithmButDigestVerifiable": "摘要是正確的，但摘要算法較弱且不安全。",
+      "noDigestStatus": "沒有摘要狀態可報告。",
+      "unsupportedEncoding": "沒有安裝的SignatureHandler能夠識別簽名的編碼"
+    },
+    "documentStatus": {
+      "noError": "沒有一般錯誤要報告。",
+      "corruptFile": "SignatureHandler報告文件損壞。",
+      "unsigned": "簽名尚未進行加密簽名。",
+      "badByteRanges": "SignatureHandler報告數字簽名中ByteRanges中的損壞。",
+      "corruptCryptographicContents": "SignatureHandler報告數字簽名內容中的損壞。"
+    },
+    "signatureDetails": {
+      "signatureDetails": "簽名細節",
+      "contactInformation": "聯繫信息",
+      "location": "位置",
+      "reason": "原因",
+      "signingTime": "簽約時間",
+      "noContactInformation": "沒有提供聯繫信息",
+      "noLocation": "沒有提供位置",
+      "noReason": "沒有提供原因",
+      "noSigningTime": "找不到簽名時間"
     }
   }
 }
