@@ -58,7 +58,8 @@
     "next": "Il prossimo",
     "startFormEditing": "Inizia la modifica del modulo",
     "exitFormEditing": "Esci dalla modalità di modifica del modulo",
-    "exit": "Uscita"
+    "exit": "Uscita",
+    "markAllRead": "segna tutto come letto"
   },
   "annotation": {
     "areaMeasurement": "Misurazione dell'area",
@@ -89,7 +90,9 @@
     "underline": "Sottolineare",
     "custom": "costume",
     "rubberStamp": "Timbro",
-    "note": "Nota"
+    "note": "Nota",
+    "link": "Collegamento",
+    "other": "Altro"
   },
   "rubberStamp": {
     "Approved": "Approvato",
@@ -133,6 +136,8 @@
     "redaction": "redazione",
     "viewControlsOverlay": "Visualizza i controlli",
     "calibration": "Calibrazione",
+    "zoomOverlay": "Sovrapposizione zoom",
+    "textPopup": "Popup di testo",
     "createStampButton": "Crea nuovo timbro",
     "filter": "Filtro"
   },
@@ -164,12 +169,16 @@
     "insertTextHere": "Inserisci qui il testo",
     "imageSignatureAcceptedFileTypes": "Sono accettati solo {{AcceptedFileTypes}}",
     "enterMeasurement": "Immettere la misurazione tra i due punti",
+    "errorEnterMeasurement": "Il numero che hai inserito non è valido, puoi inserire valori come 7,5 o 7 1/2",
     "linkURLorPage": "Link URL o una pagina",
     "enterReplacementText": "Immettere il testo che si desidera sostituire",
-    "sortBy": "Ordina per"
+    "sortBy": "Ordina per",
+    "emptyCustomStampInput": "Il testo del timbro non può essere vuoto",
+    "unpostedComment": "Commento non pubblicato"
   },
   "option": {
     "notesOrder": {
+      "dropdownLabel": "Ordina elenco",
       "position": "Posizione",
       "time": "Tempo",
       "status": "Stato",
@@ -177,6 +186,7 @@
       "type": "genere"
     },
     "toolbarGroup": {
+      "dropdownLabel": "Gruppi della barra degli strumenti",
       "toolbarGroup-View": "Visualizza",
       "toolbarGroup-Annotate": "Annotare",
       "toolbarGroup-Shapes": "forme",
@@ -188,6 +198,9 @@
       "StrokeColor": "Colore del bordo",
       "FillColor": "Colore di riempimento",
       "TextColor": "Colore del testo"
+    },
+    "colorPalette": {
+      "colorLabel": "Colore"
     },
     "displayMode": {
       "layout": "disposizione",
@@ -214,14 +227,20 @@
     },
     "print": {
       "all": "Tutti",
-      "current": "attuale",
+      "current": "Pagina corrente",
       "pages": "pagine",
+      "view": "Vista corrente",
       "pageQuality": "Qualità di stampa",
       "qualityNormal": "Normale",
       "qualityHigh": "alto",
       "includeAnnotations": "Includi annotazioni",
       "includeComments": "Includi commenti",
       "addWatermarkSettings": "Aggiungi impostazioni filigrana"
+    },
+    "printInfo": {
+      "author": "Autore",
+      "subject": "Soggetto",
+      "date": "Data"
     },
     "redaction": {
       "markForRedaction": "Contrassegna per redazione"
@@ -230,6 +249,11 @@
       "caseSensitive": "Che tiene conto del maiuscolo o minuscolo",
       "wholeWordOnly": "Parola intera",
       "wildcard": "Carta jolly"
+    },
+    "toolsOverlay": {
+      "currentStamp": "Timbro Corrente",
+      "currentSignature": "Firma Attuale",
+      "signatureAltText": "Firma"
     },
     "stampOverlay": {
       "addStamp": "Aggiungi nuovo timbro"
@@ -298,7 +322,16 @@
       "text": "Testo",
       "style": "Stile",
       "resetAllSettings": "Resettare tutte le impostazioni",
-      "font": "font"
+      "font": "font",
+      "locations": {
+        "center": "Centro",
+        "topLeft": "In alto a sinistra",
+        "topRight": "In alto a destra",
+        "topCenter": "In alto al centro",
+        "bottomLeft": "In basso a sinistra",
+        "bottomRight": "In basso a destra",
+        "bottomCenter": "In basso al centro"
+      }
     },
     "thumbnailPanel": {
       "delete": "Elimina",
@@ -333,6 +366,10 @@
     "selectPage": {
       "selectTitle": "Nessuna pagina selezionata",
       "selectMessage": "Seleziona le pagine e riprova."
+    },
+    "colorPicker": {
+      "deleteTitle": "Elimina colore personalizzato",
+      "deleteMessage": "Eliminare il colore personalizzato selezionato? Verrà rimosso dalla tavolozza dei colori."
     }
   },
   "shortcut": {
@@ -355,6 +392,7 @@
     "squiggly": "(G)",
     "stamp": "(IO)",
     "redo": "(Ctrl Maiusc Z)",
+    "redo_windows": "(Ctrl Y)",
     "undo": "(Ctrl Z)",
     "stickyNote": "(N)",
     "strikeout": "(K)",
@@ -364,7 +402,7 @@
     "richText": {
       "bold": "(Ctrl B)",
       "italic": "(Ctrl I)",
-      "underline": "(Ctrl L)",
+      "underline": "(Ctrl U)",
       "strikeout": "(Ctrl K)"
     }
   },
@@ -416,6 +454,98 @@
       "4": "gio",
       "5": "ven",
       "6": "sab"
+    }
+  },
+  "digitalSignatureModal": {
+    "certification": "certificazione",
+    "Certification": "Certificazione",
+    "signature": "firma",
+    "Signature": "Firma",
+    "valid": "valido",
+    "invalid": "non valido",
+    "unknown": "sconosciuto",
+    "title": "{{type}} Proprietà",
+    "header": {
+      "documentIntegrity": "Integrità del documento",
+      "identitiesTrust": "Identità e fiducia",
+      "generalErrors": "Errori generali",
+      "digestStatus": "Stato digest"
+    },
+    "digestAlgorithm": {
+      "preamble": "L'algoritmo digest utilizzato per firmare la firma:",
+      "unknown": "L'algoritmo digest utilizzato per firmare la firma è sconosciuto."
+    },
+    "trustVerification": {
+      "none": "Nessun risultato dettagliato della verifica dell'attendibilità disponibile.",
+      "current": "Tentativo di verifica dell'attendibilità rispetto all'ora corrente",
+      "signing": "Tentativo di verifica dell'attendibilità rispetto all'ora della firma: {{trustVerificationTime}}",
+      "timestamp": "Tentativo di verifica dell'attendibilità rispetto al timestamp protetto incorporato: {{trustVerificationTime}}"
+    },
+    "signerIdentity": {
+      "preamble": "L'identità del firmatario è",
+      "valid": "valido.",
+      "unknown": "sconosciuto."
+    },
+    "summaryBox": {
+      "summary": "Digitale {{type}} è {{status}}",
+      "signedBy": ", firmato da {{name}}"
+    }
+  },
+  "digitalSignatureVerification": {
+    "certifier": "certificare",
+    "certified": "certificato",
+    "Certified": "Certificato",
+    "signer": "cartello",
+    "signed": "firmato",
+    "Signed": "Firmato",
+    "by": "di",
+    "on": "sopra",
+    "disallowedChange": "Modifica non consentita: {{type}}, objnum: {{objnum}}",
+    "trustVerification": {
+      "current": "L'ora di verifica utilizzata era l'ora corrente",
+      "signing": "L'ora della verifica è dall'orologio sul computer del firmatario",
+      "timestamp": "L'orario di verifica proviene dal timestamp protetto incorporato nel documento",
+      "verifiedTrust": "Risultato della verifica dell'attendibilità: verificato",
+      "noTrustVerification": "Nessun risultato dettagliato della verifica dell'attendibilità disponibile."
+    },
+    "permissionStatus": {
+      "noPermissionsStatus": "Nessuno stato delle autorizzazioni da segnalare.",
+      "permissionsVerificationDisabled": "La verifica delle autorizzazioni è stata disabilitata.",
+      "hasAllowedChanges": "Il documento presenta modifiche consentite dalle impostazioni delle autorizzazioni delle firme.",
+      "invalidatedByDisallowedChanges": "Il documento contiene modifiche non consentite dalle impostazioni delle autorizzazioni delle firme.",
+      "unmodified": "Il documento non è stato modificato da quando lo è stato"
+    },
+    "trustStatus": {
+      "trustVerified": "Affidabilità stabilita in {{verificationType}} correttamente.",
+      "untrusted": "Non è stato possibile stabilire la fiducia.",
+      "trustVerificationDisabled": "La verifica dell'attendibilità è stata disabilitata.",
+      "noTrustStatus": "Nessuno stato di attendibilità da segnalare."
+    },
+    "digestStatus": {
+      "digestInvalid": "Il digest non è corretto.",
+      "digestVerified": "Il digest è corretto.",
+      "digestVerificationDisabled": "La verifica del digest è stata disabilitata.",
+      "weakDigestAlgorithmButDigestVerifiable": "Il digest è corretto, ma l'algoritmo del digest è debole e non sicuro.",
+      "noDigestStatus": "Nessuno stato del digest da segnalare.",
+      "unsupportedEncoding": "Nessun SignatureHandler installato è stato in grado di riconoscere la codifica della firma"
+    },
+    "documentStatus": {
+      "noError": "Nessun errore generale da segnalare.",
+      "corruptFile": "SignatureHandler ha segnalato un danneggiamento del file.",
+      "unsigned": "La firma non è stata ancora firmata crittograficamente.",
+      "badByteRanges": "SignatureHandler segnala la corruzione nei ByteRanges nella firma digitale.",
+      "corruptCryptographicContents": "SignatureHandler segnala la corruzione nei contenuti della firma digitale."
+    },
+    "signatureDetails": {
+      "signatureDetails": "Dettagli firma",
+      "contactInformation": "Informazioni sui contatti",
+      "location": "Posizione",
+      "reason": "Motivo",
+      "signingTime": "Tempo di firma",
+      "noContactInformation": "Nessuna informazione di contatto fornita",
+      "noLocation": "Nessuna posizione fornita",
+      "noReason": "Nessun motivo fornito",
+      "noSigningTime": "Nessun orario di firma trovato"
     }
   }
 }
