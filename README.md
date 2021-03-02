@@ -1,1 +1,0 @@
-This repo is used for showing PDFTron WebViewer samples in codesandbox. There's no need to clone this repo to access samples. You can get all of them by downloading the WebViewer package at https://www.pdftron.com/documentation/web/download/web/
