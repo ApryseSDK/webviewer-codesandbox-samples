@@ -58,7 +58,8 @@
     "next": "Prochain",
     "startFormEditing": "Commencer l'édition du formulaire",
     "exitFormEditing": "Quitter le mode d'édition de formulaire",
-    "exit": "Sortie"
+    "exit": "Sortie",
+    "markAllRead": "Marquer tout comme lu"
   },
   "annotation": {
     "areaMeasurement": "Surface mesurée",
@@ -89,7 +90,9 @@
     "underline": "Soulignage",
     "custom": "personnalisation",
     "rubberStamp": "Rubber Stamp",
-    "note": "Remarque"
+    "note": "Remarque",
+    "link": "Lien",
+    "other": "Autre"
   },
   "rubberStamp": {
     "Approved": "Approuvée",
@@ -133,6 +136,8 @@
     "redaction": "Biffure",
     "viewControlsOverlay": "Contrôles de l'affichage",
     "calibration": "Étalonnage",
+    "zoomOverlay": "Superposition de zoom",
+    "textPopup": "Popup texte",
     "createStampButton": "Créer un nouveau tampon",
     "filter": "Filtre"
   },
@@ -164,12 +169,16 @@
     "insertTextHere": "Insérer du texte ici",
     "imageSignatureAcceptedFileTypes": "Seuls {{acceptedFileTypes}} sont acceptés",
     "enterMeasurement": "Entrez la mesure entre les deux points",
+    "errorEnterMeasurement": "Le nombre que vous avez entré est invalide, vous pouvez entrer des valeurs comme 7,5 ou 7 1/2",
     "linkURLorPage": "Lien URL ou une page",
     "enterReplacementText": "Entrez le texte que vous souhaitez remplacer",
-    "sortBy": "Trier par"
+    "sortBy": "Trier par",
+    "emptyCustomStampInput": "Le texte du tampon ne peut pas être vide",
+    "unpostedComment": "Commentaire non publié"
   },
   "option": {
     "notesOrder": {
+      "dropdownLabel": "Liste des ordres de tri",
       "position": "Position",
       "time": "Temps",
       "status": "Statut",
@@ -177,6 +186,7 @@
       "type": "Type"
     },
     "toolbarGroup": {
+      "dropdownLabel": "Groupes de barres d'outils",
       "toolbarGroup-View": "Vue",
       "toolbarGroup-Annotate": "Annoter",
       "toolbarGroup-Shapes": "Formes",
@@ -188,6 +198,9 @@
       "StrokeColor": "Couleur de bordure",
       "FillColor": "Couleur de remplissage",
       "TextColor": "Couleur de texte"
+    },
+    "colorPalette": {
+      "colorLabel": "Couleur"
     },
     "displayMode": {
       "layout": "Disposition",
@@ -214,14 +227,20 @@
     },
     "print": {
       "all": "Toutes",
-      "current": "Actuelle",
+      "current": "Page actuelle",
       "pages": "Pages",
+      "view": "Vue actuelle",
       "pageQuality": "Qualité d'impression",
       "qualityNormal": "Ordinaire",
       "qualityHigh": "Haute",
       "includeAnnotations": "Inclure des annotations",
       "includeComments": "Inclure les commentaires",
       "addWatermarkSettings": "Ajouter des paramètres de filigrane"
+    },
+    "printInfo": {
+      "author": "Auteur",
+      "subject": "Matière",
+      "date": "Date"
     },
     "redaction": {
       "markForRedaction": "Repérer les biffures"
@@ -230,6 +249,11 @@
       "caseSensitive": "Sensible à la casse",
       "wholeWordOnly": "Mot complet",
       "wildcard": "Caractère générique"
+    },
+    "toolsOverlay": {
+      "currentStamp": "Timbre Actuel",
+      "currentSignature": "Signature Actuelle",
+      "signatureAltText": "Signature"
     },
     "stampOverlay": {
       "addStamp": "Ajouter un nouveau tampon"
@@ -298,7 +322,16 @@
       "text": "Texte",
       "style": "Style",
       "resetAllSettings": "Réinitialiser tous les réglages",
-      "font": "Font"
+      "font": "Font",
+      "locations": {
+        "center": "Centre",
+        "topLeft": "En haut à gauche",
+        "topRight": "En haut à droite",
+        "topCenter": "Centre supérieur",
+        "bottomLeft": "En bas à gauche",
+        "bottomRight": "En bas à droite",
+        "bottomCenter": "En bas au centre"
+      }
     },
     "thumbnailPanel": {
       "delete": "Supprimer",
@@ -333,6 +366,10 @@
     "selectPage": {
       "selectTitle": "Aucune page sélectionnée",
       "selectMessage": "Veuillez sélectionner des pages et réessayer."
+    },
+    "colorPicker": {
+      "deleteTitle": "Supprimer la couleur personnalisée",
+      "deleteMessage": "Supprimer la couleur personnalisée sélectionnée? Il sera supprimé de votre palette de couleurs."
     }
   },
   "shortcut": {
@@ -355,6 +392,7 @@
     "squiggly": "(G)",
     "stamp": "(I)",
     "redo": "(Ctrl Shift Z)",
+    "redo_windows": "(Ctrl Y)",
     "undo": "(Ctrl Z)",
     "stickyNote": "(N)",
     "strikeout": "(K)",
@@ -364,7 +402,7 @@
     "richText": {
       "bold": "(Ctrl B)",
       "italic": "(Ctrl I)",
-      "underline": "(Ctrl L)",
+      "underline": "(Ctrl U)",
       "strikeout": "(Ctrl K)"
     }
   },
@@ -416,6 +454,98 @@
       "4": "jeu.",
       "5": "ven.",
       "6": "sam."
+    }
+  },
+  "digitalSignatureModal": {
+    "certification": "certification",
+    "Certification": "Certification",
+    "signature": "Signature",
+    "Signature": "Signature",
+    "valid": "valide",
+    "invalid": "invalide",
+    "unknown": "inconnue",
+    "title": "{{Type de propriétés",
+    "header": {
+      "documentIntegrity": "Intégrité des documents",
+      "identitiesTrust": "Identités et confiance",
+      "generalErrors": "Erreurs générales",
+      "digestStatus": "État du résumé"
+    },
+    "digestAlgorithm": {
+      "preamble": "L'algorithme de résumé utilisé pour signer la signature:",
+      "unknown": "L'algorithme de résumé utilisé pour signer la signature est inconnu."
+    },
+    "trustVerification": {
+      "none": "Aucun résultat de vérification de confiance détaillé disponible.",
+      "current": "Vérification de la confiance tentée par rapport à l'heure actuelle",
+      "signing": "Vérification de la confiance tentée en ce qui concerne l'heure de signature: {{trustVerificationTime}}",
+      "timestamp": "Tentative de vérification de la confiance en ce qui concerne l'horodatage intégré sécurisé: {{trustVerificationTime}}"
+    },
+    "signerIdentity": {
+      "preamble": "L'identité du signataire est",
+      "valid": "valide.",
+      "unknown": "inconnue."
+    },
+    "summaryBox": {
+      "summary": "Numérique {{type}} est {{status}}",
+      "signedBy": ", signé par {{name}}"
+    }
+  },
+  "digitalSignatureVerification": {
+    "certifier": "certifier",
+    "certified": "agréé",
+    "Certified": "Agréé",
+    "signer": "signer",
+    "signed": "signé",
+    "Signed": "Signé",
+    "by": "par",
+    "on": "sur",
+    "disallowedChange": "Modification interdite: {{type}}, objnum: {{objnum}}",
+    "trustVerification": {
+      "current": "L'heure de vérification utilisée était l'heure actuelle",
+      "signing": "L'heure de vérification provient de l'horloge de l'ordinateur du signataire",
+      "timestamp": "L'heure de vérification provient de l'horodatage sécurisé intégré dans le document",
+      "verifiedTrust": "Résultat de la vérification de confiance: vérifié",
+      "noTrustVerification": "Aucun résultat de vérification de confiance détaillé disponible."
+    },
+    "permissionStatus": {
+      "noPermissionsStatus": "Aucun statut d'autorisation à signaler.",
+      "permissionsVerificationDisabled": "La vérification des autorisations a été désactivée.",
+      "hasAllowedChanges": "Le document comporte des modifications autorisées par les paramètres d'autorisations de signatures.",
+      "invalidatedByDisallowedChanges": "Le document comporte des modifications qui ne sont pas autorisées par les paramètres d'autorisations de signatures.",
+      "unmodified": "Le document n'a pas été modifié depuis qu'il"
+    },
+    "trustStatus": {
+      "trustVerified": "Confiance établie avec {{verificationType}} avec succès.",
+      "untrusted": "La confiance n'a pas pu être établie.",
+      "trustVerificationDisabled": "La vérification de la confiance a été désactivée.",
+      "noTrustStatus": "Aucun statut de confiance à signaler."
+    },
+    "digestStatus": {
+      "digestInvalid": "Le résumé est incorrect.",
+      "digestVerified": "Le résumé est correct.",
+      "digestVerificationDisabled": "La vérification du résumé a été désactivée.",
+      "weakDigestAlgorithmButDigestVerifiable": "Le résumé est correct, mais l'algorithme de résumé est faible et non sécurisé.",
+      "noDigestStatus": "Aucun état de résumé à signaler.",
+      "unsupportedEncoding": "Aucun SignatureHandler installé n'a pu reconnaître le codage de la signature"
+    },
+    "documentStatus": {
+      "noError": "Aucune erreur générale à signaler.",
+      "corruptFile": "SignatureHandler a signalé une corruption de fichier.",
+      "unsigned": "La signature n'a pas encore été signée cryptographiquement.",
+      "badByteRanges": "SignatureHandler signale une corruption dans les ByteRanges de la signature numérique.",
+      "corruptCryptographicContents": "SignatureHandler signale une corruption dans le contenu de la signature numérique."
+    },
+    "signatureDetails": {
+      "signatureDetails": "Détails de la signature",
+      "contactInformation": "Informations de contact",
+      "location": "Emplacement",
+      "reason": "Raison",
+      "signingTime": "Heure de signature",
+      "noContactInformation": "Aucune information de contact fournie",
+      "noLocation": "Aucun emplacement fourni",
+      "noReason": "Aucune raison fournie",
+      "noSigningTime": "Aucune heure de signature trouvée"
     }
   }
 }
