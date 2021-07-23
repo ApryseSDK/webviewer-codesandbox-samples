@@ -1,7 +1,7 @@
 // @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link WebViewerInstance.setHeaderItems: https://www.pdftron.com/api/web/WebViewerInstance.html#setHeaderItems__anchor
-// @link WebViewerInstance.enableElements: https://www.pdftron.com/api/web/WebViewerInstance.html#enableElements__anchor
-// @link WebViewerInstance.disableElements: https://www.pdftron.com/api/web/WebViewerInstance.html#disableElements__anchor
+// @link UI.setHeaderItems: https://www.pdftron.com/api/web/UI.html#setHeaderItems__anchor
+// @link UI.enableElements: https://www.pdftron.com/api/web/UI.html#enableElements__anchor
+// @link UI.disableElements: https://www.pdftron.com/api/web/UI.html#disableElements__anchor
 
 // @link Header: https://www.pdftron.com/api/web/Header.html
 // @link Header.getItems: https://www.pdftron.com/api/web/Header.html#getItems__anchor
@@ -10,16 +10,17 @@
 WebViewer(
   {
     path: '../../../lib',
-    pdftronServer: 'https://demo.pdftron.com/', // comment this out to do client-side only
+    webviewerServerURL: 'https://demo.pdftron.com/', // comment this out to do client-side only
     initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf',
   },
   document.getElementById('viewer')
 ).then(instance => {
   samplesSetup(instance);
+  const { setHeaderItems, enableElements, disableElements, enableFeatures, disableFeatures, setTheme, Feature } = instance.UI;
 
   const reverseHeaderItems = () => {
     // Change header items
-    instance.setHeaderItems(header => {
+    setHeaderItems(header => {
       const items = header.getItems();
       const copiedItems = items.splice(2, 18);
       copiedItems.reverse();
@@ -30,9 +31,9 @@ WebViewer(
   const toggleElement = (e, dataElement) => {
     // Enable/disable individual element
     if (e.target.checked) {
-      instance.enableElements([dataElement]);
+      enableElements([dataElement]);
     } else {
-      instance.disableElements([dataElement]);
+      disableElements([dataElement]);
     }
   };
 
@@ -53,63 +54,63 @@ WebViewer(
   document.getElementById('ribbons').onchange = e => {
     // Enable/disable ribbons
     if (e.target.checked) {
-      instance.enableFeatures([instance.Feature.Ribbons]);
+      enableFeatures([Feature.Ribbons]);
     } else {
-      instance.disableFeatures([instance.Feature.Ribbons]);
+      disableFeatures([Feature.Ribbons]);
     }
   };
 
   document.getElementById('text-selection').onchange = e => {
     // Enable/disable text selection
     if (e.target.checked) {
-      instance.enableFeatures([instance.Feature.TextSelection]);
+      enableFeatures([Feature.TextSelection]);
     } else {
-      instance.disableFeatures([instance.Feature.TextSelection]);
+      disableFeatures([Feature.TextSelection]);
     }
   };
 
   document.getElementById('annotations').onchange = e => {
     // Enable/disable annotations
     if (e.target.checked) {
-      instance.enableFeatures([instance.Feature.Annotations]);
+      enableFeatures([Feature.Annotations]);
     } else {
-      instance.disableFeatures([instance.Feature.Annotations]);
+      disableFeatures([Feature.Annotations]);
     }
   };
 
   document.getElementById('notes-panel').onchange = e => {
     // Enable/disable notes panel
     if (e.target.checked) {
-      instance.enableFeatures([instance.Feature.NotesPanel]);
+      enableFeatures([Feature.NotesPanel]);
     } else {
-      instance.disableFeatures([instance.Feature.NotesPanel]);
+      disableFeatures([Feature.NotesPanel]);
     }
   };
 
   document.getElementById('file-picker').onchange = e => {
     // Enable/disable file picker
     if (e.target.checked) {
-      instance.enableFeatures([instance.Feature.FilePicker]);
+      enableFeatures([Feature.FilePicker]);
     } else {
-      instance.disableFeatures([instance.Feature.FilePicker]);
+      disableFeatures([Feature.FilePicker]);
     }
   };
 
   document.getElementById('print').onchange = e => {
     // Enable/disable print
     if (e.target.checked) {
-      instance.enableFeatures([instance.Feature.Print]);
+      enableFeatures([Feature.Print]);
     } else {
-      instance.disableFeatures([instance.Feature.Print]);
+      disableFeatures([Feature.Print]);
     }
   };
 
   document.getElementById('download').onchange = e => {
     // Enable/disable download
     if (e.target.checked) {
-      instance.enableFeatures([instance.Feature.Download]);
+      enableFeatures([Feature.Download]);
     } else {
-      instance.disableFeatures([instance.Feature.Download]);
+      disableFeatures([Feature.Download]);
     }
   };
 
@@ -144,9 +145,9 @@ WebViewer(
   document.getElementsByName('theme').forEach(radioInput => {
     radioInput.onchange = e => {
       if (e.target.id === 'light' && e.target.checked) {
-        instance.setTheme('light');
+        setTheme('light');
       } else {
-        instance.setTheme('dark');
+        setTheme('dark');
       }
     };
   });
