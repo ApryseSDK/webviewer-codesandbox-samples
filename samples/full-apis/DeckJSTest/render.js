@@ -1,9 +1,9 @@
 (exports => {
-  const PDFNet = exports.PDFNet;
+  const PDFNet = exports.Core.PDFNet;
 
   const initAll = async docurl => {
     try {
-      // await exports.PDFNet.initialize(); // awaits promise
+      // await exports.Core.PDFNet.initialize(); // awaits promise
       // PDFNet.beginOperation();
       const doc = await PDFNet.PDFDoc.createFromURL(docurl);
       doc.initSecurityHandler();

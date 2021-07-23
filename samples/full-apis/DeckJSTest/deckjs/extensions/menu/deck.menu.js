@@ -12,8 +12,8 @@ slides in the deck. The deck menu state is indicated by the presence of a class
 on the deck container.
 */
 (function($, deck, undefined) {
-  var $d = $(document),
-    rootSlides; // Array of top level slides
+  const $d = $(document);
+  let rootSlides; // Array of top level slides
 
   /*
 	Extends defaults/options.
@@ -50,7 +50,7 @@ on the deck container.
 	to the deck container.
 	*/
   $[deck]('extend', 'showMenu', function() {
-    var $c = $[deck]('getContainer'),
+    const $c = $[deck]('getContainer'),
       opts = $[deck]('getOptions');
 
     if ($c.hasClass(opts.classes.menu)) {
@@ -86,7 +86,7 @@ on the deck container.
 	option from the deck container.
 	*/
   $[deck]('extend', 'hideMenu', function() {
-    var $c = $[deck]('getContainer'),
+    const $c = $[deck]('getContainer'),
       opts = $[deck]('getOptions');
 
     if (!$c.hasClass(opts.classes.menu)) {
@@ -99,7 +99,7 @@ on the deck container.
     /* Restore old style value */
     if (Modernizr.csstransforms) {
       $.each(rootSlides, function(i, $slide) {
-        var oldStyle = $slide.data('oldStyle');
+        const oldStyle = $slide.data('oldStyle');
 
         $slide.attr('style', oldStyle || '');
       });
@@ -120,12 +120,12 @@ on the deck container.
   });
 
   $d.bind('deck.init', function() {
-    var opts = $[deck]('getOptions'),
-      touchEndTime = 0,
-      currentSlide,
-      slideTest = $.map([opts.classes.before, opts.classes.previous, opts.classes.current, opts.classes.next, opts.classes.after], function(el, i) {
-        return '.' + el;
-      }).join(', ');
+    const opts = $[deck]('getOptions');
+    let touchEndTime = 0,
+      currentSlide;
+    const slideTest = $.map([opts.classes.before, opts.classes.previous, opts.classes.current, opts.classes.next, opts.classes.after], function(el, i) {
+      return '.' + el;
+    }).join(', ');
 
     // Build top level slides array
     rootSlides = [];
@@ -151,7 +151,7 @@ on the deck container.
       })
       .unbind('touchend.deckmenu')
       .bind('touchend.deckmenu', function(e) {
-        var now = Date.now();
+        const now = Date.now();
 
         // Ignore this touch event if it caused a nav change (swipe)
         if (currentSlide !== $[deck]('getSlide')) {
@@ -179,7 +179,7 @@ on the deck container.
       });
     });
   }).bind('deck.change', function(e, from, to) {
-    var container = $[deck]('getContainer');
+    const container = $[deck]('getContainer');
 
     if (container.hasClass($[deck]('getOptions').classes.menu)) {
       container.scrollTop($[deck]('getSlide', to).offset().top);

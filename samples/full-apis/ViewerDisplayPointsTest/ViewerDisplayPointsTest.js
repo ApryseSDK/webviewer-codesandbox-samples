@@ -1,5 +1,5 @@
 (exports => {
-  const PDFNet = exports.PDFNet;
+  const PDFNet = exports.Core.PDFNet;
   // Stores information of the elements of each page so that we don't have to recompute them on subsequent clicks
   let pageElementDataList = [];
 
@@ -8,21 +8,10 @@
   // keep track of previously created annotations so that they can be cleaned up
   let prevAnnotations = [];
 
-  const runCustomScript = (pdfDoc, layersContextID, windowCoord, pageNum, documentViewer, Annotations, annotManager) => {
+  const runCustomScript = (pdfDoc, layersContextID, windowCoord, pageNum, documentViewer, Annotations, annotationManager) => {
     const displayModeManager = documentViewer.getDisplayModeManager();
     const displayMode = displayModeManager.getDisplayMode();
     const docCore = documentViewer.getDocument();
-
-    // eslint-disable-next-line no-unused-vars
-    const setPoint = async (pdfCoord, pageIndex, builder, writer, rectImg, testSize) => {
-      let size = 5;
-      if (testSize !== undefined) {
-        size = testSize;
-      }
-      const posMatrix = await PDFNet.Matrix2D.create(size, 0, 0, size, pdfCoord.x - 2.5, pdfCoord.y - 2.5);
-      const rectElement = await builder.createImageFromMatrix(rectImg, posMatrix);
-      writer.writePlacedElement(rectElement);
-    };
 
     const DrawRectangleAnnot = async (pageNumber, x1, y1, x2, y2) => {
       const p1 = docCore.getViewerCoordinates(pageNumber, x1, y1);
@@ -30,8 +19,8 @@
 
       const displayAnnot = new Annotations.RectangleAnnotation();
       displayAnnot.setPageNumber(pageNumber);
-      displayAnnot.setRect(new Annotations.Rect(p1.x, Math.min(p1.y, p2.y), p2.x, Math.max(p1.y, p2.y)));
-      annotManager.addAnnotation(displayAnnot);
+      displayAnnot.setRect(new Core.Math.Rect(p1.x, Math.min(p1.y, p2.y), p2.x, Math.max(p1.y, p2.y)));
+      annotationManager.addAnnotation(displayAnnot);
       prevAnnotations.push(displayAnnot);
     };
 
@@ -48,8 +37,8 @@
       displayAnnot.FillColor = new Annotations.Color(255, 255, 0, 1);
       displayAnnot.StrokeColor = new Annotations.Color(255, 0, 0, 1);
 
-      displayAnnot.setRect(new Annotations.Rect(p1.x, Math.min(p1.y, p2.y), p2.x, Math.max(p1.y, p2.y)));
-      annotManager.addAnnotation(displayAnnot);
+      displayAnnot.setRect(new Core.Math.Rect(p1.x, Math.min(p1.y, p2.y), p2.x, Math.max(p1.y, p2.y)));
+      annotationManager.addAnnotation(displayAnnot);
       prevAnnotations.push(displayAnnot);
     };
 
@@ -148,7 +137,7 @@
         }
       }
       // ensure that we update the view
-      annotManager.drawAnnotations(pageNumber);
+      annotationManager.drawAnnotations(pageNumber);
     };
 
     const ProcessElements = async (pageElementData, pageBuilder, doc, page, pageNumber, pdfMousePoint, selectTopElementOnly) => {
@@ -242,8 +231,6 @@
     };
 
     const main = async () => {
-      // eslint-disable-next-line no-unused-vars
-      let ret = 0;
       try {
         const doc = pdfDoc;
         doc.lock();
@@ -287,7 +274,6 @@
         currPage.annotPushBack(sq);
       } catch (err) {
         console.log(err.stack);
-        ret = 1;
       }
     };
 
@@ -299,7 +285,7 @@
     PDFNet.initialize().then(() => {
       // get document
       let stillRunning = false;
-      const documentViewer = readerControl.docViewer;
+      const documentViewer = instance.Core.documentViewer;
       const doc = documentViewer.getDocument();
       doc.getPDFDoc().then(pdfDoc => {
         if (prevListenerFunc) {
@@ -312,10 +298,10 @@
           // Make a check to see if processes are still running to prevent multiple from running at same time.
           if (!stillRunning) {
             stillRunning = true;
-            const annotManager = readerControl.docViewer.getAnnotationManager();
+            const annotationManager = instance.Core.documentViewer.getAnnotationManager();
             if (prevAnnotations.length > 0) {
               for (let i = 0; i < prevAnnotations.length; i++) {
-                annotManager.deleteAnnotation(prevAnnotations[i]);
+                annotationManager.deleteAnnotation(prevAnnotations[i]);
               }
               prevAnnotations = [];
             }
@@ -338,7 +324,7 @@
               .requirePage(pageNumber)
               .then(() => doc.extractPDFNetLayersContext())
               // running custom PDFNetJS script
-              .then(layersContextID => runCustomScript(pdfDoc, layersContextID, windowCoord, pageNumber, documentViewer, Annotations, annotManager))
+              .then(layersContextID => runCustomScript(pdfDoc, layersContextID, windowCoord, pageNumber, documentViewer, Annotations, annotationManager))
               .then(() => {
                 console.log('finished script');
                 // refresh information on viewer and update appearance

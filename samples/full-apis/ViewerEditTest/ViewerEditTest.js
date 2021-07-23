@@ -1,5 +1,5 @@
 (exports => {
-  const PDFNet = exports.PDFNet;
+  const PDFNet = exports.Core.PDFNet;
   const refreshSVG = color =>
     '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="' +
     color +
@@ -78,11 +78,8 @@
     const main = async () => {
       let ret = 0;
       try {
-        // eslint-disable-next-line no-unused-vars
-        let islocked = false;
         const doc = pdfDoc;
         doc.lock();
-        islocked = true;
         doc.initSecurityHandler();
 
         const writer = await PDFNet.ElementWriter.create();
@@ -116,6 +113,10 @@
           writer.end();
           reader.end();
           console.log('page ' + pageCounter + ' finished editing');
+          // refresh the cache with the newly updated document
+          instance.Core.documentViewer.refreshPage(pageCounter);
+          // update viewer with new document
+          instance.Core.documentViewer.updateView([pageCounter]);
           pageCounter++;
         }
         console.log('Done.');
@@ -132,31 +133,29 @@
 
   window.addEventListener('documentLoaded', () => {
     PDFNet.initialize().then(() => {
-      const doc = readerControl.docViewer.getDocument();
+      const doc = instance.Core.documentViewer.getDocument();
       doc.getPDFDoc().then(pdfDoc => {
-        readerControl.setHeaderItems(headerItems => {
+        instance.UI.setHeaderItems(headerItems => {
           headerItems.push({
             initialState: 'enabled',
             type: 'statefulButton',
+            dataElement: 'refreshButton',
             states: {
               enabled: {
                 img: refreshSVG('currentColor'),
+                className: 'not-disabled',
                 onClick: update => {
                   update('disabled');
                   runElementEditTest(pdfDoc).then(() => {
                     // re-enable our button
                     update('enabled');
-                    // refresh the cache with the newly updated document
-                    readerControl.docViewer.refreshAll();
-                    // update viewer with new document
-                    readerControl.docViewer.updateView();
                   });
                 },
               },
               disabled: {
                 img: refreshSVG('lightgray'),
                 onClick: () => {},
-                className: 'disable',
+                className: 'disabled',
               },
             },
             mount: () => {},

@@ -1,6 +1,6 @@
 (async exports => {
-  const PDFNet = exports.PDFNet;
-  let CoreControls = null;
+  const PDFNet = exports.Core.PDFNet;
+  let Core = null;
   let Annotations = null;
 
   const parentDoc = window.parent.window.document;
@@ -56,7 +56,7 @@
     });
 
     await newDoc.unlock();
-    readerControl.loadDocument(newDoc);
+    instance.UI.loadDocument(newDoc);
   };
 
   const enableCompareButton = async () => {
@@ -76,7 +76,7 @@
   };
 
   const getPDFDocFromUpload = async (file, fileIndex) => {
-    const newDoc = await CoreControls.createDocument(file, {});
+    const newDoc = await Core.createDocument(file, {});
     uploadedDoc[fileIndex] = await newDoc.getPDFDoc();
     if (uploadedDoc[1] !== null && uploadedDoc[0] !== null) {
       enableCompareButton();
@@ -92,9 +92,9 @@
   });
 
   const init = async () => {
-    CoreControls = window.CoreControls;
-    Annotations = window.Annotations;
-    CoreControls.enableFullPDF(true);
+    Core = window.Core;
+    Annotations = window.Core.Annotations;
+    Core.enableFullPDF(true);
     await PDFNet.initialize();
   };
 

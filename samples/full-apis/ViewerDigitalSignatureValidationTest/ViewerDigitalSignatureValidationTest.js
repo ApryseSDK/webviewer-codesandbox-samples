@@ -7,17 +7,23 @@
   const filePicker = parentDocument.getElementById('file-picker');
 
   window.addEventListener('viewerLoaded', () => {
-    const instance = window.readerControl;
+    const instance = window.instance;
+    const { VerificationOptions, openElements, loadDocument } = instance.UI;
+    const { documentViewer } = instance.Core;
 
-    const initialCert = 'https://pdftron.s3.amazonaws.com/downloads/pl/pdftron.cer';
-    instance.verificationOptions.addTrustedCertificates([initialCert]);
+    const initialCert = 'https://pdftron.s3.amazonaws.com/downloads/pl/waiver.cer';
+    VerificationOptions.addTrustedCertificates([initialCert]);
 
-    instance.docViewer.one('documentLoaded', () => {
-      instance.openElements(['signaturePanel']);
-    });
+    documentViewer.addEventListener(
+      'documentLoaded',
+      () => {
+        openElements(['signaturePanel']);
+      },
+      { once: true }
+    );
 
     certSelect.addEventListener('change', e => {
-      instance.verificationOptions.addTrustedCertificates([e.target.value]);
+      VerificationOptions.addTrustedCertificates([e.target.value]);
     });
 
     certUrlForm.addEventListener('submit', e => {
@@ -26,11 +32,11 @@
       certSelect.value = '';
 
       const certUrl = document.getElementById('certificate-url');
-      instance.verificationOptions.addTrustedCertificates([certUrl.value]);
+      VerificationOptions.addTrustedCertificates([certUrl.value]);
     });
 
     docSelect.addEventListener('change', e => {
-      instance.loadDocument(e.target.value);
+      loadDocument(e.target.value);
     });
 
     docUrlForm.addEventListener('submit', e => {
@@ -39,7 +45,7 @@
       docSelect.value = '';
 
       const docUrl = document.getElementById('document-url');
-      instance.loadDocument(docUrl.value);
+      loadDocument(docUrl.value);
     });
 
     filePicker.addEventListener('change', e => {
@@ -53,10 +59,10 @@
 
       if (ext === 'cer') {
         certSelect.value = '';
-        instance.verificationOptions.addTrustedCertificates([file]);
+        VerificationOptions.addTrustedCertificates([file]);
       } else if (ext === 'pdf') {
         docSelect.value = '';
-        instance.loadDocument(file);
+        loadDocument(file);
       }
     });
   });

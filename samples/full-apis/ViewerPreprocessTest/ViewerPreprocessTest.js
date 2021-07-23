@@ -1,5 +1,5 @@
 (exports => {
-  const PDFNet = exports.PDFNet;
+  const PDFNet = exports.Core.PDFNet;
   const runScript = () => {
     const ModAnnotations = async doc => {
       const imagefile = '../../samples/full-apis/TestFiles/grayscale.tif';
@@ -94,7 +94,7 @@
     PDFNet.initialize()
       .then(() => runScript())
       .then(async doc => {
-        readerControl.loadDocument(doc);
+        instance.UI.loadDocument(doc);
         console.log('finished script');
       });
   });

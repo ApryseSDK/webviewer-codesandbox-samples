@@ -2,7 +2,7 @@
   let snapMode;
 
   const getMouseLocation = e => {
-    const scrollElement = readerControl.docViewer.getScrollViewElement();
+    const scrollElement = instance.Core.documentViewer.getScrollViewElement();
     const scrollLeft = scrollElement.scrollLeft || 0;
     const scrollTop = scrollElement.scrollTop || 0;
 
@@ -13,11 +13,11 @@
   };
 
   const mouseToPagePoint = e => {
-    const displayMode = readerControl.docViewer.getDisplayModeManager().getDisplayMode();
+    const displayMode = instance.Core.documentViewer.getDisplayModeManager().getDisplayMode();
     const windowPoint = getMouseLocation(e);
 
     const page = displayMode.getSelectedPages(windowPoint, windowPoint);
-    const pageNumber = page.first !== null ? page.first : readerControl.docViewer.getCurrentPage();
+    const pageNumber = page.first !== null ? page.first : instance.Core.documentViewer.getCurrentPage();
 
     return {
       point: displayMode.windowToPage(windowPoint, pageNumber),
@@ -36,7 +36,7 @@
       panel: {
         dataElement: 'snapModesPanel',
         render: () => {
-          const { DEFAULT, POINT_ON_LINE, LINE_MID_POINT, LINE_INTERSECTION, PATH_ENDPOINT } = readerControl.docViewer.SnapMode;
+          const { DEFAULT, POINT_ON_LINE, LINE_MID_POINT, LINE_INTERSECTION, PATH_ENDPOINT } = instance.Core.documentViewer.SnapMode;
 
           const buttonContainer = document.createElement('div');
           const map = {
@@ -77,22 +77,22 @@
       },
     };
 
-    readerControl.setCustomPanel(snapModesPanel);
+    instance.UI.setCustomPanel(snapModesPanel);
   };
 
   window.addEventListener('documentLoaded', () => {
     createSnapModesPanel();
-    readerControl.openElements(['snapModesPanel']);
+    instance.UI.openElements(['snapModesPanel']);
 
     const lineAnnot = new Annotations.LineAnnotation();
     lineAnnot.setStartPoint(0, 0);
     lineAnnot.setEndPoint(0, 0);
     lineAnnot.PageNumber = 1;
 
-    const annotManager = readerControl.docViewer.getAnnotationManager();
-    annotManager.addAnnotation(lineAnnot);
+    const annotationManager = instance.Core.documentViewer.getAnnotationManager();
+    annotationManager.addAnnotation(lineAnnot);
 
-    readerControl.docViewer.on('mouseMove', e => {
+    instance.Core.documentViewer.addEventListener('mouseMove', e => {
       const result = mouseToPagePoint(e);
       const pagePoint = result.point;
       const pageNumber = result.pageNumber;
@@ -102,12 +102,12 @@
       lineAnnot.setStartPoint(pagePoint.x, pagePoint.y);
       // refresh old page since line annotation has been removed from it
       if (pageNumber !== oldPageNumber) {
-        annotManager.drawAnnotations(oldPageNumber);
+        annotationManager.drawAnnotations(oldPageNumber);
       }
 
-      readerControl.docViewer.snapToNearest(pageNumber, pagePoint.x, pagePoint.y, snapMode).then(snapPoint => {
+      instance.Core.documentViewer.snapToNearest(pageNumber, pagePoint.x, pagePoint.y, snapMode).then(snapPoint => {
         lineAnnot.setEndPoint(snapPoint.x, snapPoint.y);
-        annotManager.redrawAnnotation(lineAnnot);
+        annotationManager.redrawAnnotation(lineAnnot);
       });
     });
   });

@@ -1,5 +1,5 @@
 (exports => {
-  const PDFNet = exports.PDFNet;
+  const PDFNet = exports.Core.PDFNet;
   const mergeAndSave = (doc, xfdf) => {
     const main = async () => {
       // Import XFDF into FDF, then merge data from FDF into PDF
@@ -47,10 +47,10 @@
   };
 
   const customDownload = options => {
-    const docViewer = readerControl.docViewer;
-    const am = docViewer.getAnnotationManager();
+    const documentViewer = instance.Core.documentViewer;
+    const am = documentViewer.getAnnotationManager();
     const annotationsToRemove = am.getAnnotationsList();
-    const currentDocument = docViewer.getDocument();
+    const currentDocument = documentViewer.getDocument();
     return PDFNet.initialize()
       .then(() => currentDocument.getPDFDoc())
       .then(pdfDoc => mergeAndSave(pdfDoc, options.xfdfString))
@@ -60,18 +60,18 @@
 
         am.deleteAnnotations(annotationsToRemove);
         // clear the cache
-        docViewer.refreshAll();
+        documentViewer.refreshAll();
         // update viewer with new document
-        docViewer.updateView();
+        documentViewer.updateView();
         // Annotations may contain text so we need to regenerate
         // our text representation
-        docViewer.getDocument().refreshTextData();
+        documentViewer.getDocument().refreshTextData();
         return data;
       });
   };
 
   window.addEventListener('documentLoaded', () => {
-    const doc = readerControl.docViewer.getDocument();
+    const doc = instance.Core.documentViewer.getDocument();
     doc.getFileData = customDownload;
   });
 })(window);

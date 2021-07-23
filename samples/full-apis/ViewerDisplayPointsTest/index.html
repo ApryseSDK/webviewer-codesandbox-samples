@@ -13,18 +13,18 @@
     <div id="viewer" style="height: 100%; overflow: hidden;"></div>
     <script>
       /* global Modernizr */
-      var viewerElement = document.getElementById('viewer');
+      const viewerElement = document.getElementById('viewer');
       Modernizr.addTest('async', function() {
         try {
-          var result;
+          let result;
           // eslint-disable-next-line no-eval
-          eval('var a = () => {result = "success"}; var b = async () => {await a()}; b()');
+          eval('const a = () => {result = "success"}; const b = async () => {await a()}; b()');
           return result === 'success';
         } catch (e) {
           return false;
         }
       });
-      var script = Modernizr.async ? 'ViewerDisplayPointsTest.js' : 'ViewerDisplayPointsTest.ES5.js';
+      const script = Modernizr.async ? 'ViewerDisplayPointsTest.js' : 'ViewerDisplayPointsTest.ES5.js';
       // eslint-disable-next-line no-unused-vars
       WebViewer(
         {

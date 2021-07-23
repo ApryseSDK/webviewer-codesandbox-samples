@@ -29,8 +29,10 @@
     "pageSet": "페이지 설정",
     "print": "인쇄",
     "name": "이름",
+    "rename": "이름 바꾸기",
     "ok": "확인",
     "rotate": "회전",
+    "rotate3D": "회전",
     "rotateClockwise": "시계 방향으로",
     "rotateCounterClockwise": "시계 반대 방향으로",
     "save": "저장",
@@ -59,6 +61,9 @@
     "startFormEditing": "양식 편집 시작",
     "exitFormEditing": "양식 편집 모드 종료",
     "exit": "출구",
+    "addOption": "옵션 추가",
+    "formFieldEdit": "양식 필드 편집",
+    "viewShortCutKeysFor3D": "바로 가기 키보기",
     "markAllRead": "모두 읽은 상태로 표시"
   },
   "annotation": {
@@ -67,12 +72,15 @@
     "callout": "설명선",
     "crop": "자르기 페이지",
     "caret": "캐럿",
+    "formFillCheckmark": "진드기",
+    "formFillCross": "가로 질러 가다",
     "distanceMeasurement": "거리 측정",
     "countMeasurement": "카운트 측정",
     "ellipse": "타원",
     "eraser": "지우개",
     "fileattachment": "첨부 파일",
     "freehand": "자유형",
+    "freeHandHighlight": "프리 핸드 하이라이트",
     "freetext": "자유 텍스트",
     "highlight": "강조 표시",
     "line": "선",
@@ -82,6 +90,7 @@
     "polyline": "폴리라인",
     "rectangle": "직사각형",
     "redact": "개정",
+    "formFillDot": "점",
     "signature": "서명",
     "squiggly": "곡선",
     "stamp": "스탬프",
@@ -91,8 +100,15 @@
     "custom": "사용자 지정",
     "rubberStamp": "고무 도장",
     "note": "노트",
+    "textField": "텍스트 필드",
+    "signatureFormField": "서명 필드",
+    "checkBoxFormField": "체크 박스 필드",
+    "radioButtonFormField": "RadioButton 필드",
+    "listBoxFormField": "목록 상자 필드",
+    "comboBoxFormField": "콤보 박스 필드",
     "link": "링크",
-    "other": "다른"
+    "other": "다른",
+    "3D": "3D"
   },
   "rubberStamp": {
     "Approved": "승인",
@@ -128,6 +144,7 @@
     "notesPanel": "참고",
     "outlinesPanel": "개요",
     "bookmarksPanel": "북마크",
+    "signaturePanel": "서명",
     "newBookmark": "새로운 북마크",
     "bookmarkPage": "페이지",
     "layersPanel": "레이어",
@@ -149,7 +166,8 @@
     "encryptedUserCancelled": "암호화된 문서를 로드하지 못했습니다. 비밀번호 입력이 취소되었습니다.",
     "enterPassword": "이 문서는 비밀번호로 보호되어 있습니다. 비밀번호를 입력하세요",
     "incorrectPassword": "비밀번호가 잘못되었습니다. 남은 시도: {{ remainingAttempts }}",
-    "noAnnotations": "이 문서에는 주석이 없습니다.",
+    "noAnnotations": "주석을 달기 시작하여 댓글을 남깁니다.",
+    "noAnnotationsReadOnly": "이 문서에는 주석이 없습니다.",
     "noAnnotationsFilter": "주석 만들기를 시작하면 여기에 필터가 표시됩니다.",
     "noOutlines": "이 문서에는 개요가 없습니다.",
     "noResults": "결과를 찾을 수 없습니다.",
@@ -174,7 +192,10 @@
     "enterReplacementText": "바꿀 텍스트를 입력하십시오",
     "sortBy": "정렬 기준",
     "emptyCustomStampInput": "스탬프 텍스트는 비워 둘 수 없습니다",
-    "unpostedComment": "게시되지 않은 댓글"
+    "unpostedComment": "게시되지 않은 댓글",
+    "lockedLayer": "레이어가 잠겨 있습니다.",
+    "layerVisibililtyNoChange": "레이어 가시성을 변경할 수 없습니다.",
+    "untitled": "제목 없음"
   },
   "option": {
     "notesOrder": {
@@ -183,7 +204,8 @@
       "time": "시각",
       "status": "상태",
       "author": "저자",
-      "type": "유형"
+      "type": "유형",
+      "color": "색깔"
     },
     "toolbarGroup": {
       "dropdownLabel": "도구 모음 그룹",
@@ -192,7 +214,9 @@
       "toolbarGroup-Shapes": "모양",
       "toolbarGroup-Insert": "끼워 넣다",
       "toolbarGroup-Measure": "법안",
-      "toolbarGroup-Edit": "편집하다"
+      "toolbarGroup-Edit": "편집하다",
+      "toolbarGroup-FillAndSign": "채우기 및 서명",
+      "toolbarGroup-Forms": "양식"
     },
     "annotationColor": {
       "StrokeColor": "테두리 색",
@@ -209,15 +233,25 @@
     "documentControls": {
       "placeholder": "선택할 페이지를 입력하십시오 (예 : 2, 5-9)."
     },
+    "outlineControls": {
+      "add": "아이템 추가",
+      "reorder": "재 주문"
+    },
     "layout": {
       "cover": "커버",
       "double": "더블",
       "single": "싱글"
     },
+    "mathSymbols": "수학 기호",
     "notesPanel": {
       "separator": {
         "today": "오늘",
-        "yesterday": "어제"
+        "yesterday": "어제",
+        "unknown": "알 수 없는"
+      },
+      "noteContent": {
+        "noName": "(이름 없음)",
+        "noDate": "(날짜 없음)"
       }
     },
     "pageTransition": {
@@ -269,7 +303,8 @@
     },
     "filterAnnotModal": {
       "commentBy": "의 댓글",
-      "types": "종류"
+      "types": "종류",
+      "color": "색깔"
     },
     "status": {
       "status": "지위"
@@ -357,7 +392,13 @@
     "deletePage": {
       "deleteTitle": "페이지 삭제",
       "deleteMessage": "선택한 페이지를 삭제 하시겠습니까? 취소 할 수 없습니다",
-      "deleteLastPageMessage": "그러면 페이지가 남아 있지 않습니다. 한 페이지 이상 남겨주세요"
+      "deleteLastPageMessage": "문서의 모든 페이지를 삭제할 수 없습니다."
+    },
+    "extractPage": {
+      "title": "페이지 추출",
+      "message": "선택한 페이지를 추출 하시겠습니까?",
+      "confirmBtn": "페이지 추출",
+      "secondaryBtn": "페이지 추출 및 제거"
     },
     "redaction": {
       "applyTile": "수정 적용",
@@ -404,7 +445,9 @@
       "italic": "(Ctrl I)",
       "underline": "(Ctrl U)",
       "strikeout": "(Ctrl K)"
-    }
+    },
+    "rotate3D": "Shift + 끌기",
+    "zoom3D": "Shift + 스크롤"
   },
   "tool": {
     "pan": "이동",
@@ -419,6 +462,12 @@
     "page": "페이지",
     "enterurl": "연결할 URL을 입력하십시오",
     "enterpage": "연결하려는 페이지 번호를 선택하십시오"
+  },
+  "Model3D": {
+    "add3D": "URL을 입력하여 3D 주석 추가",
+    "enterurl": "3D 개체의 URL을 glTF 형식으로 입력하세요.",
+    "enterurlOrLocalFile": "URL을 입력하거나 glTF 형식으로 3D 개체를 업로드합니다.",
+    "formatError": "glTF (.glb) 형식 만 지원됩니다."
   },
   "datePicker": {
     "previousMonth": "지난달",
@@ -456,6 +505,39 @@
       "6": "토"
     }
   },
+  "formField": {
+    "formFieldPopup": {
+      "fieldName": "분야 명",
+      "fieldValue": "기본값",
+      "readOnly": "읽기 전용",
+      "multiSelect": "다중 선택",
+      "required": "필수",
+      "multiLine": "여러 줄",
+      "apply": "대다",
+      "cancel": "취소",
+      "flags": "필드 플래그",
+      "options": "옵션",
+      "radioGroups": "동일한 필드 이름을 가진 라디오 버튼은 동일한 그룹에 속합니다.",
+      "nameRequired": "필드 이름이 필요합니다.",
+      "size": "크기",
+      "width": "폭",
+      "height": "신장",
+      "invalidField": {
+        "duplicate": "필드 이름이 이미 있습니다.",
+        "empty": "필드 이름은 비워 둘 수 없습니다."
+      }
+    },
+    "apply": "적용 분야",
+    "type": "필드 유형",
+    "types": {
+      "text": "본문",
+      "signature": "서명",
+      "checkbox": "체크 박스",
+      "radio": "라디오 버튼",
+      "listbox": "리스트 박스",
+      "combobox": "콤보 박스"
+    }
+  },
   "digitalSignatureModal": {
     "certification": "인증",
     "Certification": "인증",
@@ -470,6 +552,12 @@
       "identitiesTrust": "정체성과 신뢰",
       "generalErrors": "일반 오류",
       "digestStatus": "다이제스트 상태"
+    },
+    "documentPermission": {
+      "noChangesAllowed": "{{editor}}에서이 문서를 변경할 수 없도록 지정했습니다.",
+      "formfillingSigningAllowed": "{{editor}}는이 문서에 대해 양식 채우기 및 서명이 허용되도록 지정했습니다. 다른 변경은 허용되지 않습니다.",
+      "annotatingFormfillingSigningAllowed": "{{editor}}는이 문서에 대해 양식 채우기, 서명 및 주석 달기가 허용되도록 지정했습니다. 다른 변경은 허용되지 않습니다.",
+      "unrestricted": "{{editor}}는이 문서에 대한 제한이 없음을 지정했습니다."
     },
     "digestAlgorithm": {
       "preamble": "서명에 서명하는 데 사용 된 다이제스트 알고리즘 :",
@@ -546,6 +634,11 @@
       "noLocation": "제공된 위치 없음",
       "noReason": "제공된 이유 없음",
       "noSigningTime": "서명 시간이 없습니다."
+    },
+    "panelMessages": {
+      "noSignatureFields": "이 문서에는 서명 필드가 없습니다.",
+      "certificateDownloadError": "신뢰할 수있는 인증서를 다운로드하려고 할 때 오류가 발생했습니다.",
+      "localCertificateError": "로컬 인증서를 읽는 데 몇 가지 문제가 있습니다."
     }
   }
 }

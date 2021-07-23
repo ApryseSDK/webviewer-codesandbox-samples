@@ -21,7 +21,7 @@
       <h2>Add a certificate to use</h2>
       <select id="certificate-select" style="width: 100%">
         <option disabled selected value> -- select a certificate -- </option>
-        <option value="https://pdftron.s3.amazonaws.com/downloads/pl/personal.cer">https://pdftron.s3.amazonaws.com/downloads/pl/personal.cer</option>
+        <option value="https://pdftron.s3.amazonaws.com/downloads/pl/pdftron.cer">https://pdftron.s3.amazonaws.com/downloads/pl/pdftron.cer</option>
       </select>
       <h2>Or pass a url to a certificate</h2>
       <form id="certificate-url-form">
@@ -31,10 +31,10 @@
 
       <h2>Choose a PDF document to view</h2>
       <select id="document-select" style="width: 100%">
-        <option selected value="https://pdftron.s3.amazonaws.com/downloads/pl/tiger_withApprovalField_certified_approved.pdf"
+        <option selected value="https://pdftron.s3.amazonaws.com/downloads/pl/waiver-signed.pdf">https://pdftron.s3.amazonaws.com/downloads/pl/waiver.pdf</option>
+        <option value="https://pdftron.s3.amazonaws.com/downloads/pl/tiger_withApprovalField_certified_approved.pdf"
           >https://pdftron.s3.amazonaws.com/downloads/pl/tiger_withApprovalField_certified_approved.pdf</option
         >
-        <option value="https://pdftron.s3.amazonaws.com/downloads/pl/personal_signed.pdf">https://pdftron.s3.amazonaws.com/downloads/pl/personal_signed.pdf</option>
       </select>
       <h2>Or pass a url to a PDF document</h2>
       <form id="document-url-form">
@@ -66,7 +66,7 @@
         {
           path: '../../../lib',
           documentType: 'pdf',
-          initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/tiger_withApprovalField_certified_approved.pdf',
+          initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/waiver-signed.pdf',
           showLocalFilePicker: true,
           annotationAdmin: true,
           fullAPI: true,
