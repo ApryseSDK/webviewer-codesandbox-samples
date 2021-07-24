@@ -23,19 +23,24 @@
       <select id="move-from"></select>
       to
       <select id="move-to"></select>
-      <button id="move">Apply</button>
+      <button id="move">Move</button>
       <br />
       <h2>Insert a blank page</h2>
       <select id="insert-at"></select>
-      <button id="insert">Apply</button>
+      <button id="insert">Insert</button>
+      <br />
+      <h2>Split / Extract pages</h2>
+      <input type="text" id="extract-list" pattern="^[0-9]+([,-][0-9]+)*" /><button id="extract">Extract</button>
       <br />
       <h2>Merge another document</h2>
       <input id="file-picker" type="file" accept=".pdf,.jpg,.jpeg,.png,.docx,.xlsx,.pptx,.md" />
       <hr />
       <h1>Instructions</h1>
       <p>Use the dropdown to select a page number, and buttons to do page operations. Please note that this samples uses PDFNetJS.</p>
+      <p>Split / extract pages by typing the pages with a comma or dash separation in between for instance 1,2,3-5 would extract the first 5 pages.</p>
     </aside>
     <div id="viewer"></div>
+    <script src="../../FileSaver.min.js"></script>
     <script src="../../menu-button.js"></script>
 
     <!--ga-tag-->

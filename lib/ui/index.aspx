@@ -14,7 +14,8 @@
   <div id="line-connector-wrapper">
     <div id="line-connector-root"></div>
   </div>
-  <script src="../core/CoreControls.js"></script>
+  <div id="outline-edit-popup-portal"></div>
+  <script src="../core/webviewer-core.min.js"></script>
   <script src="webviewer-ui.min.js"></script>
 </body>
 

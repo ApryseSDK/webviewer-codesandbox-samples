@@ -1,11 +1,11 @@
 // @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
 
-// @link WebViewerInstance.enableElements: https://www.pdftron.com/api/web/WebViewerInstance.html#enableElements__anchor
-// @link WebViewerInstance.enableFeatures: https://www.pdftron.com/api/web/WebViewerInstance.html#enableFeatures__anchor
-// @link WebViewerInstance.selectThumbnailPages: https://www.pdftron.com/api/web/WebViewerInstance.html#selectThumbnailPages__anchor
+// @link UI.enableElements: https://www.pdftron.com/api/web/UI.html#enableElements__anchor
+// @link UI.enableFeatures: https://www.pdftron.com/api/web/UI.html#enableFeatures__anchor
+// @link UI.selectThumbnailPages: https://www.pdftron.com/api/web/UI.html#selectThumbnailPages__anchor
 
-// @link CoreControls: https://www.pdftron.com/api/web/CoreControls.html
-// @link CoreControls.initPDFWorkerTransports: https://www.pdftron.com/api/web/CoreControls.html#.initPDFWorkerTransports__anchor
+// @link Core: https://www.pdftron.com/api/web/Core.html
+// @link Core.initPDFWorkerTransports: https://www.pdftron.com/api/web/Core.html#.initPDFWorkerTransports__anchor
 
 const viewers = [
   {
@@ -19,9 +19,9 @@ const viewers = [
 ];
 let workerTransportPromise;
 
-CoreControls.setWorkerPath('../../../lib/core');
-CoreControls.getDefaultBackendType().then(pdfType => {
-  workerTransportPromise = CoreControls.initPDFWorkerTransports(pdfType, {});
+Core.setWorkerPath('../../../lib/core');
+Core.getDefaultBackendType().then(pdfType => {
+  workerTransportPromise = Core.initPDFWorkerTransports(pdfType, {});
 
   initializeWebViewer(viewers[0]);
   initializeWebViewer(viewers[1]);
@@ -46,15 +46,16 @@ const initializeWebViewer = viewer => {
     },
     document.getElementById(`${viewer.domElement}`)
   ).then(instance => {
-    const { docViewer } = instance;
-    instance.enableFeatures(['ThumbnailMultiselect', 'MultipleViewerMerging']);
-    instance.enableElements(['documentControl']);
+    const { documentViewer } = instance.Core;
+    const { enableFeatures, enableElements, openElements, selectThumbnailPages, loadDocument } = instance.UI;
+    enableFeatures(['ThumbnailMultiselect', 'MultipleViewerMerging']);
+    enableElements(['documentControl']);
 
-    docViewer.on('documentLoaded', () => {
-      instance.openElements(['thumbnailsPanel']);
+    documentViewer.addEventListener('documentLoaded', () => {
+      openElements(['thumbnailsPanel']);
 
       // select some pages
-      instance.selectThumbnailPages([1]);
+      selectThumbnailPages([1]);
     });
 
     document.getElementById(`${viewer.domElement}`).addEventListener('documentMerged', data => {
@@ -64,20 +65,20 @@ const initializeWebViewer = viewer => {
 
     // set up controls on the left side bar
     document.getElementById(`${viewer.domElement}-select`).onchange = e => {
-      instance.loadDocument(e.target.value);
+      loadDocument(e.target.value);
     };
 
     document.getElementById(`${viewer.domElement}-file-picker`).onchange = e => {
       const file = e.target.files[0];
 
       if (file) {
-        instance.loadDocument(file);
+        loadDocument(file);
       }
     };
 
     document.getElementById(`${viewer.domElement}-url-form`).onsubmit = e => {
       e.preventDefault();
-      instance.loadDocument(document.getElementById(`${viewer.domElement}-url`).value);
+      loadDocument(document.getElementById(`${viewer.domElement}-url`).value);
     };
   });
 };
