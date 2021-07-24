@@ -3,36 +3,36 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.PDFNet.html
-  // @link PDFNet.runWithCleanup: https://www.pdftron.com/api/web/PDFNet.html#.runWithCleanup__anchor
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.PDFNet.html
+  // @link PDFNet.runWithCleanup: https://www.pdftron.com/api/web/Core.PDFNet.html#.runWithCleanup__anchor
 
-  // @link PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link PDFDoc.createFromURL: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html#.createFromURL__anchor
-  // @link PDFDoc.createIndirectStreamFromFilter: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html#createIndirectStreamFromFilter__anchor
-  // @link PDFDoc.initSecurityHandler: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html#initSecurityHandler__anchor
-  // @link PDFDoc.lock: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html#lock__anchor
-  // @link PDFDoc.getTrailer: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html#getTrailer__anchor
-  // @link PDFDoc.getSecurityHandler: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html#getSecurityHandler__anchor
-  // @link PDFDoc.saveMemoryBuffer: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html#saveMemoryBuffer__anchor
-  // @link PDFDoc.removeSecurity: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html#removeSecurity__anchor
+  // @link PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFDoc.createFromURL: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#.createFromURL__anchor
+  // @link PDFDoc.createIndirectStreamFromFilter: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#createIndirectStreamFromFilter__anchor
+  // @link PDFDoc.initSecurityHandler: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#initSecurityHandler__anchor
+  // @link PDFDoc.lock: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#lock__anchor
+  // @link PDFDoc.getTrailer: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#getTrailer__anchor
+  // @link PDFDoc.getSecurityHandler: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#getSecurityHandler__anchor
+  // @link PDFDoc.saveMemoryBuffer: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#saveMemoryBuffer__anchor
+  // @link PDFDoc.removeSecurity: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#removeSecurity__anchor
 
-  // @link Filter: https://www.pdftron.com/api/web/PDFNet.Filter.html
-  // @link Filter.createURLFilter: https://www.pdftron.com/api/web/PDFNet.Filter.html#.createURLFilter__anchor
-  // @link Filter.createFlateEncode: https://www.pdftron.com/api/web/PDFNet.Filter.html#.createFlateEncode__anchor
+  // @link Filter: https://www.pdftron.com/api/web/Core.PDFNet.Filter.html
+  // @link Filter.createURLFilter: https://www.pdftron.com/api/web/Core.PDFNet.Filter.html#.createURLFilter__anchor
+  // @link Filter.createFlateEncode: https://www.pdftron.com/api/web/Core.PDFNet.Filter.html#.createFlateEncode__anchor
 
-  // @link FilterReader: https://www.pdftron.com/api/web/PDFNet.FilterReader.html
-  // @link FilterReader.create: https://www.pdftron.com/api/web/PDFNet.FilterReader.html#.create__anchor
+  // @link FilterReader: https://www.pdftron.com/api/web/Core.PDFNet.FilterReader.html
+  // @link FilterReader.create: https://www.pdftron.com/api/web/Core.PDFNet.FilterReader.html#.create__anchor
 
-  // @link SecurityHandler: https://www.pdftron.com/api/web/PDFNet.SecurityHandler.html
-  // @link SecurityHandler.getPermission: https://www.pdftron.com/api/web/PDFNet.SecurityHandler.html#getPermission__anchor
+  // @link SecurityHandler: https://www.pdftron.com/api/web/Core.PDFNet.SecurityHandler.html
+  // @link SecurityHandler.getPermission: https://www.pdftron.com/api/web/Core.PDFNet.SecurityHandler.html#getPermission__anchor
 
-  // @link Obj: https://www.pdftron.com/api/web/PDFNet.Obj.html
-  // @link Obj.get: https://www.pdftron.com/api/web/PDFNet.Obj.html#get__anchor
-  // @link Obj.value: https://www.pdftron.com/api/web/PDFNet.Obj.html#value__anchor
-  // @link Obj.getAt: https://www.pdftron.com/api/web/PDFNet.Obj.html#getAt__anchor
+  // @link Obj: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html
+  // @link Obj.get: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html#get__anchor
+  // @link Obj.value: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html#value__anchor
+  // @link Obj.getAt: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html#getAt__anchor
 
   exports.runEncTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     const main = async () => {
       console.log('Beginning Test');
@@ -44,12 +44,9 @@
       // secure a PDF document with password protection and adjust permissions
       try {
         console.log('Running Sample 1');
-        // eslint-disable-next-line no-unused-vars
-        let islocked = false;
         doc = await PDFNet.PDFDoc.createFromURL(inputUrl + 'fish.pdf');
         doc.initSecurityHandler();
         doc.lock();
-        islocked = true;
         console.log('PDFNet and PDF document initialized and locked');
 
         const performOperation = true; // optional parameter

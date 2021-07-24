@@ -4,12 +4,12 @@
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link PDFNet.Rect: https://www.pdftron.com/api/web/PDFNet.Rect.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.Rect: https://www.pdftron.com/api/web/Core.PDFNet.Rect.html
 
   exports.runRectTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     const main = async () => {
       let ret = 0;

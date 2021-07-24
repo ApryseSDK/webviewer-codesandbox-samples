@@ -10,10 +10,10 @@ https://github.com/imakewebthings/deck.js/blob/master/GPL-license.txt
 This module adds clickable previous and next links to the deck.
 */
 (function($, deck, undefined) {
-  var $d = $(document),
+  const $d = $(document),
     /* Updates link hrefs, and disabled states if last/first slide */
     updateButtons = function(e, from, to) {
-      var opts = $[deck]('getOptions'),
+      const opts = $[deck]('getOptions'),
         last = $[deck]('getSlides').length - 1,
         prevSlide = $[deck]('getSlide', to - 1),
         nextSlide = $[deck]('getSlide', to + 1),
@@ -57,10 +57,10 @@ This module adds clickable previous and next links to the deck.
   });
 
   $d.bind('deck.init', function() {
-    var opts = $[deck]('getOptions'),
+    const opts = $[deck]('getOptions'),
       slides = $[deck]('getSlides'),
-      $current = $[deck]('getSlide'),
-      ndx;
+      $current = $[deck]('getSlide');
+    let ndx;
 
     // Setup prev/next link events
     $(opts.selectors.previousLink)

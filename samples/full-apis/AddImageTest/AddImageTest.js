@@ -8,19 +8,19 @@
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.PDFNet.html
-  // @link PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link ElementBuilder: https://www.pdftron.com/api/web/PDFNet.ElementBuilder.html
-  // @link ElementWriter: https://www.pdftron.com/api/web/PDFNet.ElementWriter.html
-  // @link Image: https://www.pdftron.com/api/web/PDFNet.Image.html
-  // @link Matrix2D: https://www.pdftron.com/api/web/PDFNet.Matrix2D.html
-  // @link ObjSet: https://www.pdftron.com/api/web/PDFNet.ObjSet.html
-  // @link Obj: https://www.pdftron.com/api/web/PDFNet.Obj.html
-  // @link PDFNet.Font: https://www.pdftron.com/api/web/PDFNet.Font.html
-  // @link SDFDoc: https://www.pdftron.com/api/web/PDFNet.SDFDoc.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.PDFNet.html
+  // @link PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link ElementBuilder: https://www.pdftron.com/api/web/Core.PDFNet.ElementBuilder.html
+  // @link ElementWriter: https://www.pdftron.com/api/webCore./PDFNet.ElementWriter.html
+  // @link Image: https://www.pdftron.com/api/web/Core.PDFNet.Image.html
+  // @link Matrix2D: https://www.pdftron.com/api/web/Core.PDFNet.Matrix2D.html
+  // @link ObjSet: https://www.pdftron.com/api/web/Core.PDFNet.ObjSet.html
+  // @link Obj: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html
+  // @link PDFNet.Font: https://www.pdftron.com/api/web/Core.PDFNet.Font.html
+  // @link SDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.SDFDoc.html
 
   exports.runAddImageTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     const main = async () => {
       try {

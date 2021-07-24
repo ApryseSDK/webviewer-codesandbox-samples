@@ -3,23 +3,23 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link PDFNet.ElementWriter: https://www.pdftron.com/api/web/PDFNet.ElementWriter.html
-  // @link PDFNet.ElementBuilder: https://www.pdftron.com/api/web/PDFNet.ElementBuilder.html
-  // @link PDFNet.Element: https://www.pdftron.com/api/web/PDFNet.Element.html
-  // @link PDFNet.Font: https://www.pdftron.com/api/web/PDFNet.Font.html
-  // @link PDFNet.GState: https://www.pdftron.com/api/web/PDFNet.GState.html
-  // @link PDFNet.ColorSpace: https://www.pdftron.com/api/web/PDFNet.ColorSpace.html
-  // @link PDFNet.ColorPt: https://www.pdftron.com/api/web/PDFNet.ColorPt.html
-  // @link PDFNet.Annot: https://www.pdftron.com/api/web/PDFNet.Annot.html
-  // @link PDFNet.WidgetAnnot: https://www.pdftron.com/api/web/PDFNet.WidgetAnnot.html
-  // @link PDFNet.FileSpec: https://www.pdftron.com/api/web/PDFNet.FileSpec.html
-  // @link PDFNet.Action: https://www.pdftron.com/api/web/PDFNet.Action.html
-  // @link PDFNet.Field: https://www.pdftron.com/api/web/PDFNet.Field.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.ElementWriter: https://www.pdftron.com/api/web/Core.PDFNet.ElementWriter.html
+  // @link PDFNet.ElementBuilder: https://www.pdftron.com/api/web/Core.PDFNet.ElementBuilder.html
+  // @link PDFNet.Element: https://www.pdftron.com/api/web/Core.PDFNet.Element.html
+  // @link PDFNet.Font: https://www.pdftron.com/api/web/Core.PDFNet.Font.html
+  // @link PDFNet.GState: https://www.pdftron.com/api/web/Core.PDFNet.GState.html
+  // @link PDFNet.ColorSpace: https://www.pdftron.com/api/web/Core.PDFNet.ColorSpace.html
+  // @link PDFNet.ColorPt: https://www.pdftron.com/api/web/Core.PDFNet.ColorPt.html
+  // @link PDFNet.Annot: https://www.pdftron.com/api/web/Core.PDFNet.Annot.html
+  // @link PDFNet.WidgetAnnot: https://www.pdftron.com/api/web/Core.PDFNet.WidgetAnnot.html
+  // @link PDFNet.FileSpec: https://www.pdftron.com/api/web/Core.PDFNet.FileSpec.html
+  // @link PDFNet.Action: https://www.pdftron.com/api/web/Core.PDFNet.Action.html
+  // @link PDFNet.Field: https://www.pdftron.com/api/web/Core.PDFNet.Field.html
 
   exports.runInteractiveFormsTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     PDFNet.CheckStyle = {
       e_check: 0,

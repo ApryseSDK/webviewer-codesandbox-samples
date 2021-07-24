@@ -4,18 +4,16 @@
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link PDFNet.Redactor: https://www.pdftron.com/api/web/PDFNet.Redactor.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.Redactor: https://www.pdftron.com/api/web/Core.PDFNet.Redactor.html
 
   exports.runPDFRedactTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     const main = async () => {
       // Relative path to the folder containing test files.
       const inputPath = '../TestFiles/';
-      // eslint-disable-next-line no-unused-vars
-      let ret = 0;
       try {
         const doc = await PDFNet.PDFDoc.createFromURL(inputPath + 'newsletter.pdf');
         doc.initSecurityHandler();
@@ -40,7 +38,6 @@
         console.log('Done...');
       } catch (err) {
         console.log(err.stack);
-        ret = 1;
       }
     };
     // add your own license key as the second parameter, e.g. PDFNet.runWithCleanup(main, 'YOUR_LICENSE_KEY')

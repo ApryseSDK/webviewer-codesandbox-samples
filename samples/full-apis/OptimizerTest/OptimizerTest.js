@@ -34,9 +34,9 @@
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  const PDFNet = exports.PDFNet;
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  const PDFNet = exports.Core.PDFNet;
 
   exports.runOptimizerTest = () => {
     const main = async () => {

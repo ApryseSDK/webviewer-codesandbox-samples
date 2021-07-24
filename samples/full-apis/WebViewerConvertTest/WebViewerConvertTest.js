@@ -4,12 +4,12 @@
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link FilterReader: https://www.pdftron.com/api/web/PDFNet.FilterReader.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link FilterReader: https://www.pdftron.com/api/web/Core.PDFNet.FilterReader.html
 
   exports.runWebViewerConvertTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     const main = async () => {
       console.log('Beginning Test');

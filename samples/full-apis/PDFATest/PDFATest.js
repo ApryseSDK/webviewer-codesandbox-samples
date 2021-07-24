@@ -3,12 +3,12 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link PDFNet.PDFACompliance: https://www.pdftron.com/api/web/PDFNet.PDFACompliance.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.PDFACompliance: https://www.pdftron.com/api/web/Core.PDFNet.PDFACompliance.html
 
   exports.runPDFA = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     const main = async () => {
       try {

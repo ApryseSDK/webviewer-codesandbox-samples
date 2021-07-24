@@ -4,14 +4,14 @@
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link PDFNet.SDFDoc: https://www.pdftron.com/api/web/PDFNet.SDFDoc.html
-  // @link PDFNet.Filter: https://www.pdftron.com/api/web/PDFNet.Filter.html
-  // @link PDFNet.FilterReader: https://www.pdftron.com/api/web/PDFNet.FilterReader.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.SDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.SDFDoc.html
+  // @link PDFNet.Filter: https://www.pdftron.com/api/web/Core.PDFNet.Filter.html
+  // @link PDFNet.FilterReader: https://www.pdftron.com/api/web/Core.PDFNet.FilterReader.html
 
   exports.runSDFTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     const main = async () => {
       console.log('Beginning SDF Test.');

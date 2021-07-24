@@ -3,15 +3,15 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link PDFNet.Stamper: https://www.pdftron.com/api/web/PDFNet.Stamper.html
-  // @link PDFNet.ColorPt: https://www.pdftron.com/api/web/PDFNet.ColorPt.html
-  // @link PDFNet.PageSet: https://www.pdftron.com/api/web/PDFNet.PageSet.html
-  // @link PDFNet.Image: https://www.pdftron.com/api/web/PDFNet.Image.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.Stamper: https://www.pdftron.com/api/web/Core.PDFNet.Stamper.html
+  // @link PDFNet.ColorPt: https://www.pdftron.com/api/web/Core.PDFNet.ColorPt.html
+  // @link PDFNet.PageSet: https://www.pdftron.com/api/web/Core.PDFNet.PageSet.html
+  // @link PDFNet.Image: https://www.pdftron.com/api/web/Core.PDFNet.Image.html
 
   exports.runStamperTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     const main = async () => {
       let ret = 0;

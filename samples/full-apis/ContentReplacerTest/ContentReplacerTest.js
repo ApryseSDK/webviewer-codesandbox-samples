@@ -8,15 +8,15 @@
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.PDFNet.html
-  // @link PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link ContentReplacer: https://www.pdftron.com/api/web/PDFNet.ContentReplacer.html
-  // @link Image: https://www.pdftron.com/api/web/PDFNet.Image.html
-  // @link Matrix2D: https://www.pdftron.com/api/web/PDFNet.Matrix2D.html
-  // @link Page: https://www.pdftron.com/api/web/PDFNet.Page.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.PDFNet.html
+  // @link PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link ContentReplacer: https://www.pdftron.com/api/web/Core.PDFNet.ContentReplacer.html
+  // @link Image: https://www.pdftron.com/api/web/Core.PDFNet.Image.html
+  // @link Matrix2D: https://www.pdftron.com/api/web/Core.PDFNet.Matrix2D.html
+  // @link Page: https://www.pdftron.com/api/web/Core.PDFNet.Page.html
 
   exports.runContentReplacer = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     const main = async () => {
       try {

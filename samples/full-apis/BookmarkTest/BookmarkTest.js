@@ -4,20 +4,20 @@
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.PDFNet.html
-  // @link PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link Iterator: https://www.pdftron.com/api/web/PDFNet.Iterator.html
-  // @link DictIterator: https://www.pdftron.com/api/web/PDFNet.DictIterator.html
-  // @link Page: https://www.pdftron.com/api/web/PDFNet.Page.html
-  // @link FileSpec: https://www.pdftron.com/api/web/PDFNet.FileSpec.html
-  // @link PDFNet.Rect: https://www.pdftron.com/api/web/PDFNet.Rect.html
-  // @link PDFNet.Action: https://www.pdftron.com/api/web/PDFNet.Action.html
-  // @link Destination: https://www.pdftron.com/api/web/PDFNet.Destination.html
-  // @link SDFDoc: https://www.pdftron.com/api/web/PDFNet.SDFDoc.html
-  // @link Obj: https://www.pdftron.com/api/web/PDFNet.Obj.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.PDFNet.html
+  // @link PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link Iterator: https://www.pdftron.com/api/web/Core.PDFNet.Iterator.html
+  // @link DictIterator: https://www.pdftron.com/api/web/Core.PDFNet.DictIterator.html
+  // @link Page: https://www.pdftron.com/api/web/Core.PDFNet.Page.html
+  // @link FileSpec: https://www.pdftron.com/api/web/Core.PDFNet.FileSpec.html
+  // @link PDFNet.Rect: https://www.pdftron.com/api/web/Core.PDFNet.Rect.html
+  // @link PDFNet.Action: https://www.pdftron.com/api/web/Core.PDFNet.Action.html
+  // @link Destination: https://www.pdftron.com/api/web/Core.PDFNet.Destination.html
+  // @link SDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.SDFDoc.html
+  // @link Obj: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html
 
   exports.runBookmarkTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     const addIndent = async (item, str) => {
       const ident = (await item.getIndent()) - 1;

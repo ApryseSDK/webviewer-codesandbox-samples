@@ -5,45 +5,45 @@
 
 (exports => {
   exports.runAnnotationTest = async () => {
-    // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.PDFNet.html
-    // @link PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-    // @link ElementBuilder: https://www.pdftron.com/api/web/PDFNet.ElementBuilder.html
-    // @link ElementWriter: https://www.pdftron.com/api/web/PDFNet.ElementWriter.html
-    // @link GState: https://www.pdftron.com/api/web/PDFNet.GState.html
+    // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.PDFNet.html
+    // @link PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+    // @link ElementBuilder: https://www.pdftron.com/api/web/Core.PDFNet.ElementBuilder.html
+    // @link ElementWriter: https://www.pdftron.com/api/web/Core.PDFNet.ElementWriter.html
+    // @link GState: https://www.pdftron.com/api/web/Core.PDFNet.GState.html
 
-    // @link Iterator: https://www.pdftron.com/api/web/PDFNet.Iterator.html
-    // @link DictIterator: https://www.pdftron.com/api/web/PDFNet.DictIterator.html
-    // @link Page: https://www.pdftron.com/api/web/PDFNet.Page.html
-    // @link ColorPt: https://www.pdftron.com/api/web/PDFNet.ColorPt.html
-    // @link Annot: https://www.pdftron.com/api/web/PDFNet.Annot.html
-    // @link AnnotBorderStyle: https://www.pdftron.com/api/web/PDFNet.AnnotBorderStyle.html
+    // @link Iterator: https://www.pdftron.com/api/web/Core.PDFNet.Iterator.html
+    // @link DictIterator: https://www.pdftron.com/api/web/Core.PDFNet.DictIterator.html
+    // @link Page: https://www.pdftron.com/api/web/Core.PDFNet.Page.html
+    // @link ColorPt: https://www.pdftron.com/api/web/Core.PDFNet.ColorPt.html
+    // @link Annot: https://www.pdftron.com/api/web/Core.PDFNet.Annot.html
+    // @link AnnotBorderStyle: https://www.pdftron.com/api/web/Core.PDFNet.AnnotBorderStyle.html
 
-    // @link CaretAnnot: https://www.pdftron.com/api/web/PDFNet.CaretAnnot.html
-    // @link CircleAnnot: https://www.pdftron.com/api/web/PDFNet.CircleAnnot.html
-    // @link FileAttachmentAnnot: https://www.pdftron.com/api/web/PDFNet.FileAttachmentAnnot.html
-    // @link FileSpec: https://www.pdftron.com/api/web/PDFNet.FileSpec.html
-    // @link FreeTextAnnot: https://www.pdftron.com/api/web/PDFNet.FreeTextAnnot.html
-    // @link HighlightAnnot: https://www.pdftron.com/api/web/PDFNet.HighlightAnnot.html
-    // @link InkAnnot: https://www.pdftron.com/api/web/PDFNet.InkAnnot.html
-    // @link LinkAnnot: https://www.pdftron.com/api/web/PDFNet.LinkAnnot.html
-    // @link LineAnnot: https://www.pdftron.com/api/web/PDFNet.LineAnnot.html
-    // @link PolygonAnnot: https://www.pdftron.com/api/web/PDFNet.PolygonAnnot.html
-    // @link PolyLineAnnot: https://www.pdftron.com/api/web/PDFNet.PolyLineAnnot.html
-    // @link RubberStampAnnot: https://www.pdftron.com/api/web/PDFNet.RubberStampAnnot.html
-    // @link SquareAnnot: https://www.pdftron.com/api/web/PDFNet.SquareAnnot.html
-    // @link SquigglyAnnot: https://www.pdftron.com/api/web/PDFNet.SquigglyAnnot.html
-    // @link SoundAnnot: https://www.pdftron.com/api/web/PDFNet.SoundAnnot.html
-    // @link TextAnnot: https://www.pdftron.com/api/web/PDFNet.TextAnnot.html
+    // @link CaretAnnot: https://www.pdftron.com/api/web/Core.PDFNet.CaretAnnot.html
+    // @link CircleAnnot: https://www.pdftron.com/api/web/Core.PDFNet.CircleAnnot.html
+    // @link FileAttachmentAnnot: https://www.pdftron.com/api/web/Core.PDFNet.FileAttachmentAnnot.html
+    // @link FileSpec: https://www.pdftron.com/api/web/Core.PDFNet.FileSpec.html
+    // @link FreeTextAnnot: https://www.pdftron.com/api/web/Core.PDFNet.FreeTextAnnot.html
+    // @link HighlightAnnot: https://www.pdftron.com/api/web/Core.PDFNet.HighlightAnnot.html
+    // @link InkAnnot: https://www.pdftron.com/api/web/Core.PDFNet.InkAnnot.html
+    // @link LinkAnnot: https://www.pdftron.com/api/web/Core.PDFNet.LinkAnnot.html
+    // @link LineAnnot: https://www.pdftron.com/api/web/Core.PDFNet.LineAnnot.html
+    // @link PolygonAnnot: https://www.pdftron.com/api/web/Core.PDFNet.PolygonAnnot.html
+    // @link PolyLineAnnot: https://www.pdftron.com/api/web/Core.PDFNet.PolyLineAnnot.html
+    // @link RubberStampAnnot: https://www.pdftron.com/api/web/Core.PDFNet.RubberStampAnnot.html
+    // @link SquareAnnot: https://www.pdftron.com/api/web/Core.PDFNet.SquareAnnot.html
+    // @link SquigglyAnnot: https://www.pdftron.com/api/web/Core.PDFNet.SquigglyAnnot.html
+    // @link SoundAnnot: https://www.pdftron.com/api/web/Core.PDFNet.SoundAnnot.html
+    // @link TextAnnot: https://www.pdftron.com/api/web/Core.PDFNet.TextAnnot.html
 
-    // @link PDFNet.Rect: https://www.pdftron.com/api/web/PDFNet.Rect.html
-    // @link PDFNet.Point: https://www.pdftron.com/api/web/PDFNet.Point.html
-    // @link PDFNet.Action: https://www.pdftron.com/api/web/PDFNet.Action.html
-    // @link PDFNet.Font: https://www.pdftron.com/api/web/PDFNet.Font.html
-    // @link SDFDoc: https://www.pdftron.com/api/web/PDFNet.SDFDoc.html
-    // @link Obj: https://www.pdftron.com/api/web/PDFNet.Obj.html
-    // @link Destination: https://www.pdftron.com/api/web/PDFNet.Destination.html
+    // @link PDFNet.Rect: https://www.pdftron.com/api/web/Core.PDFNet.Rect.html
+    // @link PDFNet.Point: https://www.pdftron.com/api/web/Core.PDFNet.Point.html
+    // @link PDFNet.Action: https://www.pdftron.com/api/web/Core.PDFNet.Action.html
+    // @link PDFNet.Font: https://www.pdftron.com/api/web/Core.PDFNet.Font.html
+    // @link SDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.SDFDoc.html
+    // @link Obj: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html
+    // @link Destination: https://www.pdftron.com/api/web/Core.PDFNet.Destination.html
 
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
     const AnnotationLowLevelAPI = async doc => {
       try {
         await PDFNet.startDeallocateStack(); // start stack-based deallocation. All objects will be deallocated by end of function

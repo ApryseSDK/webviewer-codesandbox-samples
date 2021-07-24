@@ -4,13 +4,13 @@
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link PDFNet.TextExtractor: https://www.pdftron.com/api/web/PDFNet.TextExtractor.html
-  // @link PDFNet.Rect: https://www.pdftron.com/api/web/PDFNet.Rect.html
-  // @link PDFNet.ElementBuilder: https://www.pdftron.com/api/web/PDFNet.ElementBuilder.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.TextExtractor: https://www.pdftron.com/api/web/Core.PDFNet.TextExtractor.html
+  // @link PDFNet.Rect: https://www.pdftron.com/api/web/Core.PDFNet.Rect.html
+  // @link PDFNet.ElementBuilder: https://www.pdftron.com/api/web/Core.PDFNet.ElementBuilder.html
 
-  const PDFNet = exports.PDFNet;
+  const PDFNet = exports.Core.PDFNet;
 
   exports.runTextExtractTest = async () => {
     // A utility method used to dump all text content in the console window.
@@ -93,9 +93,6 @@
     const main = async () => {
       console.log('Beginning Test');
 
-      // eslint-disable-next-line no-unused-vars
-      let ret = 0;
-
       // Relative path to the folder containing test files.
       const inputURL = '../TestFiles/';
       const inputFilename = 'newsletter.pdf'; // addimage.pdf, newsletter.pdf
@@ -123,11 +120,7 @@
         const txt = await PDFNet.TextExtractor.create();
         const rect = new PDFNet.Rect(0, 0, 612, 794);
         txt.begin(page, rect);
-        // let element = await readertest.next();
-        // let eltype = await element.getType();
 
-        // eslint-disable-next-line no-unused-vars
-        const count = await txt.getNumLines();
         let text;
         let line;
         let word;
@@ -165,11 +158,6 @@
           let q;
           let curFlowID = -1;
           let curParaID = -1;
-
-          /* eslint-disable no-unused-vars */
-          const builder = await PDFNet.ElementBuilder.create(); // ElementBuilder, used to build new element Objects
-          const writer = await PDFNet.ElementWriter.create(); // ElementWriter, used to write elements to the page
-          /* eslint-enable no-unused-vars */
 
           for (line = await txt.getFirstLine(); await line.isValid(); line = await line.getNextLine()) {
             if ((await line.getNumWords()) === 0) {
@@ -235,11 +223,9 @@
       } catch (err) {
         console.log(err);
         console.log(err.stack);
-        ret = 1;
       }
 
       if (example5LowLevel) {
-        ret = 0;
         try {
           await PDFNet.startDeallocateStack();
           doc = await PDFNet.PDFDoc.createFromURL(inputURL + inputFilename);
@@ -278,7 +264,6 @@
           await PDFNet.endDeallocateStack();
         } catch (err) {
           console.log(err.stack);
-          ret = 1;
         }
       }
     };

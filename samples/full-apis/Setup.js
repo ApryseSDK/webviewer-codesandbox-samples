@@ -1,11 +1,10 @@
 /* eslint-disable no-unused-vars */
-CoreControls.setWorkerPath('../../../lib/core');
+Core.setWorkerPath('../../../lib/core');
 
 function saveBuffer(buf, name, mimetype) {
   const blob = new Blob([buf], {
     type: mimetype,
   });
-  // eslint-disable-next-line
   saveAs(blob, name);
 }
 

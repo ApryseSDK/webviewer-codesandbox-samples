@@ -3,17 +3,15 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link PDFNet.Page: https://www.pdftron.com/api/web/PDFNet.Page.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.Page: https://www.pdftron.com/api/web/Core.PDFNet.Page.html
 
   exports.runPDFPageTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     const main = async () => {
       console.log('Beginning Test');
-      // eslint-disable-next-line no-unused-vars
-      let ret = 0;
       const inputPath = '../TestFiles/';
       let docStoreArray = null;
 
@@ -40,9 +38,7 @@
           console.log('Result saved as ' + filename);
         }
       } catch (err) {
-        // console.log(err);
         console.log(err.stack);
-        ret = 1;
       }
 
       try {
@@ -65,9 +61,7 @@
         saveBufferAsPDFDoc(docbuf, 'newsletter_merged.pdf');
         await PDFNet.endDeallocateStack();
       } catch (err) {
-        // console.log(err);
         console.log(err.stack);
-        ret = 1;
       }
 
       try {
@@ -91,7 +85,6 @@
         await PDFNet.endDeallocateStack();
       } catch (err) {
         console.log(err);
-        ret = 1;
       }
 
       try {
@@ -121,7 +114,6 @@
         await PDFNet.endDeallocateStack();
       } catch (err) {
         console.log(err.stack);
-        ret = 1;
       }
 
       try {
@@ -147,7 +139,6 @@
         await PDFNet.endDeallocateStack();
       } catch (err) {
         console.log(err.stack);
-        ret = 1;
       }
     };
 

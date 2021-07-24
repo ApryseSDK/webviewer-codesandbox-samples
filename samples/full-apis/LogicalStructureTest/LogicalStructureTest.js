@@ -16,18 +16,18 @@
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link PDFNet.Page: https://www.pdftron.com/api/web/PDFNet.Page.html
-  // @link PDFNet.ContentItem: https://www.pdftron.com/api/web/PDFNet.ContentItem.html
-  // @link PDFNet.Obj: https://www.pdftron.com/api/web/PDFNet.Obj.html
-  // @link PDFNet.Element: https://www.pdftron.com/api/web/PDFNet.Element.html
-  // @link PDFNet.ElementReader: https://www.pdftron.com/api/web/PDFNet.ElementReader.html
-  // @link PDFNet.STree: https://www.pdftron.com/api/web/PDFNet.STree.html
-  // @link PDFNet.SElement: https://www.pdftron.com/api/web/PDFNet.SElement.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.Page: https://www.pdftron.com/api/web/Core.PDFNet.Page.html
+  // @link PDFNet.ContentItem: https://www.pdftron.com/api/web/Core.PDFNet.ContentItem.html
+  // @link PDFNet.Obj: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html
+  // @link PDFNet.Element: https://www.pdftron.com/api/web/Core.PDFNet.Element.html
+  // @link PDFNet.ElementReader: https://www.pdftron.com/api/web/Core.PDFNet.ElementReader.html
+  // @link PDFNet.STree: https://www.pdftron.com/api/web/Core.PDFNet.STree.html
+  // @link PDFNet.SElement: https://www.pdftron.com/api/web/Core.PDFNet.SElement.html
 
   exports.runLogicalStructureTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     const PrintAndIndent = (printState, indent) => {
       if (printState.str) {

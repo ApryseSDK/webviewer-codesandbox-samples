@@ -4,14 +4,14 @@
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.html
-  // @link PDFNet.TextSearch: https://www.pdftron.com/api/web/PDFNet.TextSearch.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link PDFNet.LinkAnnot: https://www.pdftron.com/api/web/PDFNet.LinkAnnot.html
-  // @link Highlights: https://www.pdftron.com/api/web/PDFNet.Highlights.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
+  // @link PDFNet.TextSearch: https://www.pdftron.com/api/web/Core.PDFNet.TextSearch.html
+  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.LinkAnnot: https://www.pdftron.com/api/web/Core.PDFNet.LinkAnnot.html
+  // @link Highlights: https://www.pdftron.com/api/web/Core.PDFNet.Highlights.html
 
   exports.runTextSearchTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     const main = async () => {
       // Relative path to the folder containing test files.

@@ -3,26 +3,26 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link PDFNet.OCG: https://www.pdftron.com/api/web/PDFNet.OCG.html
-  // @link PDFNet.OCGConfig: https://www.pdftron.com/api/web/PDFNet.OCGConfig.html
-  // @link PDFNet.Obj: https://www.pdftron.com/api/web/PDFNet.Obj.html
-  // @link PDFNet.ElementWriter: https://www.pdftron.com/api/web/PDFNet.ElementWriter.html
-  // @link PDFNet.ElementBuilder: https://www.pdftron.com/api/web/PDFNet.ElementBuilder.html
-  // @link PDFNet.Element: https://www.pdftron.com/api/web/PDFNet.Element.html
-  // @link PDFNet.Image: https://www.pdftron.com/api/web/PDFNet.Image.html
-  // @link PDFNet.Matrix2D: https://www.pdftron.com/api/web/PDFNet.Matrix2D.html
-  // @link PDFNet.GState: https://www.pdftron.com/api/web/PDFNet.GState.html
-  // @link PDFNet.ColorSpace: https://www.pdftron.com/api/web/PDFNet.ColorSpace.html
-  // @link PDFNet.ColorPt: https://www.pdftron.com/api/web/PDFNet.ColorPt.html
-  // @link PDFNet.Font: https://www.pdftron.com/api/web/PDFNet.Font.html
-  // @link PDFNet.OCMD: https://www.pdftron.com/api/web/PDFNet.OCMD.html
-  // @link PDFNet.OCGContext: https://www.pdftron.com/api/web/PDFNet.OCGContext.html
-  // @link PDFNet.PDFDocViewPrefs: https://www.pdftron.com/api/web/PDFNet.PDFDocViewPrefs.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.OCG: https://www.pdftron.com/api/web/Core.PDFNet.OCG.html
+  // @link PDFNet.OCGConfig: https://www.pdftron.com/api/web/Core.PDFNet.OCGConfig.html
+  // @link PDFNet.Obj: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html
+  // @link PDFNet.ElementWriter: https://www.pdftron.com/api/web/Core.PDFNet.ElementWriter.html
+  // @link PDFNet.ElementBuilder: https://www.pdftron.com/api/web/Core.PDFNet.ElementBuilder.html
+  // @link PDFNet.Element: https://www.pdftron.com/api/web/Core.PDFNet.Element.html
+  // @link PDFNet.Image: https://www.pdftron.com/api/web/Core.PDFNet.Image.html
+  // @link PDFNet.Matrix2D: https://www.pdftron.com/api/web/Core.PDFNet.Matrix2D.html
+  // @link PDFNet.GState: https://www.pdftron.com/api/web/Core.PDFNet.GState.html
+  // @link PDFNet.ColorSpace: https://www.pdftron.com/api/web/Core.PDFNet.ColorSpace.html
+  // @link PDFNet.ColorPt: https://www.pdftron.com/api/web/Core.PDFNet.ColorPt.html
+  // @link PDFNet.Font: https://www.pdftron.com/api/web/Core.PDFNet.Font.html
+  // @link PDFNet.OCMD: https://www.pdftron.com/api/web/Core.PDFNet.OCMD.html
+  // @link PDFNet.OCGContext: https://www.pdftron.com/api/web/Core.PDFNet.OCGContext.html
+  // @link PDFNet.PDFDocViewPrefs: https://www.pdftron.com/api/web/Core.PDFNet.PDFDocViewPrefs.html
 
   exports.runPDFLayersTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     // A utility function used to add new Content Groups (Layers) to the document.
     const CreateLayer = async (doc, layerName) => {
@@ -161,8 +161,6 @@
 
     const main = async () => {
       console.log('Beginning Test');
-      // eslint-disable-next-line no-unused-vars
-      let ret = 0;
       let doc = null;
       // Here we output a pdf document with layers.
       try {
@@ -226,9 +224,7 @@
         saveBufferAsPDFDoc(docbuf, 'pdf_layers.pdf');
         console.log('done example 1');
       } catch (err) {
-        // console.log(err);
         console.log(err.stack);
-        ret = 1;
       }
 
       // Here we output the individual layers as png files.
@@ -277,7 +273,6 @@
         console.log('done');
       } catch (err) {
         console.log(err.stack);
-        ret = 1;
       }
     };
     // add your own license key as the second parameter, e.g. PDFNet.runWithCleanup(main, 'YOUR_LICENSE_KEY')

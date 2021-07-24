@@ -4,12 +4,12 @@
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.PDFNet.html
-  // @link PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link ElementReader: https://www.pdftron.com/api/web/PDFNet.ElementReader.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.PDFNet.html
+  // @link PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link ElementReader: https://www.pdftron.com/api/web/Core.PDFNet.ElementReader.html
 
   exports.runElementReaderTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     const ProcessElements = async reader => {
       // Read page contents

@@ -4,15 +4,15 @@
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.PDFNet.html
-  // @link PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link ElementBuilder: https://www.pdftron.com/api/web/PDFNet.ElementBuilder.html
-  // @link ElementWriter: https://www.pdftron.com/api/web/PDFNet.ElementWriter.html
-  // @link ColorPt: https://www.pdftron.com/api/web/PDFNet.ColorPt.html
-  // @link ColorSpace: https://www.pdftron.com/api/web/PDFNet.ColorSpace.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.PDFNet.html
+  // @link PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link ElementBuilder: https://www.pdftron.com/api/web/Core.PDFNet.ElementBuilder.html
+  // @link ElementWriter: https://www.pdftron.com/api/web/Core.PDFNet.ElementWriter.html
+  // @link ColorPt: https://www.pdftron.com/api/web/Core.PDFNet.ColorPt.html
+  // @link ColorSpace: https://www.pdftron.com/api/web/Core.PDFNet.ColorSpace.html
 
   exports.runElementEditTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     async function ProcessElements(reader, writer, visited) {
       await PDFNet.startDeallocateStack();

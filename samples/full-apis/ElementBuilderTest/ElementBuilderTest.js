@@ -1,17 +1,17 @@
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.PDFNet.html
-  // @link PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link ElementBuilder: https://www.pdftron.com/api/web/PDFNet.ElementBuilder.html
-  // @link ElementWriter: https://www.pdftron.com/api/web/PDFNet.ElementWriter.html
-  // @link GState: https://www.pdftron.com/api/web/PDFNet.GState.html
-  // @link Image: https://www.pdftron.com/api/web/PDFNet.Image.html
-  // @link Matrix2D: https://www.pdftron.com/api/web/PDFNet.Matrix2D.html
-  // @link ColorPt: https://www.pdftron.com/api/web/PDFNet.ColorPt.html
-  // @link ColorSpace: https://www.pdftron.com/api/web/PDFNet.ColorSpace.html
-  // @link PDFNet.Rect: https://www.pdftron.com/api/web/PDFNet.Rect.html
+  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.PDFNet.html
+  // @link PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link ElementBuilder: https://www.pdftron.com/api/web/Core.PDFNet.ElementBuilder.html
+  // @link ElementWriter: https://www.pdftron.com/api/web/Core.PDFNet.ElementWriter.html
+  // @link GState: https://www.pdftron.com/api/web/Core.PDFNet.GState.html
+  // @link Image: https://www.pdftron.com/api/web/Core.PDFNet.Image.html
+  // @link Matrix2D: https://www.pdftron.com/api/web/Core.PDFNet.Matrix2D.html
+  // @link ColorPt: https://www.pdftron.com/api/web/Core.PDFNet.ColorPt.html
+  // @link ColorSpace: https://www.pdftron.com/api/web/Core.PDFNet.ColorSpace.html
+  // @link PDFNet.Rect: https://www.pdftron.com/api/web/Core.PDFNet.Rect.html
 
   exports.runElementBuilderTest = () => {
-    const PDFNet = exports.PDFNet;
+    const PDFNet = exports.Core.PDFNet;
 
     const main = async () => {
       let ret = 0;
