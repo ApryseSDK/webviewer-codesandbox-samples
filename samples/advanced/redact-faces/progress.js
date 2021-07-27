@@ -27,6 +27,7 @@ function addProgressContainerToDom() {
  * @param {number} totalNumberOfPages Total number of pages in the document
  * @returns {{showProgress: function, hideProgress: function, sendPageProcessing: function}} Object containing functions that control progress
  */
+// eslint-disable-next-line no-unused-vars
 function createProgress(totalNumberOfPages) {
   let processedSoFar = 0;
   const pageProcessedEventType = 'page-processed';

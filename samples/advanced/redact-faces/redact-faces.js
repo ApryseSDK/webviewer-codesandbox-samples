@@ -29,7 +29,7 @@ function convertCanvasToImage(canvas) {
  */
 function createFaceRedactionAnnotation(webViewerInstance, pageNumber, faceDetections) {
   if (faceDetections && faceDetections.length > 0) {
-    const { Annotations, annotManager } = webViewerInstance;
+    const { Annotations, annotationManager, Math } = webViewerInstance.Core;
     // We create a quad per detected face to allow us use only one redaction annotation.
     // You could create new RedactionAnnotation for each detected face, but in case where document contains
     // tens or hundreds of face applying reduction comes slow.
@@ -44,17 +44,17 @@ function createFaceRedactionAnnotation(webViewerInstance, pageNumber, faceDetect
       const bottomLeft = [x, y + height];
       const bottomRight = [x + width, y + height];
       // Quad is defined as points going from bottom left -> bottom right -> top right -> top left
-      return new Annotations.Quad(...bottomLeft, ...bottomRight, ...topRight, ...topLeft);
+      return new Math.Quad(...bottomLeft, ...bottomRight, ...topRight, ...topLeft);
     });
     const faceAnnotation = new Annotations.RedactionAnnotation({
       Quads: quads,
     });
-    faceAnnotation.Author = annotManager.getCurrentUser();
+    faceAnnotation.Author = annotationManager.getCurrentUser();
     faceAnnotation.PageNumber = pageNumber;
     faceAnnotation.StrokeColor = new Annotations.Color(255, 0, 0, 1);
-    annotManager.addAnnotation(faceAnnotation, false);
+    annotationManager.addAnnotation(faceAnnotation, false);
     // Annotation needs to be redrawn so that it becomes visible immediately rather than on next time page is refreshed
-    annotManager.redrawAnnotation(faceAnnotation);
+    annotationManager.redrawAnnotation(faceAnnotation);
   }
 }
 
@@ -66,7 +66,7 @@ function createFaceRedactionAnnotation(webViewerInstance, pageNumber, faceDetect
  */
 function detectAndRedactFacesFromPage(webViewerInstance, pageNumber) {
   return new Promise(resolve => {
-    const doc = webViewerInstance.docViewer.getDocument();
+    const doc = webViewerInstance.Core.documentViewer.getDocument();
     const pageInfo = doc.getPageInfo(pageNumber);
     const displaySize = { width: pageInfo.width, height: pageInfo.height };
     // face-api.js is detecting faces from images, so we need to convert current page to a canvas which then can
@@ -102,8 +102,8 @@ function detectAndRedactFacesFromPage(webViewerInstance, pageNumber) {
  */
 function onRedactFacesButtonClickFactory(webViewerInstance) {
   return async function onRedactFacesButtonClick() {
-    webViewerInstance.closeElements(['redact-faces-instructions-modal']);
-    const doc = webViewerInstance.docViewer.getDocument();
+    webViewerInstance.UI.closeElements(['redact-faces-instructions-modal']);
+    const doc = webViewerInstance.Core.documentViewer.getDocument();
     const numberOfPages = doc.getPageCount();
     const { sendPageProcessing, showProgress, hideProgress } = createProgress(numberOfPages);
     showProgress();
@@ -150,15 +150,15 @@ WebViewer(
   },
   document.getElementById('viewer')
 ).then(webViewerInstance => {
-  const FitMode = webViewerInstance.FitMode;
-  webViewerInstance.setFitMode(FitMode.FitWidth);
+  const FitMode = webViewerInstance.UI.FitMode;
+  webViewerInstance.UI.setFitMode(FitMode.FitWidth);
   const onRedactFacesButtonClick = onRedactFacesButtonClickFactory(webViewerInstance);
 
-  const docViewer = webViewerInstance.docViewer;
+  const documentViewer = webViewerInstance.Core.documentViewer;
   function onDocumentLoaded() {
     const instructionModal = createInstructionsModal(onRedactFacesButtonClick);
-    webViewerInstance.setCustomModal(instructionModal);
-    webViewerInstance.openElements(['redact-faces-instructions-modal']);
+    webViewerInstance.UI.setCustomModal(instructionModal);
+    webViewerInstance.UI.openElements(['redact-faces-instructions-modal']);
   }
-  docViewer.on('documentLoaded', onDocumentLoaded);
+  documentViewer.addEventListener('documentLoaded', onDocumentLoaded);
 });

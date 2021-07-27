@@ -11,10 +11,11 @@ WebViewer(
   },
   viewerElement
 ).then(async instance => {
-  instance.setTheme('dark');
-
-  const { docViewer, iframeWindow, setHeaderItems } = instance;
-  const annotManager = docViewer.getAnnotationManager();
+  const { Core, UI } = instance;
+  const { documentViewer } = Core;
+  const { iframeWindow } = UI;
+  instance.UI.setTheme('dark');
+  const annotationManager = documentViewer.getAnnotationManager();
 
   const license = `---- Insert commercial license key here after purchase ----`;
 
@@ -27,7 +28,7 @@ WebViewer(
   WebViewer.Video.loadDocument(videoUrl, thumbnail);
 
   // Add save annotations button
-  setHeaderItems(header => {
+  UI.setHeaderItems(header => {
     header.push({
       type: 'actionButton',
       img:
@@ -50,11 +51,11 @@ WebViewer(
           });
         };
 
-        const annotations = docViewer
+        const annotations = documentViewer
           .getDocument()
           .getVideo()
           .getAllAnnotations();
-        var xfdfString = await annotManager.exportAnnotations({ links: false, widgets: false, annotList: annotations });
+        const xfdfString = await annotationManager.exportAnnotations({ links: false, widgets: false, annotList: annotations });
         await saveXfdfString(DOCUMENT_ID, xfdfString);
         alert('Annotations saved successfully.');
       },
@@ -62,10 +63,10 @@ WebViewer(
   });
 
   // Load saved annotations
-  docViewer.on('documentLoaded', () => {
-    docViewer.zoomTo(DEFAULT_ZOOM);
-    const doc = docViewer.getDocument();
-    const video = docViewer.getDocument().getVideo();
+  documentViewer.addEventListener('documentLoaded', () => {
+    documentViewer.zoomTo(DEFAULT_ZOOM);
+    const doc = documentViewer.getDocument();
+    const video = documentViewer.getDocument().getVideo();
 
     // Make a GET request to get XFDF string
     const loadXfdfString = documentId => {
@@ -92,8 +93,8 @@ WebViewer(
 
     loadXfdfString(DOCUMENT_ID)
       .then(xfdfString => {
-        const annotManager = docViewer.getAnnotationManager();
-        return annotManager.importAnnotations(xfdfString);
+        const annotationManager = documentViewer.getAnnotationManager();
+        return annotationManager.importAnnotations(xfdfString);
       })
       .then(() => {
         video.updateAnnotationsToTime(0);
@@ -102,17 +103,17 @@ WebViewer(
 
   let once = false;
   // Create the video UI controls
-  docViewer.on('pageComplete', (pageIndex, videoContainer) => {
+  documentViewer.addEventListener('pageComplete', (pageIndex, videoContainer) => {
     if (once) return;
     once = true;
     const createElementFromHTML = htmlString => {
-      var div = document.createElement('div');
+      const div = document.createElement('div');
       div.innerHTML = htmlString.trim();
 
       return div.firstChild;
     };
 
-    const doc = docViewer.getDocument();
+    const doc = documentViewer.getDocument();
     const video = doc.getVideo();
     const controls = createElementFromHTML(`
         <div class="controls">
@@ -180,7 +181,7 @@ WebViewer(
         }
       });
     };
-    annotManager.on('annotationChanged', () => {
+    annotationManager.addEventListener('annotationChanged', () => {
       showMarkers(video.getAllAnnotations());
     });
     showMarkers(video.getAllAnnotations());
@@ -255,7 +256,7 @@ WebViewer(
     const marginRight = 8;
     const widthFrameContainer = 92.5;
     const timelineHeight = 99;
-    const timelineWidth = 770 / docViewer.getZoom();
+    const timelineWidth = 770 / documentViewer.getZoom();
 
     const totalFrames = video.getTotalFrames();
     let selectedFrameContainer;
@@ -358,7 +359,7 @@ WebViewer(
     tooltip.setAttribute('data-state', 'hidden');
     progress.addEventListener('mousemove', e => {
       const { width } = progress.getBoundingClientRect();
-      const percentage = (e.offsetX * docViewer.getZoom()) / width;
+      const percentage = (e.offsetX * documentViewer.getZoom()) / width;
       const newTime = percentage * progress.max;
       stateCurrentTime = newTime;
 

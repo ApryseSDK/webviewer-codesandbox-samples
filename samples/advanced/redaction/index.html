@@ -16,7 +16,7 @@
       <h2>Choose a file to view</h2>
       <select id="select" style="width: 100%">
         <option value="https://s3.amazonaws.com/pdftron/downloads/pl/legal-contract.pdf">https://s3.amazonaws.com/pdftron/downloads/pl/legal-contract.pdf</option>
-        <option value="../../../samples/files/demo.pdf">../../../samples/files/demo.pdf</option>
+        <option value="https://s3.amazonaws.com/pdftron/downloads/pl/demo.pdf">https://s3.amazonaws.com/pdftron/downloads/pl/demo.pdf</option>
       </select>
       <h2>Or pass a url to a document</h2>
       <form id="url-form">
@@ -31,6 +31,9 @@
         Select the redaction tool from toolbar and select text or a region of the document. When you're ready to apply the redactions and permanently remove selected text or regions, select the
         redaction button from toolbar and choose the apply redaction option from the sub-menu.
       </p>
+      <button id="apply-redactions">
+        Apply Redactions
+      </button>
     </aside>
     <div id="viewer"></div>
     <script src="../../menu-button.js"></script>

@@ -35,3 +35,11 @@
     width: 100%;
   }
 }
+
+.opacity-slider, .alignment-button {
+  margin-left: 18px;
+}
+
+.configuration-item {
+  margin-bottom: 15px;
+}

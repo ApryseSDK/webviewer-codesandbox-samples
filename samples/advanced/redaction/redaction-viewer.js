@@ -1,8 +1,8 @@
 // @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link WebViewerInstance.loadDocument: https://www.pdftron.com/api/web/WebViewerInstance.html#loadDocument__anchor
-// @link WebViewerInstance.disableTools: https://www.pdftron.com/api/web/WebViewerInstance.html#disableTools__anchor
-// @link WebViewerInstance.enableTools: https://www.pdftron.com/api/web/WebViewerInstance.html#enableTools__anchor
-// @link WebViewerInstance.setToolMode: https://www.pdftron.com/api/web/WebViewerInstance.html#setToolMode__anchor
+// @link UI.loadDocument: https://www.pdftron.com/api/web/UI.html#loadDocument__anchor
+// @link UI.disableTools: https://www.pdftron.com/api/web/UI.html#disableTools__anchor
+// @link UI.enableTools: https://www.pdftron.com/api/web/UI.html#enableTools__anchor
+// @link UI.setToolMode: https://www.pdftron.com/api/web/UI.html#setToolMode__anchor
 
 WebViewer(
   {
@@ -14,23 +14,37 @@ WebViewer(
   document.getElementById('viewer')
 ).then(instance => {
   samplesSetup(instance);
+  const { documentViewer } = instance.Core;
 
   document.getElementById('select').onchange = e => {
-    instance.loadDocument(e.target.value);
+    instance.UI.loadDocument(e.target.value);
   };
 
   document.getElementById('file-picker').onchange = e => {
     const file = e.target.files[0];
     if (file) {
-      instance.loadDocument(file);
+      instance.UI.loadDocument(file);
     }
   };
 
   document.getElementById('url-form').onsubmit = e => {
     e.preventDefault();
-    instance.loadDocument(document.getElementById('url').value);
+    instance.UI.loadDocument(document.getElementById('url').value);
   };
 
-  instance.setToolbarGroup('toolbarGroup-Edit');
-  instance.setToolMode('AnnotationCreateRedaction');
+  documentViewer.addEventListener('documentLoaded', () => {
+    document.getElementById('apply-redactions').onclick = () => {
+      instance.UI.showWarningMessage({
+        title: 'Apply redaction?',
+        message: 'This action will permanently remove all items selected for ' + 'redaction. It cannot be undone.',
+        onConfirm: () => {
+          documentViewer.getAnnotationManager().applyRedactions();
+          return Promise.resolve();
+        },
+      });
+    };
+  });
+
+  instance.UI.setToolbarGroup('toolbarGroup-Edit');
+  instance.UI.setToolMode('AnnotationCreateRedaction');
 });

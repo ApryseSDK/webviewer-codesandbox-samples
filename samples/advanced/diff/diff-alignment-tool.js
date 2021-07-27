@@ -1,86 +1,97 @@
 (function(exports) {
   let eventHandlersSetup = false;
   let _isInAlignmentMode = false;
-  let leftPanelAnnot;
-  let rightPanelAnnot;
+  let basePanelAnnotation;
+  let overlayPanelAnnotation;
 
-  const alignPages = onAlignPressedCallback => {
-    if (leftPanelAnnot && rightPanelAnnot) {
-      onAlignPressedCallback(leftPanelAnnot.Start, leftPanelAnnot.End, rightPanelAnnot.Start, rightPanelAnnot.End, leftPanelAnnot.PageNumber - 1, rightPanelAnnot.PageNumber - 1);
+  function alignPages(onAlignPressedCallback) {
+    if (basePanelAnnotation && overlayPanelAnnotation) {
+      onAlignPressedCallback(
+        basePanelAnnotation.Start,
+        basePanelAnnotation.End,
+        overlayPanelAnnotation.Start,
+        overlayPanelAnnotation.End,
+        basePanelAnnotation.PageNumber,
+        overlayPanelAnnotation.PageNumber
+      );
     }
-  };
+  }
 
-  const isInAlignmentMode = () => {
+  function isInAlignmentMode() {
     return _isInAlignmentMode;
-  };
+  }
 
-  const toggleAlignmentMode = (leftPanelInstance, rightPanelInstance, alignmentModeButton, onEnterAlignmentMode, onExitAlignmentMode) => {
+  function toggleAlignmentMode(basePanelInstance, overlayPanelInstance, alignmentModeButton, onEnterAlignmentMode, onExitAlignmentMode) {
     if (!_isInAlignmentMode) {
       _isInAlignmentMode = true;
       alignmentModeButton.textContent = 'Leave Alignment Mode';
 
-      leftPanelInstance.setToolMode('AnnotationCreateArrow');
-      rightPanelInstance.setToolMode('AnnotationCreateArrow');
+      basePanelInstance.UI.setToolMode('AnnotationCreateArrow');
+      overlayPanelInstance.UI.setToolMode('AnnotationCreateArrow');
       if (onEnterAlignmentMode) {
         onEnterAlignmentMode();
       }
     } else {
       _isInAlignmentMode = false;
       alignmentModeButton.textContent = 'Enter Alignment Mode';
-      leftPanelInstance.setToolMode('AnnotationEdit');
-      rightPanelInstance.setToolMode('AnnotationEdit');
-      leftPanelInstance.docViewer.getAnnotationManager().deleteAnnotations(leftPanelInstance.docViewer.getAnnotationManager().getAnnotationsList(), true, true);
-      rightPanelInstance.docViewer.getAnnotationManager().deleteAnnotations(rightPanelInstance.docViewer.getAnnotationManager().getAnnotationsList(), true, true);
-      leftPanelAnnot = undefined;
-      rightPanelAnnot = undefined;
+      basePanelInstance.UI.setToolMode('AnnotationEdit');
+      overlayPanelInstance.UI.setToolMode('AnnotationEdit');
+      basePanelInstance.Core.documentViewer
+        .getAnnotationManager()
+        .deleteAnnotations(basePanelInstance.Core.documentViewer.getAnnotationManager().getAnnotationsList(), { imported: true, force: true });
+      overlayPanelInstance.Core.documentViewer
+        .getAnnotationManager()
+        .deleteAnnotations(overlayPanelInstance.Core.documentViewer.getAnnotationManager().getAnnotationsList(), { imported: true, force: true });
+      basePanelAnnotation = undefined;
+      overlayPanelAnnotation = undefined;
       if (onExitAlignmentMode) {
         onExitAlignmentMode();
       }
     }
-  };
+  }
 
-  const initializeDiffAlignmentToolHandlers = (leftPanelInstance, rightPanelInstance, onAlignPressedCallback, onEnterAlignmentMode, onExitAlignmentMode) => {
-    leftPanelAnnot = undefined;
-    rightPanelAnnot = undefined;
+  function initializeDiffAlignmentToolHandlers(basePanelInstance, overlayPanelInstance, onAlignPressedCallback, onEnterAlignmentMode, onExitAlignmentMode) {
+    basePanelAnnotation = undefined;
+    overlayPanelAnnotation = undefined;
 
     const alignmentModeButton = document.getElementById('toggle-alignment-mode');
 
     if (_isInAlignmentMode) {
-      toggleAlignmentMode(leftPanelInstance, rightPanelInstance, alignmentModeButton, onEnterAlignmentMode, onExitAlignmentMode);
+      toggleAlignmentMode(basePanelInstance, overlayPanelInstance, alignmentModeButton, onEnterAlignmentMode, onExitAlignmentMode);
     }
 
     if (!eventHandlersSetup) {
       eventHandlersSetup = true;
-      leftPanelInstance.docViewer.getTool('AnnotationCreateArrow').on('annotationAdded', annotation => {
+      basePanelInstance.Core.documentViewer.getTool('AnnotationCreateArrow').addEventListener('annotationAdded', annotation => {
         // after alignment annotation is added in the left viewer
-        if (leftPanelAnnot) {
-          leftPanelInstance.docViewer.getAnnotationManager().deleteAnnotation(leftPanelAnnot, false, true);
+        if (basePanelAnnotation) {
+          basePanelInstance.Core.documentViewer.getAnnotationManager().deleteAnnotation(basePanelAnnotation, { imported: false, force: true });
         }
         annotation.ReadOnly = true;
-        leftPanelAnnot = annotation;
+        basePanelAnnotation = annotation;
         alignPages(onAlignPressedCallback);
       });
 
-      rightPanelInstance.docViewer.getTool('AnnotationCreateArrow').on('annotationAdded', annotation => {
+      overlayPanelInstance.Core.documentViewer.getTool('AnnotationCreateArrow').addEventListener('annotationAdded', annotation => {
         // after alignment annotation is added in the right viewer
-        if (rightPanelAnnot) {
-          rightPanelInstance.docViewer.getAnnotationManager().deleteAnnotation(rightPanelAnnot, false, true);
+        if (overlayPanelAnnotation) {
+          overlayPanelInstance.Core.documentViewer.getAnnotationManager().deleteAnnotation(overlayPanelAnnotation, { imported: false, force: true });
         }
         annotation.ReadOnly = true;
-        rightPanelAnnot = annotation;
+        overlayPanelAnnotation = annotation;
         alignPages(onAlignPressedCallback);
       });
 
       alignmentModeButton.addEventListener('click', () => {
-        toggleAlignmentMode(leftPanelInstance, rightPanelInstance, alignmentModeButton, onEnterAlignmentMode, onExitAlignmentMode);
+        toggleAlignmentMode(basePanelInstance, overlayPanelInstance, alignmentModeButton, onEnterAlignmentMode, onExitAlignmentMode);
       });
       document.getElementById('enable-snap-mode').addEventListener('change', event => {
         const enableSnapMode = event.target.checked;
-        leftPanelInstance.docViewer.getTool('AnnotationCreateArrow').setSnapMode(enableSnapMode ? leftPanelInstance.docViewer.SnapMode.DEFAULT : null);
-        rightPanelInstance.docViewer.getTool('AnnotationCreateArrow').setSnapMode(enableSnapMode ? rightPanelInstance.docViewer.SnapMode.DEFAULT : null);
+        basePanelInstance.Core.documentViewer.getTool('AnnotationCreateArrow').setSnapMode(enableSnapMode ? basePanelInstance.Core.documentViewer.SnapMode.DEFAULT : null);
+        overlayPanelInstance.Core.documentViewer.getTool('AnnotationCreateArrow').setSnapMode(enableSnapMode ? overlayPanelInstance.Core.documentViewer.SnapMode.DEFAULT : null);
       });
     }
-  };
+  }
   exports.DiffAlignmentTool = {
     initializeDiffAlignmentToolHandlers,
     isInAlignmentMode,
