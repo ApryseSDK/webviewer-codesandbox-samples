@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="template-fill.css" />
+    <script src="../../../lib/webviewer.min.js"></script>
+    <script src="../../old-browser-checker.js"></script>
+    <script src="../../global.js"></script>
+    <title>Template Generation Demo</title>
+    <script src="../../modernizr.custom.min.js"></script>
+    <script src="../../modernizr.custom.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="title sample">Template Generation Demo</div>
+    </header>
+    <aside class="autofill">
+      <h2 id="doc-title">Sample Document</h2>
+      <br />
+      <h1 id="key-val-title">Currently preparing...</h1>
+      <p id="current-status"></p>
+      <form id="autofill-form"></form>
+      <div class="autofill-initial-hidden">
+        <h2>Upload file:</h2>
+        <p>Choose your own template document</p>
+        <div class="spacer"></div>
+        <label class="custom-file-upload">
+          <input id="file-picker" type="file" accept=".docx" />
+          Choose file </label
+        ><span id="file-status">No file chosen</span>
+      </div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+    </aside>
+    <div id="viewer"></div>
+    <script src="../../menu-button.js"></script>
+
+    <script>
+      Modernizr.addTest('async', function() {
+        try {
+          var result;
+          eval('let a = () => {result = "success"}; let b = async () => {await a()}; b()');
+          return result === 'success';
+        } catch (e) {
+          return false;
+        }
+      });
+
+      // test for async and fall back to code compiled to ES5 if they are not supported
+      ['template-fill.js'].forEach(function(js) {
+        var script = Modernizr.async ? js : js.replace('.js', '.ES5.js');
+        var scriptTag = document.createElement('script');
+        scriptTag.src = script;
+        scriptTag.type = 'text/javascript';
+        document.getElementsByTagName('head')[0].appendChild(scriptTag);
+      });
+    </script>
+
+    <script>
+      Modernizr.addTest('async', function(){
+        try {
+            var result;
+            eval('let a = () => {result = "success"}; let b = async () => {await a()}; b()');
+            return result === 'success';
+        } catch(e) {
+            return false;
+        }
+      });
+
+      // test for async and fall back to code compiled to ES5 if they are not supported
+      ].forEach(function(js) {
+        var script = Modernizr.async ? js : js.replace('.js', '.ES5.js');
+        var scriptTag = document.createElement('script');
+        scriptTag.src = script;
+        scriptTag.type = 'text/javascript';
+        document.getElementsByTagName('head')[0].appendChild(scriptTag);
+      })
+    </script>
+  </body>
+</html>

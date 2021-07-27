@@ -1,31 +1,31 @@
 // @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link WebViewerInstance.loadDocument: https://www.pdftron.com/api/web/WebViewerInstance.html#loadDocument__anchor
+// @link UI.loadDocument: https://www.pdftron.com/api/web/UI.html#loadDocument__anchor
 
-// @link DocumentViewer: https://www.pdftron.com/api/web/CoreControls.DocumentViewer.html
+// @link DocumentViewer: https://www.pdftron.com/api/web/Core.DocumentViewer.html
 
-// @link AnnotationManager: https://www.pdftron.com/api/web/CoreControls.AnnotationManager.html
-// @link AnnotationManager.addAnnotations: https://www.pdftron.com/api/web/CoreControls.AnnotationManager.html#addAnnotations__anchor
-// @link AnnotationManager.deleteAnnotations: https://www.pdftron.com/api/web/CoreControls.AnnotationManager.html#deleteAnnotations__anchor
-// @link AnnotationManager.selectAnnotations: https://www.pdftron.com/api/web/CoreControls.AnnotationManager.html#selectAnnotations__anchor
-// @link AnnotationManager.getAnnotationsList: https://www.pdftron.com/api/web/CoreControls.AnnotationManager.html#getAnnotationsList__anchor
+// @link AnnotationManager: https://www.pdftron.com/api/web/Core.AnnotationManager.html
+// @link AnnotationManager.addAnnotations: https://www.pdftron.com/api/web/Core.AnnotationManager.html#addAnnotations__anchor
+// @link AnnotationManager.deleteAnnotations: https://www.pdftron.com/api/web/Core.AnnotationManager.html#deleteAnnotations__anchor
+// @link AnnotationManager.selectAnnotations: https://www.pdftron.com/api/web/Core.AnnotationManager.html#selectAnnotations__anchor
+// @link AnnotationManager.getAnnotationsList: https://www.pdftron.com/api/web/Core.AnnotationManager.html#getAnnotationsList__anchor
 
 // @link Annotations: https://www.pdftron.com/api/web/Annotations.html
 
-// @link Document: https://www.pdftron.com/api/web/CoreControls.Document.html
-// @link Document.loadPageText: https://www.pdftron.com/api/web/CoreControls.Document.html#loadPageText__anchor
-// @link Document.getTextPosition: https://www.pdftron.com/api/web/CoreControls.Document.html#getTextPosition__anchor
+// @link Document: https://www.pdftron.com/api/web/Core.Document.html
+// @link Document.loadPageText: https://www.pdftron.com/api/web/Core.Document.html#loadPageText__anchor
+// @link Document.getTextPosition: https://www.pdftron.com/api/web/Core.Document.html#getTextPosition__anchor
 
 const viewerElement = document.getElementById('viewer');
 WebViewer(
   {
     path: '../../../lib',
-    pdftronServer: 'https://demo.pdftron.com/', // comment this out to do client-side only
+    webviewerServerURL: 'https://demo.pdftron.com/', // comment this out to do client-side only
     initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/legal-contract.pdf',
   },
   viewerElement
 ).then(instance => {
   samplesSetup(instance);
-  const { docViewer, annotManager, Annotations } = instance;
+  const { documentViewer, annotationManager, Annotations } = instance.Core;
 
   const renderCheckBoxes = pageCount => {
     const pagesDiv = document.getElementById('pages');
@@ -57,10 +57,10 @@ WebViewer(
   };
 
   const highlightText = (searchText, pageNumber) => {
-    const doc = docViewer.getDocument();
+    const doc = documentViewer.getDocument();
 
     // gets all text on the requested page
-    // see https://pdftron.com/api/web/CoreControls.Document.html#loadPageText__anchor
+    // see https://pdftron.com/api/web/Core.Document.html#loadPageText__anchor
     doc.loadPageText(pageNumber).then(text => {
       let textStartIndex = 0;
       let textIndex;
@@ -71,10 +71,10 @@ WebViewer(
         textStartIndex = textIndex + searchText.length;
         // gets quads for each of the characters from start to end index. Then,
         // resolve the annotation and return.
-        // see https://pdftron.com/api/web/CoreControls.Document.html#getTextPosition__anchor
+        // see https://pdftron.com/api/web/Core.Document.html#getTextPosition__anchor
         const annotationPromise = doc.getTextPosition(pageNumber, textIndex, textIndex + searchText.length).then(quads => {
           const annotation = new Annotations.TextHighlightAnnotation();
-          annotation.Author = annotManager.getCurrentUser();
+          annotation.Author = annotationManager.getCurrentUser();
           annotation.PageNumber = pageNumber;
           annotation.Quads = quads;
           annotation.StrokeColor = new Annotations.Color(0, 255, 255);
@@ -85,22 +85,22 @@ WebViewer(
 
       // Wait for all annotations to be resolved.
       Promise.all(annotationPromises).then(annotations => {
-        annotManager.addAnnotations(annotations);
-        annotManager.selectAnnotations(annotations);
+        annotationManager.addAnnotations(annotations);
+        annotationManager.selectAnnotations(annotations);
       });
     });
   };
 
   const removeHighlightedText = pageNumber => {
-    const annotations = annotManager.getAnnotationsList().filter(annotation => {
+    const annotations = annotationManager.getAnnotationsList().filter(annotation => {
       return annotation.PageNumber === pageNumber;
     });
-    annotManager.deleteAnnotations(annotations);
+    annotationManager.deleteAnnotations(annotations);
   };
 
-  docViewer.on('documentLoaded', () => {
+  documentViewer.addEventListener('documentLoaded', () => {
     const textInput = document.getElementById('text');
-    const checkboxes = renderCheckBoxes(docViewer.getPageCount());
+    const checkboxes = renderCheckBoxes(documentViewer.getPageCount());
 
     checkboxes.forEach(checkbox => {
       checkbox.addEventListener('change', () => {

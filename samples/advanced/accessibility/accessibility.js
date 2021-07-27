@@ -49,8 +49,8 @@ WebViewer(
   document.getElementById('viewer')
 ).then(instance => {
   samplesSetup(instance);
-  const docViewer = instance.docViewer;
-  const iframeDocument = instance.iframeWindow.document;
+  const documentViewer = instance.Core.documentViewer;
+  const iframeDocument = instance.UI.iframeWindow.document;
 
   const getPageText = pageNumber => {
     const pageTextElement = iframeDocument.getElementById(`pageText${pageNumber}`);
@@ -63,7 +63,7 @@ WebViewer(
     clearInterval(intervalId);
     // setInterval used in case text DOM is not ready yet
     intervalId = setInterval(() => {
-      const text = getPageText(docViewer.getCurrentPage());
+      const text = getPageText(documentViewer.getCurrentPage());
 
       if (text) {
         readText(text);
@@ -72,7 +72,7 @@ WebViewer(
     }, 200);
   };
 
-  docViewer.on('documentLoaded', () => {
+  documentViewer.addEventListener('documentLoaded', () => {
     const playButton = document.getElementById('play');
     const pauseButton = document.getElementById('pause');
 

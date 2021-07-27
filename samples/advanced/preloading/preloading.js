@@ -1,5 +1,5 @@
 // @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link WebViewerInstance.loadDocument: https://www.pdftron.com/api/web/WebViewerInstance.html#loadDocument__anchor
+// @link UI.loadDocument: https://www.pdftron.com/api/web/UI.html#loadDocument__anchor
 
 const viewerElement = document.getElementById('viewer');
 
@@ -13,7 +13,7 @@ WebViewer(
   viewerElement
 ).then(instance => {
   samplesSetup(instance);
-  const preLoadFiles = ['../../../samples/files/demo.pdf', '../../../samples/full-apis/TestFiles/simple-excel_2007.xlsx', '../../../samples/full-apis/TestFiles/simple-word_2007.docx'];
+  const preLoadFiles = ['../../../samples/files/demo.pdf', '../../../samples/files/simple-excel_2007.xlsx', '../../../samples/files/simple-word_2007.docx'];
 
   const documentsDiv = document.getElementById('documents');
 
@@ -40,7 +40,7 @@ WebViewer(
         button.onclick = () => {
           viewerElement.style.visibility = 'visible';
           // file name is required for office files, 'loadDocument' will assume files are pdf if there isn't a filename
-          instance.loadDocument(doc, { filename: file.split('/').slice(-1)[0] });
+          instance.UI.loadDocument(doc, { filename: file.split('/').slice(-1)[0] });
         };
         button.innerHTML = 'Open';
       }

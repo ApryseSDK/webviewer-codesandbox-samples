@@ -1,7 +1,7 @@
 // @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link WebViewerInstance.setHeaderItems: https://www.pdftron.com/api/web/WebViewerInstance.html#setHeaderItems__anchor
-// @link WebViewerInstance.openElements: https://www.pdftron.com/api/web/WebViewerInstance.html#openElements__anchor
-// @link WebViewerInstance.loadDocument: https://www.pdftron.com/api/web/WebViewerInstance.html#loadDocument__anchor
+// @link UI.setHeaderItems: https://www.pdftron.com/api/web/UI.html#setHeaderItems__anchor
+// @link UI.openElements: https://www.pdftron.com/api/web/UI.html#openElements__anchor
+// @link UI.loadDocument: https://www.pdftron.com/api/web/UI.html#loadDocument__anchor
 
 // @link Header: https://www.pdftron.com/api/web/Header.html
 
@@ -14,25 +14,24 @@ WebViewer(
   document.getElementById('viewer')
 ).then(instance => {
   samplesSetup(instance);
-
-  instance.setToolbarGroup('toolbarGroup-Measure');
+  instance.UI.setToolbarGroup('toolbarGroup-Measure');
 
   // open notes panel by default
-  instance.openElements(['notesPanel']);
+  instance.UI.openElements(['notesPanel']);
 
   document.getElementById('select').onchange = e => {
-    instance.loadDocument(e.target.value);
+    instance.UI.loadDocument(e.target.value);
   };
 
   document.getElementById('file-picker').onchange = e => {
     const file = e.target.files[0];
     if (file) {
-      instance.loadDocument(file);
+      instance.UI.loadDocument(file);
     }
   };
 
   document.getElementById('url-form').onsubmit = e => {
     e.preventDefault();
-    instance.loadDocument(document.getElementById('url').value);
+    instance.UI.loadDocument(document.getElementById('url').value);
   };
 });

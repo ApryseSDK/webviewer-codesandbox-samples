@@ -1,16 +1,16 @@
 // @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link CoreControls.setWorkerPath: https://www.pdftron.com/api/web/CoreControls.html#.setWorkerPath__anchor
-// @link CoreControls.getDefaultBackendType: https://www.pdftron.com/api/web/CoreControls.html#.getDefaultBackendType__anchor
-// @link CoreControls.initPDFWorkerTransports: https://www.pdftron.com/api/web/CoreControls.html#.initPDFWorkerTransports__anchor
+// @link Core.setWorkerPath: https://www.pdftron.com/api/web/Core.html#.setWorkerPath__anchor
+// @link Core.getDefaultBackendType: https://www.pdftron.com/api/web/Core.html#.getDefaultBackendType__anchor
+// @link Core.initPDFWorkerTransports: https://www.pdftron.com/api/web/Core.html#.initPDFWorkerTransports__anchor
 // @link ExternalPdfPartRetriever: https://www.pdftron.com/api/web/PartRetrievers.ExternalPdfPartRetriever.html
-// @link Document: https://www.pdftron.com/api/web/CoreControls.Document.html
-// @link Document.loadAsync: https://www.pdftron.com/api/web/CoreControls.Document.html#loadAsync__anchor
-// @link Document.getPageInfo: https://www.pdftron.com/api/web/CoreControls.Document.html#getPageInfo__anchor
-// @link Document.getPageCount: https://www.pdftron.com/api/web/CoreControls.Document.html#getPageCount__anchor
-// @link Document.requirePage: https://www.pdftron.com/api/web/CoreControls.Document.html#requirePage__anchor
-// @link Document.loadCanvasAsync: https://www.pdftron.com/api/web/CoreControls.Document.html#loadCanvasAsync__anchor
+// @link Document: https://www.pdftron.com/api/web/Core.Document.html
+// @link Document.loadAsync: https://www.pdftron.com/api/web/Core.Document.html#loadAsync__anchor
+// @link Document.getPageInfo: https://www.pdftron.com/api/web/Core.Document.html#getPageInfo__anchor
+// @link Document.getPageCount: https://www.pdftron.com/api/web/Core.Document.html#getPageCount__anchor
+// @link Document.requirePage: https://www.pdftron.com/api/web/Core.Document.html#requirePage__anchor
+// @link Document.loadCanvasAsync: https://www.pdftron.com/api/web/Core.Document.html#loadCanvasAsync__anchor
 
-CoreControls.setWorkerPath('../../../lib/core');
+Core.setWorkerPath('../../../lib/core');
 
 const flipbookElement = document.getElementById('flipbook');
 const loadingMessageElement = document.getElementById('loading-message');
@@ -20,7 +20,7 @@ loadingMessageElement.innerHTML = 'Preparing document...';
 const source = 'https://pdftron.s3.amazonaws.com/downloads/pl/Cheetahs.pdf';
 const options = { l: window.sampleL /* license key here */ };
 
-const documentPromise = CoreControls.createDocument(source, options);
+const documentPromise = Core.createDocument(source, options);
 
 documentPromise.then(doc => {
   const info = doc.getPageInfo(1);
