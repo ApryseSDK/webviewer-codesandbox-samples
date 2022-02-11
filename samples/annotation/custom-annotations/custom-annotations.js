@@ -139,7 +139,7 @@
       const pageNumber = page.first !== null ? page.first : documentViewer.getCurrentPage();
       const pageInfo = doc.getPageInfo(pageNumber);
       const pagePoint = displayMode.windowToPage(point, pageNumber);
-      const zoom = documentViewer.getZoom();
+      const zoom = documentViewer.getZoomLevel();
 
       const stampAnnot = new Annotations.StampAnnotation();
       stampAnnot.PageNumber = pageNumber;
@@ -174,7 +174,7 @@
     div.style.top = '-500px';
     div.style.left = '-500px';
     document.body.appendChild(div);
-    const el = sampleImg.firstElementChild;
+    const el = sampleImg;
     img.src = el.src;
     const height = el.height;
     const width = (height / img.height) * img.width;

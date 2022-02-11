@@ -2,10 +2,10 @@
 // @link WebViewerInstance.openElements: https://www.pdftron.com/api/web/WebViewerInstance.html#openElements__anchor
 
 // @link AnnotationManager: https://www.pdftron.com/api/web/Core.AnnotationManager.html
-// @link AnnotationManager.importAnnotCommand: https://www.pdftron.com/api/web/Core.AnnotationManager.html#importAnnotCommand__anchor
+// @link AnnotationManager.importAnnotationCommand: https://www.pdftron.com/api/web/Core.AnnotationManager.html#importAnnotationCommand__anchor
 // @link AnnotationManager.redrawAnnotation: https://www.pdftron.com/api/web/Core.AnnotationManager.html#redrawAnnotation__anchor
 // @link AnnotationManager.setCurrentUser: https://www.pdftron.com/api/web/Core.AnnotationManager.html#setCurrentUser__anchor
-// @link AnnotationManager.exportAnnotCommand: https://www.pdftron.com/api/web/Core.AnnotationManager.html#exportAnnotCommand__anchor
+// @link AnnotationManager.exportAnnotationCommand: https://www.pdftron.com/api/web/Core.AnnotationManager.html#exportAnnotationCommand__anchor
 // @link AnnotationManager.getAnnotationbyId: https://www.pdftron.com/api/web/Core.AnnotationManager.html#getAnnotationById__anchor
 // @link AnnotationManager.updateAnnotation: https://www.pdftron.com/api/web/Core.AnnotationManager.html#updateAnnotation__anchor
 // @link AnnotationManager.setPermissionCheckCallback: https://www.pdftron.com/api/web/Core.AnnotationManager.html#setPermissionCheckCallback__anchor
@@ -66,7 +66,7 @@ WebViewer(
 
     const onAnnotationCreated = async data => {
       // Import the annotation based on xfdf command
-      const annotations = await annotationManager.importAnnotCommand(data.val().xfdf);
+      const annotations = await annotationManager.importAnnotationCommand(data.val().xfdf);
       const annotation = annotations[0];
       if (annotation) {
         await annotation.resourcesLoaded();
@@ -79,7 +79,7 @@ WebViewer(
 
     const onAnnotationUpdated = async data => {
       // Import the annotation based on xfdf command
-      const annotations = await annotationManager.importAnnotCommand(data.val().xfdf);
+      const annotations = await annotationManager.importAnnotationCommand(data.val().xfdf);
       const annotation = annotations[0];
       if (annotation) {
         await annotation.resourcesLoaded();
@@ -93,7 +93,7 @@ WebViewer(
       // data.key would return annotationId since our server method is designed as
       // annotationsRef.child(annotationId).set(annotationData)
       const command = `<delete><id>${data.key}</id></delete>`;
-      annotationManager.importAnnotCommand(command);
+      annotationManager.importAnnotationCommand(command);
     };
 
     const openReturningAuthorPopup = authorName => {
@@ -146,12 +146,12 @@ WebViewer(
 
   // Bind annotation change events to a callback function
   annotationManager.addEventListener('annotationChanged', async (annotations, type, info) => {
-    // info.imported is true by default for annotations from pdf and annotations added by importAnnotCommand
+    // info.imported is true by default for annotations from pdf and annotations added by importAnnotationCommand
     if (info.imported) {
       return;
     }
 
-    const xfdf = await annotationManager.exportAnnotCommand();
+    const xfdf = await annotationManager.exportAnnotationCommand();
     // Iterate through all annotations and call appropriate server methods
     annotations.forEach(annotation => {
       let parentAuthorId = null;
