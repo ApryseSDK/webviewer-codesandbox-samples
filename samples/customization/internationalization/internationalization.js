@@ -4,6 +4,10 @@
 WebViewer(
   {
     path: '../../../lib',
+    additionalTranslations: {
+      language: 'en',
+      translations: { 'option.toolbarGroup.toolbarGroup-View': 'Edited View Label' },
+    },
     webviewerServerURL: 'https://demo.pdftron.com/', // comment this out to do client-side only
     initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf',
   },
@@ -14,4 +18,15 @@ WebViewer(
     // Set language
     instance.UI.setLanguage(e.target.id);
   };
+
+  // To Create a new button into the settings menu and set the translation
+  instance.UI.settingsMenuOverlay.add(
+    {
+      type: 'actionButton',
+      className: 'row',
+      dataElement: 'languageButton',
+      label: 'Language',
+    },
+    'downloadButton'
+  );
 });

@@ -16,15 +16,28 @@ WebViewer(
   document.getElementById('viewer')
 ).then(instance => {
   samplesSetup(instance);
-  const { setHeaderItems, enableElements, disableElements, enableFeatures, disableFeatures, setTheme, Feature } = instance.UI;
+  const { setHeaderItems, enableElements, disableElements, enableFeatures, disableFeatures, setTheme, Feature, Theme } = instance.UI;
+
+  const findFirstDividerIndex = items => {
+    for (let i = 0; i < items.length; ++i) {
+      if (items[i].type === 'divider') {
+        return i;
+      }
+    }
+  };
 
   const reverseHeaderItems = () => {
     // Change header items
     setHeaderItems(header => {
       const items = header.getItems();
-      const copiedItems = items.splice(2, 18);
-      copiedItems.reverse();
-      header.update([].concat(items.slice(0, 2), copiedItems, items.slice(2)));
+      // reverse all items after first divider
+      const indexAfterFirstDivider = findFirstDividerIndex(items) + 1;
+      // could use findIndex if you don't need to support IE
+      // const indexAfterFirstDivider = items.findIndex(item => item.type === 'divider') + 1;
+      const itemsToReverse = items.slice(indexAfterFirstDivider);
+      itemsToReverse.reverse();
+
+      header.update([].concat(items.slice(0, indexAfterFirstDivider), itemsToReverse));
     });
   };
 
@@ -145,9 +158,9 @@ WebViewer(
   document.getElementsByName('theme').forEach(radioInput => {
     radioInput.onchange = e => {
       if (e.target.id === 'light' && e.target.checked) {
-        setTheme('light');
+        setTheme(Theme.LIGHT);
       } else {
-        setTheme('dark');
+        setTheme(Theme.DARK);
       }
     };
   });
