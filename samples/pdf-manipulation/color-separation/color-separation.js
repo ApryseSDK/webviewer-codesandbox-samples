@@ -36,7 +36,7 @@ WebViewer(
     const doc = documentViewer.getDocument();
     colorSeparationLoaded = false;
     // Enable color separation
-    doc.enableColorSeparations(true);
+    doc.enableColorSeparations({ checkIfBaseColorsUsed: false });
     // wait till the individual "colors" in the top left corner load first
     openElements(['loadingModal']);
 
@@ -86,7 +86,10 @@ WebViewer(
         const results = documentViewer.getColorSeparationsAtPoint(pageNumber, x, y);
         for (let i = 0; i < results.length; ++i) {
           // Update the text in color panel
-          document.getElementById(`${results[i].name} label`).innerHTML = `${results[i].name} ${results[i].value}%`;
+          const colorLabelElement = document.getElementById(`${results[i].name} label`);
+          if (colorLabelElement) {
+            colorLabelElement.innerHTML = `${results[i].name} ${results[i].value}%`;
+          }
         }
       }
     }
