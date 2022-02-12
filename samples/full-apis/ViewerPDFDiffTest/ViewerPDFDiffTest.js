@@ -94,7 +94,7 @@
   const init = async () => {
     Core = window.Core;
     Annotations = window.Core.Annotations;
-    Core.enableFullPDF(true);
+    Core.enableFullPDF();
     await PDFNet.initialize();
   };
 

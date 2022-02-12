@@ -78,12 +78,13 @@
     };
 
     instance.UI.setCustomPanel(snapModesPanel);
+
+    instance.UI.openElements([snapModesPanel.panel.dataElement]);
   };
 
-  window.addEventListener('documentLoaded', () => {
-    createSnapModesPanel();
-    instance.UI.openElements(['snapModesPanel']);
+  createSnapModesPanel();
 
+  instance.Core.documentViewer.addEventListener('pageComplete', () => {
     const lineAnnot = new Annotations.LineAnnotation();
     lineAnnot.setStartPoint(0, 0);
     lineAnnot.setEndPoint(0, 0);
@@ -92,24 +93,35 @@
     const annotationManager = instance.Core.documentViewer.getAnnotationManager();
     annotationManager.addAnnotation(lineAnnot);
 
-    instance.Core.documentViewer.addEventListener('mouseMove', e => {
-      const result = mouseToPagePoint(e);
-      const pagePoint = result.point;
-      const pageNumber = result.pageNumber;
-      const oldPageNumber = lineAnnot.PageNumber;
+    let timeout;
+    let shouldAddMouseMoveListener = true;
+    document.onmousemove = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        if (shouldAddMouseMoveListener) {
+          instance.Core.documentViewer.addEventListener('mouseMove', e => {
+            const result = mouseToPagePoint(e);
+            const pagePoint = result.point;
+            const pageNumber = result.pageNumber;
+            const oldPageNumber = lineAnnot.PageNumber;
 
-      lineAnnot.PageNumber = pageNumber;
-      lineAnnot.setStartPoint(pagePoint.x, pagePoint.y);
-      // refresh old page since line annotation has been removed from it
-      if (pageNumber !== oldPageNumber) {
-        annotationManager.drawAnnotations(oldPageNumber);
-      }
+            lineAnnot.PageNumber = pageNumber;
+            lineAnnot.setStartPoint(pagePoint.x, pagePoint.y);
+            // refresh old page since line annotation has been removed from it
+            if (pageNumber !== oldPageNumber) {
+              annotationManager.drawAnnotations(oldPageNumber);
+            }
 
-      instance.Core.documentViewer.snapToNearest(pageNumber, pagePoint.x, pagePoint.y, snapMode).then(snapPoint => {
-        lineAnnot.setEndPoint(snapPoint.x, snapPoint.y);
-        annotationManager.redrawAnnotation(lineAnnot);
-      });
-    });
+            instance.Core.documentViewer.snapToNearest(pageNumber, pagePoint.x, pagePoint.y, snapMode).then(snapPoint => {
+              lineAnnot.setEndPoint(snapPoint.x, snapPoint.y);
+              annotationManager.redrawAnnotation(lineAnnot);
+            });
+          });
+        }
+
+        shouldAddMouseMoveListener = false;
+      }, 100);
+    };
   });
 })(window);
 // eslint-disable-next-line spaced-comment
