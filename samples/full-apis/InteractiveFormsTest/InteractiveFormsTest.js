@@ -77,7 +77,7 @@
       }
 
       const zapfDingbatsFont = await PDFNet.Font.create(doc, PDFNet.Font.StandardType1Font.e_zapf_dingbats);
-      const checkmark = await builder.createTextRunWithSize(symbol, 1, zapfDingbatsFont, 1);
+      const checkmark = await builder.createTextRun(symbol, zapfDingbatsFont, 12);
       writer.writeElement(checkmark);
       writer.writeElement(await builder.createTextEnd());
 
@@ -109,7 +109,7 @@
 
       const text = 'Submit';
       const HelveticaBoldFont = await PDFNet.Font.create(doc, PDFNet.Font.StandardType1Font.e_helvetica_bold);
-      element = await builder.createTextRunWithSize(text, text.length, HelveticaBoldFont, 12);
+      element = await builder.createTextRun(text, HelveticaBoldFont, 12);
       elementGState = await element.getGState();
       elementGState.setFillColorWithColorPt(await PDFNet.ColorPt.init(0));
 
