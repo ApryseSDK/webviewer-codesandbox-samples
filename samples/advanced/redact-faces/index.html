@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -33,24 +34,24 @@
     </script>
 
     <script>
-      Modernizr.addTest('async', function(){
+      Modernizr.addTest('async', function() {
         try {
-            var result;
-            eval('let a = () => {result = "success"}; let b = async () => {await a()}; b()');
-            return result === 'success';
-        } catch(e) {
-            return false;
+          var result;
+          eval('let a = () => {result = "success"}; let b = async () => {await a()}; b()');
+          return result === 'success';
+        } catch (e) {
+          return false;
         }
       });
 
       // test for async and fall back to code compiled to ES5 if they are not supported
-      ].forEach(function(js) {
+      [].forEach(function(js) {
         var script = Modernizr.async ? js : js.replace('.js', '.ES5.js');
         var scriptTag = document.createElement('script');
         scriptTag.src = script;
         scriptTag.type = 'text/javascript';
         document.getElementsByTagName('head')[0].appendChild(scriptTag);
-      })
+      });
     </script>
   </body>
 </html>

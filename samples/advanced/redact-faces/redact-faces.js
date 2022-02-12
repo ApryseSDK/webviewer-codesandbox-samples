@@ -71,7 +71,7 @@ function detectAndRedactFacesFromPage(webViewerInstance, pageNumber) {
     const displaySize = { width: pageInfo.width, height: pageInfo.height };
     // face-api.js is detecting faces from images, so we need to convert current page to a canvas which then can
     // be converted to an image.
-    doc.loadCanvasAsync({
+    doc.loadCanvas({
       pageNumber,
       zoom: 0.5, // Scale page size down to allow faster image processing
       drawComplete: function drawComplete(canvas) {

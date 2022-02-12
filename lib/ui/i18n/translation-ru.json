@@ -2,6 +2,7 @@
   "action": {
     "apply": "Применить",
     "applyAll": "Применить все",
+    "calendar": "Календарь",
     "calibrate": "калибровать",
     "cancel": "Отменить",
     "clear": "Очистить",
@@ -18,7 +19,7 @@
     "edit": "Редактировать",
     "extract": "экстракт",
     "enterFullscreen": "Полный экран",
-    "exitFullscreen": "Выйте из полного экрана",
+    "exitFullscreen": "Выйти из полного экрана",
     "fit": "Уместить",
     "fitToPage": "Уместить страницу",
     "fitToWidth": "Уместить по ширине",
@@ -28,6 +29,7 @@
     "pageNext": "Следующая страница",
     "pageSet": "Установить страницу",
     "print": "Распечатать",
+    "proceed": "Продолжить",
     "name": "название",
     "rename": "Переименовать",
     "ok": "OK",
@@ -64,7 +66,23 @@
     "addOption": "Добавить вариант",
     "formFieldEdit": "Изменить поле формы",
     "viewShortCutKeysFor3D": "Просмотр горячих клавиш",
-    "markAllRead": "Отметить все как прочитанные"
+    "markAllRead": "Отметить все как прочитанные",
+    "insertPage": "Вставка страницы",
+    "insertBlankPageAbove": "Вставить пустую страницу выше",
+    "insertBlankPageBelow": "Вставьте пустую страницу ниже",
+    "pageManipulation": "Манипуляции со страницей",
+    "replace": "Заменять",
+    "showLess": "показывай меньше",
+    "showMore": "...более",
+    "chooseFile": "Выберите файл",
+    "selectYourOption": "Выберите свой вариант",
+    "open": "Открыть",
+    "deselectAll": "Убрать выделение со всего",
+    "select": "Выбирать",
+    "moveToTop": "Наверх",
+    "moveToBottom": "Вниз",
+    "playAudio": "Воспроизвести аудио",
+    "pauseAudio": "аудио пауза"
   },
   "annotation": {
     "areaMeasurement": "Площадь",
@@ -72,6 +90,7 @@
     "callout": "Вызыв",
     "crop": "Обрезать страницу",
     "caret": "Знак вставки",
+    "dateFreeText": "Календарь",
     "formFillCheckmark": "Галочка",
     "formFillCross": "Крест",
     "distanceMeasurement": "Дистанция",
@@ -83,6 +102,7 @@
     "freeHandHighlight": "Ручное выделение",
     "freetext": "Текст",
     "highlight": "Выделить",
+    "image": "Изображение",
     "line": "Линия",
     "perimeterMeasurement": "Периметр",
     "polygon": "Многоугольник",
@@ -108,7 +128,8 @@
     "comboBoxFormField": "Поле со списком",
     "link": "Ссылка на сайт",
     "other": "Другие",
-    "3D": "3D"
+    "3D": "3D",
+    "sound": "Звук"
   },
   "rubberStamp": {
     "Approved": "Одобренный",
@@ -136,6 +157,7 @@
     "SBRejected": "Отклонено"
   },
   "component": {
+    "attachmentPanel": "Вложения",
     "leftPanel": "Панель",
     "toolsHeader": "инструменты",
     "searchOverlay": "Поиск",
@@ -156,7 +178,9 @@
     "zoomOverlay": "Наложение масштаба",
     "textPopup": "Текстовое всплывающее окно",
     "createStampButton": "Создать новую марку",
-    "filter": "Фильтр"
+    "filter": "Фильтр",
+    "pageReplaceModalTitle": "Заменить страницу",
+    "files": "Файлы"
   },
   "message": {
     "toolsOverlayNoPresets": "Нет пресетов",
@@ -170,6 +194,7 @@
     "noAnnotationsReadOnly": "Документ не имеет аннотаций.",
     "noAnnotationsFilter": "Начните делать аннотации и фильтры появятся здесь.",
     "noOutlines": "Документ не имеет оглавления.",
+    "noAttachments": "К этому документу нет приложений.",
     "noResults": "Поиск не вернул результатов.",
     "numResultsFound": "найдены результаты",
     "notSupported": "Расширение файла не поддерживается.",
@@ -189,15 +214,51 @@
     "enterMeasurement": "Введите измерение между двумя точками",
     "errorEnterMeasurement": "Введенное вами число недействительно, вы можете ввести такие значения, как 7,5 или 7 1/2.",
     "linkURLorPage": "Ссылка URL или страница",
-    "enterReplacementText": "Введите текст, который хотите заменить",
+    "warning": "Предупреждение",
+    "enterContentEditingMode": "Вы собираетесь войти в режим редактирования текста.",
+    "existingAnnotationWarning": "Существующие аннотации могут не совпадать с текстом после его редактирования.",
+    "changesCannotBeUndone": "Любые внесенные изменения не могут быть отменены.",
+    "doNotShowAgain": "Не показывай мне это больше",
+    "enterReplacementText": "Введите текст, который вы хотите заменить",
     "sortBy": "Сортировать по",
     "emptyCustomStampInput": "Текст штампа не может быть пустым",
     "unpostedComment": "Неопубликованный комментарий",
     "lockedLayer": "Слой заблокирован",
     "layerVisibililtyNoChange": "Видимость слоя не может быть изменена",
-    "untitled": "Без названия"
+    "untitled": "Без названия",
+    "selectHowToLoadFile": "Выберите способ загрузки документа",
+    "openFileByUrl": "Открыть файл по URL:",
+    "enterUrlHere": "Введите здесь URL",
+    "openLocalFile": "Открыть локальный файл:",
+    "selectFile": "Выберите файл",
+    "selectPageToReplace": "Выберите страницы в документе, которые вы хотите заменить.",
+    "embeddedFiles": "Встроенные файлы",
+    "pageNum": "Номер страницы"
   },
   "option": {
+    "type": {
+      "caret": "не хватает",
+      "custom": "Обычай",
+      "ellipse": "Эллипс",
+      "fileattachment": "Файл вложения",
+      "freehand": "Свободная рука",
+      "callout": "Вызывать",
+      "freetext": "Открытый текст",
+      "line": "Линия",
+      "polygon": "Многоугольник",
+      "polyline": "Ломаная линия",
+      "rectangle": "Прямоугольник",
+      "redact": "Редактировать",
+      "signature": "Подпись",
+      "stamp": "Печать",
+      "stickyNote": "Заметка",
+      "highlight": "Выделять",
+      "strikeout": "Вычеркнутый",
+      "underline": "Подчеркивание",
+      "squiggly": "Волнистый",
+      "3D": "3D",
+      "other": "Другой"
+    },
     "notesOrder": {
       "dropdownLabel": "Список порядка сортировки",
       "position": "Позиция",
@@ -205,7 +266,9 @@
       "status": "Статус",
       "author": "Автор",
       "type": "Тип",
-      "color": "Цвет"
+      "color": "Цвет",
+      "createdDate": "Дата создания",
+      "modifiedDate": "Дата изменения"
     },
     "toolbarGroup": {
       "dropdownLabel": "Группы панелей инструментов",
@@ -216,7 +279,8 @@
       "toolbarGroup-Measure": "Мера",
       "toolbarGroup-Edit": "редактировать",
       "toolbarGroup-FillAndSign": "Заполните и подпишите",
-      "toolbarGroup-Forms": "Формы"
+      "toolbarGroup-Forms": "Формы",
+      "toolbarGroup-Redact": "Редактировать"
     },
     "annotationColor": {
       "StrokeColor": "Цвет границ",
@@ -231,7 +295,9 @@
       "pageTransition": "Переход страниц"
     },
     "documentControls": {
-      "placeholder": "Введите страницы для выбора, то есть 2, 5-9"
+      "placeholder": "1, 3, 5-10",
+      "selectTooltip": "Выбрать несколько страниц",
+      "closeTooltip": "Закрыть множественный выбор"
     },
     "outlineControls": {
       "add": "Добавить элемент",
@@ -296,15 +362,25 @@
       "addSignature": "Добавить подпись"
     },
     "signatureModal": {
-      "saveSignature": "Сохранить подпись",
+      "modalName": "Создать новую подпись",
       "dragAndDrop": "Перетащите изображение сюда",
       "or": "Или",
-      "pickImage": "Выберите Подпись Изображение"
+      "pickImage": "Выберите Подпись Изображение",
+      "selectImage": "Выберите здесь свое изображение"
+    },
+    "pageReplacementModal": {
+      "dragAndDrop": "Перетащите файл сюда",
+      "or": "Или",
+      "chooseFile": "Выберите файл",
+      "localFile": "Локальный файл",
+      "pageReplaceInputLabel": "Заменить страницу(ы)",
+      "pageReplaceInputFromSource": "со страницей(ами)"
     },
     "filterAnnotModal": {
       "commentBy": "Комментарий от",
       "types": "Типы",
-      "color": "Цвет"
+      "color": "Цвет",
+      "includeReplies": "Включить ответы"
     },
     "status": {
       "status": "Статус"
@@ -335,6 +411,13 @@
     },
     "measurementOption": {
       "scale": "Масштаб"
+    },
+    "stylePopup": {
+      "textStyle": "Текстовый стиль",
+      "colors": "Цвета",
+      "invalidFontSize": "Размер шрифта должен быть меньше",
+      "labelText": "Текст метки",
+      "labelTextPlaceholder": "Добавить текст ярлыка"
     },
     "styleOption": {
       "style": "Стиль",
@@ -373,15 +456,26 @@
       "rotateClockwise": "по часовой стрелке",
       "rotateCounterClockwise": "Против часовой стрелки"
     },
+    "thumbnailsControlOverlay": {
+      "move": "Переместить страницы"
+    },
     "richText": {
       "bold": "Жирное лицо",
       "italic": "курсивный",
       "underline": "Подчеркнутый",
-      "strikeout": "Зачеркнутый"
+      "strikeout": "Зачеркнутый",
+      "alignLeft": "Выровнять текст по левому краю",
+      "alignRight": "Выровнять текст по правому краю",
+      "alignCenter": "Выровнять текст по центру",
+      "justifyCenter": "Выравнивание текста по центру",
+      "alignTop": "Выровнять по верху",
+      "alignMiddle": "Выровнять по центру",
+      "alignBottom": "Выровнять по низу"
     },
     "customStampModal": {
-      "stampText": "Штамп текст:",
-      "timestampText": "Текст метки времени:",
+      "modalName": "Создать новый штамп",
+      "stampText": "Штамп текст",
+      "timestampText": "Текст метки времени",
       "stampColor": "Цвет марки:",
       "Username": "имя пользователя",
       "Date": "Дата",
@@ -431,7 +525,7 @@
     "select": "(Esc)",
     "signature": "(S)",
     "squiggly": "(G)",
-    "stamp": "(I)",
+    "image": "(Я)",
     "redo": "(Ctrl Shift Z)",
     "redo_windows": "(Ctrl Y)",
     "undo": "(Ctrl Z)",
@@ -461,13 +555,20 @@
     "url": "URL",
     "page": "страница",
     "enterurl": "Введите URL, на который вы хотите сослаться",
-    "enterpage": "Выберите номер страницы, на которую вы хотите сослаться"
+    "enterpage": "Выберите номер страницы, на которую вы хотите сослаться",
+    "urlLink": "URL-ссылка"
   },
   "Model3D": {
     "add3D": "Добавьте 3D-аннотацию, введя URL",
     "enterurl": "Введите URL-адрес 3D-объекта в формате glTF",
     "enterurlOrLocalFile": "Введите URL или загрузите 3D-объект в формате glTF",
     "formatError": "Поддерживается только формат glTF (.glb)"
+  },
+  "OpenFile": {
+    "enterUrlOrChooseFile": "Введите URL-адрес или выберите файл для загрузки в WebViewer.",
+    "enterUrl": "Введите URL-адрес файла",
+    "extension": "Расширение файла",
+    "existingFile": "Файл уже открыт"
   },
   "datePicker": {
     "previousMonth": "Предыдущий месяц",
@@ -485,6 +586,20 @@
       "9": "октябрь",
       "10": "ноябрь",
       "11": "декабрь"
+    },
+    "monthsShort": {
+      "0": "янв",
+      "1": "февр",
+      "2": "март",
+      "3": "апр",
+      "4": "май",
+      "5": "июнь",
+      "6": "июль",
+      "7": "авг",
+      "8": "сент",
+      "9": "окт",
+      "10": "ноябрь",
+      "11": "дек"
     },
     "weekdays": {
       "0": "воскресенье",
@@ -589,6 +704,7 @@
     "by": "по",
     "on": "на",
     "disallowedChange": "Запрещенное изменение: {{type}}, objnum: {{objnum}}",
+    "unsignedSignatureField": "Поле неподписанной подписи: {{fieldName}}",
     "trustVerification": {
       "current": "Использованное время проверки было текущим.",
       "signing": "Время подтверждения - по часам на компьютере подписавшего.",

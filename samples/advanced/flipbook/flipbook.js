@@ -14,23 +14,26 @@ Core.setWorkerPath('../../../lib/core');
 
 const flipbookElement = document.getElementById('flipbook');
 const loadingMessageElement = document.getElementById('loading-message');
-
 loadingMessageElement.innerHTML = 'Preparing document...';
-
 const source = 'https://pdftron.s3.amazonaws.com/downloads/pl/Cheetahs.pdf';
 const options = { l: window.sampleL /* license key here */ };
+const docViewer = new Core.DocumentViewer();
+const viewerElement = document.createElement('div');
 
-const documentPromise = Core.createDocument(source, options);
-
-documentPromise.then(doc => {
+docViewer.setViewerElement(viewerElement);
+docViewer.setScrollViewElement(viewerElement);
+docViewer.enableAnnotations();
+docViewer.addEventListener('annotationsLoaded', () => {
+  const doc = docViewer.getDocument();
+  const annotManager = docViewer.getAnnotationManager();
   const info = doc.getPageInfo(1);
   const width = info.width;
   const height = info.height;
   const pageCount = doc.getPageCount();
   const promises = [];
   const canvases = [];
-
   const boundingRect = flipbookElement.getBoundingClientRect();
+
   let flipbookHeight = boundingRect.height;
   let flipbookWidth = boundingRect.width;
   if (((flipbookHeight * width) / height) * 2 < flipbookWidth) {
@@ -46,12 +49,12 @@ documentPromise.then(doc => {
         // Load page canvas
         const pageNumber = i + 1;
         return doc.requirePage(pageNumber).then(() => {
-          return doc.loadCanvasAsync({
+          return doc.loadCanvas({
             pageNumber,
-            drawComplete: (canvas, index) => {
+            drawComplete: async (canvas, index) => {
               canvases.push({ index, canvas });
-
               loadingMessageElement.innerHTML = `Loading page canvas... (${canvases.length}/${pageCount})`;
+              await annotManager.drawAnnotations(index, canvas);
               resolve();
             },
             isInternalRender: true,
@@ -85,3 +88,4 @@ documentPromise.then(doc => {
     };
   });
 });
+docViewer.loadDocument(source, options);
