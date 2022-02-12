@@ -13,7 +13,8 @@
 // @link Document.cancelLoadCanvas: https://www.pdftron.com/api/web/Core.Document.html#cancelLoadCanvas__anchor
 
 (function(exports) {
-  Core.setWorkerPath('../../../lib/core');
+  const mainCore = Core;
+  mainCore.setWorkerPath('../../../lib/core');
 
   const BASE_PANEL_DOC_INDEX = 0;
   const OVERLAY_PANEL_DOC_INDEX = 1;
@@ -111,15 +112,21 @@
     if (!isOfficeFile && pdfWorkerTransportPromise) {
       return pdfWorkerTransportPromise;
     }
-    return Core.getDefaultBackendType().then(backendType => {
+    const workerTransportPromise = Core.getDefaultBackendType().then(backendType => {
       if (path && isOfficeFile) {
-        officeWorkerTransportPromise = Core.initOfficeWorkerTransports(backendType, {}, licenseKey);
-        return officeWorkerTransportPromise;
+        return Core.initOfficeWorkerTransports(backendType, {}, licenseKey);
       }
       // Use PDF worker by default
-      pdfWorkerTransportPromise = Core.initPDFWorkerTransports(backendType, {}, licenseKey);
-      return pdfWorkerTransportPromise;
+      return Core.initPDFWorkerTransports(backendType, {}, licenseKey);
     });
+
+    if (path && isOfficeFile) {
+      officeWorkerTransportPromise = workerTransportPromise;
+    } else {
+      pdfWorkerTransportPromise = workerTransportPromise;
+    }
+
+    return workerTransportPromise;
   }
 
   async function openDoc(panel, docPath) {
@@ -190,73 +197,91 @@
         },
         viewerElement
       ).then(instance => {
+        instance.UI.syncNamespaces({
+          PDFNet: mainCore.PDFNet,
+        });
+
         samplesSetup(instance);
         const { UI, Core } = instance;
         const { documentViewer } = Core;
         const { Feature, LayoutMode, FitMode } = UI;
         UI.disableFeatures([Feature.Annotations]);
         UI.setToolMode('AnnotationEdit');
-        const documentContainer = viewerElement.querySelector('iframe').contentDocument.querySelector('.DocumentContainer');
+
         documentViewer.addEventListener('documentLoaded', () => {
           UI.setLayoutMode(LayoutMode.Single);
           UI.setFitMode(FitMode.FitWidth);
-        });
 
-        // Sync all WebViewer instances when scroll changes
-        documentContainer.onscroll = () => {
-          if (!exports.DiffAlignmentTool.isInAlignmentMode()) {
-            if (!originalScroller || originalScroller === documentContainer) {
+          if (item.panel !== PANEL_IDS.MIDDLE_PANEL) {
+            documentViewer.getDocument().addEventListener('layersUpdated', () => {
+              const midPanelDocumentViewer = getDocumentViewerObject(PANEL_IDS.MIDDLE_PANEL);
+              if (getDocumentObject(PANEL_IDS.MIDDLE_PANEL)) {
+                midPanelDocumentViewer.refreshAll();
+                midPanelDocumentViewer.updateView();
+              }
+            });
+          }
+
+          const documentContainer = viewerElement.querySelector('iframe').contentDocument.querySelector('.DocumentContainer');
+
+          // Sync all WebViewer instances when scroll changes
+          documentContainer.onscroll = () => {
+            if (!exports.DiffAlignmentTool.isInAlignmentMode()) {
+              if (!originalScroller || originalScroller === documentContainer) {
+                originalScroller = documentContainer;
+                syncDocumentContainerScrolls(documentContainer.scrollLeft, documentContainer.scrollTop);
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                  originalScroller = null;
+                }, timeoutForIE);
+              }
+            }
+          };
+
+          // Update zoom value of the WebViewer instances
+          documentViewer.addEventListener('zoomUpdated', zoom => {
+            // zoom events will also trigger a scroll event
+            // set the original scroll to be the same panel that first triggers the zoom event
+            // so that scroll events are handled properly and in the correct order
+            // some browsers such as Chrome do not respect the scroll event ordering correctly
+            if (!originalScroller) {
               originalScroller = documentContainer;
-              syncDocumentContainerScrolls(documentContainer.scrollLeft, documentContainer.scrollTop);
               clearTimeout(scrollTimeout);
               scrollTimeout = setTimeout(() => {
                 originalScroller = null;
               }, timeoutForIE);
             }
-          }
-        };
-
-        // Update zoom value of the WebViewer instances
-        documentViewer.addEventListener('zoomUpdated', zoom => {
-          // zoom events will also trigger a scroll event
-          // set the original scroll to be the same panel that first triggers the zoom event
-          // so that scroll events are handled properly and in the correct order
-          // some browsers such as Chrome do not respect the scroll event ordering correctly
-          if (!originalScroller) {
-            originalScroller = documentContainer;
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-              originalScroller = null;
-            }, timeoutForIE);
-          }
-          if (!exports.DiffAlignmentTool.isInAlignmentMode()) {
-            syncZoom(zoom);
-          }
-        });
-
-        documentViewer.addEventListener('rotationUpdated', rotation => {
-          syncRotation(rotation);
-        });
-
-        documentViewer.addEventListener('pageNumberUpdated', pageNumber => {
-          if (!exports.DiffAlignmentTool.isInAlignmentMode()) {
-            syncPageNumber(pageNumber);
-          } else {
-            // we are in alignment mode
-            // sync up left and middle panel as they are the same document
-            if (item.panel !== PANEL_IDS.OVERLAY_PANEL) {
-              viewers.forEach(viewerItem => {
-                if (getDocumentViewerObject(viewerItem.panel).getCurrentPage() !== pageNumber && viewerItem.panel !== PANEL_IDS.OVERLAY_PANEL) {
-                  getDocumentViewerObject(viewerItem.panel).setCurrentPage(pageNumber);
-                }
-              });
+            if (!exports.DiffAlignmentTool.isInAlignmentMode()) {
+              syncZoom(zoom);
             }
-          }
+          });
+
+          documentViewer.addEventListener('rotationUpdated', rotation => {
+            syncRotation(rotation);
+          });
+
+          documentViewer.addEventListener('pageNumberUpdated', pageNumber => {
+            if (!exports.DiffAlignmentTool.isInAlignmentMode()) {
+              syncPageNumber(pageNumber);
+            } else {
+              // we are in alignment mode
+              // sync up left and middle panel as they are the same document
+              if (item.panel !== PANEL_IDS.OVERLAY_PANEL) {
+                viewers.forEach(viewerItem => {
+                  if (getDocumentViewerObject(viewerItem.panel).getCurrentPage() !== pageNumber && viewerItem.panel !== PANEL_IDS.OVERLAY_PANEL) {
+                    getDocumentViewerObject(viewerItem.panel).setCurrentPage(pageNumber);
+                  }
+                });
+              }
+            }
+          });
+
+          instances[item.panel].documentContainer = documentContainer;
         });
+
         viewers.push(item);
         instances[item.panel] = {
           instance,
-          documentContainer,
         };
         resolve();
       });

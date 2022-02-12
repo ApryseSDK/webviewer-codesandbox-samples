@@ -200,7 +200,7 @@
               dummyDocViewer.setViewerElement(document.createElement('div'));
               dummyDocViewer.setScrollViewElement(document.createElement('div'));
               await dummyDocViewer.loadDocument(documentToRender);
-              dummyDocViewer.setOptions({ enableAnnotations: true });
+              dummyDocViewer.enableAnnotations();
               const dummyAnnotManager = dummyDocViewer.getAnnotationManager();
               const xfdfObject = await documentToRender.extractXFDF();
               await dummyAnnotManager.importAnnotations(xfdfObject.xfdfString);
@@ -409,19 +409,45 @@
     let id;
     const promise = new Promise((resolve, reject) => {
       try {
+        // deep clone for now because
+        // on WebViewer Core side, in getPageMatrix function, it actually alters the viewport render rect
+        const renderRect = viewportRect ? { ...viewportRect, rect: [...viewportRect.rect] } : undefined;
+
         id = documentToRender.loadCanvasAsync({
           pageNumber: pageNumberToRender,
           pageRotation,
           zoom: zoomLevel,
           drawComplete: async pageCanvas => {
             if (annotationManager) {
+              const ctx = pageCanvas.getContext('2d');
+              // ensure that annotations are rotated according to page
+              // use document page rotating as the pageRotation correspond to only compareDoc's viewer rotation
+
+              const pageRotation = exports.Util.convertToWebViewerRotationEnum(documentToRender.getPageRotation(pageNumberToRender));
+
+              const pageInfo = documentToRender.getPageInfo(pageNumberToRender);
+              if (renderRect) {
+                // use matrix transformation so that annotations are drawn correctly in viewport rendering mode
+                let pageWidth = pageInfo.width;
+                let pageHeight = pageInfo.height;
+                if (pageRotation === 1 || pageRotation === 3) {
+                  pageWidth = pageInfo.height;
+                  pageHeight = pageInfo.width;
+                }
+                let pageMatrix = window.Core.getPageMatrix(1, pageRotation, { width: pageWidth, height: pageHeight }, null, false).inverse();
+
+                const normalizedRenderRect = window.Core.normalizeRect(pageMatrix.mult({ x: renderRect.x1, y: renderRect.y1 }), pageMatrix.mult({ x: renderRect.x2, y: renderRect.y2 }));
+
+                pageMatrix = window.Core.getPageMatrix(zoomLevel, (pageRotation || 0) % 4, normalizedRenderRect, null, true, window.utils.getCanvasMultiplier());
+                ctx.setTransform(pageMatrix.m_a, pageMatrix.m_b, pageMatrix.m_c, pageMatrix.m_d, pageMatrix.m_h, pageMatrix.m_v);
+              } else {
+                annotationManager.setAnnotationCanvasTransform(ctx, zoomLevel, exports.Util.convertToWebViewerRotationEnum(documentToRender.getPageRotation(pageNumberToRender)));
+              }
               await annotationManager.drawAnnotations(pageNumberToRender, pageCanvas);
             }
             resolve(pageCanvas);
           },
-          // deep clone for now because
-          // on WebViewer Core side, in getPageMatrix function, it actually alters the viewport render rect
-          renderRect: viewportRect ? { ...viewportRect, rect: [...viewportRect.rect] } : undefined,
+          renderRect,
         });
       } catch (e) {
         console.error(e);

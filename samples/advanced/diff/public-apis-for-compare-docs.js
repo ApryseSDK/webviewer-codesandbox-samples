@@ -174,6 +174,10 @@
         this.updatePageSizeFromTransformationState(pageNumber, pageNumber, this.shouldResetInitialPageRotations() ? 0 : this.getPage(pageNumber).rotation);
       }
     },
+    /**
+     * Sets the diffing mode. If true, differences in documents will be shown using certain colors
+     * @param {boolean} shouldDiff boolean to denote if document differences should be shown in certain colors
+     */
     shouldDiff: function(shouldDiff) {
       if (!this.options) {
         this.options = {};

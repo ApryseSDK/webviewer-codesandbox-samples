@@ -2,6 +2,7 @@
   "action": {
     "apply": "Toepassen",
     "applyAll": "Alles toepassen",
+    "calendar": "Kalender",
     "calibrate": "Ijken",
     "cancel": "Annuleren",
     "clear": "Legen",
@@ -26,8 +27,9 @@
     "openFile": "Open bestand",
     "pagePrev": "Vorige pagina",
     "pageNext": "Volgende bladzijde",
-    "pageSet": "Zet pagina",
+    "pageSet": "Kies pagina",
     "print": "Printen",
+    "proceed": "Doorgaan",
     "name": "Naam",
     "rename": "Hernoemen",
     "ok": "OK",
@@ -36,7 +38,7 @@
     "rotateClockwise": "Met de klok mee",
     "rotateCounterClockwise": "Tegen de klok in",
     "save": "Bewaren",
-    "post": "Post",
+    "post": "Plaats",
     "create": "creëren",
     "showMoreResults": "Toon meer resultaten",
     "sign": "Ondertekenen",
@@ -47,7 +49,7 @@
     "zoomOut": "Zoom uit",
     "zoomSet": "Zoom instellen",
     "zoomControls": "Zoomregelaars",
-    "draw": "Trek",
+    "draw": "Teken",
     "type": "Type",
     "upload": "Uploaden",
     "link": "Koppeling",
@@ -64,7 +66,23 @@
     "addOption": "Optie toevoegen",
     "formFieldEdit": "Formulierveld bewerken",
     "viewShortCutKeysFor3D": "Bekijk sneltoetsen",
-    "markAllRead": "Markeer alles als gelezen"
+    "markAllRead": "Markeer alles als gelezen",
+    "insertPage": "Pagina invoegen",
+    "insertBlankPageAbove": "Lege pagina hierboven invoegen",
+    "insertBlankPageBelow": "Lege pagina hieronder invoegen",
+    "pageManipulation": "Paginamanipulatie",
+    "replace": "Vervangen",
+    "showLess": "laat minder zien",
+    "showMore": "...meer",
+    "chooseFile": "Kies een bestand",
+    "selectYourOption": "Selecteer uw optie",
+    "open": "Open",
+    "deselectAll": "Deselecteer alles",
+    "select": "Selecteer",
+    "moveToTop": "Ga naar boven",
+    "moveToBottom": "Naar beneden verplaatsen",
+    "playAudio": "Audio afspelen",
+    "pauseAudio": "audio pauze"
   },
   "annotation": {
     "areaMeasurement": "Oppervlaktemeting",
@@ -72,17 +90,19 @@
     "callout": "Opmerking met pijl",
     "crop": "Pagina bijsnijden",
     "caret": "Dakje",
+    "dateFreeText": "Kalender",
     "formFillCheckmark": "Kruis aan",
     "formFillCross": "Kruis",
     "distanceMeasurement": "Afstandsmeting",
     "countMeasurement": "Tel meting",
     "ellipse": "Ellips",
-    "eraser": "Gom",
+    "eraser": "Gum",
     "fileattachment": "Bestandsbijlage",
     "freehand": "Vrije hand",
     "freeHandHighlight": "Markering uit de vrije hand",
     "freetext": "Tekst plaatsen",
     "highlight": "Arceren",
+    "image": "Afbeelding",
     "line": "Lijn",
     "perimeterMeasurement": "Perimeter meting",
     "polygon": "Veelhoek",
@@ -108,7 +128,8 @@
     "comboBoxFormField": "Veld met invoervak",
     "link": "Koppeling",
     "other": "Andere",
-    "3D": "3D"
+    "3D": "3D",
+    "sound": "Geluid"
   },
   "rubberStamp": {
     "Approved": "Goedgekeurd",
@@ -116,7 +137,7 @@
     "Completed": "Voltooid",
     "Confidential": "Vertrouwelijk",
     "Departmental": "departementale",
-    "Draft": "Droogte",
+    "Draft": "Concept",
     "Experimental": "experimenteel",
     "Expired": "Niet meer geldig",
     "Final": "Laatste",
@@ -136,6 +157,7 @@
     "SBRejected": "Afgekeurd"
   },
   "component": {
+    "attachmentPanel": "Bijlagen",
     "leftPanel": "Panel",
     "toolsHeader": "Gereedschap",
     "searchOverlay": "Zoeken",
@@ -150,13 +172,15 @@
     "layersPanel": "Lagen",
     "thumbnailsPanel": "Miniatuurweergave",
     "toolsButton": "Tools",
-    "redaction": "Redigeren",
+    "redaction": "Redacteren",
     "viewControlsOverlay": "Scherm opties",
     "calibration": "ijking",
     "zoomOverlay": "Zoom-overlay",
     "textPopup": "Tekstpop-up",
     "createStampButton": "Maak een nieuwe stempel",
-    "filter": "Filter"
+    "filter": "Filter",
+    "pageReplaceModalTitle": "Pagina vervangen",
+    "files": "Bestanden"
   },
   "message": {
     "toolsOverlayNoPresets": "Geen voorinstellingen",
@@ -170,13 +194,14 @@
     "noAnnotationsReadOnly": "Dit document heeft geen annotaties.",
     "noAnnotationsFilter": "Begin met het maken van aantekeningen en filters verschijnen hier.",
     "noOutlines": "Dit document heeft geen hoofdlijnen.",
+    "noAttachments": "Dit document heeft geen bijlagen.",
     "noResults": "Geen resultaten.",
     "numResultsFound": "gevonden resultaten",
     "notSupported": "Dit bestandstype wordt niet ondersteund.",
     "passwordRequired": "Wachtwoord vereist",
     "preparingToPrint": "Printen voorbereiden...",
-    "annotationReplyCount": "{{count}} Antwoord",
-    "annotationReplyCount_plural": "{{count}} Antwoorden",
+    "annotationReplyCount": "{{count}} reactie",
+    "annotationReplyCount_plural": "{{count}} reacties",
     "printTotalPageCount": "{{count}} pagina",
     "printTotalPageCount_plural": "{{count}} pagina's",
     "processing": "Bezig...",
@@ -189,15 +214,51 @@
     "enterMeasurement": "Voer de meting tussen de twee punten in",
     "errorEnterMeasurement": "Het getal dat je hebt ingevoerd is ongeldig, je kunt waarden invoeren zoals 7,5 of 7 1/2",
     "linkURLorPage": "Link-URL of een pagina",
+    "warning": "Waarschuwing",
+    "enterContentEditingMode": "U staat op het punt om naar de tekstbewerkingsmodus te gaan.",
+    "existingAnnotationWarning": "Bestaande annotaties komen mogelijk niet overeen met de tekst nadat deze is bewerkt.",
+    "changesCannotBeUndone": "Aangebrachte wijzigingen kunnen niet ongedaan worden gemaakt.",
+    "doNotShowAgain": "laat mij dit niet meer zien",
     "enterReplacementText": "Voer de tekst in die u wilt vervangen",
     "sortBy": "Sorteer op",
     "emptyCustomStampInput": "Stempel tekst mag niet leeg zijn",
     "unpostedComment": "Niet-geplaatste reactie",
     "lockedLayer": "Laag is vergrendeld",
     "layerVisibililtyNoChange": "De zichtbaarheid van de laag kan niet worden gewijzigd",
-    "untitled": "Ongetiteld"
+    "untitled": "Ongetiteld",
+    "selectHowToLoadFile": "Selecteer hoe u uw document wilt laden",
+    "openFileByUrl": "Bestand openen op URL:",
+    "enterUrlHere": "Voer hier de URL in",
+    "openLocalFile": "Lokaal bestand openen:",
+    "selectFile": "Selecteer bestand",
+    "selectPageToReplace": "Selecteer de pagina's in het document die u wilt vervangen.",
+    "embeddedFiles": "Ingesloten bestanden",
+    "pageNum": "Paginanummer"
   },
   "option": {
+    "type": {
+      "caret": "caret",
+      "custom": "Aangepast",
+      "ellipse": "Ovaal",
+      "fileattachment": "Bestandsbijlage",
+      "freehand": "Vrije Hand",
+      "callout": "Uitroepen",
+      "freetext": "Vrije tekst",
+      "line": "Lijn",
+      "polygon": "Veelhoek",
+      "polyline": "Polylijn",
+      "rectangle": "Rechthoek",
+      "redact": "Redacteren",
+      "signature": "Handtekening",
+      "stamp": "Stempel",
+      "stickyNote": "Notitie",
+      "highlight": "Markeer",
+      "strikeout": "Doorhalen",
+      "underline": "Onderstrepen",
+      "squiggly": "kronkelig",
+      "3D": "3D",
+      "other": "Ander"
+    },
     "notesOrder": {
       "dropdownLabel": "Sorteer Bestellijst",
       "position": "Positie",
@@ -205,18 +266,21 @@
       "status": "Toestand",
       "author": "Auteur",
       "type": "Type",
-      "color": "Kleur"
+      "color": "Kleur",
+      "createdDate": "Aanmaakdatum",
+      "modifiedDate": "Aangepaste datum"
     },
     "toolbarGroup": {
       "dropdownLabel": "Werkbalkgroepen",
-      "toolbarGroup-View": "Visie",
+      "toolbarGroup-View": "Bekijken",
       "toolbarGroup-Annotate": "Annoteren",
       "toolbarGroup-Shapes": "Vormen",
       "toolbarGroup-Insert": "Invoegen",
       "toolbarGroup-Measure": "Meten",
       "toolbarGroup-Edit": "Bewerk",
       "toolbarGroup-FillAndSign": "Invullen en ondertekenen",
-      "toolbarGroup-Forms": "Formulieren"
+      "toolbarGroup-Forms": "Formulieren",
+      "toolbarGroup-Redact": "Redigeren"
     },
     "annotationColor": {
       "StrokeColor": "Rand kleur",
@@ -231,7 +295,9 @@
       "pageTransition": "Pagina overgang"
     },
     "documentControls": {
-      "placeholder": "Voer pagina's in om te selecteren, d.w.z. 2, 5-9"
+      "placeholder": "1, 3, 5-10",
+      "selectTooltip": "Selecteer meerdere pagina's",
+      "closeTooltip": "Sluit meervoudige selectie"
     },
     "outlineControls": {
       "add": "Voeg item toe",
@@ -296,15 +362,25 @@
       "addSignature": "Voeg een handtekening toe"
     },
     "signatureModal": {
-      "saveSignature": "Bewaar handtekening",
+      "modalName": "Nieuwe handtekening maken",
       "dragAndDrop": "Sleep je afbeelding hiernaartoe",
       "or": "Of",
-      "pickImage": "Kies handtekening afbeelding"
+      "pickImage": "Kies handtekening afbeelding",
+      "selectImage": "Selecteer hier uw afbeelding"
+    },
+    "pageReplacementModal": {
+      "dragAndDrop": "Sleep en zet uw bestand hier neer",
+      "or": "Of",
+      "chooseFile": "Kies een bestand",
+      "localFile": "Lokaal bestand",
+      "pageReplaceInputLabel": "Pagina('s) vervangen",
+      "pageReplaceInputFromSource": "met pagina('s)"
     },
     "filterAnnotModal": {
-      "commentBy": "Reageer door",
+      "commentBy": "Reactie door",
       "types": "Soorten",
-      "color": "Kleur"
+      "color": "Kleur",
+      "includeReplies": "Inclusief antwoorden"
     },
     "status": {
       "status": "staat"
@@ -335,6 +411,13 @@
     },
     "measurementOption": {
       "scale": "Schaal"
+    },
+    "stylePopup": {
+      "textStyle": "Tekststijl",
+      "colors": "Kleuren",
+      "invalidFontSize": "Lettergrootte moet kleiner zijn dan",
+      "labelText": "Labeltekst",
+      "labelTextPlaceholder": "Labeltekst toevoegen"
     },
     "styleOption": {
       "style": "Stijl",
@@ -369,19 +452,30 @@
       }
     },
     "thumbnailPanel": {
-      "delete": "Delete",
+      "delete": "Verwijderen",
       "rotateClockwise": "Met de klok mee",
       "rotateCounterClockwise": "Tegen de klok in"
+    },
+    "thumbnailsControlOverlay": {
+      "move": "Pagina's verplaatsen"
     },
     "richText": {
       "bold": "Vet",
       "italic": "Cursief",
       "underline": "Onderstrepen",
-      "strikeout": "Doorhalen"
+      "strikeout": "Doorhalen",
+      "alignLeft": "Tekst links uitlijnen",
+      "alignRight": "Tekst rechts uitlijnen",
+      "alignCenter": "Tekst midden uitlijnen",
+      "justifyCenter": "Tekst midden uitvullen",
+      "alignTop": "Boven uitlijnen",
+      "alignMiddle": "Midden uitlijnen",
+      "alignBottom": "Onderuit uitlijnen"
     },
     "customStampModal": {
-      "stampText": "Stempel tekst:",
-      "timestampText": "Tijdstempel tekst:",
+      "modalName": "Nieuwe stempel maken",
+      "stampText": "Stempel tekst",
+      "timestampText": "Tijdstempel tekst",
       "stampColor": "Stempelkleur:",
       "Username": "Gebruikersnaam",
       "Date": "Datum",
@@ -391,14 +485,14 @@
   "warning": {
     "deletePage": {
       "deleteTitle": "Pagina verwijderen",
-      "deleteMessage": "Weet u zeker dat u de geselecteerde pagina ('s) wilt verwijderen. Dit kan niet ongedaan worden gemaakt",
+      "deleteMessage": "Weet u zeker dat u de geselecteerde pagina('s) wilt verwijderen. Dit kan niet ongedaan worden gemaakt",
       "deleteLastPageMessage": "U kunt niet alle pagina's in het document verwijderen."
     },
     "extractPage": {
       "title": "Pagina uitpakken",
-      "message": "Weet u zeker dat u de geselecteerde pagina ('s) wilt extraheren?",
+      "message": "Weet u zeker dat u de geselecteerde pagina('s) wilt extraheren?",
       "confirmBtn": "Extraheer pagina's",
-      "secondaryBtn": "Extraheer en verwijder pagina ('s)"
+      "secondaryBtn": "Extraheer en verwijder pagina('s)"
     },
     "redaction": {
       "applyTile": "Redactie toepassen",
@@ -431,7 +525,7 @@
     "select": "(Esc)",
     "signature": "(S)",
     "squiggly": "(G)",
-    "stamp": "(I)",
+    "image": "(I)",
     "redo": "(Ctrl Shift Z)",
     "redo_windows": "(Ctrl Y)",
     "undo": "(Ctrl Z)",
@@ -461,13 +555,20 @@
     "url": "URL",
     "page": "Bladzijde",
     "enterurl": "Voer de URL in waarnaar u wilt linken",
-    "enterpage": "Selecteer het paginanummer waarnaar u wilt linken"
+    "enterpage": "Selecteer het paginanummer waarnaar u wilt linken",
+    "urlLink": "URL-link"
   },
   "Model3D": {
     "add3D": "Voeg een 3D-annotatie toe door een URL in te voeren",
     "enterurl": "Voer de URL voor het 3D-object in glTF-indeling in",
     "enterurlOrLocalFile": "Voer de URL in of upload een 3D-object in glTF-indeling",
     "formatError": "Alleen het glTF-formaat (.glb) wordt ondersteund"
+  },
+  "OpenFile": {
+    "enterUrlOrChooseFile": "Voer een URL in of kies een bestand om in WebViewer te laden",
+    "enterUrl": "Voer bestands-URL in",
+    "extension": "Bestandsextensie",
+    "existingFile": "Bestand is al geopend"
   },
   "datePicker": {
     "previousMonth": "Vorige maand",
@@ -485,6 +586,20 @@
       "9": "oktober",
       "10": "november",
       "11": "december"
+    },
+    "monthsShort": {
+      "0": "jan",
+      "1": "feb",
+      "2": "maart",
+      "3": "apr",
+      "4": "mei",
+      "5": "juni",
+      "6": "juli",
+      "7": "aug",
+      "8": "sept",
+      "9": "okt",
+      "10": "nov",
+      "11": "dec"
     },
     "weekdays": {
       "0": "zondag",
@@ -589,6 +704,7 @@
     "by": "door",
     "on": "Aan",
     "disallowedChange": "Niet-toegestane wijziging: {{type}}, objnum: {{objnum}}",
+    "unsignedSignatureField": "Niet ondertekend handtekeningveld: {{fieldName}}",
     "trustVerification": {
       "current": "De gebruikte verificatietijd was de huidige tijd",
       "signing": "De verificatietijd is van de klok op de computer van de ondertekenaar",

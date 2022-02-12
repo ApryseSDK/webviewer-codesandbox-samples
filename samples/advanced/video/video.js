@@ -14,7 +14,8 @@ WebViewer(
   const { Core, UI } = instance;
   const { documentViewer } = Core;
   const { iframeWindow } = UI;
-  instance.UI.setTheme('dark');
+  const theme = UI.Theme;
+  instance.UI.setTheme(theme.DARK);
   const annotationManager = documentViewer.getAnnotationManager();
 
   const license = `---- Insert commercial license key here after purchase ----`;
@@ -256,7 +257,7 @@ WebViewer(
     const marginRight = 8;
     const widthFrameContainer = 92.5;
     const timelineHeight = 99;
-    const timelineWidth = 770 / documentViewer.getZoom();
+    const timelineWidth = 770 / documentViewer.getZoomLevel();
 
     const totalFrames = video.getTotalFrames();
     let selectedFrameContainer;

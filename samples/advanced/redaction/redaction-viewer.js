@@ -33,6 +33,9 @@ WebViewer(
   };
 
   documentViewer.addEventListener('documentLoaded', () => {
+    instance.UI.setToolbarGroup('toolbarGroup-Redact');
+    instance.UI.setToolMode('AnnotationCreateRedaction');
+
     document.getElementById('apply-redactions').onclick = () => {
       instance.UI.showWarningMessage({
         title: 'Apply redaction?',
@@ -44,7 +47,4 @@ WebViewer(
       });
     };
   });
-
-  instance.UI.setToolbarGroup('toolbarGroup-Edit');
-  instance.UI.setToolMode('AnnotationCreateRedaction');
 });
