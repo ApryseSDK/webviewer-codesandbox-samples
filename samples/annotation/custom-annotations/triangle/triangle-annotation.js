@@ -56,7 +56,7 @@
       }
     }
 
-    TriangleAnnotation.SerializationType = Annotations.CustomAnnotation.SerializationTypes.CUSTOM; // use custom XFDF
+    TriangleAnnotation.SerializationType = Annotations.CustomAnnotation.SerializationTypes.STAMP; // use custom XFDF
     // this is necessary to set the elementName before instantiation
     TriangleAnnotation.prototype.elementName = 'triangle';
 
