@@ -81,11 +81,19 @@
     "select": "選擇",
     "moveToTop": "移到頂部",
     "moveToBottom": "移到底部",
+    "redactPages": "編輯頁面",
     "playAudio": "播放音頻",
-    "pauseAudio": "音頻暫停"
+    "pauseAudio": "音頻暫停",
+    "selectAll": "全選",
+    "unselect": "取消選擇",
+    "addMark": "添加標記",
+    "viewFile": "查看文件",
+    "switchLanguage": "語言"
   },
   "annotation": {
     "areaMeasurement": "測量面積",
+    "arc": "弧",
+    "arcMeasurement": "電弧測量",
     "arrow": "箭頭",
     "callout": "圖說文字",
     "crop": "裁剪頁面",
@@ -180,7 +188,9 @@
     "createStampButton": "創建新圖章",
     "filter": "過濾",
     "pageReplaceModalTitle": "替換頁面",
-    "files": "文件"
+    "files": "文件",
+    "editText": "編輯文本",
+    "redactionPanel": "編輯面板"
   },
   "message": {
     "toolsOverlayNoPresets": "無預設",
@@ -404,10 +414,12 @@
       "area": "面積",
       "distanceMeasurement": "測量距離",
       "perimeterMeasurement": "測量周長",
+      "arcMeasurement": "電弧測量",
       "areaMeasurement": "測量面積",
       "countMeasurement": "計數測量",
       "radius": "半徑",
-      "count": "計數"
+      "count": "計數",
+      "length": "長度"
     },
     "measurementOption": {
       "scale": "比例"
@@ -480,6 +492,15 @@
       "Username": "用戶名",
       "Date": "日期",
       "Time": "時間"
+    },
+    "pageRedactModal": {
+      "addMark": "添加標記",
+      "pageSelection": "頁面選擇",
+      "current": "當前頁面",
+      "specify": "指定頁面",
+      "odd": "僅奇數頁",
+      "even": "僅偶數頁",
+      "header": "標記頁面密文"
     }
   },
   "warning": {
@@ -568,7 +589,8 @@
     "enterUrlOrChooseFile": "輸入 URL 或選擇要加載到 WebViewer 的文件",
     "enterUrl": "輸入文件網址",
     "extension": "文件擴展名",
-    "existingFile": "文件已經打開"
+    "existingFile": "文件已經打開",
+    "addTab": "添加標籤"
   },
   "datePicker": {
     "previousMonth": "前一個月",
@@ -618,7 +640,9 @@
       "4": "週四",
       "5": "週五",
       "6": "週六"
-    }
+    },
+    "today": "今天",
+    "invalidDateTime": "無效的日期/時間：輸入應與格式匹配"
   },
   "formField": {
     "formFieldPopup": {
@@ -756,5 +780,47 @@
       "certificateDownloadError": "嘗試下載受信任的證書時遇到錯誤",
       "localCertificateError": "讀取本地證書存在一些問題"
     }
+  },
+  "cropPopUp": {
+    "title": "要裁剪的頁面",
+    "allPages": "全部",
+    "singlePage": "當前頁面",
+    "cropDimensions": "作物尺寸",
+    "dimensionInput": {
+      "unitOfMeasurement": "單元",
+      "autoTrim": "自動修剪"
+    },
+    "cropModal": {
+      "applyTitle": "應用作物？",
+      "applyMessage": "此操作將永久裁剪所有選定的選定頁面。它無法撤消。",
+      "cancelTitle": "取消裁剪？",
+      "cancelMessage": "您確定要取消裁剪所有選定的頁面嗎？"
+    }
+  },
+  "redactionPanel": {
+    "noMarkedRedactions": "通過標記文本、區域、頁面或進行搜索來開始編輯。",
+    "redactionSearchPlaceholder": "通過關鍵字搜索或模式添加",
+    "redactionCounter": "標記為編輯",
+    "clearMarked": "清除",
+    "redactAllMarked": "全部編輯",
+    "redactionItem": {
+      "regionRedaction": "區域編輯",
+      "fullPageRedaction": "整頁編輯",
+      "image": "圖片"
+    },
+    "expand": "擴張",
+    "collapse": "坍塌",
+    "searchResults": "搜索結果",
+    "search": {
+      "creditCards": "信用卡",
+      "phoneNumbers": "電話號碼",
+      "images": "圖片",
+      "emails": "電子郵件",
+      "pattern": "圖案",
+      "start": "開始搜索"
+    }
+  },
+  "languageModal": {
+    "selectLanguage": "選擇語言"
   }
 }

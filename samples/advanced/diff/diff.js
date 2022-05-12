@@ -12,6 +12,9 @@
 // @link Document.loadAsync: https://www.pdftron.com/api/web/Core.Document.html#loadAsync__anchor
 // @link Document.cancelLoadCanvas: https://www.pdftron.com/api/web/Core.Document.html#cancelLoadCanvas__anchor
 
+// Workaround while WebViewer does not have an API to check if a document is loaded or not.
+let isLoading = false;
+
 (function(exports) {
   const mainCore = Core;
   mainCore.setWorkerPath('../../../lib/core');
@@ -134,12 +137,14 @@
   }
 
   function syncZoom(zoom) {
-    viewers.forEach(item => {
-      const instance = instances[item.panel].instance;
-      if (instance.UI.getZoomLevel() !== zoom) {
-        instance.UI.setZoomLevel(zoom);
-      }
-    });
+    if (!isLoading) {
+      viewers.forEach(item => {
+        const instance = instances[item.panel].instance;
+        if (instance.UI.getZoomLevel() !== zoom) {
+          instance.UI.setZoomLevel(zoom);
+        }
+      });
+    }
   }
 
   function syncDocumentContainerScrolls(scrollLeft, scrollTop) {
@@ -297,6 +302,8 @@
   }
 
   async function initialize(basePDFRelativePath, overlayPDFRelativePath) {
+    isLoading = true;
+
     await Promise.all([openDoc(PANEL_IDS.BASE_PANEL, basePDFRelativePath), openDoc(PANEL_IDS.OVERLAY_PANEL, overlayPDFRelativePath)]);
     exports.DiffAlignmentTool.initializeDiffAlignmentToolHandlers(
       instances[PANEL_IDS.BASE_PANEL].instance,
@@ -321,11 +328,13 @@
       { document: overlayDocument, Core: instances[PANEL_IDS.OVERLAY_PANEL].instance.Core },
     ];
 
-    exports.CompareDocumentManager.initialize(instances[PANEL_IDS.MIDDLE_PANEL].instance.Core, files, {
+    await exports.CompareDocumentManager.initialize(instances[PANEL_IDS.MIDDLE_PANEL].instance.Core, files, {
       resetInitialPageRotations: true,
       // do not allow diffing if in IE11 else it won't work
-      diffAnnotations: exports.navigator.userAgent.indexOf('MSIE') !== -1 || exports.navigator.appVersion.indexOf('Trident/') > -1 ? false : true,
+      diffAnnotations: !(exports.navigator.userAgent.indexOf('MSIE') !== -1 || exports.navigator.appVersion.indexOf('Trident/') > -1),
     });
+
+    isLoading = false;
   }
 
   initializeWebViewerInstances(VIEWER_IDS, async () => {

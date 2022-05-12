@@ -138,7 +138,7 @@
     rotate: function(radianDeltaValue, pageNumber) {
       const nudgeState = this.nudgePageStates.getTransformationStateForPageNumber(pageNumber);
       nudgeState.rotation += radianDeltaValue;
-      nudgeState.rotation = nudgeState.rotation % (2 * Math.PI);
+      nudgeState.rotation %= 2 * Math.PI;
       this.nudgePageStates.setTransformationStateForPageNumber(pageNumber, nudgeState);
       const sourcePageNumber = this.getSourcePageNumberForAlignedPage(pageNumber);
       this.updatePageSizeFromTransformationState(sourcePageNumber, pageNumber, this.shouldResetInitialPageRotations() ? 0 : this.getPage(pageNumber).rotation);

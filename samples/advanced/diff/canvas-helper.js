@@ -115,25 +115,23 @@
           b: primaryMagentaValueAdjustment,
           a: opacity,
         };
-      } else {
-        if (targetDocumentOpacity > sourceDocumentOpacity) {
-          // blend both pixels together
-          const mixFactor = sourceDocumentOpacity;
-          return {
-            r: sourceDocumentRGBA[RGBA_INDEX.R] * mixFactor + targetDocumentRGBA[RGBA_INDEX.R] * (1 - mixFactor),
-            g: sourceDocumentRGBA[RGBA_INDEX.G] * mixFactor + targetDocumentRGBA[RGBA_INDEX.G] * (1 - mixFactor),
-            b: sourceDocumentRGBA[RGBA_INDEX.B] * mixFactor + targetDocumentRGBA[RGBA_INDEX.B] * (1 - mixFactor),
-            a: Math.round(255 * targetDocumentOpacity),
-          };
-        } else {
-          return {
-            r: targetDocumentRGBA[RGBA_INDEX.R],
-            g: targetDocumentRGBA[RGBA_INDEX.G],
-            b: targetDocumentRGBA[RGBA_INDEX.B],
-            a: Math.round(255 * sourceDocumentOpacity),
-          };
-        }
       }
+      if (targetDocumentOpacity > sourceDocumentOpacity) {
+        // blend both pixels together
+        const mixFactor = sourceDocumentOpacity;
+        return {
+          r: sourceDocumentRGBA[RGBA_INDEX.R] * mixFactor + targetDocumentRGBA[RGBA_INDEX.R] * (1 - mixFactor),
+          g: sourceDocumentRGBA[RGBA_INDEX.G] * mixFactor + targetDocumentRGBA[RGBA_INDEX.G] * (1 - mixFactor),
+          b: sourceDocumentRGBA[RGBA_INDEX.B] * mixFactor + targetDocumentRGBA[RGBA_INDEX.B] * (1 - mixFactor),
+          a: Math.round(255 * targetDocumentOpacity),
+        };
+      }
+      return {
+        r: targetDocumentRGBA[RGBA_INDEX.R],
+        g: targetDocumentRGBA[RGBA_INDEX.G],
+        b: targetDocumentRGBA[RGBA_INDEX.B],
+        a: Math.round(255 * sourceDocumentOpacity),
+      };
     },
     combinePixels: function(targetImageData, sourceImageData, sourceDocumentOpacity, targetDocumentOpacity, canvasMultiplier, showAsDiff) {
       const targetDocData = targetImageData ? targetImageData.data : undefined;

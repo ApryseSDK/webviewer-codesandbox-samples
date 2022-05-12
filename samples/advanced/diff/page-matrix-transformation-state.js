@@ -1,6 +1,6 @@
 (function(exports) {
   function PageMatrixTransformationState(pageStates) {
-    this.pageIndexTransformationStates = pageStates ? pageStates : [];
+    this.pageIndexTransformationStates = pageStates || [];
   }
   PageMatrixTransformationState.prototype.setTransformationStateForPageNumber = function(pageNumber, newState) {
     this.pageIndexTransformationStates[pageNumber - 1] = newState;

@@ -42,8 +42,7 @@
     unloadResources: function() {
       if (this.filesToCompare) {
         this.filesToCompare.forEach(fileToCompare => {
-          const document = fileToCompare.document;
-          document.unloadResources();
+          fileToCompare.document.unloadResources();
         });
       }
     },
@@ -52,7 +51,7 @@
         let resultDocument;
         for (let i = 0; i < this.getPageCount(); i++) {
           const canvasToLoad = new Promise(resolve => {
-            this.loadCanvasAsync({
+            this.loadCanvas({
               pageNumber: i + 1,
               getZoom: () => 1,
               getPageRotation: () => 0,
@@ -127,7 +126,8 @@
               e: pageMatrix.m_h,
               f: pageMatrix.m_v,
             };
-            let width, height;
+            let width;
+            let height;
             if (pageRotation === 1 || pageRotation === 3) {
               width = canvas.height;
               height = canvas.width;
@@ -392,6 +392,7 @@
       promise: Promise.resolve(undefined),
       cancel: function() {},
     };
+
     return documents.map((document, index) => {
       if (pageConfigurations[index]) {
         const { pageNumberToRender, pageRotation, zoom, renderRect } = pageConfigurations[index];
@@ -413,7 +414,7 @@
         // on WebViewer Core side, in getPageMatrix function, it actually alters the viewport render rect
         const renderRect = viewportRect ? { ...viewportRect, rect: [...viewportRect.rect] } : undefined;
 
-        id = documentToRender.loadCanvasAsync({
+        id = documentToRender.loadCanvas({
           pageNumber: pageNumberToRender,
           pageRotation,
           zoom: zoomLevel,
@@ -451,7 +452,7 @@
         });
       } catch (e) {
         console.error(e);
-        reject(`Error occured while loading ${document.filename} for page ${pageNumberToRender}`);
+        reject(`Error occurred while loading ${document.filename} for page ${pageNumberToRender}`);
       }
     });
     return {

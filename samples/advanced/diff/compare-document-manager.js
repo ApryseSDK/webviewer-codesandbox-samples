@@ -22,13 +22,13 @@
      * @param {boolean} options.resetInitialPageRotations if true, all initial rotation on all pages on all documents will be treated as having a rotation of 0
      * @param {boolean} options.diffAnnotations if true, annotations on all pages on all documents will be diff-ed
      */
-    initialize: function(webviewerCoreNamespace, filesToCompare, options) {
+    initialize: async function(webviewerCoreNamespace, filesToCompare, options) {
       this.documentViewer = webviewerCoreNamespace.documentViewer;
       CompareDocument.prototype = Object.create(webviewerCoreNamespace['BaseDocument'].prototype);
       Object.assign(CompareDocument.prototype, exports.FunctionsToOverride);
       Object.assign(CompareDocument.prototype, exports.PublicAPIsForCompareDocs);
       webviewerCoreNamespace.Document.registerDocumentType(COMPARE_DOCS, CompareDocument, Object.keys(exports.PublicAPIsForCompareDocs));
-      CompareDocumentManager.loadDocumentsToCompare(filesToCompare, options);
+      await CompareDocumentManager.loadDocumentsToCompare(filesToCompare, options);
     },
     /**
      * Loads the document to compare into WebViewer
