@@ -98,6 +98,7 @@ div.spacer {
   border: 1px solid #e7ebee;
   padding-top: 24px;
   padding-bottom: 32px;
+  padding-right: 12px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
@@ -285,6 +286,11 @@ div.spacer {
   display: none !important;
 }
 
+.autofill-form-error {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 #autofill-form table {
   border-collapse: collapse;
 }
@@ -307,7 +313,7 @@ div.spacer {
 div.row {
   margin-top: 14px;
   margin-bottom: 14px;
-  margin-right: 12px;
+  margin-right: 0px;
 }
 
 #autofill-form input[type=text], .je-textarea {

@@ -1,4 +1,4 @@
-let editor = undefined;
+let editor;
 let viewedDocSchema = {};
 let annotations = [];
 let annotationsByTag = {};
@@ -19,6 +19,7 @@ WebViewer(
     path: '../../../lib',
     preloadWorker: 'office',
     fullAPI: false,
+    css: 'webviewer.css',
   },
   document.getElementById('viewer')
 ).then(instance => {
@@ -36,12 +37,14 @@ WebViewer(
       officeOptions: {
         doTemplatePrep: true,
       },
+      onError: pageModificationsAfterLoadError,
     });
   }
 
   async function generateDocument() {
     const templateValues = editor.getValue();
     convertLinks(templateValues);
+    instance.UI.closeElements('errorModal');
     // Fill the template document with the data from templateValues:
     await documentViewer
       .getDocument()
@@ -84,6 +87,9 @@ WebViewer(
       editor.on('ready', pageModificationsAfterLoad);
       editor.on('ready', addEventHandlersToJsonEditor);
       editor.on('addRow', addEventHandlersToJsonEditor);
+    } else {
+      // We already have an editor with the correct schema.
+      pageModificationsAfterLoad();
     }
   });
 
@@ -113,9 +119,9 @@ WebViewer(
         for (const boundingBox of boundingBoxes[tag]) {
           const pageNum = boundingBox[0];
           const rect = boundingBox[1];
-          const annotation_rect = new Core.Math.Rect(rect.x1 - 2, rect.y1 - 2, rect.x2 + 2, rect.y2 + 2);
+          const annotationRect = new Core.Math.Rect(rect.x1 - 2, rect.y1 - 2, rect.x2 + 2, rect.y2 + 2);
           const annotation = new Core.Annotations.RectangleAnnotation();
-          annotation.setRect(annotation_rect);
+          annotation.setRect(annotationRect);
           annotation.setPageNumber(pageNum);
           annotation.FillColor = fillColor;
           annotation.StrokeColor = strokeColor;
@@ -159,39 +165,17 @@ WebViewer(
   }
 
   function addEventHandlersToJsonEditor() {
-    for (const type of ['je-checkbox', 'je-textarea', 'je-header', 'je-object__container']) {
-      for (const el of document.getElementsByClassName(type)) {
-        if (!el || el.getAttribute('has-annotation-listeners') === 'true') {
-          continue;
-        }
-        el.setAttribute('has-annotation-listeners', 'true');
-        let schemaPathNode, mouseEventNode;
-        if (type === 'je-checkbox') {
-          schemaPathNode = el.parentNode.parentNode.parentNode;
-          mouseEventNode = el.parentNode.parentNode.parentNode;
-        } else if (type === 'je-textarea') {
-          schemaPathNode = el.parentNode.parentNode.parentNode;
-          mouseEventNode = el.parentNode.parentNode.parentNode.parentNode.parentNode;
-        } else if (type === 'je-header') {
-          schemaPathNode = el.parentNode;
-          mouseEventNode = el;
-          if (schemaPathNode.getAttribute('data-schematype') !== 'array') {
-            continue;
-          }
-        } else if (type === 'je-object__container') {
-          schemaPathNode = el.parentNode.parentNode;
-          mouseEventNode = el.parentNode.parentNode;
-        }
-        const schemaPath = schemaPathNode.getAttribute('data-schemapath');
-        if (!schemaPath) {
-          continue;
-        }
-        const templateTag = convertJsonEditorSchemaPathToTemplateTag(schemaPath);
-        const showAnnotationsFunc = showAnnotationsForTemplateTag.bind(null, templateTag);
-        const hideAnnotationsFunc = hideAnnotationsForTemplateTag.bind(null, templateTag);
-        mouseEventNode.addEventListener('mouseenter', showAnnotationsFunc);
-        mouseEventNode.addEventListener('mouseleave', hideAnnotationsFunc);
+    for (const el of document.querySelectorAll('[data-template-path]')) {
+      if (!el || el.getAttribute('data-has-annotation-listeners') === 'true') {
+        continue;
       }
+      el.setAttribute('data-has-annotation-listeners', 'true');
+      const templatePath = el.getAttribute('data-template-path');
+      const showAnnotationsFunc = showAnnotationsForTemplateTag.bind(null, templatePath);
+      const hideAnnotationsFunc = hideAnnotationsForTemplateTag.bind(null, templatePath);
+      const mouseEl = el.getAttribute('data-schematype') === 'array' ? el.firstChild : el;
+      mouseEl.addEventListener('mouseenter', showAnnotationsFunc);
+      mouseEl.addEventListener('mouseleave', hideAnnotationsFunc);
     }
   }
 
@@ -215,13 +199,11 @@ WebViewer(
 });
 
 function templateSchemaKeyValuesToJsonSchema(templateKV) {
-  const ret = {
-    properties: {},
-  };
+  const ret = {};
   for (const key in templateKV) {
     const valTemplateSchema = templateKV[key];
     const valJsonSchema = {};
-    ret['properties'][key] = valJsonSchema;
+    ret[key] = valJsonSchema;
     valJsonSchema['propertyOrder'] = valTemplateSchema['docOrder'];
     switch (valTemplateSchema['typeId']) {
       case 'TemplateSchemaBool':
@@ -230,43 +212,36 @@ function templateSchemaKeyValuesToJsonSchema(templateKV) {
       case 'TemplateSchemaContent':
         valJsonSchema['$ref'] = '#/definitions/template-content';
         break;
+      case 'TemplateSchemaObject':
+        valJsonSchema['$ref'] = '#/definitions/template-object';
+        valJsonSchema['properties'] = templateSchemaKeyValuesToJsonSchema(valTemplateSchema['properties']);
+        break;
       case 'TemplateSchemaLoop':
         const loopTypeSet = new Set(valTemplateSchema['loopType']);
         valJsonSchema['$ref'] = loopTypeSet.has('tableRow') && loopTypeSet.size === 1 ? '#/definitions/template-row-loop' : '#/definitions/template-loop';
-        valJsonSchema['items'] = templateSchemaKeyValuesToJsonSchema(valTemplateSchema['itemSchema']);
-        valJsonSchema['items']['title'] = key;
+        valJsonSchema['items'] = {
+          title: key,
+          properties: templateSchemaKeyValuesToJsonSchema(valTemplateSchema['itemSchema']),
+        };
     }
   }
   return ret;
 }
 
 function templateSchemaToJsonSchema(templateSchema) {
-  const ret = templateSchemaKeyValuesToJsonSchema(templateSchema['keys']);
-  ret['$ref'] = '#/definitions/template-schema';
-  ret['definitions'] = schemaDefinitions;
-  return ret;
+  return {
+    $ref: '#/definitions/template-schema',
+    properties: templateSchemaKeyValuesToJsonSchema(templateSchema['keys']),
+    definitions: schemaDefinitions,
+  };
 }
 
-function convertJsonEditorSchemaPathToTemplateTag(path) {
-  // json editor schema paths looks like: root.<key>                      => return <key>
-  // json editor loop schema paths look like: root.<key1>.<index>.<key2>  => return <key1::key2>
-  const comps = path.split('.');
-  const ret = [];
-  if (comps.length % 2 === 1) {
-    return '';
-  }
-  for (let i = 1; i < comps.length; i++) {
-    if (i % 2 === 1) {
-      ret.push(comps[i]);
-    }
-  }
-  return ret.join('::');
+function pageModificationsAfterLoadError() {
+  document.getElementById('autofill-form-and-footer').className = 'autofill-form-error';
 }
 
 function pageModificationsAfterLoad() {
-  for (const el of document.getElementsByClassName('autofill-initial-hidden')) {
-    el.className = '';
-  }
+  document.getElementById('autofill-form-and-footer').className = '';
   document.getElementById('prep-message').style.display = 'none';
 }
 
@@ -276,7 +251,7 @@ function updateFileStatus() {
 
 function convertLinks(json) {
   const referenceLinkConverter = document.getElementById('reference-link-converter');
-  if (!json || typeof json != 'object') {
+  if (!json || typeof json !== 'object') {
     return;
   }
   if (Array.isArray(json)) {
@@ -417,6 +392,9 @@ const schemaDefinitions = {
   'template-text': {
     type: 'string',
     format: 'textarea',
+  },
+  'template-object': {
+    type: 'object',
   },
   'template-loop': {
     type: 'array',

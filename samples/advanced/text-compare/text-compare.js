@@ -1,6 +1,6 @@
 // @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
 
-/*global Diff*/
+/* global Diff */
 
 const compareViewer = [
   {
@@ -46,6 +46,7 @@ let pageChangeTimeout;
 Core.setWorkerPath('../../../lib/core');
 Core.getDefaultBackendType().then(async pdfType => {
   workerTransportPromise = Core.initPDFWorkerTransports(pdfType, {});
+
   await Promise.all([initializeWebViewer(compareViewer[leftPanelIndex]), initializeWebViewer(compareViewer[rightPanelIndex])]);
 
   maxPageCount = Math.min(compareViewer[leftPanelIndex].instance.Core.documentViewer.getPageCount(), compareViewer[rightPanelIndex].instance.Core.documentViewer.getPageCount());
@@ -76,7 +77,8 @@ const initializeWebViewer = viewer => {
       },
       document.getElementById(`${viewer.domElement}`)
     ).then(instance => {
-      const { documentViewer, CoreControls } = instance.Core;
+      const { documentViewer } = instance.Core;
+      const Core = instance.Core;
       const { Feature, FitMode } = instance.UI;
       viewer.instance = instance;
       // disable tools and editing annotations
@@ -84,8 +86,11 @@ const initializeWebViewer = viewer => {
       instance.UI.disableFeatures(Feature.Annotations);
 
       documentViewer.addEventListener('documentLoaded', async () => {
-        const displayMode = documentViewer.getDisplayModeManager();
-        displayMode.setDisplayMode(new CoreControls.DisplayMode(documentViewer, CoreControls.DisplayModes.Single));
+        const displayModeManager = documentViewer.getDisplayModeManager();
+        const displayMode = displayModeManager.isVirtualDisplayEnabled()
+          ? new Core.VirtualDisplayMode(documentViewer, Core.DisplayModes.Single)
+          : new Core.DisplayMode(documentViewer, Core.DisplayModes.Single);
+        displayModeManager.setDisplayMode(displayMode);
         instance.UI.setFitMode(FitMode.FitWidth);
         resolve(instance);
       });
@@ -292,7 +297,7 @@ const syncScrolls = (scrollLeft, scrollTop) => {
 let scrollDebounce = 0;
 const scrollDebounceTime = 10;
 
-//re render the top display when window resize
+// re render the top display when window resize
 window.onresize = () => {
   if (compareViewer[leftPanelIndex].instance && compareViewer[leftPanelIndex].instance.Core.documentViewer) {
     compareText(compareViewer[leftPanelIndex].instance.Core.documentViewer.getCurrentPage());
@@ -513,7 +518,7 @@ document.getElementById('findSelectedBtn').onclick = () => {
   }
 
   const selectedTextSection = selection.baseNode.parentElement.closest('.section');
-  const selectionNumber = parseInt(selectedTextSection.getAttribute('section'));
+  const selectionNumber = parseInt(selectedTextSection.getAttribute('section'), 10);
 
   let currentViewer = null;
 
@@ -534,10 +539,10 @@ document.getElementById('findSelectedBtn').onclick = () => {
 
   for (let i = 0; sectionElements.length > i; i++) {
     if (sectionElements[i] === selection.baseNode.parentElement) {
-      currentPreviousText = currentPreviousText + sectionElements[i].textContent.substring(0, selection.anchorOffset);
+      currentPreviousText += sectionElements[i].textContent.substring(0, selection.anchorOffset);
       break;
     }
-    currentPreviousText = currentPreviousText + sectionElements[i].textContent;
+    currentPreviousText += sectionElements[i].textContent;
   }
 
   const previousSectionText = currentViewer.pageTextSections

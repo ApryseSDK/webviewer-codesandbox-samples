@@ -81,11 +81,19 @@
     "select": "Seleccione",
     "moveToTop": "Mover al principio",
     "moveToBottom": "Mover al final",
+    "redactPages": "Redactar páginas",
     "playAudio": "reproducir audio",
-    "pauseAudio": "pausa de audio"
+    "pauseAudio": "pausa de audio",
+    "selectAll": "Seleccionar todo",
+    "unselect": "Deseleccionar",
+    "addMark": "Agregar marca",
+    "viewFile": "Ver archivo",
+    "switchLanguage": "Idioma"
   },
   "annotation": {
     "areaMeasurement": "Medición del área",
+    "arc": "Arco",
+    "arcMeasurement": "Medición de arco",
     "arrow": "Flecha",
     "callout": "Llamada",
     "crop": "Recortar página",
@@ -123,7 +131,7 @@
     "textField": "Campo de texto",
     "signatureFormField": "Campo de firma",
     "checkBoxFormField": "Campo de casilla de verificación",
-    "radioButtonFormField": "RadioButton Field",
+    "radioButtonFormField": "Campo de botón de opción",
     "listBoxFormField": "Campo de cuadro de lista",
     "comboBoxFormField": "Campo de cuadro combinado",
     "link": "Enlace",
@@ -180,7 +188,9 @@
     "createStampButton": "Crear nuevo sello",
     "filter": "Filtrar",
     "pageReplaceModalTitle": "Reemplazar página",
-    "files": "Archivos"
+    "files": "Archivos",
+    "editText": "Editar texto",
+    "redactionPanel": "Panel de Redacción"
   },
   "message": {
     "toolsOverlayNoPresets": "Sin preajustes",
@@ -404,10 +414,12 @@
       "area": "Área",
       "distanceMeasurement": "Medición de distancia",
       "perimeterMeasurement": "Medición del perímetro",
+      "arcMeasurement": "Medición de arco",
       "areaMeasurement": "Medición del área",
       "countMeasurement": "Medida de conteo",
       "radius": "Radio",
-      "count": "Contar"
+      "count": "Contar",
+      "length": "Longitud"
     },
     "measurementOption": {
       "scale": "Escala"
@@ -480,6 +492,15 @@
       "Username": "Nombre de usuario",
       "Date": "Fecha",
       "Time": "Hora"
+    },
+    "pageRedactModal": {
+      "addMark": "Agregar marca",
+      "pageSelection": "Selección de página",
+      "current": "Página actual",
+      "specify": "Especificar páginas",
+      "odd": "Solo páginas impares",
+      "even": "Sólo las páginas pares",
+      "header": "Marcar la redacción de páginas"
     }
   },
   "warning": {
@@ -568,7 +589,8 @@
     "enterUrlOrChooseFile": "Ingrese una URL o elija un archivo para cargar en WebViewer",
     "enterUrl": "Introduzca la URL del archivo",
     "extension": "Extensión de archivo",
-    "existingFile": "El archivo ya está abierto"
+    "existingFile": "El archivo ya está abierto",
+    "addTab": "Añadir pestaña"
   },
   "datePicker": {
     "previousMonth": "Mes anterior",
@@ -618,7 +640,9 @@
       "4": "jue.",
       "5": "vie.",
       "6": "sáb."
-    }
+    },
+    "today": "Hoy dia",
+    "invalidDateTime": "Fecha/hora no válida: la entrada debe coincidir con el formato"
   },
   "formField": {
     "formFieldPopup": {
@@ -756,5 +780,47 @@
       "certificateDownloadError": "Se produjo un error al intentar descargar un certificado de confianza",
       "localCertificateError": "Hay algunos problemas con la lectura de un certificado local."
     }
+  },
+  "cropPopUp": {
+    "title": "Páginas para recortar",
+    "allPages": "Todos",
+    "singlePage": "Página actual",
+    "cropDimensions": "Dimensiones de cultivo",
+    "dimensionInput": {
+      "unitOfMeasurement": "Unidad",
+      "autoTrim": "Recorte automático"
+    },
+    "cropModal": {
+      "applyTitle": "¿Aplicar cultivo?",
+      "applyMessage": "Esta acción recortará permanentemente todas las páginas seleccionadas. No se puede deshacer.",
+      "cancelTitle": "¿Cancelar cultivo?",
+      "cancelMessage": "¿Está seguro de que desea cancelar el recorte de todas las páginas seleccionadas?"
+    }
+  },
+  "redactionPanel": {
+    "noMarkedRedactions": "Comience a redactar marcando texto, regiones, páginas o realizando una búsqueda.",
+    "redactionSearchPlaceholder": "Agregar por búsqueda de palabra clave o patrones",
+    "redactionCounter": "Marcado para Redacción",
+    "clearMarked": "Claro",
+    "redactAllMarked": "Redactar todo",
+    "redactionItem": {
+      "regionRedaction": "Redacción de la región",
+      "fullPageRedaction": "Redacción de página completa",
+      "image": "Imagen"
+    },
+    "expand": "Expandir",
+    "collapse": "Colapso",
+    "searchResults": "Resultados de la búsqueda",
+    "search": {
+      "creditCards": "Tarjeta de crédito",
+      "phoneNumbers": "Números de teléfono",
+      "images": "Imágenes",
+      "emails": "Correos electrónicos",
+      "pattern": "Patrón",
+      "start": "Empieza a hacer tu búsqueda"
+    }
+  },
+  "languageModal": {
+    "selectLanguage": "Seleccione el idioma"
   }
 }

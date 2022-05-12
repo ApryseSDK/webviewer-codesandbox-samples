@@ -8,7 +8,7 @@
     "clear": "Effacer",
     "close": "Fermer",
     "undo": "Défaire",
-    "redo": "Prêt",
+    "redo": "Refaire",
     "comment": "Commenter",
     "reply": "Répondre",
     "copy": "Copier",
@@ -81,11 +81,19 @@
     "select": "Sélectionner",
     "moveToTop": "Déplacer vers le haut",
     "moveToBottom": "Déplacer vers le bas",
+    "redactPages": "Masquer les pages",
     "playAudio": "Lecture audio",
-    "pauseAudio": "Pause audio"
+    "pauseAudio": "Pause audio",
+    "selectAll": "Tout sélectionner",
+    "unselect": "Désélectionner",
+    "addMark": "Ajouter une marque",
+    "viewFile": "Voir la fiche",
+    "switchLanguage": "Langue"
   },
   "annotation": {
     "areaMeasurement": "Surface mesurée",
+    "arc": "Arc",
+    "arcMeasurement": "Mesure d'arc",
     "arrow": "Flèche",
     "callout": "Faire appel à",
     "crop": "Rogner",
@@ -123,7 +131,7 @@
     "textField": "Champ de texte",
     "signatureFormField": "Champ de signature",
     "checkBoxFormField": "Champ de case à cocher",
-    "radioButtonFormField": "Champ RadioButton",
+    "radioButtonFormField": "Champ de bouton radio",
     "listBoxFormField": "Champ de zone de liste",
     "comboBoxFormField": "Champ de zone de liste déroulante",
     "link": "Lien",
@@ -180,7 +188,9 @@
     "createStampButton": "Créer un nouveau tampon",
     "filter": "Filtre",
     "pageReplaceModalTitle": "Remplacer la page",
-    "files": "Des dossiers"
+    "files": "Des dossiers",
+    "editText": "Éditer le texte",
+    "redactionPanel": "Panneau de rédaction"
   },
   "message": {
     "toolsOverlayNoPresets": "Aucun préréglage",
@@ -404,10 +414,12 @@
       "area": "Surface",
       "distanceMeasurement": "Mesure de distance",
       "perimeterMeasurement": "Mesure du périmètre",
+      "arcMeasurement": "Mesure d'arc",
       "areaMeasurement": "Mesure de surface",
       "countMeasurement": "Mesure de décompte",
       "radius": "Rayon",
-      "count": "Compte"
+      "count": "Compte",
+      "length": "Longueur"
     },
     "measurementOption": {
       "scale": "Échelle"
@@ -480,6 +492,15 @@
       "Username": "Nom d'utilisateur",
       "Date": "Date",
       "Time": "heure"
+    },
+    "pageRedactModal": {
+      "addMark": "Ajouter une marque",
+      "pageSelection": "Sélection de pages",
+      "current": "Page actuelle",
+      "specify": "Spécifiez les pages",
+      "odd": "Pages impaires seulement",
+      "even": "Seulement les pages paires",
+      "header": "Marquer la rédaction des pages"
     }
   },
   "warning": {
@@ -568,7 +589,8 @@
     "enterUrlOrChooseFile": "Entrez une URL ou choisissez un fichier à charger dans WebViewer",
     "enterUrl": "Entrez l'URL du fichier",
     "extension": "Extension de fichier",
-    "existingFile": "Le fichier est déjà ouvert"
+    "existingFile": "Le fichier est déjà ouvert",
+    "addTab": "Ajouter un onglet"
   },
   "datePicker": {
     "previousMonth": "Mois précédent",
@@ -618,7 +640,9 @@
       "4": "jeu.",
       "5": "ven.",
       "6": "sam."
-    }
+    },
+    "today": "Aujourd'hui",
+    "invalidDateTime": "Date/heure non valide : l'entrée doit correspondre au format"
   },
   "formField": {
     "formFieldPopup": {
@@ -756,5 +780,47 @@
       "certificateDownloadError": "Erreur rencontrée lors de la tentative de téléchargement d'un certificat de confiance",
       "localCertificateError": "Il y a quelques problèmes avec la lecture d'un certificat local"
     }
+  },
+  "cropPopUp": {
+    "title": "Pages à recadrer",
+    "allPages": "Tous",
+    "singlePage": "Page actuelle",
+    "cropDimensions": "Dimensions du recadrage",
+    "dimensionInput": {
+      "unitOfMeasurement": "Unité",
+      "autoTrim": "Trim automatique"
+    },
+    "cropModal": {
+      "applyTitle": "Appliquer la culture ?",
+      "applyMessage": "Cette action recadrera de manière permanente toutes les pages sélectionnées sélectionnées. Ça ne peut pas être défait.",
+      "cancelTitle": "Annuler le recadrage ?",
+      "cancelMessage": "Voulez-vous vraiment annuler le recadrage de toutes les pages sélectionnées ?"
+    }
+  },
+  "redactionPanel": {
+    "noMarkedRedactions": "Commencez à rédiger en marquant du texte, des régions, des pages ou en effectuant une recherche.",
+    "redactionSearchPlaceholder": "Ajouter par recherche par mot-clé ou modèles",
+    "redactionCounter": "Marqué pour rédaction",
+    "clearMarked": "Dégager",
+    "redactAllMarked": "Tout expurger",
+    "redactionItem": {
+      "regionRedaction": "Caviardage de région",
+      "fullPageRedaction": "Caviardage pleine page",
+      "image": "Image"
+    },
+    "expand": "Développer",
+    "collapse": "S'effondrer",
+    "searchResults": "Résultats de recherche",
+    "search": {
+      "creditCards": "Carte de crédit",
+      "phoneNumbers": "Les numéros de téléphone",
+      "images": "Images",
+      "emails": "E-mails",
+      "pattern": "Modèle",
+      "start": "Commencez à faire votre recherche"
+    }
+  },
+  "languageModal": {
+    "selectLanguage": "Choisir la langue"
   }
 }

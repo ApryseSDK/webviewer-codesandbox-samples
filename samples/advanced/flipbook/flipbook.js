@@ -57,7 +57,6 @@ docViewer.addEventListener('annotationsLoaded', () => {
               await annotManager.drawAnnotations(index, canvas);
               resolve();
             },
-            isInternalRender: true,
           });
         });
       })
