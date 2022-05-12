@@ -137,7 +137,7 @@
           }
 
           const cert_path = await trust_verification_result.getCertPath();
-          if (cert_path.length == 0) {
+          if (cert_path.length === 0) {
             console.log('Could not print certificate path.');
           } else {
             console.log('Certificate path:');
@@ -292,12 +292,12 @@
         console.log('Doc has no signatures.');
         console.log('================================================================================');
         return;
-      } else {
-        console.log('Doc has signatures.');
       }
+      console.log('Doc has signatures.');
 
       for (const fitr = await doc.getFieldIteratorBegin(); await fitr.hasNext(); await fitr.next()) {
         const field = await fitr.current();
+        // eslint-disable-next-line no-unused-expressions
         (await field.isLockedByDigitalSignature()) ? console.log('==========\nField locked by a digital signature') : console.log('==========\nField not locked by a digital signature');
 
         console.log('Field name: ' + (await field.getName()));
@@ -333,7 +333,7 @@
 
         console.log('Subfilter type: ' + subfilter);
 
-        if (subfilter != PDFNet.DigitalSignatureField.SubFilterType.e_ETSI_RFC3161) {
+        if (subfilter !== PDFNet.DigitalSignatureField.SubFilterType.e_ETSI_RFC3161) {
           console.log("Signature's signer: " + (await digsigfield.getSignatureName()));
 
           const signing_time = await digsigfield.getSigningTime();
@@ -376,6 +376,7 @@
       console.log('================================================================================');
     };
 
+    // eslint-disable-next-line no-unused-vars
     const TimestampAndEnableLTV = async (in_docpath, in_trusted_cert_path, in_appearance_img_path, in_outpath) => {
       const doc = await PDFNet.PDFDoc.createFromURL(in_docpath);
       doc.initSecurityHandler();
@@ -442,7 +443,7 @@
     const main = async () => {
       let ret = 0;
 
-      //////////////////// TEST 0:
+      // ////////////////// TEST 0:
       /* Create an approval signature field that we can sign after certifying.
       (Must be done before calling CertifyOnNextSave/SignOnNextSave/WithCustomHandler.) */
       try {
@@ -460,7 +461,7 @@
         ret = 1;
       }
 
-      //////////////////// TEST 1: certify a PDF.
+      // ////////////////// TEST 1: certify a PDF.
       try {
         const docbuf = await CertifyPDF(
           input_path + 'tiger_withApprovalField.pdf',
@@ -476,7 +477,7 @@
         ret = 1;
       }
 
-      //////////////////// TEST 2: sign a PDF with a certification and an unsigned signature field in it.
+      // ////////////////// TEST 2: sign a PDF with a certification and an unsigned signature field in it.
       try {
         const docbuf = await SignPDF(
           input_path + 'tiger_withApprovalField_certified.pdf',
@@ -492,7 +493,7 @@
         ret = 1;
       }
 
-      //////////////////// TEST 3: Clear a certification from a document that is certified and has an approval signature.
+      // ////////////////// TEST 3: Clear a certification from a document that is certified and has an approval signature.
       try {
         const docbuf = await ClearSignature(
           input_path + 'tiger_withApprovalField_certified_approved.pdf',
@@ -505,7 +506,7 @@
         ret = 1;
       }
 
-      //////////////////// TEST 4: Verify a document's digital signatures.
+      // ////////////////// TEST 4: Verify a document's digital signatures.
       // EXPERIMENTAL. Digital signature verification is undergoing active development, but currently does not support a number of features. If we are missing a feature that is important to you, or if you have files that do not act as expected, please contact us using one of the following forms: https://www.pdftron.com/form/trial-support/ or https://www.pdftron.com/form/request/
       try {
         if (!(await VerifyAllAndPrint(input_path + 'tiger_withApprovalField_certified_approved.pdf', input_path + 'pdftron.cer'))) {
@@ -516,7 +517,7 @@
         ret = 1;
       }
 
-      //////////////////// TEST 5: Verify a document's digital signatures in a simple fashion using the document API.
+      // ////////////////// TEST 5: Verify a document's digital signatures in a simple fashion using the document API.
       try {
         if (!(await VerifySimple(input_path + 'tiger_withApprovalField_certified_approved.pdf', input_path + 'pdftron.cer'))) {
           ret = 1;
@@ -526,17 +527,20 @@
         ret = 1;
       }
 
-      //////////////////// TEST 6: Timestamp a document, then add Long Term Validation (LTV) information for the DocTimeStamp.
-      try {
-        if (!(await TimestampAndEnableLTV(input_path + 'tiger.pdf', input_path + 'GlobalSignRootForTST.cer', input_path + 'signature.jpg', 'tiger_DocTimeStamp_LTV.pdf'))) {
-          ret = 1;
-        }
-      } catch (err) {
-        console.log(err);
-        ret = 1;
-      }
+      // //////////////////// TEST 6: Timestamp a document, then add Long Term Validation (LTV) information for the DocTimeStamp.
+      // try {
+      //   if (!(await TimestampAndEnableLTV(input_path + 'tiger.pdf',
+      //     input_path + 'GlobalSignRootForTST.cer',
+      //     input_path + 'signature.jpg',
+      //     'tiger_DocTimeStamp_LTV.pdf'))) {
+      //     ret = 1;
+      //   }
+      // } catch (err) {
+      //   console.log(err);
+      //   ret = 1;
+      // }
 
-      //////////////////// End of tests. ////////////////////
+      // ////////////////// End of tests. ////////////////////
       if (!ret) {
         console.log('Tests successful.\n==========');
       } else {
