@@ -81,11 +81,19 @@
     "select": "Selecione",
     "moveToTop": "Mover para o topo",
     "moveToBottom": "Mover para o fundo",
+    "redactPages": "Redigir páginas",
     "playAudio": "Reproduzir áudio",
-    "pauseAudio": "pausa de áudio"
+    "pauseAudio": "pausa de áudio",
+    "selectAll": "Selecionar tudo",
+    "unselect": "Desmarcar",
+    "addMark": "Adicionar marca",
+    "viewFile": "Visualizar arquivo",
+    "switchLanguage": "Linguagem"
   },
   "annotation": {
     "areaMeasurement": "Medição de área",
+    "arc": "Arco",
+    "arcMeasurement": "Medição de arco",
     "arrow": "Seta",
     "callout": "Texto explicativo",
     "crop": "Cortar página",
@@ -122,9 +130,9 @@
     "note": "Nota",
     "textField": "Campo de texto",
     "signatureFormField": "Campo de Assinatura",
-    "checkBoxFormField": "Campo da caixa de seleção",
-    "radioButtonFormField": "RadioButton Field",
-    "listBoxFormField": "Campo da Caixa de Lista",
+    "checkBoxFormField": "Campo de caixa de seleção",
+    "radioButtonFormField": "Campo de caixa de seleção única",
+    "listBoxFormField": "Campo de lista de seleção",
     "comboBoxFormField": "Campo de caixa de combinação",
     "link": "Link",
     "other": "Outro",
@@ -180,7 +188,9 @@
     "createStampButton": "Criar novo carimbo",
     "filter": "Filtro",
     "pageReplaceModalTitle": "Substituir página",
-    "files": "Arquivos"
+    "files": "Arquivos",
+    "editText": "Editar texto",
+    "redactionPanel": "Painel de redação"
   },
   "message": {
     "toolsOverlayNoPresets": "Sem predefinições",
@@ -404,10 +414,12 @@
       "area": "Área",
       "distanceMeasurement": "Medição de distância",
       "perimeterMeasurement": "Medição de perímetro",
+      "arcMeasurement": "Medição de arco",
       "areaMeasurement": "Medição de área",
       "countMeasurement": "Medição de contagem",
       "radius": "Raio",
-      "count": "Contagem"
+      "count": "Contagem",
+      "length": "Comprimento"
     },
     "measurementOption": {
       "scale": "Escala"
@@ -480,6 +492,15 @@
       "Username": "Nome do usuário",
       "Date": "Data",
       "Time": "Hora"
+    },
+    "pageRedactModal": {
+      "addMark": "Adicionar marca",
+      "pageSelection": "Seleção de página",
+      "current": "Pagina atual",
+      "specify": "Especificar páginas",
+      "odd": "Somente páginas ímpares",
+      "even": "Apenas páginas pares",
+      "header": "Marcar Redação de Páginas"
     }
   },
   "warning": {
@@ -568,7 +589,8 @@
     "enterUrlOrChooseFile": "Insira um URL ou escolha um arquivo para carregar no WebViewer",
     "enterUrl": "Digite o URL do arquivo",
     "extension": "Extensão de arquivo",
-    "existingFile": "O arquivo já está aberto"
+    "existingFile": "O arquivo já está aberto",
+    "addTab": "Adicionar guia"
   },
   "datePicker": {
     "previousMonth": "Mês anterior",
@@ -618,7 +640,9 @@
       "4": "Qui",
       "5": "Sex",
       "6": "Sáb"
-    }
+    },
+    "today": "Hoje",
+    "invalidDateTime": "Data/hora inválida: a entrada deve corresponder ao formato"
   },
   "formField": {
     "formFieldPopup": {
@@ -756,5 +780,47 @@
       "certificateDownloadError": "Erro encontrado ao tentar baixar um certificado confiável",
       "localCertificateError": "Existem alguns problemas com a leitura de um certificado local"
     }
+  },
+  "cropPopUp": {
+    "title": "Páginas para cortar",
+    "allPages": "Todo",
+    "singlePage": "Pagina atual",
+    "cropDimensions": "Dimensões de corte",
+    "dimensionInput": {
+      "unitOfMeasurement": "Unidade",
+      "autoTrim": "Corte automático"
+    },
+    "cropModal": {
+      "applyTitle": "Aplicar colheita?",
+      "applyMessage": "Esta ação cortará permanentemente todas as páginas selecionadas selecionadas. Não pode ser desfeito.",
+      "cancelTitle": "Cancelar colheita?",
+      "cancelMessage": "Tem certeza de que deseja cancelar o corte de todas as páginas selecionadas?"
+    }
+  },
+  "redactionPanel": {
+    "noMarkedRedactions": "Comece a redigir marcando texto, regiões, páginas ou fazendo uma pesquisa.",
+    "redactionSearchPlaceholder": "Adicionar por pesquisa de palavras-chave ou padrões",
+    "redactionCounter": "Marcado para redação",
+    "clearMarked": "Claro",
+    "redactAllMarked": "Redigir tudo",
+    "redactionItem": {
+      "regionRedaction": "Redação da região",
+      "fullPageRedaction": "Redação de página inteira",
+      "image": "Imagem"
+    },
+    "expand": "Expandir",
+    "collapse": "Colapso",
+    "searchResults": "Procurar Resultados",
+    "search": {
+      "creditCards": "Cartão de crédito",
+      "phoneNumbers": "Números de telefone",
+      "images": "Imagens",
+      "emails": "E-mails",
+      "pattern": "Padrão",
+      "start": "Comece a fazer sua pesquisa"
+    }
+  },
+  "languageModal": {
+    "selectLanguage": "Selecione o idioma"
   }
 }

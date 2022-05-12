@@ -81,11 +81,19 @@
     "select": "Selecteer",
     "moveToTop": "Ga naar boven",
     "moveToBottom": "Naar beneden verplaatsen",
+    "redactPages": "Pagina's redigeren",
     "playAudio": "Audio afspelen",
-    "pauseAudio": "audio pauze"
+    "pauseAudio": "audio pauze",
+    "selectAll": "Selecteer alles",
+    "unselect": "Deselecteren",
+    "addMark": "Markering toevoegen",
+    "viewFile": "Bestand bekijken",
+    "switchLanguage": "Taal"
   },
   "annotation": {
     "areaMeasurement": "Oppervlaktemeting",
+    "arc": "Boog",
+    "arcMeasurement": "Boog meting",
     "arrow": "Pijl",
     "callout": "Opmerking met pijl",
     "crop": "Pagina bijsnijden",
@@ -180,7 +188,9 @@
     "createStampButton": "Maak een nieuwe stempel",
     "filter": "Filter",
     "pageReplaceModalTitle": "Pagina vervangen",
-    "files": "Bestanden"
+    "files": "Bestanden",
+    "editText": "Tekst bewerken",
+    "redactionPanel": "Redactiepaneel"
   },
   "message": {
     "toolsOverlayNoPresets": "Geen voorinstellingen",
@@ -404,10 +414,12 @@
       "area": "Gebied",
       "distanceMeasurement": "Afstands meting",
       "perimeterMeasurement": "Perimeter meting",
+      "arcMeasurement": "Boog meting",
       "areaMeasurement": "Gebieds meting",
       "countMeasurement": "Tel meting",
       "radius": "Straal",
-      "count": "Tel"
+      "count": "Tel",
+      "length": "Lengte"
     },
     "measurementOption": {
       "scale": "Schaal"
@@ -480,6 +492,15 @@
       "Username": "Gebruikersnaam",
       "Date": "Datum",
       "Time": "Tijd"
+    },
+    "pageRedactModal": {
+      "addMark": "Markering toevoegen",
+      "pageSelection": "Paginaselectie",
+      "current": "Huidige pagina",
+      "specify": "Specificeer pagina's",
+      "odd": "Alleen oneven pagina's",
+      "even": "Alleen even pagina's",
+      "header": "Redactie van pagina's markeren"
     }
   },
   "warning": {
@@ -568,7 +589,8 @@
     "enterUrlOrChooseFile": "Voer een URL in of kies een bestand om in WebViewer te laden",
     "enterUrl": "Voer bestands-URL in",
     "extension": "Bestandsextensie",
-    "existingFile": "Bestand is al geopend"
+    "existingFile": "Bestand is al geopend",
+    "addTab": "Tabblad toevoegen"
   },
   "datePicker": {
     "previousMonth": "Vorige maand",
@@ -618,7 +640,9 @@
       "4": "do.",
       "5": "vr.",
       "6": "za."
-    }
+    },
+    "today": "Vandaag",
+    "invalidDateTime": "Ongeldige datum/tijd: invoer moet overeenkomen met formaat"
   },
   "formField": {
     "formFieldPopup": {
@@ -756,5 +780,47 @@
       "certificateDownloadError": "Er is een fout opgetreden bij het downloaden van een vertrouwd certificaat",
       "localCertificateError": "Er zijn enkele problemen met het lezen van een lokaal certificaat"
     }
+  },
+  "cropPopUp": {
+    "title": "Pagina's om bij te snijden",
+    "allPages": "Alle",
+    "singlePage": "Huidige pagina",
+    "cropDimensions": "Afmetingen bijsnijden",
+    "dimensionInput": {
+      "unitOfMeasurement": "Eenheid",
+      "autoTrim": "Automatisch trimmen"
+    },
+    "cropModal": {
+      "applyTitle": "Bijsnijden toepassen?",
+      "applyMessage": "Met deze actie worden alle geselecteerde geselecteerde pagina's permanent bijgesneden. Het kan niet ongedaan gemaakt worden.",
+      "cancelTitle": "Bijsnijden annuleren?",
+      "cancelMessage": "Weet u zeker dat u het bijsnijden van alle geselecteerde pagina's wilt annuleren?"
+    }
+  },
+  "redactionPanel": {
+    "noMarkedRedactions": "Begin met redigeren door tekst, regio's, pagina's te markeren of een zoekopdracht uit te voeren.",
+    "redactionSearchPlaceholder": "Toevoegen op trefwoord zoeken of patronen",
+    "redactionCounter": "Gemarkeerd voor redactie",
+    "clearMarked": "Duidelijk",
+    "redactAllMarked": "Alles redigeren",
+    "redactionItem": {
+      "regionRedaction": "Regio redactie",
+      "fullPageRedaction": "Volledige pagina redactie",
+      "image": "Afbeelding"
+    },
+    "expand": "Uitbreiden",
+    "collapse": "Instorten",
+    "searchResults": "Zoekresultaten",
+    "search": {
+      "creditCards": "Kredietkaart",
+      "phoneNumbers": "Telefoonnummers",
+      "images": "Afbeeldingen",
+      "emails": "E-mails",
+      "pattern": "Patroon",
+      "start": "Begin met zoeken"
+    }
+  },
+  "languageModal": {
+    "selectLanguage": "Selecteer taal"
   }
 }

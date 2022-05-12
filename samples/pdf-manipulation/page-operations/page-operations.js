@@ -108,7 +108,7 @@ WebViewer(
       extractAtList.setCustomValidity('');
       if (!extractAtList.checkValidity()) {
         extractAtList.reportValidity();
-        return; //exit since invalid input
+        return; // exit since invalid input
       }
       const pagesToExtract = [];
       const pageCount = doc.getPageCount();

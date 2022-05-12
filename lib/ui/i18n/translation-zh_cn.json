@@ -81,11 +81,19 @@
     "select": "选择",
     "moveToTop": "移到顶部",
     "moveToBottom": "移到底部",
+    "redactPages": "编辑页面",
     "playAudio": "播放音频",
-    "pauseAudio": "音频暂停"
+    "pauseAudio": "音频暂停",
+    "selectAll": "全选",
+    "unselect": "取消选择",
+    "addMark": "添加标记",
+    "viewFile": "查看文件",
+    "switchLanguage": "语言"
   },
   "annotation": {
     "areaMeasurement": "面积测量",
+    "arc": "弧",
+    "arcMeasurement": "电弧测量",
     "arrow": "箭头",
     "callout": "标注",
     "crop": "裁剪页面",
@@ -180,7 +188,9 @@
     "createStampButton": "创建新图章",
     "filter": "过滤",
     "pageReplaceModalTitle": "替换页面",
-    "files": "文件"
+    "files": "文件",
+    "editText": "编辑文本",
+    "redactionPanel": "编辑面板"
   },
   "message": {
     "toolsOverlayNoPresets": "无预设",
@@ -404,10 +414,12 @@
       "area": "面积",
       "distanceMeasurement": "距离测量",
       "perimeterMeasurement": "周长测量",
+      "arcMeasurement": "电弧测量",
       "areaMeasurement": "面积测量",
       "countMeasurement": "计数测量",
       "radius": "半径",
-      "count": "计数"
+      "count": "计数",
+      "length": "长度"
     },
     "measurementOption": {
       "scale": "比例"
@@ -480,6 +492,15 @@
       "Username": "用户名",
       "Date": "日期",
       "Time": "时间"
+    },
+    "pageRedactModal": {
+      "addMark": "添加标记",
+      "pageSelection": "页面选择",
+      "current": "当前页面",
+      "specify": "指定页面",
+      "odd": "仅奇数页",
+      "even": "仅偶数页",
+      "header": "标记页面密文"
     }
   },
   "warning": {
@@ -525,7 +546,7 @@
     "select": "(Esc)",
     "signature": "(S)",
     "squiggly": "(G)",
-    "image": "（一世）",
+    "image": "(I)",
     "redo": "（Ctrl Shift Z）",
     "redo_windows": "(Ctrl Y)",
     "undo": "（Ctrl Z）",
@@ -540,8 +561,8 @@
       "underline": "（Ctrl U）",
       "strikeout": "（Ctrl K）"
     },
-    "rotate3D": "Shift +拖动",
-    "zoom3D": "Shift +滚动"
+    "rotate3D": "Shift + 拖动",
+    "zoom3D": "Shift + 滚动"
   },
   "tool": {
     "pan": "移动",
@@ -568,7 +589,8 @@
     "enterUrlOrChooseFile": "输入 URL 或选择要加载到 WebViewer 的文件",
     "enterUrl": "输入文件网址",
     "extension": "文件扩展名",
-    "existingFile": "文件已经打开"
+    "existingFile": "文件已经打开",
+    "addTab": "添加标签"
   },
   "datePicker": {
     "previousMonth": "前一个月",
@@ -618,7 +640,9 @@
       "4": "周四",
       "5": "周五",
       "6": "周六"
-    }
+    },
+    "today": "今天",
+    "invalidDateTime": "无效的日期/时间：输入应匹配格式"
   },
   "formField": {
     "formFieldPopup": {
@@ -756,5 +780,47 @@
       "certificateDownloadError": "尝试下载受信任的证书时遇到错误",
       "localCertificateError": "读取本地证书存在一些问题"
     }
+  },
+  "cropPopUp": {
+    "title": "要裁剪的页面",
+    "allPages": "全部",
+    "singlePage": "当前页面",
+    "cropDimensions": "作物尺寸",
+    "dimensionInput": {
+      "unitOfMeasurement": "单元",
+      "autoTrim": "自动修剪"
+    },
+    "cropModal": {
+      "applyTitle": "应用作物？",
+      "applyMessage": "此操作将永久裁剪所有选定的选定页面。它无法撤消。",
+      "cancelTitle": "取消裁剪？",
+      "cancelMessage": "您确定要取消裁剪所有选定的页面吗？"
+    }
+  },
+  "redactionPanel": {
+    "noMarkedRedactions": "通过标记文本、区域、页面或进行搜索来开始编辑。",
+    "redactionSearchPlaceholder": "通过关键字搜索或模式添加",
+    "redactionCounter": "标记为编辑",
+    "clearMarked": "清除",
+    "redactAllMarked": "全部编辑",
+    "redactionItem": {
+      "regionRedaction": "区域编辑",
+      "fullPageRedaction": "整页编辑",
+      "image": "图片"
+    },
+    "expand": "扩张",
+    "collapse": "坍塌",
+    "searchResults": "搜索结果",
+    "search": {
+      "creditCards": "信用卡",
+      "phoneNumbers": "电话号码",
+      "images": "图片",
+      "emails": "电子邮件",
+      "pattern": "图案",
+      "start": "开始搜索"
+    }
+  },
+  "languageModal": {
+    "selectLanguage": "选择语言"
   }
 }
