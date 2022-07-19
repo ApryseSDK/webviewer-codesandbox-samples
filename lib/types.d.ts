@@ -152,9 +152,7 @@ declare namespace Core.PDFNet {
          */
         static pageToHtml(page: PDFNet.Page): Promise<string>;
         /**
-         * Convert a page to HTML and return a string of the html
-         * @param page - the page to convert to HTML
-         * @returns A promise that resolves to a string containing the page's html
+         * @returns A promise that resolves to an object of type: "string"
          */
         static pageToHtmlZoned(page: PDFNet.Page, json_zones: string): Promise<string>;
         /**
@@ -2914,6 +2912,8 @@ declare namespace Core.PDFNet {
          * Contacts a remote timestamp authority over network, sends CMS digest, receives and verifies
          * timestamp token, combines the timestamp token and the data of an existing CMS-type (adbe.pkcs7.detached or
          * ETSI.CAdES.detached subfilter) main document signature, and then returns that data to the user.
+         * At least one signing time, whether "M" (see SetSigDictTimeOfSigning) or
+         * a secure embedded timestamp, is required to be added in order to create a PAdES signature.
          *
          * Note: This function does not insert the final CMS-type document signature into the document.
          * You must retrieve it from the result using GetData and then pass that to PDFDoc SaveCustomSignature.
@@ -3043,7 +3043,10 @@ declare namespace Core.PDFNet {
          * The digital signature field must have been prepared for signing first. This function should
          * only be used if no secure embedded timestamping support is available from your signing provider.
          * Useful for custom signing workflows, where signing time is not set automatically by the PDFTron SDK,
-         * unlike in the usual standard handler signing workflow.
+         * unlike in the usual standard handler signing workflow. A secure embedded timestamp can also be added
+         * later and should override this "M" date entry when the signature is read by signature-verifying PDF processor applications.
+         * At least one signing time, whether "M" or a secure embedded timestamp (see GenerateContentsWithEmbeddedTimestamp),
+         * is required to be added in order to create a PAdES signature.
          * @param in_date - the PDF Date datetime value to set
          */
         setSigDictTimeOfSigning(in_date: PDFNet.Date): Promise<void>;
@@ -3075,6 +3078,9 @@ declare namespace Core.PDFNet {
          * Creates the necessary attribute for a PAdES signature (ETSI.CAdES.detached subfilter type).
          * The result of this function can be passed as a contiguous part of the
          * custom attributes buffer parameter of GenerateCMSSignedAttributes.
+         * At least one signing time, whether "M" (see SetSigDictTimeOfSigning) or
+         * a secure embedded timestamp (see GenerateContentsWithEmbeddedTimestamp),
+         * is also required to be added in order to create a PAdES signature.
          *
          * The result will be either the BER-serialized bytes of an ESS_signing_cert or ESS_signing_cert_V2 CMS Attribute
          * (an ASN.1 SEQUENCE containing the correct OID and ESSCertID or ESSCertIDv2), as is appropriate,
@@ -6085,6 +6091,50 @@ declare namespace Core.PDFNet {
          */
         static createAndEmbed(doc: PDFNet.PDFDoc | PDFNet.SDFDoc | PDFNet.FDFDoc, type: number): Promise<PDFNet.Font>;
         /**
+         * Embed an external TrueType font in the document as a Simple font.
+         * @param doc - Document in which the external font should be embedded.
+         * @param font_buffer - A buffer contains font data in the external font file.
+         * @param [embed] - A boolean indicating whether the font should be embedded or not.
+         * For accurate font reproduction set the embed flag to 'true'.
+         * @param [subset] - A boolean indicating whether the embedded font should be subsetted.
+         * @returns A promise that resolves to An object of type: "PDFNet.Font".
+         */
+        static createTrueTypeFontWithBuffer(doc: PDFNet.PDFDoc | PDFNet.SDFDoc | PDFNet.FDFDoc, font_buffer: ArrayBuffer | Int8Array | Uint8Array | Uint8ClampedArray, embed?: boolean, subset?: boolean): Promise<PDFNet.Font>;
+        /**
+         * Embed an external TrueType font in the document as a CID font.
+         * By default the function selects "Identity-H" encoding that maps 2-byte
+         * character codes ranging from 0 to 65,535 to the same Unicode value.
+         * Other predefined encodings are listed in Table 5.15 'Predefined CMap names'
+         * in PDF Reference Manual.
+         * @param doc - Document in which the external font should be embedded.
+         * @param font_buffer - A buffer contains font data in the external font file.
+         * @param [embed] - A boolean indicating whether the font should be embedded or not.
+         * For accurate font reproduction set the embed flag to 'true'.
+         * @param [subset] - A boolean indicating whether the embedded font should
+         * be subsetted.
+         * @param [encoding] - <pre>
+         * PDFNet.Font.Encoding = {
+         * 	e_IdentityH : 0
+         * 	e_Indices : 1
+         * }
+         * </pre>
+         * The encoding type either e_IdentityH (default)
+         * or e_Indices (to write glyph indices rather than unicode).
+         * @param [ttc_font_index] - if a TrueTypeCollection (TTC) font is loaded this
+         * parameter controls which font is actually picked.
+         * @returns A promise that resolves to An object of type: "PDFNet.Font".
+         */
+        static createCIDTrueTypeFontWithBuffer(doc: PDFNet.PDFDoc | PDFNet.SDFDoc | PDFNet.FDFDoc, font_buffer: ArrayBuffer | Int8Array | Uint8Array | Uint8ClampedArray, embed?: boolean, subset?: boolean, encoding?: number, ttc_font_index?: number): Promise<PDFNet.Font>;
+        /**
+         * Embed an external Type1 font in the document.
+         * @param doc - Document in which the external font should be embedded.
+         * @param font_buffer - A buffer contains font data in the external font file.
+         * @param [embed] - A boolean indicating whether the font should be embedded or not.
+         * For accurate font reproduction set the embed flag to 'true'.
+         * @returns A promise that resolves to An object of type: "PDFNet.Font".
+         */
+        static createType1FontWithBuffer(doc: PDFNet.PDFDoc | PDFNet.SDFDoc | PDFNet.FDFDoc, font_buffer: ArrayBuffer | Int8Array | Uint8Array | Uint8ClampedArray, embed?: boolean): Promise<PDFNet.Font>;
+        /**
          * @example
          * Return value enum:
          * <pre>
@@ -6589,6 +6639,11 @@ declare namespace Core.PDFNet {
          * @returns A promise that resolves to an object of type: "Object"
          */
         getLineColor(): Promise<object>;
+        /**
+         * Sets the default appearance font name.
+         * @param fontName - Set the default name name.
+         */
+        setFontName(fontName: string): Promise<void>;
         /**
          * Sets the default appearance font size. A value of zero specifies
          * that the font size should should adjust so that the text uses
@@ -7338,11 +7393,11 @@ declare namespace Core.PDFNet {
          */
         setTransferFunct(TR: PDFNet.Obj): Promise<void>;
         /**
-         * @param HT - SDF/Cos halftone dictionary, stream, or name
-         * @returns A promise that resolves to currently selected halftone dictionary or stream (NULL by default).
+         * Sets currently selected halftone dictionary or stream (NULL by default).
          * Corresponds to the /HT key within the ExtGState's dictionary.
          * Halftoning is a process by which continuous-tone colors are approximated on an
          * output device that can achieve only a limited number of discrete colors.
+         * @param HT - SDF/Cos halftone dictionary, stream, or name
          */
         setHalftone(HT: PDFNet.Obj): Promise<void>;
     }
@@ -7600,6 +7655,16 @@ declare namespace Core.PDFNet {
          */
         static createSoftMaskFromStream(doc: PDFNet.PDFDoc | PDFNet.SDFDoc | PDFNet.FDFDoc, image_data: PDFNet.FilterReader, width: number, height: number, bpc: number, encoder_hints?: PDFNet.Obj): Promise<PDFNet.Image>;
         /**
+         * Directly embed the image that is already compressed using the Image::InputFilter
+         * format. The function can be used to pass-through pre-compressed image data.
+         * @param doc - A document to which the image should be added. The 'Doc' object
+         * can be obtained using Obj::GetDoc() or PDFDoc::GetSDFDoc().
+         * @param buf - The stream or buffer containing compressed image data.
+         * The compression format must match the input_format parameter.
+         * @param width - The width of the image, in samples.
+         * @param height - The height of the image, in samples.
+         * @param bpc - The number of bits used to represent each color component.
+         * @param color_space - The color space in which image samples are specified.
          * @param input_format - <pre>
          * PDFNet.Image.InputFilter = {
          * 	e_none : 0
@@ -7611,7 +7676,9 @@ declare namespace Core.PDFNet {
          * 	e_ascii_hex : 6
          * }
          * </pre>
-         * @returns A promise that resolves to an object of type: "PDFNet.Image"
+         * Image::InputFilter describing the format of pre-compressed
+         * image data.
+         * @returns A promise that resolves to pDF::Image object representing the embedded image.
          */
         static createDirectFromMemory(doc: PDFNet.PDFDoc | PDFNet.SDFDoc | PDFNet.FDFDoc, buf: ArrayBuffer | Int8Array | Uint8Array | Uint8ClampedArray, width: number, height: number, bpc: number, color_space: PDFNet.ColorSpace, input_format: number): Promise<PDFNet.Image>;
         /**
@@ -10305,7 +10372,7 @@ declare namespace Core.PDFNet {
         createNull(): Promise<PDFNet.Obj>;
         /**
          * Create a new number object in this object set.
-         * @param value - numeric value of the number object to create.
+         * @param value - The numeric value of the number object to create.
          * @returns A promise that resolves to an object of type: "PDFNet.Obj"
          */
         createNumber(value: number): Promise<PDFNet.Obj>;
@@ -11454,6 +11521,10 @@ declare namespace Core.PDFNet {
          */
         getTriggerAction(trigger: number): Promise<PDFNet.Obj>;
         /**
+         * @returns A promise that resolves to an object of type: "boolean"
+         */
+        isXFA(): Promise<boolean>;
+        /**
          * Default constructor. Creates an empty new document.
          * @returns A promise that resolves to an object of type: "PDFNet.PDFDoc"
          */
@@ -12361,7 +12432,7 @@ declare namespace Core.PDFNet {
          * @param [options] - the conversion options
          * @returns A filter from which the file can be read incrementally.
          */
-        convertToXodStream(options?: PDFNet.Obj | PDFNet.Convert.XODOutputOptions): PDFNet.Filter;
+        convertToXodStream(options?: PDFNet.Obj | PDFNet.Convert.XODOutputOptions): Promise<PDFNet.Filter>;
         /**
          * Initializes document's SecurityHandler. This version of InitSecurityHandler()
         works with Standard and Custom PDF security and can be used in situations where
@@ -13054,7 +13125,7 @@ declare namespace Core.PDFNet {
          *
          * Note: This method is used only for drawing purposes and it does not modify
          * the document (unlike Page::SetRotate()).
-         * @param angle - <pre>
+         * @param r - <pre>
          * PDFNet.Page.Rotate = {
          * 	e_0 : 0
          * 	e_90 : 1
@@ -13065,7 +13136,7 @@ declare namespace Core.PDFNet {
          * Rotation value to be set for a given page. Must be one
          * of the Page::Rotate values.
          */
-        setRotate(angle: number): Promise<void>;
+        setRotate(r: number): Promise<void>;
         /**
          * Enable or disable annotation and forms rendering. By default, all annotations
          * and form fields are rendered.
@@ -18848,11 +18919,14 @@ declare namespace Core.PDFNet {
          * @param [options] - Additional options
          * @param options.withCredentials - Whether to set the withCredentials property on the XMLHttpRequest
          * @param options.customHeaders - An object containing custom HTTP headers to be used when downloading the document
+         * @param [trust_flags] - - a combination of trust flags (see enum CertificateTrustFlag)
+        that determine for which situations this certificate should be trusted during trust verification.
+        There is a default parameter value, the e_default_trust CertificateTrustFlag, which matches Acrobat's behaviour for this parameter.
          */
         static addTrustedCertificateFromURL(url: string, options?: {
             withCredentials: boolean;
             customHeaders: any;
-        }): Promise<void>;
+        }, trust_flags?: number): Promise<void>;
     }
     /**
      * The result of a verification operation performed on a digital signature.
@@ -19904,6 +19978,19 @@ declare namespace Core.PDFNet {
              * @returns this object, for call chaining
              */
             setColorB(color: any): PDFNet.PDFDoc.TextDiffOptions;
+            /**
+             * Gets the value CompareUsingZOrder from the options object
+             * Whether to use z-order (aka paint order) when comparing text between A and B. On by default.
+             * @returns whether to use z-order (aka paint order) when comparing text between A and B. On by default.
+             */
+            getCompareUsingZOrder(): boolean;
+            /**
+             * Sets the value for CompareUsingZOrder in the options object
+             * Whether to use z-order (aka paint order) when comparing text between A and B. On by default.
+             * @param value - whether to use z-order (aka paint order) when comparing text between A and B. On by default.
+             * @returns this object, for call chaining
+             */
+            setCompareUsingZOrder(value: boolean): PDFNet.PDFDoc.TextDiffOptions;
             /**
              * Gets the value OpacityB from the options object
              * The difference opacity for deletions
@@ -22622,6 +22709,27 @@ declare namespace Core.PDFNet {
 
     
     /**
+ * Set the zoom step size for zooming in/out.
+ * @example
+ * WebViewer(...)
+ *   .then(function(instance) {
+ *     const documentViewer = instance.Core.documentViewer;
+ *
+ *     // you must have a document loaded when calling this api
+ *     documentViewer.addEventListener('documentLoaded', function() {
+ *       instance.UI.setZoomStepFactors([
+ *         {
+ *           step: 50,
+ *           startZoom: 0
+ *         }
+ *       ]);
+ *     });
+ *   });
+ * @param zoomStepFactors - an array that contains objects of zoomStep and zoom start level. zoomStepFactors must contain at least one zoomStepFactor object that has startZoom: 0
+ */
+declare type zoomStepFactor = {};
+
+/**
  * WebViewer Instance Core namespace.
 The namespace containing WebViewer's core user controls, including DocumentViewer control and the Document class.
  * @example
@@ -24468,6 +24576,16 @@ declare namespace Core {
         class EllipseAnnotation extends Core.Annotations.MarkupAnnotation {
             constructor(initializer?: any);
             /**
+             * Sets the measurement annotation's caption options.
+             * @param options - The measurement caption options.
+             */
+            setMeasurementCaptionOptions(options: Core.Annotations.measurementCaptionOptions): void;
+            /**
+             * Gets the measurement annotation's caption options.
+             * @returns The measurement caption options.
+             */
+            getMeasurementCaptionOptions(): Core.Annotations.measurementCaptionOptions;
+            /**
              * Gets or sets the border style of an annotation. e.g Solid, Cloudy
              */
             Style: string;
@@ -25237,6 +25355,29 @@ declare namespace Core {
              * Describes how the arcs of a PolygonCloud annotation will be drawn, can be one of either RANDOM_ARCS or EQUAL_ARCS
              */
             ArcDrawMode: string;
+            /**
+             * Sets the measurement annotation's caption options.
+             * @example
+             * WebViewer(...)
+             .then(function(instance) {
+              let polygonAnnot = instance.Core.annotationManager.getSelectedAnnotations()[0];
+              polygonAnnot.setMeasurementCaptionOptions({
+                isEnabled: true,
+                captionStyle: {
+                  staticSize: '0pt',
+                  maximumSize: '10pt',
+                  color: '#00FFFF'
+                }
+              })
+            });
+             * @param options - The measurement caption options.
+             */
+            setMeasurementCaptionOptions(options: Core.Annotations.measurementCaptionOptions): void;
+            /**
+             * Gets the measurement annotation's caption options.
+             * @returns The measurement caption options.
+             */
+            getMeasurementCaptionOptions(): Core.Annotations.measurementCaptionOptions;
             /**
              * Gets or sets the border style of an annotation. e.g Solid, Cloudy
              */
@@ -26847,6 +26988,18 @@ declare namespace Core {
             }
         }
         /**
+         */
+        type measurementCaptionOptions = {
+            /**
+             * The flag for enabling or disabling measurement captions on the annotation.
+             */
+            isEnabled: boolean;
+            /**
+             * The caption's text bounding rect. The bounding rect will be auto-adjusted to the annotation's visual center if the annotation is resized.
+             */
+            captionRect?: Core.Math.Rect;
+        };
+        /**
          * An enum representing different line end types that are available for line annotations
          */
         enum LineEndType {
@@ -27842,6 +27995,26 @@ declare namespace Core {
             FILE_ATTACHMENT_DATA_AVAILABLE: string;
         };
         /**
+         * The different action types for the annotationChanged event.
+         * @property ADD - When the annotationChanged event triggered due to adding annotations
+         * @property DELETE - When the annotationChanged event triggered due to deleting annotations
+         * @property MODIFY - When the annotationChanged event triggered due to modifying annotations
+         */
+        static AnnotationChangedActions: {
+            /**
+             * When the annotationChanged event triggered due to adding annotations
+             */
+            ADD: string;
+            /**
+             * When the annotationChanged event triggered due to deleting annotations
+             */
+            DELETE: string;
+            /**
+             * When the annotationChanged event triggered due to modifying annotations
+             */
+            MODIFY: string;
+        };
+        /**
          * The size of annotation control points.
         */
         controlPointSize: number;
@@ -28709,6 +28882,17 @@ declare namespace Core {
          * @param [options.downloadType] - The file type to download as, where the default is the source type. PDF and image files can only be downloaded as PDFs, but office files can be downloaded as "pdf" or as "office" if you want to get the original file without annotations.
          * @param [options.flags] - The flags with which to save the document.
         Possible values include Core.SaveOptions.REMOVE_UNUSED (remove unused objects during save) and Core.SaveOptions.LINEARIZED (optimize the document for fast web view and remove unused objects). The default value is Core.SaveOptions.REMOVE_UNUSED.
+         * @param [options.password] - A string representing a password. If a non-empty password is used, the PDF document will be encrypted.
+         * @param [options.encryptionAlgorithmType] - <pre>
+        PDFNet.SecurityHandler.AlgorithmType = {
+        e_RC4_40 : 1
+        e_RC4_128 : 2
+        e_AES : 3
+        e_AES_256 : 4
+        }
+        </pre>
+        The encryption algorithm identifier. The default value is set to Use Crypt filters with 256-bit AES (Advanced Encryption Standard) algorithm: 4.
+        40-bit RC4 algorithm: 1, 128-bit RC4 algorithm: 2, Use Crypt filters with 128-bit AES (Advanced Encryption Standard) algorithm: 3, Use Crypt filters with 256-bit AES (Advanced Encryption Standard) algorithm: 4.
          * @param [options.includeAnnotations] - If false, all annotations will be removed from PDF document.
          * @returns a promise that resolves to an array buffer containing PDF document bytes.
          */
@@ -28719,6 +28903,8 @@ declare namespace Core {
             printDocument?: boolean;
             downloadType?: string;
             flags?: number;
+            password?: string;
+            encryptionAlgorithmType?: number;
             includeAnnotations?: boolean;
         }): Promise<ArrayBuffer>;
         /**
@@ -32028,6 +32214,11 @@ declare namespace Core {
         class AreaMeasurementCreateTool extends Core.Tools.PerimeterMeasurementCreateTool {
             constructor(docViewer: Core.DocumentViewer);
             /**
+             * Gets the measurement create tool's default caption options.
+             * @returns The measurement caption options.
+             */
+            getDefaultMeasurementCaptionOptions(): Core.Annotations.measurementCaptionOptions;
+            /**
              * Triggered when an annotation has been created by the tool
              * @param annotations - The annotation that was created
              */
@@ -33411,6 +33602,16 @@ declare namespace Core {
          */
         class EllipseMeasurementCreateTool extends Core.Tools.EllipseCreateTool {
             constructor(docViewer: Core.DocumentViewer);
+            /**
+             * Sets the measurement create tool's default caption options.
+             * @param options - The measurement caption options.
+             */
+            setDefaultMeasurementCaptionOptions(options: Core.Annotations.measurementCaptionOptions): void;
+            /**
+             * Gets the measurement create tool's default caption options.
+             * @returns The measurement caption options.
+             */
+            getDefaultMeasurementCaptionOptions(): Core.Annotations.measurementCaptionOptions;
             /**
              * Triggered when an annotation has been created by the tool
              * @param annotations - The annotation that was created
@@ -37222,7 +37423,7 @@ declare namespace Core {
         /**
          * Add a handler to the given event name
          * @example
-         * annotManager.addEventListener('annotationChanged', (annotations, action) => {
+         * myObject.addEventListener('eventName', (eventParameter1, eventParameter2) => {
           ...
         });
          * @param type - The name of the event to listen to
@@ -37237,7 +37438,7 @@ declare namespace Core {
         /**
          * Add a handler to the given event name
          * @example
-         * annotManager.on('annotationChanged', (annotations, action) => {
+         * myObject.on('eventName', (eventParameter1, eventParameter2) => {
           ...
         });
          * @param type - The name of the event to listen to
@@ -37248,9 +37449,9 @@ declare namespace Core {
         /**
          * Remove a handler of the given event name
          * @example
-         * annotManager.removeEventListener();
-        annotManager.removeEventListener('annotationChanged');
-        annotManager.removeEventListener('annotationChanged', fn);
+         * myObject.removeEventListener();
+        myObject.removeEventListener('eventName');
+        myObject.removeEventListener('eventName', fn);
          * @param [type] - The name of the event to remove the handler of.
         If type is undefined, all the handlers of the object will be removed
          * @param [fn] - The handler associated with this event to be removed.
@@ -37261,9 +37462,9 @@ declare namespace Core {
         /**
          * Remove a handler of the given event name
          * @example
-         * annotManager.off();
-        annotManager.off('annotationChanged');
-        annotManager.off('annotationChanged', fn);
+         * myObject.off();
+        myObject.off('eventName');
+        myObject.off('eventName', fn);
          * @param [type] - The name of the event to remove the handler of.
         If type is undefined, all the handlers of the object will be removed
          * @param [fn] - The handler associated with this event to be removed.
@@ -37274,8 +37475,8 @@ declare namespace Core {
         /**
          * Calls the handlers of the event name with given data
          * @example
-         * annotManager.trigger('annotationChanged');
-        annotManager.trigger('annotationChanged', [[annotation], 'add', {}]);
+         * myObject.trigger('eventName');
+        myObject.trigger('eventName', [eventParameter1, eventParameter2]);
          * @param type - event name of which the handlers will be called.
          * @param [data] - data that will be passed to the handlers.
         If data is an array, it will be spread and then passed to the handlers
@@ -37285,7 +37486,7 @@ declare namespace Core {
         /**
          * Same as 'on' except the handler will be called only once
          * @example
-         * annotManager.one('annotationChanged', (annotations, action) => {
+         * myObject.one('eventName', (eventParameter1, eventParameter2) => {
          ...
         });
          * @param type - The name of the event to listen to
@@ -37445,6 +37646,15 @@ declare namespace Core {
             OBJECT: string;
         };
         /**
+         * @property TEXT_CONTENT_UPDATED - {@link Core.ContentEdit#event:textContentUpdated Core.ContentEdit.textContentUpdated }
+         */
+        var Events: {
+            /**
+             * {@link Core.ContentEdit#event:textContentUpdated Core.ContentEdit.textContentUpdated }
+             */
+            TEXT_CONTENT_UPDATED: string;
+        };
+        /**
          * Preloads the content editing worker. If this function isn't called then the worker will be loaded when the content editing tool is enabled.
          * @param documentViewer - The DocumentViewer to use as context for the page editing
          * @returns Resolves after the worker has been loaded
@@ -37582,6 +37792,91 @@ declare namespace UI {
          */
         saveCurrentActiveTabState?: boolean;
     };
+    /**
+     * Add custom modal element to WebViewer.
+    <br /><br />
+    Controlling custom modals is done using element API for example {@link UI.openElements openElements}, {@link UI.closeElements closeElements}, {@link UI.toggleElement toggleElement}, and {@link UI.disableElements disableElements}.
+    dateElement string passed on these function should be same as you set in options.dataElement.
+    <br /><br />
+    Every custom modal will add new &lt;div&gt; element with <b>CustomModal</b> and <b>&lt;options.dataElement string&gt;</b> set as class attribute
+    Modal with identical <em>options.dataElement</em> will get replaced by the latest modal options.
+    <br /><br />
+    For styling these components, see <a href="https://www.pdftron.com/documentation/web/guides/customizing-styles/" target="_blank">Customizing WebViewer UI Styles</a>
+    <br /><br />
+    Note that in most cases WebViewer is ran in iframe and making <i>options.disableEscapeKeyDown</i> automatically work, iframe must be the
+    active element. This can be done by setting focus to iframe programmatically.
+     * @example
+     * WebViewer(...).then(function(instance) {
+     *         const modal = {
+     *           dataElement: 'meanwhileInFinlandModal',
+     *           header: {
+     *             title: 'Modal header',
+     *             className: 'myCustomModal-header',
+     *             style: {}, // optional inline styles
+     *             children: []
+     *           },
+     *           body: {
+     *             className: 'myCustomModal-body',
+     *             style: {}, // optional inline styles
+     *             children: [  divInput1, divInput2 ], // HTML dom elements
+     *           },
+     *           footer: {
+     *             className: 'myCustomModal-footer footer',
+     *             style: {}, // optional inline styles
+     *             children: [
+     *               {
+     *                 title: 'Cancel',
+     *                 button: true,
+     *                 style: {},
+     *                 className: 'modal-button cancel-form-field-button',
+     *                 onClick: (e) => { console.log('ff') }
+     *               },
+     *               {
+     *                 title: 'OK',
+     *                 button: true,
+     *                 style: {},
+     *                 className: 'modal-button confirm ok-btn',
+     *                 onClick: (e) => { console.log('xx') }
+     *               },
+     *             ]
+     *           }
+     *         };
+     *         instance.UI.addCustomModal(modal);
+     *         instance.UI.openElements([modal.dataElement]);
+     *       });
+     * @param options.dataElement - Unique name of custom modal.
+     * @param [options.disableBackdropClick = false] - Disable closing modal when user clicks outside of content area
+     * @param [options.disableEscapeKeyDown = false] - Disable closing modal when user hit escape from keyboard
+     * @param options.render - Function rendering custom model contents, this is optional
+     * @param options.header - JSON object with title, className, style and children parameter
+     * @param options.body - JSON object with title, className, style and children parameter
+     * @param options.footer - JSON object with title, className, style and children parameter
+     */
+    function addCustomModal(options: {
+        dataElement: string;
+        disableBackdropClick?: boolean;
+        disableEscapeKeyDown?: boolean;
+        render: UI.renderCustomModal;
+        header: any;
+        body: any;
+        footer: any;
+    }): void;
+    /**
+     * Callback that gets passed to `options.render` in {@link UI.addCustomModal addCustomModal}.
+     */
+    type renderCustomModal = () => HTMLElement | string;
+    /**
+     * @param options.dataElement - Unique name of custom modal.
+     * @param [options.disableBackdropClick = false] - Disable closing modal when user clicks outside of content area
+     * @param [options.disableEscapeKeyDown = false] - Disable closing modal when user hit escape from keyboard
+     * @param options.render - Function rendering custom model contents
+     */
+    function setCustomModal(options: {
+        dataElement: string;
+        disableBackdropClick?: boolean;
+        disableEscapeKeyDown?: boolean;
+        render: UI.renderCustomModal;
+    }): void;
     /**
      * Adds a date and time format for the UI date and time dropdowns.
     List of formats can be found here: {@link https://github.com/iamkun/dayjs/blob/v1.11.1/docs/en/API-reference.md#format-formatstringwithtokens-string dayjs API}.
@@ -39375,51 +39670,6 @@ declare namespace UI {
      */
     function setCustomMeasurementOverlay(customOverlayInfo: any[]): void;
     /**
-     * Add custom modal element to WebViewer.
-    <br /><br />
-    Controlling custom modals is done using element API for example {@link UI.openElements openElements}, {@link UI.closeElements closeElements}, {@link UI.toggleElement toggleElement}, and {@link UI.disableElements disableElements}.
-    dateElement string passed on these function should be same as you set in options.dataElement.
-    <br /><br />
-    Every custom modal will add new &lt;div&gt; element with <b>CustomModal</b> and <b>&lt;options.dataElement string&gt;</b> set as class attribute
-    Modal with identical <em>options.dataElement</em> will get replaced by the latest modal options.
-    <br /><br />
-    For styling these components, see <a href="https://www.pdftron.com/documentation/web/guides/customizing-styles/" target="_blank">Customizing WebViewer UI Styles</a>
-    <br /><br />
-    Note that in most cases WebViewer is ran in iframe and making <i>options.disableEscapeKeyDown</i> automatically work, iframe must be the
-    active element. This can be done by setting focus to iframe programmatically.
-     * @example
-     * WebViewer(...).then(function(instance) {
-     *   var modal = {
-     *     dataElement: 'meanwhileInFinlandModal',
-     *     render: function renderCustomModal(){
-     *       var div = document.createElement("div");
-     *       div.style.color = 'white';
-     *       div.style.backgroundColor = 'hotpink';
-     *       div.style.padding = '20px 40px';
-     *       div.style.borderRadius = '5px';
-     *       div.innerText = 'Meanwhile in Finland';
-     *       return div
-     *     }
-     *   }
-     *   instance.UI.setCustomModal(modal);
-     *   instance.UI.openElements([modal.dataElement]);
-     *   });
-     * @param options.dataElement - Unique name of custom modal.
-     * @param [options.disableBackdropClick = false] - Disable closing modal when user clicks outside of content area
-     * @param [options.disableEscapeKeyDown = false] - Disable closing modal when user hit escape from keyboard
-     * @param options.render - Function rendering custom model contents
-     */
-    function setCustomModal(options: {
-        dataElement: string;
-        disableBackdropClick?: boolean;
-        disableEscapeKeyDown?: boolean;
-        render: UI.renderCustomModal;
-    }): void;
-    /**
-     * Callback that gets passed to `options.render` in {@link UI.setCustomModal setCustomModal}.
-     */
-    type renderCustomModal = () => HTMLElement | string;
-    /**
      * Filter the annotations shown in the notes panel
      * @example
      * WebViewer(...)
@@ -39912,6 +40162,26 @@ declare namespace UI {
      */
     function setPageReplacementModalFileList(list: any[]): void;
     /**
+     * Sets preset crop dimensions to be used when selecting a preset crop in the document cropping popup
+     * @example
+     * WebViewer(...)
+     *   .then(function(instance) {
+     *     instance.UI.setPresetCropDimensions('Letter', {'yOffset': 0, 'height': 11, 'xOffset': 0, 'width': 8.5});
+     *   });
+     * @param presetName - The name of a current preset or the name to give to a new preset
+     * @param newPreset - A set of dimensions to use for a preset crop
+     * @param newPreset.yOffset - The amount of inches to move the cropped area from the top of the page
+     * @param newPreset.height - The height of the area to crop the page to in inches
+     * @param newPreset.xOffset - The amount of inches to move the cropped area from the left of the page
+     * @param newPreset.width - The width of the area to crop the page to in inches
+     */
+    function setPresetCropDimensions(presetName: string, newPreset: {
+        yOffset: number;
+        height: number;
+        xOffset: number;
+        width: number;
+    }): void;
+    /**
      * Sets the print quality. Higher values are higher quality but takes longer to complete and use more memory. The viewer's default quality is 1.
      * @example
      * WebViewer(...)
@@ -40029,6 +40299,74 @@ declare namespace UI {
     function setTranslations(language: string, translationObject: {
         key: string;
         value: string;
+    }): void;
+    /**
+     * Set the WV3D Properties Panel with an array of model data objects
+     * @example
+     * WebViewer(...)
+     *   .then(function(instance) {
+     *     instance.UI.setWv3dPropertiesPanelModelData([{'name':'roof', 'height':'55cm'}, {'name':'wall', 'height':'100cm'}]);
+     *   });
+     * @param modelData - Array of objects defining 3d metadata properties.
+     */
+    function setWv3dPropertiesPanelModelData(modelData: any[]): void;
+    /**
+     * Set the configuration schema for the WV3D Properties Panel
+     * @example
+     * WebViewer(...)
+     *   .then(function(instance) {
+     *     instance.UI.setWv3dPropertiesPanelSchema({
+     *       headerName: 'Name',
+     *       defaultValues: {
+     *         Description: 'Description',
+     *         GlobalID: 'GlobalId',
+     *         Handle: 'handle',
+     *         EmptyRow1: 'EmptyRow1',
+     *       },
+     *       groups: {
+     *         SampleGroup01: {
+     *           SampleField01: 'Sample01',
+     *           SampleField02: 'Sample02',
+     *           SampleField03: 'Sample03',
+     *           EmptyRow2: 'EmptyRow2',
+     *           GrossFootprintArea: 'GrossFootprintArea',
+     *           GrossSideArea: 'GrossSideArea',
+     *           GrossVolume: 'GrossVolume',
+     *         },
+     *         SampleGroup02: {
+     *           SampleField01: 'Sample01',
+     *           SampleField02: 'Sample02',
+     *           SampleField03: 'Sample03',
+     *         },
+     *         SampleGroup03: {
+     *           ObjectType: 'Elephants',
+     *           EmptyRow3: 'Tigers',
+     *           ObjectPlacement: 'Bears',
+     *         },
+     *       },
+     *       groupOrder: ['Dimensions', 'RandomStuff'],
+     *       removeEmptyRows: false,
+     *       removeEmptyGroups: true,
+     *       createRawValueGroup: true,
+     *     })
+     *   });
+     * @param schema - Object containing options for configuring the 3d properties panel.
+     * @param schema.headerName - Sets the Title Header
+     * @param schema.defaultValues - Defines the key/value pairs that will appear under the title, outside of a group.
+     * @param schema.groups - Defines the collapsible groups that appear below the default values.
+     * @param schema.groupOrder - Defines the order of the groups. If a group is not included it is appended to the end of the defined groups.
+     * @param schema.removeEmptyRows - Defines whether to remove rows that contain empty string values.
+     * @param schema.removeEmptyGroups - Defines whether to remove groups that contain only empty string values.
+     * @param schema.createRawValueGroup - Defines whether to create a final group that has all the raw values.
+     */
+    function setWv3dPropertiesPanelSchema(schema: {
+        headerName: string;
+        defaultValues: any;
+        groups: any;
+        groupOrder: any[];
+        removeEmptyRows: boolean;
+        removeEmptyGroups: boolean;
+        createRawValueGroup: boolean;
     }): void;
     /**
      * Sets zoom level.
@@ -41019,6 +41357,33 @@ declare namespace UI {
          * @returns An array of trailing characters, or '*'
          */
         getAllowedTrailingCharacters(): string[] | '*';
+        /**
+         * Sets the mention lookup callback function used by quill-mentions to filter the users in the suggestions overlay.
+         * @example
+         * WebViewer(...)
+         *   .then(function(instance) {
+         *     instance.mentions.setMentionLookupCallback(async (userData, searchTerm) => {
+         *       const matches = [];
+         *       userData.forEach((user) => {
+         *         if (user.name === 'John Doe') {
+         *           matches.push(user);
+         *         }
+         *       });
+         *       return matches;
+         *     });
+         *   });
+         * @param callback - A callback function that returns an array of users that displayed in the suggestions overlay.
+         */
+        setMentionLookupCallback(callback: (...params: any[]) => any): void;
+        /**
+         * Gets the current mention lookup callback function being used by quill-mentions to filter the users in the suggestions overlay.
+         * @returns the current function used to filter users in the suggestions overlay
+         */
+        getMentionLookupCallback(): (...params: any[]) => any;
+        /**
+         * The default mention lookup callback used to filter users in the suggestions overlay.
+         */
+        defaultMentionLookupCallback(): void;
         /**
          * Triggered when a mention or mentions have been changed (added, deleted, modified).
         Attach like instance.mentions.on('mentionChanged', callback)
