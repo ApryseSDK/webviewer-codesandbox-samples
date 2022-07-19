@@ -27,7 +27,11 @@
       const opts = await PDFNet.VerificationOptions.create(PDFNet.VerificationOptions.SecurityLevel.e_compatibility_and_archiving);
 
       // Add trust root to store of trusted certificates contained in VerificationOptions.
-      await opts.addTrustedCertificateFromURL(in_public_key_file_path);
+      await opts.addTrustedCertificateFromURL(
+        in_public_key_file_path,
+        {},
+        PDFNet.VerificationOptions.CertificateTrustFlag.e_default_trust + PDFNet.VerificationOptions.CertificateTrustFlag.e_certification_trust
+      );
 
       const result = await doc.verifySignedDigitalSignatures(opts);
       switch (result) {
@@ -64,7 +68,12 @@
       const opts = await PDFNet.VerificationOptions.create(PDFNet.VerificationOptions.SecurityLevel.e_compatibility_and_archiving);
 
       // Add trust root to store of trusted certificates contained in VerificationOptions.
-      await opts.addTrustedCertificateFromURL(in_public_key_file_path);
+      // Use trust level corresponding to an identity trusted even for certification signatures.
+      await opts.addTrustedCertificateFromURL(
+        in_public_key_file_path,
+        {},
+        PDFNet.VerificationOptions.CertificateTrustFlag.e_default_trust + PDFNet.VerificationOptions.CertificateTrustFlag.e_certification_trust
+      );
 
       // Iterate over the signatures and verify all of them.
       const digsig_fitr = await doc.getDigitalSignatureFieldIteratorBegin();
@@ -447,7 +456,7 @@
       /* Create an approval signature field that we can sign after certifying.
       (Must be done before calling CertifyOnNextSave/SignOnNextSave/WithCustomHandler.) */
       try {
-        const doc = await PDFNet.PDFDoc.createFromURL(input_path + 'tiger.pdf');
+        const doc = await PDFNet.PDFDoc.createFromURL(input_path + 'waiver.pdf');
         doc.initSecurityHandler();
         doc.lock();
         const approval_signature_field = await doc.createDigitalSignatureField('PDFTronApprovalSig');
@@ -455,7 +464,7 @@
         const page1 = await doc.getPage(1);
         await page1.annotPushBack(widgetAnnotApproval);
         const docbuf = await doc.saveMemoryBuffer(PDFNet.SDFDoc.SaveOptions.e_remove_unused);
-        saveBufferAsPDFDoc(docbuf, 'tiger_withApprovalField_output.pdf');
+        saveBufferAsPDFDoc(docbuf, 'waiver_withApprovalField_output.pdf');
       } catch (err) {
         console.log(err);
         ret = 1;
@@ -464,12 +473,12 @@
       // ////////////////// TEST 1: certify a PDF.
       try {
         const docbuf = await CertifyPDF(
-          input_path + 'tiger_withApprovalField.pdf',
+          input_path + 'waiver_withApprovalField.pdf',
           'PDFTronCertificationSig',
           input_path + 'pdftron.pfx',
           'password',
           input_path + 'pdftron.bmp',
-          'tiger_withApprovalField_certified_output.pdf'
+          'waiver_withApprovalField_certified_output.pdf'
         );
         await PrintSignaturesInfo(docbuf);
       } catch (err) {
@@ -480,12 +489,12 @@
       // ////////////////// TEST 2: sign a PDF with a certification and an unsigned signature field in it.
       try {
         const docbuf = await SignPDF(
-          input_path + 'tiger_withApprovalField_certified.pdf',
+          input_path + 'waiver_withApprovalField_certified.pdf',
           'PDFTronApprovalSig',
           input_path + 'pdftron.pfx',
           'password',
           input_path + 'signature.jpg',
-          'tiger_withApprovalField_certified_approved_output.pdf'
+          'waiver_withApprovalField_certified_approved_output.pdf'
         );
         await PrintSignaturesInfo(docbuf);
       } catch (err) {
@@ -496,9 +505,9 @@
       // ////////////////// TEST 3: Clear a certification from a document that is certified and has an approval signature.
       try {
         const docbuf = await ClearSignature(
-          input_path + 'tiger_withApprovalField_certified_approved.pdf',
+          input_path + 'waiver_withApprovalField_certified_approved.pdf',
           'PDFTronCertificationSig',
-          'tiger_withApprovalField_certified_approved_certcleared_output.pdf'
+          'waiver_withApprovalField_certified_approved_certcleared_output.pdf'
         );
         await PrintSignaturesInfo(docbuf);
       } catch (err) {
@@ -509,7 +518,7 @@
       // ////////////////// TEST 4: Verify a document's digital signatures.
       // EXPERIMENTAL. Digital signature verification is undergoing active development, but currently does not support a number of features. If we are missing a feature that is important to you, or if you have files that do not act as expected, please contact us using one of the following forms: https://www.pdftron.com/form/trial-support/ or https://www.pdftron.com/form/request/
       try {
-        if (!(await VerifyAllAndPrint(input_path + 'tiger_withApprovalField_certified_approved.pdf', input_path + 'pdftron.cer'))) {
+        if (!(await VerifyAllAndPrint(input_path + 'waiver_withApprovalField_certified_approved.pdf', input_path + 'pdftron.cer'))) {
           ret = 1;
         }
       } catch (err) {
@@ -519,7 +528,7 @@
 
       // ////////////////// TEST 5: Verify a document's digital signatures in a simple fashion using the document API.
       try {
-        if (!(await VerifySimple(input_path + 'tiger_withApprovalField_certified_approved.pdf', input_path + 'pdftron.cer'))) {
+        if (!(await VerifySimple(input_path + 'waiver_withApprovalField_certified_approved.pdf', input_path + 'pdftron.cer'))) {
           ret = 1;
         }
       } catch (err) {
@@ -529,10 +538,10 @@
 
       // //////////////////// TEST 6: Timestamp a document, then add Long Term Validation (LTV) information for the DocTimeStamp.
       // try {
-      //   if (!(await TimestampAndEnableLTV(input_path + 'tiger.pdf',
+      //   if (!(await TimestampAndEnableLTV(input_path + 'waiver.pdf',
       //     input_path + 'GlobalSignRootForTST.cer',
       //     input_path + 'signature.jpg',
-      //     'tiger_DocTimeStamp_LTV.pdf'))) {
+      //     'waiver_DocTimeStamp_LTV.pdf'))) {
       //     ret = 1;
       //   }
       // } catch (err) {
