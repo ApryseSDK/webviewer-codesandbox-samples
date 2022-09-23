@@ -1,12 +1,15 @@
 {
   "action": {
+    "addParagraph": "Ajouter un paragraphe",
     "add": "Ajouter",
     "apply": "Appliquer",
     "applyAll": "Appliquer tout",
     "calendar": "Calandre",
     "calibrate": "Calibrer",
     "cancel": "Annuler",
+    "confirm": "Confirmer",
     "clear": "Effacer",
+    "clearAll": "Tout effacer",
     "close": "Fermer",
     "undo": "Défaire",
     "redo": "Refaire",
@@ -41,6 +44,7 @@
     "save": "Enregistrer",
     "post": "Publier",
     "create": "Créer",
+    "update": "Mise à jour",
     "showMoreResults": "Afficher plus de résultats",
     "sign": "Signer",
     "style": "Style",
@@ -73,6 +77,7 @@
     "insertBlankPageBelow": "Insérez une page vierge ci-dessous",
     "pageManipulation": "Manipulation des pages",
     "replace": "Remplacer",
+    "setDestination": "Destination choisie",
     "showLess": "Montrer moins",
     "showMore": "...Suite",
     "chooseFile": "Choisissez un fichier",
@@ -89,7 +94,8 @@
     "unselect": "Désélectionner",
     "addMark": "Ajouter une marque",
     "viewFile": "Voir la fiche",
-    "switchLanguage": "Langue"
+    "switchLanguage": "Langue",
+    "multiReplyAnnotations": "Répondre aux annotations sélectionnées ({{count}})"
   },
   "annotation": {
     "areaMeasurement": "Surface mesurée",
@@ -138,7 +144,9 @@
     "link": "Lien",
     "other": "Autre",
     "3D": "3D",
-    "sound": "Sonner"
+    "sound": "Sonner",
+    "changeView": "Change de vue",
+    "newImage": "Nouvelle image"
   },
   "rubberStamp": {
     "Approved": "Approuvée",
@@ -173,11 +181,16 @@
     "searchPanel": "Chercher",
     "menuOverlay": "Menu",
     "notesPanel": "Remarques",
+    "outlinePanel": "Présenter",
     "outlinesPanel": "Contours",
+    "newOutlineTitle": "Nouveau titre de plan",
+    "outlineTitle": "Titre du plan",
+    "destination": "Destination",
+    "bookmarkPanel": "Signet",
     "bookmarksPanel": "Signets",
-    "signaturePanel": "Signatures",
-    "newBookmark": "Nouveau signet",
+    "bookmarkTitle": "Titre du signet",
     "bookmarkPage": "Page",
+    "signaturePanel": "Signatures",
     "layersPanel": "Couches",
     "thumbnailsPanel": "Vignettes",
     "toolsButton": "Outils",
@@ -188,10 +201,15 @@
     "textPopup": "Popup texte",
     "createStampButton": "Créer un nouveau tampon",
     "filter": "Filtre",
+    "multiSelectButton": "Sélection multiple",
     "pageReplaceModalTitle": "Remplacer la page",
     "files": "Des dossiers",
     "editText": "Éditer le texte",
-    "redactionPanel": "Panneau de rédaction"
+    "redactionPanel": "Panneau de rédaction",
+    "noteGroupSection": {
+      "open": "Afficher toutes les annotations",
+      "close": "Fermer toutes les annotations"
+    }
   },
   "message": {
     "toolsOverlayNoPresets": "Aucun préréglage",
@@ -204,6 +222,7 @@
     "noAnnotations": "Ce document n'a pas d'annotations.",
     "noAnnotationsReadOnly": "Ce document n'a pas d'annotations.",
     "noAnnotationsFilter": "Commencez à créer des annotations et des filtres apparaîtront ici.",
+    "noBookmarks": "Aucun signet disponible",
     "noOutlines": "Ce document n'a pas de plan.",
     "noAttachments": "Ce document n'a pas de pièces jointes.",
     "noResults": "Aucun résultat trouvé.",
@@ -246,6 +265,7 @@
     "selectPageToReplace": "Sélectionnez les pages du document que vous souhaitez remplacer.",
     "embeddedFiles": "Fichiers intégrés",
     "pageNum": "Numéro de page",
+    "viewBookmark": "Afficher le signet sur la page",
     "error": "Erreur"
   },
   "option": {
@@ -291,6 +311,7 @@
       "toolbarGroup-Insert": "Insérer",
       "toolbarGroup-Measure": "Mesure",
       "toolbarGroup-Edit": "Éditer",
+      "toolbarGroup-EditText": "Éditer le texte",
       "toolbarGroup-FillAndSign": "Remplir et signer",
       "toolbarGroup-Forms": "Formulaire",
       "toolbarGroup-Redact": "Rédiger"
@@ -312,8 +333,9 @@
       "selectTooltip": "Sélectionnez plusieurs pages",
       "closeTooltip": "Fermer la sélection multiple"
     },
-    "outlineControls": {
-      "add": "Ajouter un item",
+    "bookmarkOutlineControls": {
+      "edit": "Éditer",
+      "done": "Fait",
       "reorder": "Réorganiser"
     },
     "layout": {
@@ -391,12 +413,11 @@
       "pageReplaceInputFromSource": "avec page(s)"
     },
     "filterAnnotModal": {
-      "commentBy": "Commentaire de",
-      "types": "Les types",
       "color": "Couleur",
-      "includeReplies": "Inclure les réponses"
-    },
-    "status": {
+      "includeReplies": "Inclure les réponses",
+      "filters": "Filtres",
+      "user": "Utilisateur",
+      "type": "Taper",
       "status": "Statut"
     },
     "state": {
@@ -427,6 +448,36 @@
     },
     "measurementOption": {
       "scale": "Échelle"
+    },
+    "measurement": {
+      "scaleModal": {
+        "calibrate": "Étalonner",
+        "custom": "Coutume",
+        "fractionalUnits": "Unités fractionnaires",
+        "precision": "Précision",
+        "preset": "Préréglé",
+        "paperUnits": "Unités papier",
+        "displayUnits": "Unités d'affichage",
+        "fractionUnitsTooltip": "Les unités de fraction ne s'appliquent qu'à in et ft-in"
+      },
+      "scaleOverlay": {
+        "addNewScale": "Ajouter une nouvelle échelle",
+        "selectTwoPoints": "Sélectionnez deux points d'une dimension connue à calibrer",
+        "inputKnowDimension": "Entrez la dimension connue et les unités à calibrer",
+        "multipleScales": "Échelles multiples"
+      },
+      "deleteScaleModal": {
+        "deleteScale": "Supprimer l'échelle",
+        "scaleIsOn-delete-info": "Cette échelle est actuellement utilisée sur",
+        "page-delete-info": "page",
+        "appliedTo-delete-info": "et appliqué à",
+        "measurement": "la mesure",
+        "measurements": "des mesures",
+        "deletionIs": "La suppression est",
+        "irreversible": "irréversible",
+        "willDeleteMeasurement": "et supprimera les mesures associées.",
+        "confirmDelete": "Voulez-vous vraiment supprimer cette échelle ?"
+      }
     },
     "stylePopup": {
       "textStyle": "Style de texte",
@@ -495,10 +546,19 @@
       "modalName": "Créer un nouveau tampon",
       "stampText": "Texte du tampon",
       "timestampText": "Texte d'horodatage",
-      "stampColor": "Couleur du tampon:",
       "Username": "Nom d'utilisateur",
       "Date": "Date",
-      "Time": "heure"
+      "Time": "heure",
+      "fontStyle": "Font style",
+      "dateFormat": "Format de date",
+      "month": "Mois",
+      "day": "Jour",
+      "year": "An",
+      "hour": "Heure",
+      "minute": "Minute",
+      "second": "Deuxième",
+      "textColor": "Couleur du texte",
+      "backgroundColor": "Couleur de l'arrière plan"
     },
     "pageRedactModal": {
       "addMark": "Ajouter une marque",
@@ -507,7 +567,11 @@
       "specify": "Spécifiez les pages",
       "odd": "Pages impaires seulement",
       "even": "Seulement les pages paires",
-      "header": "Marquer la rédaction des pages"
+      "header": "Marquer la rédaction des pages",
+      "specifyPlaceholder": "1, 3, 5-10"
+    },
+    "lineStyleOptions": {
+      "title": "Style"
     }
   },
   "warning": {
@@ -526,6 +590,14 @@
       "applyTile": "Appliquer le caviardage",
       "applyMessage": "Cette action supprimera définitivement tous les éléments sélectionnés pour caviardage. Ceci ne pourra pas être défait."
     },
+    "deleteBookmark": {
+      "title": "Supprimer le signet ?",
+      "message": "Voulez-vous vraiment supprimer ces favoris ? Vous ne pouvez pas annuler cette action."
+    },
+    "deleteOutline": {
+      "title": "Supprimer le contour ?",
+      "message": "Voulez-vous vraiment supprimer ces contours ?\n\nLa suppression d'un contour qui a des contours imbriqués entraînera la suppression de toute la structure interne et, si nécessaire, devra être recréée."
+    },
     "selectPage": {
       "selectTitle": "Aucune page sélectionnée",
       "selectMessage": "Veuillez sélectionner des pages et réessayer."
@@ -533,6 +605,10 @@
     "colorPicker": {
       "deleteTitle": "Supprimer la couleur personnalisée",
       "deleteMessage": "Supprimer la couleur personnalisée sélectionnée? Elle sera supprimée de votre palette de couleurs."
+    },
+    "multiDeleteAnnotation": {
+      "title": "Supprimer les annotations ?",
+      "message": "La suppression supprimera tous les commentaires, réponses et regroupements et ne pourra pas être annulée.\n\n Voulez-vous vraiment supprimer ces annotations ?"
     }
   },
   "shortcut": {
@@ -792,6 +868,7 @@
     "title": "Pages à recadrer",
     "allPages": "Tous",
     "singlePage": "Page actuelle",
+    "multiPage": "Spécifier la page",
     "cropDimensions": "Dimensions du recadrage",
     "dimensionInput": {
       "unitOfMeasurement": "Unité",
@@ -804,6 +881,10 @@
       "cancelMessage": "Voulez-vous vraiment annuler le recadrage de toutes les pages sélectionnées ?"
     }
   },
+  "textEditingPanel": {
+    "paragraph": "Paragraphe",
+    "text": "Texte"
+  },
   "redactionPanel": {
     "noMarkedRedactions": "Commencez à rédiger en marquant du texte, des régions, des pages ou en effectuant une recherche.",
     "redactionSearchPlaceholder": "Ajouter par recherche par mot-clé ou modèles",
@@ -813,6 +894,9 @@
     "redactionItem": {
       "regionRedaction": "Caviardage de région",
       "fullPageRedaction": "Caviardage pleine page",
+      "fullVideoFrameRedaction": "Rédaction vidéo",
+      "audioRedaction": "Rédaction audio",
+      "fullVideoFrameAndAudioRedaction": "Rédaction vidéo et audio",
       "image": "Image"
     },
     "expand": "Développer",
@@ -826,6 +910,11 @@
       "pattern": "Modèle",
       "start": "Commencez à faire votre recherche"
     }
+  },
+  "wv3dPropertiesPanel": {
+    "propertiesHeader": "Propriétés",
+    "miscValuesHeader": "Tous",
+    "emptyPanelMessage": "Sélectionnez un élément pour afficher ses propriétés."
   },
   "languageModal": {
     "selectLanguage": "Choisir la langue"

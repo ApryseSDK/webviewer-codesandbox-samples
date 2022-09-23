@@ -1,12 +1,15 @@
 {
   "action": {
+    "addParagraph": "Absatz hinzufügen",
     "add": "Hinzufügen",
     "apply": "Anwenden",
     "applyAll": "Alles anwenden",
     "calendar": "Kalender",
     "calibrate": "Kalibrieren",
     "cancel": "Abbrechen",
+    "confirm": "Bestätigen Sie",
     "clear": "Löschen",
+    "clearAll": "Alles löschen",
     "close": "Schliessen",
     "undo": "Rückgängig",
     "redo": "Wiederherstellen",
@@ -41,6 +44,7 @@
     "save": "Speichern",
     "post": "Absenden",
     "create": "Erstellen",
+    "update": "Aktualisieren",
     "showMoreResults": "Mehr Ergebnisse anzeigen",
     "sign": "Unterschrift",
     "style": "Stil",
@@ -73,6 +77,7 @@
     "insertBlankPageBelow": "Leere Seite unten einfügen page",
     "pageManipulation": "Seitenmanipulation",
     "replace": "Ersetzen",
+    "setDestination": "Festgelegtes Ziel",
     "showLess": "zeige weniger",
     "showMore": "...mehr",
     "chooseFile": "Datei auswählen",
@@ -89,7 +94,8 @@
     "unselect": "Auswahl aufheben",
     "addMark": "Markus hinzufügen",
     "viewFile": "Datei ansehen",
-    "switchLanguage": "Sprache"
+    "switchLanguage": "Sprache",
+    "multiReplyAnnotations": "Auf ausgewählte Anmerkungen antworten ({{count}})"
   },
   "annotation": {
     "areaMeasurement": "Flächenmessung",
@@ -132,13 +138,15 @@
     "textField": "Textfeld",
     "signatureFormField": "Signaturfeld",
     "checkBoxFormField": "Kontrollkästchen Feld",
-    "radioButtonFormField": "Optionsfeld",
+    "radioButtonFormField": "Radio-Button-Feld",
     "listBoxFormField": "Listenfeld",
     "comboBoxFormField": "Kombinationsfeld",
     "link": "Verknüpfung",
     "other": "Andere",
     "3D": "3D",
-    "sound": "Klang"
+    "sound": "Klang",
+    "changeView": "Ansicht ändern",
+    "newImage": "Neues Bild"
   },
   "rubberStamp": {
     "Approved": "Genehmigt",
@@ -173,11 +181,16 @@
     "searchPanel": "Suche",
     "menuOverlay": "Menü",
     "notesPanel": "Notizen",
+    "outlinePanel": "Umriss",
     "outlinesPanel": "Gliederung",
+    "newOutlineTitle": "Neuer Gliederungstitel",
+    "outlineTitle": "Gliederungstitel",
+    "destination": "Ziel",
+    "bookmarkPanel": "Lesezeichen",
     "bookmarksPanel": "Lesezeichen",
-    "signaturePanel": "Unterschriften",
-    "newBookmark": "Neues Lesezeichen",
+    "bookmarkTitle": "Titel des Lesezeichens",
     "bookmarkPage": "Seite",
+    "signaturePanel": "Unterschriften",
     "layersPanel": "Schichten",
     "thumbnailsPanel": "Miniaturansicht",
     "toolsButton": "Werkzeuge",
@@ -188,10 +201,15 @@
     "textPopup": "Text Popup",
     "createStampButton": "Neuen Stempel erstellen",
     "filter": "Filter",
+    "multiSelectButton": "Mehrfachauswahl",
     "pageReplaceModalTitle": "Seite Ersetzen",
     "files": "Dateien",
     "editText": "Text bearbeiten",
-    "redactionPanel": "Redaktionsbereich"
+    "redactionPanel": "Redaktionsbereich",
+    "noteGroupSection": {
+      "open": "Alle Anmerkungen anzeigen",
+      "close": "Alle Anmerkungen schließen"
+    }
   },
   "message": {
     "toolsOverlayNoPresets": "Keine Voreinstellungen",
@@ -204,6 +222,7 @@
     "noAnnotations": "Keine Kommentare gefunden.",
     "noAnnotationsReadOnly": "Dieses Dokument erlaubt keine Kommentare.",
     "noAnnotationsFilter": "Beginnen Sie hier mit der Erstellung von Anmerkungen und Filtern.",
+    "noBookmarks": "Keine Lesezeichen verfügbar",
     "noOutlines": "Dieses Dokument enthält keine Gliederung.",
     "noAttachments": "Dieses Dokument hat keine Anhänge.",
     "noResults": "Keine Ergebnisse gefunden.",
@@ -246,6 +265,7 @@
     "selectPageToReplace": "Wählen Sie die Seite(n) im Dokument aus, die Sie ersetzen möchten.",
     "embeddedFiles": "Eingebettete Dateien",
     "pageNum": "Seitennummer",
+    "viewBookmark": "Lesezeichen auf Seite anzeigen",
     "error": "Fehler"
   },
   "option": {
@@ -291,6 +311,7 @@
       "toolbarGroup-Insert": "Einfügen",
       "toolbarGroup-Measure": "Messen",
       "toolbarGroup-Edit": "Bearbeiten",
+      "toolbarGroup-EditText": "Text bearbeiten",
       "toolbarGroup-FillAndSign": "Füllen und unterschreiben",
       "toolbarGroup-Forms": "Formen",
       "toolbarGroup-Redact": "Schwärzen"
@@ -312,9 +333,10 @@
       "selectTooltip": "Mehrere Seiten auswählen",
       "closeTooltip": "Mehrfachauswahl schließen"
     },
-    "outlineControls": {
-      "add": "Artikel hinzufügen",
-      "reorder": "Sortieren"
+    "bookmarkOutlineControls": {
+      "edit": "Bearbeiten",
+      "done": "Fertig",
+      "reorder": "Neu anordnen"
     },
     "layout": {
       "cover": "Deckblatt",
@@ -391,12 +413,11 @@
       "pageReplaceInputFromSource": "mit Seite(n)"
     },
     "filterAnnotModal": {
-      "commentBy": "Kommentar von",
-      "types": "Typen",
       "color": "Farbe",
-      "includeReplies": "Antworten einschließen"
-    },
-    "status": {
+      "includeReplies": "Antworten einschließen",
+      "filters": "Filter",
+      "user": "Benutzer",
+      "type": "Typ",
       "status": "Status"
     },
     "state": {
@@ -427,6 +448,36 @@
     },
     "measurementOption": {
       "scale": "Maßstab"
+    },
+    "measurement": {
+      "scaleModal": {
+        "calibrate": "Kalibrieren",
+        "custom": "Benutzerdefiniert",
+        "fractionalUnits": "Brucheinheiten",
+        "precision": "Präzision",
+        "preset": "Voreinstellung",
+        "paperUnits": "Papiereinheiten",
+        "displayUnits": "Einheiten anzeigen",
+        "fractionUnitsTooltip": "Brucheinheiten gelten nur für in und ft-in"
+      },
+      "scaleOverlay": {
+        "addNewScale": "Neue Waage hinzufügen",
+        "selectTwoPoints": "Wählen Sie zwei Punkte mit bekannter Abmessung zum Kalibrieren aus",
+        "inputKnowDimension": "Geben Sie bekannte Dimensionen und Einheiten zum Kalibrieren ein",
+        "multipleScales": "Mehrere Skalen"
+      },
+      "deleteScaleModal": {
+        "deleteScale": "Waage löschen",
+        "scaleIsOn-delete-info": "Diese Waage wird derzeit am verwendet",
+        "page-delete-info": "Seite",
+        "appliedTo-delete-info": "und beantragt",
+        "measurement": "Messung",
+        "measurements": "Messungen",
+        "deletionIs": "Löschung ist",
+        "irreversible": "irreversibel",
+        "willDeleteMeasurement": "und löscht die zugehörigen Messungen.",
+        "confirmDelete": "Möchten Sie diese Skala wirklich löschen?"
+      }
     },
     "stylePopup": {
       "textStyle": "Textstil",
@@ -495,10 +546,19 @@
       "modalName": "Neuen Stempel erstellen",
       "stampText": "Stempeltext",
       "timestampText": "Zeitstempeltext",
-      "stampColor": "Stempelfarbe:",
       "Username": "Nutzername",
       "Date": "Datum",
-      "Time": "Zeit"
+      "Time": "Zeit",
+      "fontStyle": "Schriftstil",
+      "dateFormat": "Datumsformat",
+      "month": "Monat",
+      "day": "Tag",
+      "year": "Jahr",
+      "hour": "Stunde",
+      "minute": "Minute",
+      "second": "Zweite",
+      "textColor": "Textfarbe",
+      "backgroundColor": "Hintergrundfarbe"
     },
     "pageRedactModal": {
       "addMark": "Markus hinzufügen",
@@ -507,7 +567,11 @@
       "specify": "Seiten angeben",
       "odd": "Nur ungerade Seiten",
       "even": "Nur gerade Seiten",
-      "header": "Schwärzung von Seiten markieren"
+      "header": "Schwärzung von Seiten markieren",
+      "specifyPlaceholder": "1, 3, 5-10"
+    },
+    "lineStyleOptions": {
+      "title": "Stil"
     }
   },
   "warning": {
@@ -526,6 +590,14 @@
       "applyTile": "Schwärzung anwenden",
       "applyMessage": "Durch diese Aktion werden alle zur Bearbeitung ausgewählten Elemente dauerhaft entfernt. Es kann nicht rückgängig gemacht werden."
     },
+    "deleteBookmark": {
+      "title": "Lesezeichen löschen?",
+      "message": "Möchten Sie diese Lesezeichen wirklich löschen? Sie können diese Aktion nicht rückgängig machen."
+    },
+    "deleteOutline": {
+      "title": "Gliederung löschen?",
+      "message": "Möchten Sie diese Umrisse wirklich löschen?\n\nDas Löschen eines Umrisses mit verschachtelten Umrissen führt dazu, dass die gesamte innere Struktur gelöscht wird und ggf. neu erstellt werden muss."
+    },
     "selectPage": {
       "selectTitle": "Keine Seiten ausgewählt",
       "selectMessage": "Bitte wählen Sie Seiten aus und versuchen Sie es erneut."
@@ -533,6 +605,10 @@
     "colorPicker": {
       "deleteTitle": "Benutzerdefinierte Farbe löschen",
       "deleteMessage": "Ausgewählte benutzerdefinierte Farbe löschen? Sie wird aus Ihrer Farbpalette entfernt."
+    },
+    "multiDeleteAnnotation": {
+      "title": "Anmerkungen löschen?",
+      "message": "Durch das Löschen werden alle Kommentare, Antworten und Gruppierungen entfernt und können nicht rückgängig gemacht werden.\n\n Möchten Sie diese Anmerkungen wirklich löschen?"
     }
   },
   "shortcut": {
@@ -792,6 +868,7 @@
     "title": "Seiten zum Zuschneiden",
     "allPages": "Alle",
     "singlePage": "Aktuelle Seite",
+    "multiPage": "Seite angeben",
     "cropDimensions": "Crop-Abmessungen",
     "dimensionInput": {
       "unitOfMeasurement": "Einheit",
@@ -804,6 +881,10 @@
       "cancelMessage": "Möchten Sie das Zuschneiden aller ausgewählten Seiten wirklich abbrechen?"
     }
   },
+  "textEditingPanel": {
+    "paragraph": "Absatz",
+    "text": "Text"
+  },
   "redactionPanel": {
     "noMarkedRedactions": "Beginnen Sie mit dem Schwärzen, indem Sie Text, Regionen, Seiten markieren oder eine Suche durchführen.",
     "redactionSearchPlaceholder": "Hinzufügen nach Schlüsselwortsuche oder Mustern",
@@ -813,6 +894,9 @@
     "redactionItem": {
       "regionRedaction": "Regionsredaktion",
       "fullPageRedaction": "Ganzseitige Redaktion",
+      "fullVideoFrameRedaction": "Video-Redaktion",
+      "audioRedaction": "Audio-Redaktion",
+      "fullVideoFrameAndAudioRedaction": "Video- und Audioredaktion",
       "image": "Bild"
     },
     "expand": "Erweitern",
@@ -826,6 +910,11 @@
       "pattern": "Muster",
       "start": "Starten Sie Ihre Suche"
     }
+  },
+  "wv3dPropertiesPanel": {
+    "propertiesHeader": "Eigenschaften",
+    "miscValuesHeader": "Alle",
+    "emptyPanelMessage": "Wählen Sie ein Element aus, um seine Eigenschaften anzuzeigen."
   },
   "languageModal": {
     "selectLanguage": "Sprache auswählen"

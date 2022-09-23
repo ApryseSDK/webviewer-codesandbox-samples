@@ -1,12 +1,15 @@
 {
   "action": {
+    "addParagraph": "অনুচ্ছেদ যোগ করুন",
     "add": "যোগ করুন",
     "apply": "আবেদন করুন",
     "applyAll": "সব আবেদন",
     "calendar": "ক্যালেন্ডার",
     "calibrate": "ক্যালিব্রেট করুন",
     "cancel": "বাতিল করুন",
+    "confirm": "নিশ্চিত করুন",
     "clear": "স্পষ্ট",
+    "clearAll": "সব পরিষ্কার করে দাও",
     "close": "বন্ধ",
     "undo": "পূর্বাবস্থায় ফেরান",
     "redo": "প্রস্তুত",
@@ -41,6 +44,7 @@
     "save": "সংরক্ষণ",
     "post": "পোস্ট",
     "create": "সৃষ্টি",
+    "update": "হালনাগাদ",
     "showMoreResults": "আরো ফলাফল দেখান",
     "sign": "চিহ্ন",
     "style": "শৈলী",
@@ -73,6 +77,7 @@
     "insertBlankPageBelow": "নীচে ফাঁকা পৃষ্ঠা ঢোকান",
     "pageManipulation": "পৃষ্ঠা ম্যানিপুলেশন",
     "replace": "প্রতিস্থাপন করুন",
+    "setDestination": "লক্ষ ঠিক করো",
     "showLess": "প্রদর্শন কম",
     "showMore": "...আরো",
     "chooseFile": "একটি ফাইল নির্বাচন করুন",
@@ -89,7 +94,8 @@
     "unselect": "অনির্বাচন করুন",
     "addMark": "মার্ক যোগ করুন",
     "viewFile": "নথি দেখ",
-    "switchLanguage": "ভাষা"
+    "switchLanguage": "ভাষা",
+    "multiReplyAnnotations": "নির্বাচিত টীকাগুলির উত্তর দিন ({{count}})"
   },
   "annotation": {
     "areaMeasurement": "এলাকা",
@@ -132,13 +138,15 @@
     "textField": "টেক্সট ক্ষেত্রের",
     "signatureFormField": "স্বাক্ষর ক্ষেত্র",
     "checkBoxFormField": "চেকবক্স ক্ষেত্র",
-    "radioButtonFormField": "রেডিও বাটন ক্ষেত্র",
+    "radioButtonFormField": "রেডিও বোতাম ক্ষেত্র",
     "listBoxFormField": "তালিকা বক্স ক্ষেত্র",
     "comboBoxFormField": "কম্বো বক্স ক্ষেত্র",
     "link": "লিঙ্ক",
     "other": "অন্যান্য",
     "3D": "3D",
-    "sound": "শব্দ"
+    "sound": "শব্দ",
+    "changeView": "পরিবর্তন দেখুন",
+    "newImage": "নতুন ছবি"
   },
   "rubberStamp": {
     "Approved": "অনুমোদিত",
@@ -173,11 +181,16 @@
     "searchPanel": "অনুসন্ধান করুন",
     "menuOverlay": "তালিকা",
     "notesPanel": "মন্তব্য",
+    "outlinePanel": "রূপরেখা",
     "outlinesPanel": "রূপরেখা",
+    "newOutlineTitle": "নতুন আউটলাইন শিরোনাম",
+    "outlineTitle": "রূপরেখা শিরোনাম",
+    "destination": "গন্তব্য",
+    "bookmarkPanel": "বুকমার্ক",
     "bookmarksPanel": "বুকমার্ক",
-    "signaturePanel": "স্বাক্ষর",
-    "newBookmark": "নতুন বুকমার্ক",
+    "bookmarkTitle": "বুকমার্ক শিরোনাম",
     "bookmarkPage": "পাতা",
+    "signaturePanel": "স্বাক্ষর",
     "layersPanel": "স্তর",
     "thumbnailsPanel": "থাম্বনেল",
     "toolsButton": "টুলস",
@@ -188,10 +201,15 @@
     "textPopup": "পাঠ্য পপআপ",
     "createStampButton": "নতুন স্ট্যাম্প তৈরি করুন",
     "filter": "ছাঁকনি",
+    "multiSelectButton": "মাল্টি সিলেক্ট",
     "pageReplaceModalTitle": "পৃষ্ঠা প্রতিস্থাপন করুন",
     "files": "নথি পত্র",
     "editText": "লেখা সম্পাদনা",
-    "redactionPanel": "রিডাকশন প্যানেল"
+    "redactionPanel": "রিডাকশন প্যানেল",
+    "noteGroupSection": {
+      "open": "সমস্ত টীকা দেখুন",
+      "close": "সমস্ত টীকা বন্ধ করুন"
+    }
   },
   "message": {
     "toolsOverlayNoPresets": "কোনো প্রিসেট নেই",
@@ -204,6 +222,7 @@
     "noAnnotations": "একটি মন্তব্য করতে টীকা তৈরি করা শুরু করুন.",
     "noAnnotationsReadOnly": "এই নথিতে কোন টীকা নেই।",
     "noAnnotationsFilter": "টীকা তৈরি করা শুরু করুন এবং ফিল্টারগুলি এখানে উপস্থিত হবে৷",
+    "noBookmarks": "কোন বুকমার্ক উপলব্ধ",
     "noOutlines": "এই নথির কোন রূপরেখা নেই।",
     "noAttachments": "এই নথিতে কোন সংযুক্তি নেই.",
     "noResults": "কোন ফলাফল পাওয়া যায়নি.",
@@ -246,6 +265,7 @@
     "selectPageToReplace": "নথিতে যে পৃষ্ঠাগুলি আপনি প্রতিস্থাপন করতে চান তা নির্বাচন করুন৷",
     "embeddedFiles": "এমবেডেড ফাইল",
     "pageNum": "পৃষ্ঠা সংখ্যা",
+    "viewBookmark": "পৃষ্ঠায় বুকমার্ক দেখুন",
     "error": "ত্রুটি"
   },
   "option": {
@@ -291,6 +311,7 @@
       "toolbarGroup-Insert": "ঢোকান",
       "toolbarGroup-Measure": "পরিমাপ করা",
       "toolbarGroup-Edit": "সম্পাদনা করুন",
+      "toolbarGroup-EditText": "লেখা সম্পাদনা",
       "toolbarGroup-FillAndSign": "পূরণ করুন এবং স্বাক্ষর করুন",
       "toolbarGroup-Forms": "ফর্ম",
       "toolbarGroup-Redact": "সংশোধিত"
@@ -312,8 +333,9 @@
       "selectTooltip": "একাধিক পৃষ্ঠা নির্বাচন করুন",
       "closeTooltip": "মাল্টিসিলেক্ট বন্ধ করুন"
     },
-    "outlineControls": {
-      "add": "আইটেম যোগ করুন",
+    "bookmarkOutlineControls": {
+      "edit": "সম্পাদনা করুন",
+      "done": "সম্পন্ন",
       "reorder": "পুনরায় সাজান"
     },
     "layout": {
@@ -391,12 +413,11 @@
       "pageReplaceInputFromSource": "পৃষ্ঠা(গুলি) সহ"
     },
     "filterAnnotModal": {
-      "commentBy": "দ্বারা মন্তব্য",
-      "types": "প্রকারভেদ",
       "color": "রঙ",
-      "includeReplies": "উত্তর অন্তর্ভুক্ত করুন"
-    },
-    "status": {
+      "includeReplies": "উত্তর অন্তর্ভুক্ত করুন",
+      "filters": "ফিল্টার",
+      "user": "ব্যবহারকারী",
+      "type": "টাইপ",
       "status": "স্ট্যাটাস"
     },
     "state": {
@@ -427,6 +448,36 @@
     },
     "measurementOption": {
       "scale": "স্কেল"
+    },
+    "measurement": {
+      "scaleModal": {
+        "calibrate": "ক্যালিব্রেট করুন",
+        "custom": "কাস্টম",
+        "fractionalUnits": "ভগ্নাংশ ইউনিট",
+        "precision": "যথার্থতা",
+        "preset": "প্রিসেট",
+        "paperUnits": "কাগজের ইউনিট",
+        "displayUnits": "ডিসপ্লে ইউনিট",
+        "fractionUnitsTooltip": "ভগ্নাংশ ইউনিট শুধুমাত্র in এবং ft-in-এ প্রযোজ্য"
+      },
+      "scaleOverlay": {
+        "addNewScale": "নতুন স্কেল যোগ করুন",
+        "selectTwoPoints": "ক্রমাঙ্কন করতে একটি পরিচিত মাত্রার দুটি বিন্দু নির্বাচন করুন",
+        "inputKnowDimension": "ক্যালিব্রেট করার জন্য পরিচিত মাত্রা এবং একক ইনপুট করুন",
+        "multipleScales": "একাধিক স্কেল"
+      },
+      "deleteScaleModal": {
+        "deleteScale": "স্কেল মুছুন",
+        "scaleIsOn-delete-info": "এই স্কেল বর্তমানে ব্যবহার করা হয়",
+        "page-delete-info": "পৃষ্ঠা",
+        "appliedTo-delete-info": "এবং আবেদন",
+        "measurement": "মাপা",
+        "measurements": "পরিমাপ",
+        "deletionIs": "মুছে ফেলা হয়",
+        "irreversible": "অপরিবর্তনীয়",
+        "willDeleteMeasurement": "এবং সংশ্লিষ্ট পরিমাপ মুছে ফেলবে।",
+        "confirmDelete": "আপনি কি এই স্কেল মুছে ফেলার বিষয়ে নিশ্চিত?"
+      }
     },
     "stylePopup": {
       "textStyle": "পাঠ্য শৈলী",
@@ -495,10 +546,19 @@
       "modalName": "নতুন স্ট্যাম্প তৈরি করুন",
       "stampText": "স্ট্যাম্প পাঠ্য",
       "timestampText": "টাইমস্ট্যাম্প পাঠ্য",
-      "stampColor": "স্ট্যাম্প রঙ:",
       "Username": "ব্যবহারকারীর নাম",
       "Date": "তারিখ",
-      "Time": "সময়"
+      "Time": "সময়",
+      "fontStyle": "ফন্ট-স্টাইল",
+      "dateFormat": "তারিখ বিন্যাস",
+      "month": "মাস",
+      "day": "দিন",
+      "year": "বছর",
+      "hour": "ঘন্টা",
+      "minute": "মিনিট",
+      "second": "দ্বিতীয়",
+      "textColor": "লেখার রঙ",
+      "backgroundColor": "পেছনের রং"
     },
     "pageRedactModal": {
       "addMark": "মার্ক যোগ করুন",
@@ -507,7 +567,11 @@
       "specify": "পৃষ্ঠাগুলি নির্দিষ্ট করুন",
       "odd": "শুধুমাত্র বিজোড় পৃষ্ঠা",
       "even": "এমনকি পেজ শুধুমাত্র",
-      "header": "মার্ক পেজ রিডাকশন"
+      "header": "মার্ক পেজ রিডাকশন",
+      "specifyPlaceholder": "1, 3, 5-10"
+    },
+    "lineStyleOptions": {
+      "title": "শৈলী"
     }
   },
   "warning": {
@@ -526,6 +590,14 @@
       "applyTile": "রিডাকশন প্রয়োগ করুন",
       "applyMessage": "এই ক্রিয়াটি সংশোধনের জন্য নির্বাচিত সমস্ত আইটেম স্থায়ীভাবে মুছে ফেলবে৷ এটি পূর্বাবস্থায় ফেরানো যাবে না।"
     },
+    "deleteBookmark": {
+      "title": "বুকমার্ক মুছবেন?",
+      "message": "আপনি কি এই বুকমার্কগুলি মুছতে চান? আপনি এই ক্রিয়াটিকে পূর্বাবস্থায় ফেরাতে পারবেন না৷"
+    },
+    "deleteOutline": {
+      "title": "আউটলাইন মুছবেন?",
+      "message": "আপনি কি নিশ্চিত আপনি এই রূপরেখা মুছে দিতে চান?\n\nনেস্টেড আউটলাইন আছে এমন একটি আউটলাইন মুছে ফেলার ফলে পুরো অভ্যন্তরীণ কাঠামো মুছে যাবে এবং প্রয়োজন হলে পুনরায় তৈরি করতে হবে।"
+    },
     "selectPage": {
       "selectTitle": "কোন পৃষ্ঠা নির্বাচন করা হয়নি",
       "selectMessage": "অনুগ্রহ করে পৃষ্ঠাগুলি নির্বাচন করুন এবং আবার চেষ্টা করুন৷"
@@ -533,6 +605,10 @@
     "colorPicker": {
       "deleteTitle": "কাস্টম রঙ মুছুন",
       "deleteMessage": "নির্বাচিত কাস্টম রঙ মুছবেন? এটি আপনার রঙ প্যালেট থেকে সরানো হবে।"
+    },
+    "multiDeleteAnnotation": {
+      "title": "টীকা মুছবেন?",
+      "message": "মুছে ফেললে সমস্ত মন্তব্য, উত্তর এবং গ্রুপিং মুছে যাবে এবং পূর্বাবস্থায় ফেরানো যাবে না।\n\n আপনি কি এই টীকাগুলি মুছে ফেলার বিষয়ে নিশ্চিত?"
     }
   },
   "shortcut": {
@@ -792,6 +868,7 @@
     "title": "ক্রপ করার জন্য পৃষ্ঠা",
     "allPages": "সব",
     "singlePage": "এই পৃষ্ঠা",
+    "multiPage": "পৃষ্ঠা নির্দিষ্ট করুন",
     "cropDimensions": "ফসলের মাত্রা",
     "dimensionInput": {
       "unitOfMeasurement": "ইউনিট",
@@ -804,6 +881,10 @@
       "cancelMessage": "আপনি কি নিশ্চিত যে আপনি সমস্ত নির্বাচিত পৃষ্ঠা ক্রপ করা বাতিল করতে চান?"
     }
   },
+  "textEditingPanel": {
+    "paragraph": "অনুচ্ছেদ",
+    "text": "পাঠ্য"
+  },
   "redactionPanel": {
     "noMarkedRedactions": "টেক্সট, অঞ্চল, পৃষ্ঠা চিহ্নিত করে বা একটি অনুসন্ধান করে সংশোধন করা শুরু করুন।",
     "redactionSearchPlaceholder": "কীওয়ার্ড অনুসন্ধান বা নিদর্শন দ্বারা যোগ করুন",
@@ -813,6 +894,9 @@
     "redactionItem": {
       "regionRedaction": "অঞ্চল সংশোধন",
       "fullPageRedaction": "সম্পূর্ণ পৃষ্ঠা সংশোধন",
+      "fullVideoFrameRedaction": "ভিডিও রিডাকশন",
+      "audioRedaction": "অডিও রিডাকশন",
+      "fullVideoFrameAndAudioRedaction": "ভিডিও এবং অডিও রিডাকশন",
       "image": "ছবি"
     },
     "expand": "বিস্তৃত করা",
@@ -826,6 +910,11 @@
       "pattern": "প্যাটার্ন",
       "start": "আপনার অনুসন্ধান করা শুরু করুন"
     }
+  },
+  "wv3dPropertiesPanel": {
+    "propertiesHeader": "Уласцівасці",
+    "miscValuesHeader": "Усе",
+    "emptyPanelMessage": "Выберыце элемент, каб праглядзець яго ўласцівасці."
   },
   "languageModal": {
     "selectLanguage": "ভাষা নির্বাচন কর"
