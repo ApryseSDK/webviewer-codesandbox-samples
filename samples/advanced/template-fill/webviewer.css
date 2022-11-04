@@ -1,6 +1,6 @@
-.ErrorModal .container {
+.ErrorModal .modal-container {
     font-family: monospace;
-    width: fit-content;
+    min-width: fit-content;
     margin-left: 20px;
     margin-right: 20px;
 }

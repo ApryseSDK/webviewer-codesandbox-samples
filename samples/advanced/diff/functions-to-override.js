@@ -155,6 +155,10 @@
       });
       return idToReturn;
     },
+    getDocumentCompletePromise: function() {
+      const completePromises = this.getDocumentsToCompare().map(document => document.getDocumentCompletePromise());
+      return Promise.all(completePromises);
+    },
     loadAsync: async function({ filesToCompare, options }, onDocumentLoaded) {
       this.filesToCompare = filesToCompare;
       this.options = options;

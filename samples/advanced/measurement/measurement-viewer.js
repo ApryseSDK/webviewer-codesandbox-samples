@@ -7,6 +7,7 @@
 
 WebViewer(
   {
+    fullAPI: true, // Only required if using snapping feature
     path: '../../../lib',
     initialDoc: '../../../samples/files/houseplan-A.pdf',
     enableMeasurement: true,
@@ -15,6 +16,11 @@ WebViewer(
 ).then(instance => {
   samplesSetup(instance);
   instance.UI.setToolbarGroup('toolbarGroup-Measure');
+
+  // If you would like to have snapping features enabled, you could do so with the following:
+  // const { documentViewer, Tools } = instance.Core;
+  // const distanceMeasurementTool = documentViewer.getTool(Tools.ToolNames.DISTANCE_MEASUREMENT);
+  // distanceMeasurementTool.setSnapMode(Tools.SnapModes.DEFAULT);
 
   // open notes panel by default
   instance.UI.openElements(['notesPanel']);

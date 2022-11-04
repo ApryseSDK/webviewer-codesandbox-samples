@@ -272,20 +272,26 @@ function convertLinks(json) {
 
 const prePopulateData = {
   'SYH-letter': {
-    client_full_name: 'Mrs. Eric Tragar',
-    client_gender_possesive: 'her',
     date: '07/16/21',
-    dest_address: '187 Duizelstraat\n5043 EC Tilburg, Netherlands',
-    dest_given_name: 'Janice N.',
-    dest_surname: 'Symonds',
-    dest_title: 'Ms.',
     land_location: '225 Parc St., Rochelle, QC ',
     lease_problem: 'According to the city records, the lease was initiated in September 2010 and never terminated',
-    sender_name: 'Arnold Smith',
+    client: {
+      full_name: 'Mrs. Eric Tragar',
+      gender_possesive: 'her',
+    },
+    dest: {
+      address: '187 Duizelstraat\n5043 EC Tilburg, Netherlands',
+      given_name: 'Janice N.',
+      surname: 'Symonds',
+      title: 'Ms.',
+    },
+    sender: {
+      name: 'Arnold Smith',
+    },
     logo: {
       image_url: '../../files/logo_red.png',
-      width: 64,
-      height: 64,
+      width: '64',
+      height: '64',
     },
   },
   'invoice-simple': {
@@ -415,19 +421,35 @@ const schemaDefinitions = {
         format: 'url/file-download',
       },
       width: {
-        type: 'integer',
-        title: 'width (points)',
+        type: 'string',
+        title: 'width',
         propertyOrder: 2,
       },
       height: {
-        type: 'integer',
-        title: 'height (points)',
+        type: 'string',
+        title: 'height',
         propertyOrder: 3,
       },
     },
   },
+  'template-markdown': {
+    type: 'object',
+    properties: {
+      markdown: {
+        $ref: '#/definitions/template-text',
+      },
+    },
+  },
+  'template-html': {
+    type: 'object',
+    properties: {
+      html: {
+        $ref: '#/definitions/template-text',
+      },
+    },
+  },
   'template-content': {
-    oneOf: [
+    anyOf: [
       {
         title: 'text',
         $ref: '#/definitions/template-text',
@@ -435,6 +457,14 @@ const schemaDefinitions = {
       {
         title: 'image',
         $ref: '#/definitions/template-image',
+      },
+      {
+        title: 'markdown',
+        $ref: '#/definitions/template-markdown',
+      },
+      {
+        title: 'html',
+        $ref: '#/definitions/template-html',
       },
     ],
   },

@@ -1,11 +1,13 @@
 {
   "action": {
+    "addParagraph": "Add Paragraph",
     "add": "Add",
     "apply": "Apply",
     "applyAll": "Apply all",
     "calendar": "Calendar",
     "calibrate": "Calibrate",
     "cancel": "Cancel",
+    "confirm": "Confirm",
     "clear": "Clear",
     "clearAll": "Clear all",
     "close": "Close",
@@ -20,8 +22,8 @@
     "download": "Download",
     "edit": "Edit",
     "extract": "Extract",
-    "enterFullscreen": "Full screen",
-    "exitFullscreen": "Exit full screen",
+    "enterFullscreen": "Enter Full Screen",
+    "exitFullscreen": "Exit Full Screen",
     "fit": "Fit",
     "fitToPage": "Fit to page",
     "fitToWidth": "Fit to width",
@@ -42,6 +44,7 @@
     "save": "Save",
     "post": "Post",
     "create": "Create",
+    "update": "Update",
     "showMoreResults": "Show more results",
     "sign": "Sign",
     "style": "Style",
@@ -55,8 +58,6 @@
     "type": "Type",
     "upload": "Upload",
     "link": "Link",
-    "darkMode": "Dark mode",
-    "lightMode": "Light mode",
     "fileAttachmentDownload": "Download attached file",
     "prevResult": "Previous result",
     "nextResult": "Next result",
@@ -91,7 +92,9 @@
     "unselect": "Unselect",
     "addMark": "Add Mark",
     "viewFile": "View file",
-    "switchLanguage": "Language"
+    "multiReplyAnnotations": "Reply to selected annotations ({{count}})",
+    "comparePages": "Compare pages",
+    "startComparison": "Start Comparison"
   },
   "annotation": {
     "areaMeasurement": "Area",
@@ -112,6 +115,8 @@
     "freehand": "Free Hand",
     "freeHandHighlight": "Free Hand Highlight",
     "freetext": "Free Text",
+    "markInsertText": "Insert Text",
+    "markReplaceText": "Replace Text",
     "highlight": "Highlight",
     "image": "Image",
     "line": "Line",
@@ -141,7 +146,8 @@
     "other": "Other",
     "3D": "3D",
     "sound": "Sound",
-    "changeView": "Change View"
+    "changeView": "Change View",
+    "newImage": "New Image"
   },
   "rubberStamp": {
     "Approved": "Approved",
@@ -178,9 +184,11 @@
     "notesPanel": "Comments",
     "outlinePanel": "Outline",
     "outlinesPanel": "Outlines",
+    "newOutlineTitle": "New Outline Title",
+    "outlineTitle": "Outline Title",
+    "destination": "Destination",
     "bookmarkPanel": "Bookmark",
     "bookmarksPanel": "Bookmarks",
-    "newBookmark": "New Bookmark",
     "bookmarkTitle": "Bookmark Title",
     "bookmarkPage": "Page",
     "signaturePanel": "Signatures",
@@ -194,10 +202,16 @@
     "textPopup": "Text Popup",
     "createStampButton": "Create New Stamp",
     "filter": "Filter",
+    "multiSelectButton": "Multi Select",
     "pageReplaceModalTitle": "Replace Page",
     "files": "Files",
     "editText": "Edit Text",
-    "redactionPanel": "Redaction Panel"
+    "redactionPanel": "Redaction Panel",
+    "noteGroupSection": {
+      "open": "View All Annotations",
+      "close": "Close All Annotations"
+    },
+    "comparePanel": "Compare Panel"
   },
   "message": {
     "toolsOverlayNoPresets": "No Presets",
@@ -238,6 +252,7 @@
     "existingAnnotationWarning": "Existing annotations may not match up with the text after it has been edited.",
     "changesCannotBeUndone": "Any changes made cannot be undone.",
     "doNotShowAgain": "Do not show me this again",
+    "doNotAskAgain": "Do not ask again",
     "enterReplacementText": "Enter the text you want to replace",
     "sortBy": "Sort",
     "emptyCustomStampInput": "Stamp text cannot be empty",
@@ -278,7 +293,9 @@
       "underline": "Underline",
       "squiggly": "Squiggly",
       "3D": "3D",
-      "other": "Other"
+      "other": "Other",
+      "initials": "Initials",
+      "saved": "Saved"
     },
     "notesOrder": {
       "dropdownLabel": "Sort Order List",
@@ -299,6 +316,7 @@
       "toolbarGroup-Insert": "Insert",
       "toolbarGroup-Measure": "Measure",
       "toolbarGroup-Edit": "Edit",
+      "toolbarGroup-EditText": "Edit Text",
       "toolbarGroup-FillAndSign": "Fill and Sign",
       "toolbarGroup-Forms": "Forms",
       "toolbarGroup-Redact": "Redact"
@@ -316,7 +334,6 @@
       "pageTransition": "Page Transition"
     },
     "documentControls": {
-      "placeholder": "1, 3, 5-10",
       "selectTooltip": "Select multiple pages",
       "closeTooltip": "Close multiselect"
     },
@@ -371,7 +388,15 @@
     "searchPanel": {
       "caseSensitive": "Case sensitive",
       "wholeWordOnly": "Whole word",
-      "wildcard": "Wildcard"
+      "wildcard": "Wildcard",
+      "replace": "Replace",
+      "replaceAll": "Replace All",
+      "replaceText": "Replace Text",
+      "confirmMessageReplaceAll": "Are you sure you want to replace all text?",
+      "confirmMessageReplaceOne": "Are you sure you want to replace this text?",
+      "moreOptions": "More options",
+      "lessOptions": "Less options",
+      "confirm": "Confirm"
     },
     "toolsOverlay": {
       "currentStamp": "Current Stamp",
@@ -382,14 +407,21 @@
       "addStamp": "Add New Stamp"
     },
     "signatureOverlay": {
-      "addSignature": "Add New Signature"
+      "addSignature": "Signature",
+      "addSignatureOrInitials": "Signature/Initials"
     },
     "signatureModal": {
       "modalName": "Create New Signature",
       "dragAndDrop": "Drag & Drop your image here",
       "or": "Or",
       "pickImage": "Choose a signature",
-      "selectImage": "Select your image here"
+      "selectImage": "Select your image here",
+      "typeSignature": "Type Signature*",
+      "typeInitial": "Type Initials*",
+      "drawSignature": "Draw Signature*",
+      "drawInitial": "Draw Initials*",
+      "pickInitialsFile": "Choose Initials",
+      "noSignatures": "There are currently no saved signatures."
     },
     "pageReplacementModal": {
       "dragAndDrop": "Drag & Drop your file here",
@@ -435,6 +467,40 @@
     },
     "measurementOption": {
       "scale": "Scale"
+    },
+    "measurement": {
+      "scaleModal": {
+        "calibrate": "Calibrate",
+        "custom": "Custom",
+        "fractionalUnits": "Fractional Units",
+        "precision": "Precision",
+        "preset": "Preset",
+        "paperUnits": "Paper Units",
+        "displayUnits": "Display Units",
+        "fractionUnitsTooltip": "Fraction units only apply to in and ft-in",
+        "incorrectSyntax": "Incorrect syntax"
+      },
+      "scaleOverlay": {
+        "addNewScale": "Add New Scale",
+        "selectTwoPoints": "Select two points of a known dimension to calibrate",
+        "inputKnowDimension": "Input known dimension and units to calibrate",
+        "multipleScales": "Multiple Scales"
+      },
+      "deleteScaleModal": {
+        "deleteScale": "Delete Scale",
+        "scaleIsOn-delete-info": "This scale is currently in use on",
+        "page-delete-info": "page",
+        "appliedTo-delete-info": "and applied to",
+        "measurement": "measurement",
+        "measurements": "measurements",
+        "deletionIs": "Deletion is",
+        "irreversible": "irreversible",
+        "willDeleteMeasurement": "and will delete the associated measurements.",
+        "confirmDelete": "Are you sure you want to delete this scale?",
+        "ifChangeScale": "If you change the scale for the selected measurement or tool, scale ",
+        "notUsedWillDelete": " will no longer be used by any measurements or tools and will be deleted. Deletion is irreversible.",
+        "ifToContinue": "Are you sure you'd like to continue?"
+      }
     },
     "stylePopup": {
       "textStyle": "Text Style",
@@ -524,11 +590,45 @@
       "specify": "Specify Pages",
       "odd": "Odd Pages only",
       "even": "Even Pages only",
-      "header": "Mark Pages Redaction",
-      "specifyPlaceholder": "1, 3, 5-10"
+      "header": "Mark Pages Redaction"
     },
     "lineStyleOptions": {
       "title": "Style"
+    },
+    "settings": {
+      "settings": "Settings",
+      "general": "General",
+      "keyboardShortcut": "Keyboard Shortcut",
+      "advancedSetting": "Advanced Setting",
+      "language": "Language",
+      "theme": "Theme",
+      "darkMode": "Dark mode",
+      "lightMode": "Light mode",
+      "viewing": "Viewing",
+      "disableFadePageNavigationComponent": "Disable Fade Page Navigation Component",
+      "disableFadePageNavigationComponentDesc": "Always keep the Page Navigation Component on screen. Default behaviour is to fade it after certain period of inactivity.",
+      "disableNativeScrolling": "Disable Native Scrolling",
+      "disableNativeScrollingDesc": "Disable native mobile device scrolling behavior if it had previously been enabled. Note that native mobile device scrolling behavior is off by default.",
+      "annotations": "Annotations",
+      "disableToolDefaultStyleUpdateFromAnnotationPopup": "Disable Tool Default Style Update From Annotation Popup",
+      "disableToolDefaultStyleUpdateFromAnnotationPopupDesc": "Disables syncing of annotation style updates to the associated tool that created the annotation. So if an annotation's style is changed the tool default styles will not be updated.",
+      "notesPanel": "Notes Panel",
+      "disableNoteSubmissionWithEnter": "Disable Note Submission With Enter",
+      "disableNoteSubmissionWithEnterDesc": "Disable the ability to submit notes by only pressing Enter if it had previously been enabled. This will revert note submission to the default which is Ctrl/Cmd + Enter.",
+      "disableAutoExpandCommentThread": "Disable Auto Expand Comment Thread",
+      "disableAutoExpandCommentThreadDesc": "Disables the automatic expansion of all the comments threads in the Notes Panel.",
+      "disableReplyCollapse": "Disable Reply Collapse",
+      "disableReplyCollapseDesc": "Disables the collapsing of the replies in the Notes Panel.",
+      "disableTextCollapse": "Disable Text Collapse",
+      "disableTextCollapseDesc": "Disables the collapsing of the annotation's text in the Notes Panel.",
+      "search": "Search",
+      "disableClearSearchOnPanelClose": "Disable Clear Search On Panel Close",
+      "disableClearSearchOnPanelCloseDesc": "Disable clearing search results when user closes search panel. When disabled, search results are kept even if user closes and reopens search panel. Note, mobile devices never clear search results even if this setting is enabled. This is because the panel needs to be closed to view the search results on the document.",
+      "pageManipulation": "Page Manipulation",
+      "disablePageDeletionConfirmationModal": "Disable Page Deletion Confirmation Modal",
+      "disablePageDeletionConfirmationModalDesc": "Disable the confirmation modal when deleting a page from the thumbnail view",
+      "disableMultiselect": "Disable Multiselect",
+      "disableMultiselectDesc": "Disable multi select in the left thumbnail panel"
     }
   },
   "warning": {
@@ -553,7 +653,7 @@
     },
     "deleteOutline": {
       "title": "Delete Outline?",
-      "message": "Are you sure you want to delete these outlines? \n\n An outline that has any nested outlines will result in the whole thing being deleted and cannot be replaced unless you set them again."
+      "message": "Are you sure you want to delete these outlines?\n\nDeleting an outline that has nested outlines will result in the whole inner structure being deleted and, if needed, will have to be recreated."
     },
     "selectPage": {
       "selectTitle": "No Pages Selected",
@@ -562,6 +662,15 @@
     "colorPicker": {
       "deleteTitle": "Delete custom color",
       "deleteMessage": "Delete the selected custom color? It will be removed from your color palette."
+    },
+    "multiDeleteAnnotation": {
+      "title": "Delete Annotations?",
+      "message": "Deleteing will remove all comments, replies, and grouping and cannot be undone. \n\n Are you sure you want to delete these annotations?"
+    },
+    "closeFile": {
+      "title": "Close without downloading?",
+      "message": "There are changes made to this document, are you sure you want to close it without downloading your work? You can't undo this action.",
+      "rejectDownloadButton": "Close without download"
     }
   },
   "shortcut": {
@@ -645,9 +754,38 @@
       "November",
       "December"
     ],
-    "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
-    "weekdays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    "weekdaysShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    "monthsShort": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sept",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "weekdays": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "weekdaysShort": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "today": "Today",
     "invalidDateTime": "Invalid Date/Time: Input should match format"
   },
@@ -665,6 +803,19 @@
       "options": "Options",
       "radioGroups": "Radio buttons with the same Field Name will belong in the same grouping.",
       "nameRequired": "Field name is required",
+      "fieldIndicator": "Field Indicators",
+      "documentFieldIndicator": "Document Field Indicators",
+      "indicatorPlaceHolders": {
+        "TextFormField": "Insert Text Here",
+        "CheckBoxFormField": "Check",
+        "RadioButtonFormField": "Fill",
+        "ListBoxFormField": "Select",
+        "ComboBoxFormField": "Select",
+        "SignatureFormField": {
+          "fullSignature": "Sign Here",
+          "initialsSignature": "Initial Here"
+        }
+      },
       "size": "Size",
       "width": "Width",
       "height": "Height",
@@ -793,17 +944,21 @@
     "allPages": "All",
     "singlePage": "Current Page",
     "multiPage": "Specify Page",
-    "cropDimensions":"Crop Dimensions",
+    "cropDimensions": "Crop Dimensions",
     "dimensionInput": {
       "unitOfMeasurement": "Unit",
       "autoTrim": "Presets"
     },
     "cropModal": {
       "applyTitle": "Apply crop?",
-      "applyMessage": "This action will permanently crop all selected pages selected. It cannot be undone.",
+      "applyMessage": "This action will permanently crop all selected pages. It cannot be undone.",
       "cancelTitle": "Cancel crop?",
       "cancelMessage": "Are you sure you want to cancel cropping all selected pages?"
     }
+  },
+  "textEditingPanel": {
+    "paragraph": "Paragraph",
+    "text": "Text"
   },
   "redactionPanel": {
     "noMarkedRedactions": "Start redacting by marking text, regions, pages or making a search.",
@@ -815,6 +970,8 @@
       "regionRedaction": "Region redaction",
       "fullPageRedaction": "Full page redaction",
       "fullVideoFrameRedaction": "Video Redaction",
+      "audioRedaction": "Audio Redaction",
+      "fullVideoFrameAndAudioRedaction": "Video and Audio Redaction",
       "image": "Image"
     },
     "expand": "Expand",
@@ -832,9 +989,81 @@
   "wv3dPropertiesPanel": {
     "propertiesHeader": "Properties",
     "miscValuesHeader": "All",
-    "emptyPanelMessage": "Select an element to view its properties"
+    "emptyPanelMessage": "Select an element to view its properties."
   },
   "languageModal": {
     "selectLanguage": "Select language"
+  },
+  "insertPageModal": {
+    "title": "Add New Page",
+    "tabs": {
+      "blank": "Blank",
+      "upload": "Upload"
+    },
+    "pagePlacements": {
+      "header": "Page Placement",
+      "above": "Above Page",
+      "below": "Below Page"
+    },
+    "pageLocations": {
+      "header": "Page Location",
+      "specify": "Specify Page",
+      "amount": "Amount Of Pages",
+      "total": "Total",
+      "pages": "Pages"
+    },
+    "pageDimensions": {
+      "header": "Page Dimensions",
+      "subHeader": "Presets",
+      "presets": {
+        "letter": "Letter",
+        "halfLetter": "Half letter",
+        "juniorLegal": "Junior legal",
+        "custom": "Custom"
+      }
+    },
+    "browse": "Browse Files",
+    "fileSelected": {
+      "title": "Select Pages to Add"
+    },
+    "button": "Add Page(s)"
+  },
+  "multiViewer": {
+    "dragAndDrop": "Drag and Drop your file here to compare",
+    "or": "Or",
+    "browse": "Browse Files",
+    "startSync": "Start Sync",
+    "stopSync": "Stop Sync",
+    "closeDocument": "Close Document",
+    "save": "Save Document",
+    "comparePanel": {
+      "Find": "Find in document",
+      "changesList": "Changes List",
+      "change": "Change",
+      "old": "Old",
+      "new": "New",
+      "page": "Page"
+    }
+  },
+  "saveModal": {
+    "close": "Close",
+    "saveAs": "Save As",
+    "general": "General",
+    "fileName": "File Name",
+    "fileType": "File Type",
+    "fileLocation": "File Location",
+    "browse": "Browse",
+    "pageRange": "Page Range",
+    "all": "All",
+    "currentView": "Current View",
+    "currentPage": "Current Page",
+    "specifyPage": "Specify Page",
+    "properties": "Properties",
+    "includeAnnotation": "Include Annotations",
+    "includeComments": "Include Comments",
+    "watermark": "Watermark",
+    "addWatermark": "Add Watermark",
+    "save": "Save File",
+    "pageError": "Invalid page. Valid page ranges are between  1 - "
   }
 }
