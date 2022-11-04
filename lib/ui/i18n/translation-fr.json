@@ -58,8 +58,6 @@
     "type": "Type",
     "upload": "Télécharger",
     "link": "Lier",
-    "darkMode": "Mode sombre",
-    "lightMode": "Mode clair",
     "fileAttachmentDownload": "Télécharger le fichier joint",
     "prevResult": "Résultat précédent",
     "nextResult": "Résultat suivant",
@@ -94,8 +92,9 @@
     "unselect": "Désélectionner",
     "addMark": "Ajouter une marque",
     "viewFile": "Voir la fiche",
-    "switchLanguage": "Langue",
-    "multiReplyAnnotations": "Répondre aux annotations sélectionnées ({{count}})"
+    "multiReplyAnnotations": "Répondre aux annotations sélectionnées ({{count}})",
+    "comparePages": "Comparer les pages",
+    "startComparison": "Commencer la comparaison"
   },
   "annotation": {
     "areaMeasurement": "Surface mesurée",
@@ -116,6 +115,8 @@
     "freehand": "Stylo",
     "freeHandHighlight": "Mise en évidence de la main libre",
     "freetext": "Texte libre",
+    "markInsertText": "Insérer du texte",
+    "markReplaceText": "Remplacer le texte",
     "highlight": "Surligner",
     "image": "Image",
     "line": "Ligne",
@@ -209,7 +210,8 @@
     "noteGroupSection": {
       "open": "Afficher toutes les annotations",
       "close": "Fermer toutes les annotations"
-    }
+    },
+    "comparePanel": "Panneau de comparaison"
   },
   "message": {
     "toolsOverlayNoPresets": "Aucun préréglage",
@@ -250,6 +252,7 @@
     "existingAnnotationWarning": "Les annotations existantes peuvent ne pas correspondre au texte une fois qu'il a été modifié.",
     "changesCannotBeUndone": "Toute modification apportée ne peut être annulée.",
     "doNotShowAgain": "Ne me montre plus jamais ça",
+    "doNotAskAgain": "Ne demande plus",
     "enterReplacementText": "Entrez le texte que vous souhaitez remplacer",
     "sortBy": "Trier par",
     "emptyCustomStampInput": "Le texte du tampon ne peut pas être vide",
@@ -290,7 +293,9 @@
       "underline": "Souligner",
       "squiggly": "Onduler",
       "3D": "3D",
-      "other": "Autre"
+      "other": "Autre",
+      "initials": "Initiales",
+      "saved": "Enregistré"
     },
     "notesOrder": {
       "dropdownLabel": "Liste des ordres de tri",
@@ -329,7 +334,6 @@
       "pageTransition": "Transition de page"
     },
     "documentControls": {
-      "placeholder": "Entrez les pages à sélectionner, c'est-à-dire 2, 5-9",
       "selectTooltip": "Sélectionnez plusieurs pages",
       "closeTooltip": "Fermer la sélection multiple"
     },
@@ -384,7 +388,15 @@
     "searchPanel": {
       "caseSensitive": "Sensible à la casse",
       "wholeWordOnly": "Mot complet",
-      "wildcard": "Caractère générique"
+      "wildcard": "Caractère générique",
+      "replace": "Remplacer",
+      "replaceAll": "Remplace tout",
+      "replaceText": "Remplacer le texte",
+      "confirmMessageReplaceAll": "Voulez-vous vraiment remplacer tout le texte ?",
+      "confirmMessageReplaceOne": "Voulez-vous vraiment remplacer ce texte ?",
+      "moreOptions": "Plus d'options",
+      "lessOptions": "Moins d'options",
+      "confirm": "Confirmer"
     },
     "toolsOverlay": {
       "currentStamp": "Tampon Actuel",
@@ -395,14 +407,21 @@
       "addStamp": "Ajouter un nouveau tampon"
     },
     "signatureOverlay": {
-      "addSignature": "Ajouter une signature"
+      "addSignature": "Ajouter une signature",
+      "addSignatureOrInitials": "Signature/initiales"
     },
     "signatureModal": {
       "modalName": "Créer une nouvelle signature",
       "dragAndDrop": "Faites glisser et déposez votre image ici",
       "or": "Ou",
       "pickImage": "Choisir l'image de signature",
-      "selectImage": "Sélectionnez votre image ici"
+      "selectImage": "Sélectionnez votre image ici",
+      "typeSignature": "Tapez Signature*",
+      "typeInitial": "Taper les initiales*",
+      "drawSignature": "Tirage au sort Signature*",
+      "drawInitial": "Dessiner des initiales*",
+      "pickInitialsFile": "Choisissez les initiales",
+      "noSignatures": "Il n'y a actuellement aucune signature enregistrée."
     },
     "pageReplacementModal": {
       "dragAndDrop": "Glissez & Déposez votre fichier ici",
@@ -458,7 +477,8 @@
         "preset": "Préréglé",
         "paperUnits": "Unités papier",
         "displayUnits": "Unités d'affichage",
-        "fractionUnitsTooltip": "Les unités de fraction ne s'appliquent qu'à in et ft-in"
+        "fractionUnitsTooltip": "Les unités de fraction ne s'appliquent qu'à in et ft-in",
+        "incorrectSyntax": "Syntaxe incorrecte"
       },
       "scaleOverlay": {
         "addNewScale": "Ajouter une nouvelle échelle",
@@ -476,7 +496,10 @@
         "deletionIs": "La suppression est",
         "irreversible": "irréversible",
         "willDeleteMeasurement": "et supprimera les mesures associées.",
-        "confirmDelete": "Voulez-vous vraiment supprimer cette échelle ?"
+        "confirmDelete": "Voulez-vous vraiment supprimer cette échelle ?",
+        "ifChangeScale": "Si vous modifiez l'échelle de la mesure ou de l'outil sélectionné, l'échelle",
+        "notUsedWillDelete": " ne sera plus utilisé par aucune mesure ou outil et sera supprimé. La suppression est irréversible.",
+        "ifToContinue": "Voulez-vous vraiment continuer ?"
       }
     },
     "stylePopup": {
@@ -567,11 +590,45 @@
       "specify": "Spécifiez les pages",
       "odd": "Pages impaires seulement",
       "even": "Seulement les pages paires",
-      "header": "Marquer la rédaction des pages",
-      "specifyPlaceholder": "1, 3, 5-10"
+      "header": "Marquer la rédaction des pages"
     },
     "lineStyleOptions": {
       "title": "Style"
+    },
+    "settings": {
+      "settings": "Réglages",
+      "general": "Général",
+      "keyboardShortcut": "Raccourci clavier",
+      "advancedSetting": "Paramètre avancé",
+      "language": "Langue",
+      "theme": "Thème",
+      "darkMode": "Mode sombre",
+      "lightMode": "Mode lumière",
+      "viewing": "Affichage",
+      "disableFadePageNavigationComponent": "Désactiver le composant de navigation de page de fondu",
+      "disableFadePageNavigationComponentDesc": "Gardez toujours le composant de navigation de page à l'écran. Le comportement par défaut est de le faire disparaître après une certaine période d'inactivité.",
+      "disableNativeScrolling": "Désactiver le défilement natif",
+      "disableNativeScrollingDesc": "Désactivez le comportement de défilement natif des appareils mobiles s'il avait déjà été activé. Notez que le comportement de défilement natif des appareils mobiles est désactivé par défaut.",
+      "annotations": "Remarques",
+      "disableToolDefaultStyleUpdateFromAnnotationPopup": "Désactiver la mise à jour du style par défaut de l'outil à partir de la fenêtre contextuelle d'annotation",
+      "disableToolDefaultStyleUpdateFromAnnotationPopupDesc": "Désactive la synchronisation des mises à jour de style d'annotation avec l'outil associé qui a créé l'annotation. Ainsi, si le style d'une annotation est modifié, les styles par défaut de l'outil ne seront pas mis à jour.",
+      "notesPanel": "Panneau de commentaires",
+      "disableNoteSubmissionWithEnter": "Désactiver la soumission de notes avec Entrée",
+      "disableNoteSubmissionWithEnterDesc": "Désactivez la possibilité de soumettre des notes en appuyant uniquement sur Entrée si elle avait déjà été activée. Cela rétablira la soumission de note à la valeur par défaut qui est Ctrl/Cmd + Entrée.",
+      "disableAutoExpandCommentThread": "Désactiver le fil de commentaires à développement automatique",
+      "disableAutoExpandCommentThreadDesc": "Désactive l'expansion automatique de tous les fils de commentaires dans le panneau Notes.",
+      "disableReplyCollapse": "Désactiver la réduction de la réponse",
+      "disableReplyCollapseDesc": "Désactive la réduction des réponses dans le panneau Notes.",
+      "disableTextCollapse": "Désactiver la réduction du texte",
+      "disableTextCollapseDesc": "Désactive la réduction du texte de l'annotation dans le panneau Notes.",
+      "search": "Chercher",
+      "disableClearSearchOnPanelClose": "Désactiver Effacer la recherche sur le panneau Fermer",
+      "disableClearSearchOnPanelCloseDesc": "Désactivez l'effacement des résultats de recherche lorsque l'utilisateur ferme le panneau de recherche. Lorsqu'il est désactivé, les résultats de la recherche sont conservés même si l'utilisateur ferme et rouvre le panneau de recherche. Notez que les appareils mobiles n'effacent jamais les résultats de recherche, même si ce paramètre est activé. En effet, le panneau doit être fermé pour afficher les résultats de la recherche sur le document.",
+      "pageManipulation": "Manipulation de pages",
+      "disablePageDeletionConfirmationModal": "Désactiver la modalité de confirmation de suppression de page",
+      "disablePageDeletionConfirmationModalDesc": "Désactiver le modal de confirmation lors de la suppression d'une page de la vue des vignettes",
+      "disableMultiselect": "Désactiver la sélection multiple",
+      "disableMultiselectDesc": "Désactiver la sélection multiple dans le panneau des vignettes de gauche"
     }
   },
   "warning": {
@@ -609,6 +666,11 @@
     "multiDeleteAnnotation": {
       "title": "Supprimer les annotations ?",
       "message": "La suppression supprimera tous les commentaires, réponses et regroupements et ne pourra pas être annulée.\n\n Voulez-vous vraiment supprimer ces annotations ?"
+    },
+    "closeFile": {
+      "title": "Fermer sans télécharger?",
+      "message": "Des modifications ont été apportées à ce document, êtes-vous sûr de vouloir le fermer sans télécharger votre travail ? Vous ne pouvez pas annuler cette action.",
+      "rejectDownloadButton": "Fermer sans téléchargement"
     }
   },
   "shortcut": {
@@ -741,6 +803,19 @@
       "options": "Options",
       "radioGroups": "Les boutons radio avec le même nom de champ appartiendront au même groupement.",
       "nameRequired": "Le nom du champ est obligatoire",
+      "fieldIndicator": "Indicateurs de terrain",
+      "documentFieldIndicator": "Indicateurs de champ de document",
+      "indicatorPlaceHolders": {
+        "TextFormField": "Insérer le texte ici",
+        "CheckBoxFormField": "Vérifier",
+        "RadioButtonFormField": "Remplir",
+        "ListBoxFormField": "Sélectionner",
+        "ComboBoxFormField": "Sélectionner",
+        "SignatureFormField": {
+          "fullSignature": "Signez ici",
+          "initialsSignature": "Vos initiales ici"
+        }
+      },
       "size": "Taille",
       "width": "Largeur",
       "height": "Hauteur",
@@ -918,5 +993,77 @@
   },
   "languageModal": {
     "selectLanguage": "Choisir la langue"
+  },
+  "insertPageModal": {
+    "title": "Ajouter une nouvelle page",
+    "tabs": {
+      "blank": "Blanc",
+      "upload": "Télécharger"
+    },
+    "pagePlacements": {
+      "header": "Positionnement des pages",
+      "above": "Au-dessus de la page",
+      "below": "Sous la page"
+    },
+    "pageLocations": {
+      "header": "Emplacement de la page",
+      "specify": "Spécifier la page",
+      "amount": "Nombre de pages",
+      "total": "Total",
+      "pages": "pages"
+    },
+    "pageDimensions": {
+      "header": "Dimensions des pages",
+      "subHeader": "Préconfigurations",
+      "presets": {
+        "letter": "Lettre",
+        "halfLetter": "Demi-lettre",
+        "juniorLegal": "Juriste junior",
+        "custom": "Personnalisé"
+      }
+    },
+    "browse": "Parcourir les fichiers",
+    "fileSelected": {
+      "title": "Sélectionnez les pages à ajouter"
+    },
+    "button": "Ajouter des pages"
+  },
+  "multiViewer": {
+    "dragAndDrop": "Faites glisser et déposez votre fichier ici pour comparer",
+    "or": "Ou",
+    "browse": "Parcourir les fichiers",
+    "startSync": "Démarrer la synchronisation",
+    "stopSync": "Arrêter la synchronisation",
+    "closeDocument": "Fermer le document",
+    "save": "Enregistrer le document",
+    "comparePanel": {
+      "Find": "Rechercher dans le document",
+      "changesList": "Liste des modifications",
+      "change": "Changer",
+      "old": "Agé de",
+      "new": "Nouveau",
+      "page": "Page"
+    }
+  },
+  "saveModal": {
+    "close": "proche",
+    "saveAs": "Enregistrer sous",
+    "general": "Général",
+    "fileName": "Nom de fichier",
+    "fileType": "Type de fichier",
+    "fileLocation": "Emplacement du fichier",
+    "browse": "Parcourir",
+    "pageRange": "Intervalle de pages",
+    "all": "Tout",
+    "currentView": "Vue actuelle",
+    "currentPage": "Page actuelle",
+    "specifyPage": "Spécifier la page",
+    "properties": "Propriétés",
+    "includeAnnotation": "Inclure les annotations",
+    "includeComments": "Inclure les commentaires",
+    "watermark": "Filigrane",
+    "addWatermark": "Ajouter un filigrane",
+    "save": "Enregistrer le fichier",
+    "pageError": "Page invalide. Les plages de pages valides sont comprises entre 1 et"
   }
 }

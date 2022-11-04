@@ -58,8 +58,6 @@
     "type": "Тип",
     "upload": "Завантажити",
     "link": "Посилання",
-    "darkMode": "Темний режим",
-    "lightMode": "Світлий режим",
     "fileAttachmentDownload": "Завантажте вкладений файл",
     "prevResult": "Попередній результат",
     "nextResult": "Наступний результат",
@@ -94,8 +92,9 @@
     "unselect": "Скасувати вибір",
     "addMark": "Додайте позначку",
     "viewFile": "Переглянути файл",
-    "switchLanguage": "Мову",
-    "multiReplyAnnotations": "Відповідь на вибрані анотації ({{count}})"
+    "multiReplyAnnotations": "Відповідь на вибрані анотації ({{count}})",
+    "comparePages": "Порівняти сторінки",
+    "startComparison": "Почати порівняння"
   },
   "annotation": {
     "areaMeasurement": "Площа",
@@ -116,6 +115,8 @@
     "freehand": "Вільна рука",
     "freeHandHighlight": "Підсвічування вільної руки",
     "freetext": "Безкоштовний текст",
+    "markInsertText": "Вставити текст",
+    "markReplaceText": "Замінити текст",
     "highlight": "Виділіть",
     "image": "Зображення",
     "line": "Лінія",
@@ -209,7 +210,8 @@
     "noteGroupSection": {
       "open": "Переглянути всі анотації",
       "close": "Закрити всі анотації"
-    }
+    },
+    "comparePanel": "Панель порівняння"
   },
   "message": {
     "toolsOverlayNoPresets": "Без попередніх налаштувань",
@@ -250,6 +252,7 @@
     "existingAnnotationWarning": "Існуючі анотації можуть не збігатися з текстом після його редагування.",
     "changesCannotBeUndone": "Будь-які внесені зміни не можна скасувати.",
     "doNotShowAgain": "Не показуйте мені цього більше",
+    "doNotAskAgain": "Не запитуй знову",
     "enterReplacementText": "Введіть текст, який потрібно замінити",
     "sortBy": "Сортувати",
     "emptyCustomStampInput": "Текст штампа не може бути порожнім",
@@ -290,7 +293,9 @@
       "underline": "Підкресли",
       "squiggly": "Хвиляста",
       "3D": "3D",
-      "other": "Інший"
+      "other": "Інший",
+      "initials": "Ініціали",
+      "saved": "Збережено"
     },
     "notesOrder": {
       "dropdownLabel": "Список порядку сортування",
@@ -329,7 +334,6 @@
       "pageTransition": "Перехід сторінки"
     },
     "documentControls": {
-      "placeholder": "1, 3, 5-10",
       "selectTooltip": "Виберіть кілька сторінок",
       "closeTooltip": "Закрити множинний вибір"
     },
@@ -384,7 +388,15 @@
     "searchPanel": {
       "caseSensitive": "Чутливий до регістру",
       "wholeWordOnly": "Ціле слово",
-      "wildcard": "Підстановка"
+      "wildcard": "Підстановка",
+      "replace": "Замінити",
+      "replaceAll": "Замінити все",
+      "replaceText": "Замінити текст",
+      "confirmMessageReplaceAll": "Ви впевнені, що хочете замінити весь текст?",
+      "confirmMessageReplaceOne": "Ви впевнені, що хочете замінити цей текст?",
+      "moreOptions": "Більше варіантів",
+      "lessOptions": "Менше варіантів",
+      "confirm": "Підтвердьте"
     },
     "toolsOverlay": {
       "currentStamp": "Актуальна марка",
@@ -395,14 +407,21 @@
       "addStamp": "Додати новий штамп"
     },
     "signatureOverlay": {
-      "addSignature": "Додати новий підпис"
+      "addSignature": "Додати новий підпис",
+      "addSignatureOrInitials": "Підпис/Ініціали"
     },
     "signatureModal": {
       "modalName": "Створити новий підпис",
       "dragAndDrop": "Перетягніть сюди своє зображення",
       "or": "Або",
       "pickImage": "Виберіть підпис",
-      "selectImage": "Виберіть тут своє зображення"
+      "selectImage": "Виберіть тут своє зображення",
+      "typeSignature": "Тип Підпис*",
+      "typeInitial": "Введіть ініціали*",
+      "drawSignature": "Намалювати підпис*",
+      "drawInitial": "Намалювати ініціали*",
+      "pickInitialsFile": "Виберіть Ініціали",
+      "noSignatures": "Наразі немає збережених підписів."
     },
     "pageReplacementModal": {
       "dragAndDrop": "Перетягніть свій файл сюди",
@@ -458,7 +477,8 @@
         "preset": "Попередньо встановлені",
         "paperUnits": "Паперові одиниці",
         "displayUnits": "Блоки відображення",
-        "fractionUnitsTooltip": "Одиниці частки застосовуються лише до in та ft-in"
+        "fractionUnitsTooltip": "Одиниці частки застосовуються лише до in та ft-in",
+        "incorrectSyntax": "Неправильний синтаксис"
       },
       "scaleOverlay": {
         "addNewScale": "Додати новий масштаб",
@@ -476,7 +496,10 @@
         "deletionIs": "Видалення є",
         "irreversible": "незворотні",
         "willDeleteMeasurement": "і видалить пов’язані вимірювання.",
-        "confirmDelete": "Ви впевнені, що хочете видалити цю шкалу?"
+        "confirmDelete": "Ви впевнені, що хочете видалити цю шкалу?",
+        "ifChangeScale": "Якщо ви змінюєте масштаб для вибраного вимірювання або інструменту, масштабуйте",
+        "notUsedWillDelete": " більше не використовуватимуться для вимірювань чи інструментів і будуть видалені. Видалення незворотне.",
+        "ifToContinue": "Ви впевнені, що бажаєте продовжити?"
       }
     },
     "stylePopup": {
@@ -567,11 +590,45 @@
       "specify": "Вкажіть сторінки",
       "odd": "Тільки непарні сторінки",
       "even": "Лише парні сторінки",
-      "header": "Позначте Редагування сторінок",
-      "specifyPlaceholder": "1, 3, 5-10"
+      "header": "Позначте Редагування сторінок"
     },
     "lineStyleOptions": {
       "title": "Стиль"
+    },
+    "settings": {
+      "settings": "Налаштування",
+      "general": "Загальний",
+      "keyboardShortcut": "Комбінація клавіш",
+      "advancedSetting": "Розширені налаштування",
+      "language": "Мову",
+      "theme": "Тема",
+      "darkMode": "Темний режим",
+      "lightMode": "Світловий режим",
+      "viewing": "Перегляд",
+      "disableFadePageNavigationComponent": "Вимкнути навігаційний компонент Fade Page",
+      "disableFadePageNavigationComponentDesc": "Завжди тримайте компонент навігації сторінкою на екрані. Поведінка за замовчуванням — зникати після певного періоду бездіяльності.",
+      "disableNativeScrolling": "Вимкнути власну прокрутку",
+      "disableNativeScrollingDesc": "Вимкніть власну поведінку прокручування мобільного пристрою, якщо її було ввімкнено раніше. Зауважте, що стандартну поведінку прокручування мобільного пристрою вимкнено за умовчанням.",
+      "annotations": "Анотації",
+      "disableToolDefaultStyleUpdateFromAnnotationPopup": "Вимкнути оновлення стилю інструмента за замовчуванням зі спливаючого вікна анотації",
+      "disableToolDefaultStyleUpdateFromAnnotationPopupDesc": "Вимикає синхронізацію оновлень стилю анотації з пов’язаним інструментом, який створив анотацію. Отже, якщо стиль анотації змінено, стандартні стилі інструмента не оновлюватимуться.",
+      "notesPanel": "Панель приміток",
+      "disableNoteSubmissionWithEnter": "Вимкніть надсилання приміток за допомогою Enter",
+      "disableNoteSubmissionWithEnterDesc": "Вимкніть можливість подавати нотатки, лише натиснувши клавішу Enter, якщо її було ввімкнено раніше. Це поверне подання нотаток до типового значення, яке є Ctrl/Cmd + Enter.",
+      "disableAutoExpandCommentThread": "Вимкнути автоматичне розширення ланцюжка коментарів",
+      "disableAutoExpandCommentThreadDesc": "Вимикає автоматичне розгортання всіх потоків коментарів на панелі приміток.",
+      "disableReplyCollapse": "Вимкнути згортання відповіді",
+      "disableReplyCollapseDesc": "Вимикає згортання відповідей на панелі приміток.",
+      "disableTextCollapse": "Вимкнути згортання тексту",
+      "disableTextCollapseDesc": "Вимикає згортання тексту анотації на панелі приміток.",
+      "search": "Пошук",
+      "disableClearSearchOnPanelClose": "Вимкнути Clear Search на панелі Close",
+      "disableClearSearchOnPanelCloseDesc": "Вимкнути очищення результатів пошуку, коли користувач закриває панель пошуку. Якщо вимкнено, результати пошуку зберігаються, навіть якщо користувач закриває та знову відкриває панель пошуку. Зауважте, що мобільні пристрої ніколи не очищають результати пошуку, навіть якщо цей параметр увімкнено. Це відбувається тому, що для перегляду результатів пошуку в документі панель потрібно закрити.",
+      "pageManipulation": "Маніпуляція сторінкою",
+      "disablePageDeletionConfirmationModal": "Вимкнути модаль підтвердження видалення сторінки",
+      "disablePageDeletionConfirmationModalDesc": "Вимкніть режим підтвердження під час видалення сторінки з перегляду мініатюр",
+      "disableMultiselect": "Вимкнути Multiselect",
+      "disableMultiselectDesc": "Вимкніть багаторазовий вибір на лівій панелі мініатюр"
     }
   },
   "warning": {
@@ -609,6 +666,11 @@
     "multiDeleteAnnotation": {
       "title": "Видалити анотації?",
       "message": "Видалення видалить усі коментарі, відповіді та групування, і цю дію неможливо скасувати.\n\n Ви впевнені, що хочете видалити ці анотації?"
+    },
+    "closeFile": {
+      "title": "Закрити без завантаження?",
+      "message": "У цей документ внесено зміни. Ви впевнені, що бажаєте закрити його, не завантажуючи свою роботу? Ви не можете скасувати цю дію.",
+      "rejectDownloadButton": "Закрити без завантаження"
     }
   },
   "shortcut": {
@@ -741,6 +803,19 @@
       "options": "Параметри",
       "radioGroups": "Перемикач з однаковою назвою поля належатиме до тієї ж групи.",
       "nameRequired": "Ім’я поля обов’язкове",
+      "fieldIndicator": "Індикатори полів",
+      "documentFieldIndicator": "Індикатори полів документа",
+      "indicatorPlaceHolders": {
+        "TextFormField": "Вставте текст тут",
+        "CheckBoxFormField": "Перевірте",
+        "RadioButtonFormField": "Заповнити",
+        "ListBoxFormField": "Виберіть",
+        "ComboBoxFormField": "Виберіть",
+        "SignatureFormField": {
+          "fullSignature": "Підпишіть тут",
+          "initialsSignature": "Ініціал тут"
+        }
+      },
       "size": "Розмір",
       "width": "Ширина",
       "height": "Висота",
@@ -918,5 +993,77 @@
   },
   "languageModal": {
     "selectLanguage": "Оберіть мову"
+  },
+  "insertPageModal": {
+    "title": "Додати нову сторінку",
+    "tabs": {
+      "blank": "Пустий",
+      "upload": "Завантажити"
+    },
+    "pagePlacements": {
+      "header": "Розміщення сторінки",
+      "above": "Над сторінкою",
+      "below": "Нижче сторінки"
+    },
+    "pageLocations": {
+      "header": "Розташування сторінки",
+      "specify": "Вкажіть сторінку",
+      "amount": "Кількість сторінок",
+      "total": "Всього",
+      "pages": "сторінки"
+    },
+    "pageDimensions": {
+      "header": "Розміри сторінки",
+      "subHeader": "Предустановки",
+      "presets": {
+        "letter": "лист",
+        "halfLetter": "Половина листа",
+        "juniorLegal": "Молодший юридичний",
+        "custom": "Custom"
+      }
+    },
+    "browse": "Огляд файлів",
+    "fileSelected": {
+      "title": "Виберіть Сторінки для додавання"
+    },
+    "button": "Додати сторінку(и)"
+  },
+  "multiViewer": {
+    "dragAndDrop": "Перетягніть свій файл сюди, щоб порівняти",
+    "or": "Або",
+    "browse": "Огляд файлів",
+    "startSync": "Запустіть синхронізацію",
+    "stopSync": "Зупинити синхронізацію",
+    "closeDocument": "Закрити документ",
+    "save": "Зберегти документ",
+    "comparePanel": {
+      "Find": "Знайти в документі",
+      "changesList": "Список змін",
+      "change": "Зміна",
+      "old": "Старий",
+      "new": "новий",
+      "page": "Сторінка"
+    }
+  },
+  "saveModal": {
+    "close": "Закрити",
+    "saveAs": "Зберегти як",
+    "general": "Загальний",
+    "fileName": "Ім'я файлу",
+    "fileType": "Тип файлу",
+    "fileLocation": "Розташування файлу",
+    "browse": "переглядати",
+    "pageRange": "Діапазон сторінок",
+    "all": "всі",
+    "currentView": "Поточний вигляд",
+    "currentPage": "Поточна сторінка",
+    "specifyPage": "Вкажіть сторінку",
+    "properties": "Властивості",
+    "includeAnnotation": "Додайте анотації",
+    "includeComments": "Додайте коментарі",
+    "watermark": "Водяний знак",
+    "addWatermark": "Додати водяний знак",
+    "save": "Зберегти файл",
+    "pageError": "Недійсна сторінка. Дійсні діапазони сторінок від 1 до"
   }
 }

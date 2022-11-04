@@ -2808,7 +2808,7 @@ declare namespace Core.PDFNet {
          */
         getLockedFields(): Promise<string[]>;
         /**
-         * Verifies this cryptographic digital signature in the manner specified by the VerificationOptions. EXPERIMENTAL. Digital signature verification is undergoing active development, but currently does not support a number of features. If we are missing a feature that is important to you, or if you have files that do not act as expected, please contact us using one of the following forms: https://www.pdftron.com/form/trial-support/ or https://www.pdftron.com/form/request/
+         * Verifies this cryptographic digital signature in the manner specified by the VerificationOptions.
          * @param in_opts - - The options specifying how to do the verification.
          * @returns A promise that resolves to a VerificationResult object containing various information about the verifiability of the cryptographic digital signature.
          */
@@ -18878,6 +18878,10 @@ declare namespace Core.PDFNet {
          */
         setRevocationProxyPrefix(in_str: string): Promise<void>;
         /**
+         * Sets the timeout for online revocation requests.
+         */
+        setRevocationTimeout(in_revocation_timeout_milliseconds: number): Promise<void>;
+        /**
          * Enables/disables online CRL revocation checking. The default setting is
          * for it to be turned off, but this may change in future versions.
          *
@@ -20339,12 +20343,12 @@ declare namespace Core.PDFNet {
          */
         class XODOutputOptions extends PDFNet.Convert.XPSOutputCommonOptions {
             /**
-             * Sets whether per page thumbnails should be included in the file.
-            Default is true.
-             * @param include_thumbs - if true thumbnails will be included
+             * Sets whether text extraction uses Z-order as reading order.
+            Default is false.
+             * @param use_zorder - if true text extraction uses Z-order as reading order.
              * @returns this object, for call chaining
              */
-            setOutputThumbnails(include_thumbs: boolean): PDFNet.Convert.XODOutputOptions;
+            setExtractUsingZorder(use_zorder: boolean): PDFNet.Convert.XODOutputOptions;
             /**
              * Sets whether per page thumbnails should be included in the file.
             Default is true.
@@ -22727,27 +22731,6 @@ declare type AnnotationStyleTabConfiguration = {
 };
 
 /**
- * Set the zoom step size for zooming in/out.
- * @example
- * WebViewer(...)
- *   .then(function(instance) {
- *     const documentViewer = instance.Core.documentViewer;
- *
- *     // you must have a document loaded when calling this api
- *     documentViewer.addEventListener('documentLoaded', function() {
- *       instance.UI.setZoomStepFactors([
- *         {
- *           step: 50,
- *           startZoom: 0
- *         }
- *       ]);
- *     });
- *   });
- * @param zoomStepFactors - an array that contains objects of zoomStep and zoom start level. zoomStepFactors must contain at least one zoomStepFactor object that has startZoom: 0
- */
-declare type zoomStepFactor = {};
-
-/**
  * WebViewer Instance Core namespace.
  * The namespace containing WebViewer's core user controls, including DocumentViewer control and the Document class.
  * @example
@@ -23419,6 +23402,38 @@ declare namespace Core {
                 [key: string]: Core.Annotations.Annotation.RichTextCSSStyle;
             };
             /**
+             * An object that represents an annotation attchment.
+             * @example
+             * {
+             *   name: 'test_image.png',
+             *   size: 1024
+             *   type: 'image/png',
+             *   content: '789CAD79075453DBD62E2DF',
+             * }
+             */
+            type AnnotationAttachment = {
+                /**
+                 * Name of the attachment
+                 */
+                name: string;
+                /**
+                 * Size of the attachment
+                 */
+                size: number;
+                /**
+                 * MIME type of the attachment
+                 */
+                type: string;
+                /**
+                 * Compressed data of the attachment
+                 */
+                content?: string;
+                /**
+                 * URL pointing to the attachment saved on cloud
+                 */
+                url?: string;
+            };
+            /**
              */
             type RichTextCSSStyle = {
                 'font-style'?: 'normal' | 'italic';
@@ -23713,6 +23728,15 @@ declare namespace Core {
              */
             getReplies(): Core.Annotations.Annotation[];
             /**
+             * Sets the attachments of the annotation.
+             * @param files - Array of attachments data.
+             */
+            setAttachments(files: (File | Core.Annotations.Annotation.AnnotationAttachment)[]): void;
+            /**
+             * Gets the attachments of the annotation.
+             */
+            getAttachments(): Core.Annotations.Annotation.AnnotationAttachment[];
+            /**
              * Gets the list of group children to this annotation.
              * @returns The list of group children
              */
@@ -23820,6 +23844,17 @@ declare namespace Core {
              */
             deserialize(element: Element, pageMatrix: any): void;
             /**
+             * Sets the number to be associated with this annotation.
+             * @param number - The number to be associated with this annotation.
+             */
+            setAssociatedNumber(number: number): void;
+            /**
+             * Gets the number associated with this annotation, if any.
+             * @returns The number associated with this annotation. If no number
+             * is associated then undefined is returned.
+             */
+            getAssociatedNumber(): number | undefined;
+            /**
              * Gets or sets the annotation's x-axis position.
              */
             X: number;
@@ -23876,7 +23911,7 @@ declare namespace Core {
              */
             IsDeleted: boolean;
             /**
-             * Gets or sets whether the annotation should be listed in annotation lists. If set to true the annotation also will not be selectable.
+             * Gets or sets whether the annotation should be listed in annotation lists. If set to false the annotation also will not be selectable.
              */
             Listable: boolean;
             /**
@@ -24418,6 +24453,22 @@ declare namespace Core {
              */
             static showPaddingWhenAnnotationIsSmall: boolean;
             /**
+             * Defines a function to set selection padding on specific types of annotations.
+             * @example
+             * const { Annotations } = instance.Core;
+             * Annotations.SelectionModel.setSelectionModelPaddingHandler((annotation) => {
+             *  if (annotation instanceof Annotations.FreeTextAnnotation) {
+             *    return 30;
+             *  }
+             *  if (annotation instanceof Annotations.RectangleAnnotation) {
+             *    return 20;
+             *  }
+             *  return 0;
+             * });
+             * @param fn - A function that returns the padding value for specific types of annotations
+             */
+            static setSelectionModelPaddingHandler(fn: (...params: any[]) => any): void;
+            /**
              * Determines if the provided point is a hit on the selected annotationhandle.
              * * See {@link Core.Annotations.SelectionAlgorithm} for usuable selection algorithms.
              * @param annotation - the annotation
@@ -24555,7 +24606,7 @@ declare namespace Core {
             /**
              * Gets or sets the border dash style of an annotation. e.g '3' or '3,3'
              */
-            Dashes: string;
+            Dashes: string | number[];
             /**
              * Gets or sets the annotation's precision from its measure dictionary.
              * @example
@@ -24683,7 +24734,7 @@ declare namespace Core {
             /**
              * Gets or sets the border dash style of an annotation. e.g '3' or '3,3'
              */
-            Dashes: string;
+            Dashes: string | number[];
             /**
              * Gets or sets the annotation's precision from its measure dictionary.
              * @example
@@ -25167,7 +25218,7 @@ declare namespace Core {
             /**
              * Gets or sets the border dash style of an annotation. e.g '3' or '3,3'
              */
-            Dashes: string;
+            Dashes: string | number[];
             /**
              * Gets or sets the annotation's precision from its measure dictionary.
              * @example
@@ -25350,7 +25401,7 @@ declare namespace Core {
             /**
              * Gets or sets the border dash style of an annotation. e.g '3' or '3,3'
              */
-            Dashes: string;
+            Dashes: string | number[];
             /**
              * Gets or sets the annotation's precision from its measure dictionary.
              * @example
@@ -25476,7 +25527,7 @@ declare namespace Core {
             /**
              * Gets or sets the border dash style of an annotation. e.g '3' or '3,3'
              */
-            Dashes: string;
+            Dashes: string | number[];
             /**
              * Gets or sets the annotation's precision from its measure dictionary.
              * @example
@@ -26026,6 +26077,16 @@ declare namespace Core {
              */
             setAssociatedSignatureAnnotation(associatedSignatureAnnotation: Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation): void;
             /**
+             * Returns true if the Widget is setup to take Initials
+             * @returns Boolean representing whether this widget is setup for initials or signatures. Based on this flag it will either render the "Sign Here" text handler or "Initials"
+             */
+            requiresInitials(): boolean;
+            /**
+             * Signs a signature widget by adding a signature annotation that is rotated and resized accordingly.
+             * @param signature - a freehand annotation or a stamp annotation to sign with.
+             */
+            sign(signature: Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation): void;
+            /**
              * Get or set the annotation associated with the signature widget.
              */
             annot: Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation;
@@ -26072,6 +26133,12 @@ declare namespace Core {
              * @param value - The new value to set
              */
             setValue(value: string | number): void;
+            /**
+             * Set the widget's field indicator.
+             * @param showIndicator - Whether or not the indicator should be shown.
+             * @param [indicatorText] - The text to show in the indicator. Whatever was previously set will show if not included.
+             */
+            setFieldIndicator(showIndicator: boolean, indicatorText?: string): void;
             /**
              * Gets the widget's associated field.
              * @returns The widget's field.
@@ -26888,6 +26955,18 @@ declare namespace Core {
             }): TextMetrics;
         }
         /**
+         * The namespace for utility functions for file attachment.
+         */
+        class FileAttachmentUtils {
+            /**
+             * Decompress the file data with FlateDecode.
+             * @param fileData - The compressed file data as string.
+             * @param [mimeType] - The mime type of the file.
+             * @returns Resolves with the decompressed file data as Blob.
+             */
+            decompressWithFlateDecode(fileData: string, mimeType?: string): Promise<Blob>;
+        }
+        /**
          * The namespace for utility functions for annotation rotation.
          */
         class RotationUtils {
@@ -27112,6 +27191,19 @@ declare namespace Core {
             DIAMOND,
             CIRCLE,
             SLASH
+        }
+        /**
+         * An enum representing different line types that are available for line annotations
+         */
+        enum LineStyleType {
+            SOLID,
+            DASH_1_2_2,
+            DASH_3_3,
+            DASH_3_3_4,
+            DASH_1_3_5,
+            DASH_2_2_4,
+            DASH_4_3_16_3,
+            CLOUDY
         }
     }
     /**
@@ -27856,6 +27948,21 @@ declare namespace Core {
          */
         getSnapDefaultOptions(): Core.AnnotationManager.snapDefaultOptions;
         /**
+         * Enables annotation numbering. As annotations are imported/created they will each be numbered.
+         * Starting at 1, each annotation will be assigned the next greatest available number.
+         * Only listable will be numbered and contribute to the count.
+         */
+        enableAnnotationNumbering(): void;
+        /**
+         * Disables annotation numbering.
+         */
+        disableAnnotationNumbering(): void;
+        /**
+         * Returns a list of annotations that were added by DocumentViewer.startSemanticDiff
+         * returns an empty list if semanticDiff was not started
+         */
+        getSemanticDiffAnnotations(): void;
+        /**
          * Triggered when an annotation or annotations have been changed (added, deleted, modified).
          * Attach like annotManager.addEventListener('annotationChanged', callback)
          * @param annotations - The annotations that were changed
@@ -28034,6 +28141,7 @@ declare namespace Core {
          * @property ANNOTATION_DESELECTED - {@link Core.AnnotationManager#event:annotationDeselected Core.AnnotationManager.annotationDeselected }
          * @property ANNOTATION_DOUBLE_CLICKED - {@link Core.AnnotationManager#event:annotationDoubleClicked Core.AnnotationManager.annotationDoubleClicked }
          * @property ANNOTATION_CHANGED - {@link Core.AnnotationManager#event:annotationChanged Core.AnnotationManager.annotationChanged }
+         * @property ANNOTATION_NUMBERING_UPDATED - {@link Core.AnnotationManager#event:annotationNumberingUpdated Core.AnnotationManager.annotationNumberingUpdated }
          * @property UPDATE_ANNOTATION_PERMISSION - {@link Core.AnnotationManager#event:updateAnnotationPermission Core.AnnotationManager.updateAnnotationPermission }
          * @property ANNOTATIONS_DRAWN - {@link Core.AnnotationManager#event:annotationsDrawn Core.AnnotationManager.annotationsDrawn }
          * @property ANNOTATION_HIDDEN - {@link Core.AnnotationManager#event:annotationHidden Core.AnnotationManager.annotationHidden }
@@ -28060,6 +28168,10 @@ declare namespace Core {
              * {@link Core.AnnotationManager#event:annotationChanged Core.AnnotationManager.annotationChanged }
              */
             ANNOTATION_CHANGED: string;
+            /**
+             * {@link Core.AnnotationManager#event:annotationNumberingUpdated Core.AnnotationManager.annotationNumberingUpdated }
+             */
+            ANNOTATION_NUMBERING_UPDATED: string;
             /**
              * {@link Core.AnnotationManager#event:updateAnnotationPermission Core.AnnotationManager.updateAnnotationPermission }
              */
@@ -28356,6 +28468,10 @@ declare namespace Core {
          * If true, source will be considered as relative path/url.
          */
         isRelativePath?: boolean;
+        /**
+         * If true, will retrieve invalid bookmarks
+         */
+        showInvalidBookmarks?: boolean;
         /**
          * An object that contains the options for an Office document.
          */
@@ -28851,6 +28967,7 @@ declare namespace Core {
          * @param [options.width] - Used to calculate the zoom level if zoom level is not provided. If it's passed the zoom level will be set so the document fits this width. If both width and height are passed the zoom level will be set so the document fits the box delimited by them.
          * @param [options.multiplier] - The quality of the loaded canvas. Must be a positive number. Higher values are higher quality but take longer to complete and use more memory.
          * @param [options.source] - Indicate the origin of the call. This may be used by the Document's implementation of loadCanvasAsync.
+         * @param [options.allowUseOfOptimizedThumbnail] - Whether to allow the use of optimized thumbnails.
          * @returns An id that can be passed to the corresponding Pause, Resume or Cancel functions
          */
         loadCanvasAsync(options: {
@@ -28871,6 +28988,7 @@ declare namespace Core {
             width?: number;
             multiplier?: number;
             source?: string;
+            allowUseOfOptimizedThumbnail?: boolean;
         }): string;
         /**
          * Loads a canvas for a particular page number.
@@ -28892,6 +29010,7 @@ declare namespace Core {
          * @param [options.width] - Used to calculate the zoom level if zoom level is not provided. If it's passed the zoom level will be set so the document fits this width. If both width and height are passed the zoom level will be set so the document fits the box delimited by them.
          * @param [options.multiplier] - The quality of the loaded canvas. Must be a positive number. Higher values are higher quality but take longer to complete and use more memory.
          * @param [options.source] - Indicate the origin of the call. This may be used by the Document's implementation of loadCanvasAsync.
+         * @param [options.allowUseOfOptimizedThumbnail] - Whether to allow the use of optimized thumbnails.
          * @returns An id that can be passed to the corresponding Pause, Resume or Cancel functions
          */
         loadCanvas(options: {
@@ -28912,6 +29031,7 @@ declare namespace Core {
             width?: number;
             multiplier?: number;
             source?: string;
+            allowUseOfOptimizedThumbnail?: boolean;
         }): string;
         /**
          * Gets all the text on the requested page.
@@ -29156,7 +29276,7 @@ declare namespace Core {
          */
         getPageRotation(pageNumber: number): number;
         /**
-         * @returns returns user defined document id passed in WebViewer constructor constorctor or loadDocument API, e.g.
+         * @returns returns user defined document id passed in WebViewer constructor or loadDocument API, e.g.
          * WebViewer({ documentId: 'foo-11', initialDoc: 'url'  }) or instance.loadDocument(url, { documentId: 'foo-11' })
          */
         getDocumentId(): string;
@@ -29754,9 +29874,12 @@ declare namespace Core {
          * Initialize the viewer and load the given file into the viewer.
          * @param src - Source parameter, path/url to document or File.
          * @param [options] - Load document options.
+         * @param [options.loadAnnotations = true] - Whether to load document with or without annotations
          * @returns A promise that resolves when the document is finished loading
          */
-        loadDocument(src: string | File | ArrayBuffer | Blob | Core.Document | Core.PDFNet.PDFDoc, options?: Core.CreateDocumentOptions): Promise<void>;
+        loadDocument(src: string | File | ArrayBuffer | Blob | Core.Document | Core.PDFNet.PDFDoc, options?: {
+            loadAnnotations?: boolean;
+        }): Promise<void>;
         /**
          * Gets a promise that resolves when the annotations in the current document have all been loaded
          * @returns Promise that resolves when the annotations in the current document have loaded.
@@ -29858,7 +29981,7 @@ declare namespace Core {
          * Sets the XFDF retriever that will be called when a document is being loaded. The XFDF returned from the retriever will be merged into the document.
          * It is recommended to use this function instead of annotManager.importAnnotations if you are loading XFDF from your server so that you don't need to wait for the annotationsLoaded event to be triggered. setDocumentXFDFRetriever will ensure that the annotation data is merged at the right time and as early as possible.
          * @example
-         * instance.docViewer.setDocumentXFDFRetriever(async (documentId) => {
+         * instance.Core.documentViewer.setDocumentXFDFRetriever(async (documentId) => {
          *   const documentXFDFString = await fetchDocumentXFDFFromServer(documentId);
          *   return documentXFDFString;
          * })
@@ -30110,6 +30233,11 @@ declare namespace Core {
             startPage?: number;
             endPage?: number;
         }): void;
+        /**
+         * Returns the current search mode, controlling options such as case sensitivity and regex flags.
+         * @returns currentMode {@link Core.Search.Mode}
+         */
+        getCurrentSearchMode(): number;
         /**
          * [PDF Document only] Set the number of pages to search at a time. Searching more pages at a time will speed up searching but decrease page rendering responsiveness while a search is ongoing. Default is 50.
          * @param searchBatchSize - The number of pages to search at a time
@@ -30515,6 +30643,17 @@ declare namespace Core {
          */
         getWatermark(): Promise<object>;
         /**
+         * Compare the text of documents on both DocumentViewers and add annotations to mark the differences.
+         * @param documentViewer - Other documentViewer to diff with
+         * @param [options.beforeColor = { R: 255, G: 73, B: 73, A: 0.4 }] - Color for the highlight annotations on the before document
+         * @param [options.afterColor = { R: 21, G: 205, B: 131, A: 0.4 }] - Color for the highlight annotations on the after document
+         * @returns returns an object with the following properties { doc1Annotations, doc2Annotations, diffCount }
+         */
+        startSemanticDiff(documentViewer: Core.DocumentViewer, options?: {
+            beforeColor?: Core.Annotations.Color;
+            afterColor?: Core.Annotations.Color;
+        }): Promise<object>;
+        /**
          * Triggered for the mouseLeftButtonDown event in the DocumentViewer's viewing area
          * Attach like docViewer.addEventListener('mouseLeftDown', callback)
          * @param nativeEvt - Event object of the native JavaScript event
@@ -30867,13 +31006,13 @@ declare namespace Core {
          * Triggered when the layout has changed because pages have permanently been added, removed, moved or changed in some other way.
          * @param changes - An object with keys added, removed, moved and contentChanged, indicating which pages have changed
          */
-        on(event: 'pagesUpdated', callback: (changes: any) => void): void;
+        on(event: 'pagesUpdated', callback: (changes: Core.DocumentViewer.pagesUpdatedChanges) => void): void;
         /**
          * Triggered when the layout has changed because pages have permanently been added, removed, moved or changed in some other way.
          * @param changes - An object with keys added, removed, moved and contentChanged, indicating which pages have changed
          */
-        one(event: 'pagesUpdated', callback: (changes: any) => void): void;
-        off(event?: 'pagesUpdated', callback?: (changes: any) => void): void;
+        one(event: 'pagesUpdated', callback: (changes: Core.DocumentViewer.pagesUpdatedChanges) => void): void;
+        off(event?: 'pagesUpdated', callback?: (changes: Core.DocumentViewer.pagesUpdatedChanges) => void): void;
         /**
          * Triggered when the search results list has changed
          * @param results - The new search results, {@link Core.DocumentViewer.SearchResult}.
@@ -31067,7 +31206,7 @@ declare namespace Core {
     }
     namespace DocumentViewer {
         /**
-         * @param docId - the id of the document that is being loaded
+         * @param docId - The id of the document that is being loaded
          */
         type DocumentXFDFRetriever = (docId: string) => Promise<string | string[]>;
         /**
@@ -31114,6 +31253,34 @@ declare namespace Core {
             FitPage,
             Zoom
         }
+        /**
+         */
+        type pagesUpdatedChanges = {
+            /**
+             * Array of page numbers that were added
+             */
+            added: number[];
+            /**
+             * Array of page numbers that were removed
+             */
+            removed: number[];
+            /**
+             * An object mapping page number changes. E.g. if Page 2 was moved to now be page 3 it would be: { 2: 3, 3: 2 }
+             */
+            moved: any;
+            /**
+             * Array of page numbers that had their content change
+             */
+            contentChanged: number[];
+            /**
+             * Array of page numbers that had their annotations change
+             */
+            annotationsChanged: number[];
+            /**
+             * Boolean representing whether this page update was from the initial download of the file when the proper page sizes are loaded. This will only happen for linearized PDFs.
+             */
+            linearizedUpdate: boolean;
+        };
     }
     /**
      * A manager class that controls freetext annotation contents editing.
@@ -31182,10 +31349,48 @@ declare namespace Core {
             length: number;
         };
     }
+    namespace FormFieldCreationManager {
+        /**
+         * Signature Options
+         */
+        type SignatureOptions = 'fullSignature' | 'initialsSignature';
+    }
     /**
      * A manager class that controls form field creation and editing
      */
     class FormFieldCreationManager extends EventHandler {
+        /**
+         * @property FORM_CREATION_STARTED - {@link Core.FormFieldCreationManager#event:formFieldCreationModeStarted Core.FormFieldCreationManager.formFieldCreationModeStarted }
+         * @property FORM_CREATION_ENDED - {@link Core.FormFieldCreationManager#event:formFieldCreationModeEnded Core.FormFieldCreationManager.formFieldCreationModeEnded }
+         */
+        static Events: {
+            /**
+             * {@link Core.FormFieldCreationManager#event:formFieldCreationModeStarted Core.FormFieldCreationManager.formFieldCreationModeStarted }
+             */
+            FORM_CREATION_STARTED: string;
+            /**
+             * {@link Core.FormFieldCreationManager#event:formFieldCreationModeEnded Core.FormFieldCreationManager.formFieldCreationModeEnded }
+             */
+            FORM_CREATION_ENDED: string;
+        };
+        /**
+         * Triggered when form field creation mode is started
+         */
+        on(event: 'formFieldCreationModeStarted', callback: () => void): void;
+        /**
+         * Triggered when form field creation mode is started
+         */
+        one(event: 'formFieldCreationModeStarted', callback: () => void): void;
+        off(event?: 'formFieldCreationModeStarted', callback?: () => void): void;
+        /**
+         * Triggered when form field creation mode is ended
+         */
+        on(event: 'formFieldCreationModeEnded', callback: () => void): void;
+        /**
+         * Triggered when form field creation mode is ended
+         */
+        one(event: 'formFieldCreationModeEnded', callback: () => void): void;
+        off(event?: 'formFieldCreationModeEnded', callback?: () => void): void;
         /**
          * Starts the Form Field Creation mode, a mode in which all annotations are hidden
         and only form field place holder annotations can be added
@@ -31220,6 +31425,12 @@ declare namespace Core {
          * @param boolean - Value for the flag
          */
         setFieldFlag(formfieldPlaceHolder: any, fieldFlag: any, boolean: any): void;
+        /**
+         * Sets whether a Signature Widget should take in a full signature, or initials
+         * @param formfieldPlaceHolder - The form field place holder
+         * @param signatureOption - The type of Signature
+         */
+        setSignatureOption(formfieldPlaceHolder: any, signatureOption: Core.FormFieldCreationManager.SignatureOptions): void;
         /**
          * Returns true or false depending on whether a flag is set on the form field place holder
          * @param formfieldPlaceHolder - The form field place holder
@@ -31259,6 +31470,36 @@ declare namespace Core {
          * @param formfieldPlaceHolder - The form field place holder
          */
         getFieldOptions(formfieldPlaceHolder: any): void;
+        /**
+         * Gets the signature option for signature widget place hodlers
+        returns either fullSignature, or initials
+         * @returns One of the signature options, either fullSignature or initials
+         */
+        getSignatureOption(): Core.FormFieldCreationManager.SignatureOptions;
+        /**
+         * Gets whether or not the form field indicator should be shown
+         * @param formfieldPlaceHolder - The form field place holder
+         * @returns Whether or not to show the field indicator
+         */
+        getShowIndicator(formfieldPlaceHolder: Core.Annotations.Annotation): boolean;
+        /**
+         * Set whether or not to show the field indicator
+         * @param formfieldPlaceHolder - The form field place holder
+         * @param showIndicator - Whether or not to show the field indicator
+         */
+        setShowIndicator(formfieldPlaceHolder: Core.Annotations.Annotation, showIndicator: string): void;
+        /**
+         * Gets whether or not the form field indicator should be shown
+         * @param formfieldPlaceHolder - The form field place holder
+         * @returns Whether or not to show the field indicator
+         */
+        getIndicatorText(formfieldPlaceHolder: Core.Annotations.Annotation): boolean;
+        /**
+         * Set the field indicator text
+         * @param formfieldPlaceHolder - The form field place holder
+         * @param indicatorText - The indicator text
+         */
+        setIndicatorText(formfieldPlaceHolder: Core.Annotations.Annotation, indicatorText: string): void;
         /**
          * Applies all form field annotations as PDF Fields with associated Widgets
          */
@@ -32032,7 +32273,7 @@ declare namespace Core {
          * @param docViewer - An instance of DocumentViewer.
          * @param name - Name of the tool.
          */
-        class AddParagraphTool {
+        class AddParagraphTool extends Core.Tools.FreeTextCreateTool {
             constructor(docViewer: Core.DocumentViewer, name: string);
         }
         /**
@@ -34536,6 +34777,20 @@ declare namespace Core {
              */
             disableAutoFocusOnCreate(): void;
             /**
+             * Enables the abilities to add free text annotations with less clicks.
+             * @example
+             * const { Core } = instance;
+             * Core.documentViewer.getTool(Core.Tools.ToolNames.FREETEXT).enableCreationWhileSelecting();
+             */
+            enableCreationWhileSelecting(): void;
+            /**
+             * Disables the abilities to add free text annotations with less clicks.
+             * @example
+             * const { Core } = instance;
+             * Core.documentViewer.getTool(Core.Tools.ToolNames.FREETEXT).disableCreationWhileSelecting();
+             */
+            disableCreationWhileSelecting(): void;
+            /**
              * Returns whether free text annotations autofocus on creation.
              * @returns Returns true if free texts are autofocused on creation, false otherwise.
              */
@@ -34888,6 +35143,112 @@ declare namespace Core {
             off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
         }
         /**
+         * Represents the tool for creating {@link Core.Annotations.MarkInsertTextAnnotation}.
+         * @param docViewer - An instance of DocumentViewer.
+         */
+        class MarkInsertTextCreateTool extends Core.Tools.TextSelectTool {
+            constructor(docViewer: Core.DocumentViewer);
+            /**
+             * Triggered when the user has released the mouse after selecting text
+             * @param startLocation - An object with keys "quad" and "pageNumber" which is the starting quad and page number of the text selection
+             * @param allQuads - An object with keys being the page numbers and values being an array of quads for the selected text on that page
+             */
+            on(event: 'selectionComplete', callback: (startLocation: any, allQuads: any) => void): void;
+            /**
+             * Triggered when the user has released the mouse after selecting text
+             * @param startLocation - An object with keys "quad" and "pageNumber" which is the starting quad and page number of the text selection
+             * @param allQuads - An object with keys being the page numbers and values being an array of quads for the selected text on that page
+             */
+            one(event: 'selectionComplete', callback: (startLocation: any, allQuads: any) => void): void;
+            off(event?: 'selectionComplete', callback?: (startLocation: any, allQuads: any) => void): void;
+            /**
+             * Triggered when the user has released the mouse after selecting text
+             * @param startLocation - An object with keys "quad" and "pageNumber" which is the starting quad and page number of the text selection
+             * @param allQuads - An object with keys being the page numbers and values being an array of quads for the selected text on that page
+             */
+            on(event: 'selectionComplete', callback: (startLocation: any, allQuads: any) => void): void;
+            /**
+             * Triggered when the user has released the mouse after selecting text
+             * @param startLocation - An object with keys "quad" and "pageNumber" which is the starting quad and page number of the text selection
+             * @param allQuads - An object with keys being the page numbers and values being an array of quads for the selected text on that page
+             */
+            one(event: 'selectionComplete', callback: (startLocation: any, allQuads: any) => void): void;
+            off(event?: 'selectionComplete', callback?: (startLocation: any, allQuads: any) => void): void;
+        }
+        /**
+         * Represents the tool for creating {@link Core.Annotations.MarkReplaceTextAnnotation}.
+         * @param docViewer - An instance of DocumentViewer.
+         */
+        class MarkReplaceTextCreateTool extends Core.Tools.TextAnnotationCreateTool {
+            constructor(docViewer: Core.DocumentViewer);
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            on(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            one(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationCreated', callback?: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            on(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            one(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            on(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            one(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationCreated', callback?: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            on(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            one(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationCreated', callback?: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            on(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            one(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            on(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            one(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
+        }
+        /**
          * Creates a new instance of MarqueeZoomTool.
          * @property setZoomHandler - Sets the function that takes the current zoom level and returns the next zoom level if a mouse click without drag is performed
          * @param docViewer - An instance of DocumentViewer.
@@ -34901,15 +35262,15 @@ declare namespace Core {
         }
         /**
          * Represents a point on a page
-         * @property pageIndex - the 0-based page value
+         * @property pageNumber - the 1-indexed page number
          * @property x - the x offset of this point relative to the top left corner of the page
          * @property y - the y offset of this point relative to the top left corner of the page
          */
         class PageCoordinate {
             /**
-             * the 0-based page value
+             * the 1-indexed page number
             */
-            pageIndex: number;
+            pageNumber: number;
             /**
              * the x offset of this point relative to the top left corner of the page
             */
@@ -36180,10 +36541,39 @@ declare namespace Core {
              */
             getCustomStampAnnotations(): Promise<Core.Annotations.StampAnnotation[]>;
         }
+        namespace SignatureCreateTool {
+            /**
+             * Object that has information about a Signature Canvas
+             */
+            type SignatureDrawingCanvas = {
+                /**
+                 * The key representing which signature this canvas is for (fullSignature or initialsSignature)
+                 */
+                signatureType: number;
+                /**
+                 * The canvas used for the signature
+                 */
+                canvas: HTMLCanvasElement;
+                /**
+                 * The canvas rendering context for the signature
+                 */
+                context: CanvasRenderingContext2D;
+                /**
+                 * Current path index for FreeHand signatures
+                 */
+                pathIndex: number;
+                /**
+                 * Whether the signature is being edited (FreeHand only)
+                 */
+                isEditing: boolean;
+            };
+        }
         /**
          * Creates a new instance of the SignatureCreateTool.
-         * @property ctx - The signature canvas context
-         * @property annot - The underlying annotation used by the tool
+         * @property ctx - The signature canvas context Deprecated: Use object signatureDrawingCanvases object instead to access the context for the signature, or initials canvas
+         * @property annot - Deprecated: Use the new methods {@link Core.Tools.SignatureCreateTool.getFullSignatureAnnotation} or {@link Core.Tools.SignatureCreateTool.getInitialsAnnotation} instead
+         * @property signatureAnnotations - Object that stores annotations used for each signature type (Initials and Full Signature)
+         * @property signatureDrawingCanvases - Object that stores drawing canvases used for each signature type (Initials and Full Signature)
          * @property ACCEPTED_FILE_SIZE - A number specifying the accepted file size in bytes (exclusive). A null, undefined, or value zero and below means no limit.
          * @param docViewer - an instance of DocumentViewer.
          */
@@ -36267,13 +36657,47 @@ declare namespace Core {
                 size: number;
             }) => void): void;
             /**
+             * Triggered when a signature has been added to the document by the tool
+             * @param annotation - The signature that was added
+             */
+            on(event: 'signatureReady', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when a signature has been added to the document by the tool
+             * @param annotation - The signature that was added
+             */
+            one(event: 'signatureReady', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            off(event?: 'signatureReady', callback?: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * An enum that defines the SignatureTypes that are available in this tool
+             * @property FULL_SIGNATURE - Represents a full signature
+             * @property INITIALS - Represents an initials signature
+             */
+            static SignatureTypes: {
+                /**
+                 * Represents a full signature
+                 */
+                FULL_SIGNATURE: string;
+                /**
+                 * Represents an initials signature
+                 */
+                INITIALS: string;
+            };
+            /**
              * @param textHandler - A function that should return a string that will be used as the "sign here" text
              */
             static setTextHandler(textHandler: (...params: any[]) => any): void;
             /**
+             * @param initialsTextHandler - A function that should return a string that will be used as the "Initials" text when the widget requires initials
+             */
+            static setInitialsTextHandler(initialsTextHandler: (...params: any[]) => any): void;
+            /**
              * Clears the signature canvas and the underlying annotation
              */
             clearSignatureCanvas(): void;
+            /**
+             * Clears the initials canvas and the underlying annotation
+             */
+            clearInitialsCanvas(): void;
             /**
              * Resize the current signature canvas
              */
@@ -36284,15 +36708,40 @@ declare namespace Core {
              */
             saveSignatures(annotations: Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation): void;
             /**
-             * Returns the array of saved annotations
+             * Save an array of freehand or stamp annotations to the signature tool as initials
+             * @param annotations - Annotations to be saved to the signature tool
+             */
+            saveInitials(annotations: Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation): void;
+            /**
+             * Returns the array of saved annotations used as full signatures
              * @returns an array of annotations
              */
             getSavedSignatures(): (Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation)[];
             /**
-             * Delete an annotation in the tool
+             * Returns the annotation used as a full signature
+             * @returns a signature annotation
+             */
+            getFullSignatureAnnotation(): Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation;
+            /**
+             * Returns the array of saved annotations used as initials
+             * @returns an array of annotations
+             */
+            getSavedInitials(): (Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation)[];
+            /**
+             * Returns the annotation used as initials
+             * @returns an initials annotation
+             */
+            getInitialsAnnotation(): Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation;
+            /**
+             * Delete a full signature annotation in the tool
              * @param index - The index of the saved annotation to be deleted
              */
             deleteSavedSignature(index: number): void;
+            /**
+             * Delete an initials annotation in the tool
+             * @param index - The index of the saved initials annotation to be deleted
+             */
+            deleteSavedInitials(index: number): void;
             /**
              * Loads signature data into the signature tool
              * @param signatureData - An array contains arrays of path points or base64 image data
@@ -36302,19 +36751,41 @@ declare namespace Core {
              */
             importSignatures(signatureData: (string | Core.Math.Point[][])[]): any;
             /**
+             * Loads initials data into the signature tool
+             * @param initialsData - An array contains arrays of path points or base64 image data
+             * If the element is a string, a stamp annotation will be saved and the string will be the value of its ImageData property
+             * If the element is an array of objects, a freehand annotation will be saved and the array will be its paths
+             * @returns Promise<void> Resolves when the initials data has been loaded
+             */
+            importInitials(initialsData: (string | Core.Math.Point[][])[]): any;
+            /**
              * Exports all saved signatures as an array
              * The array can be stringified using JSON.stringify and saved for later use
              * @returns Returns a promise that resolves an array that contains arrays of path points or a base64 image data
              */
             exportSignatures(): Promise<(string | Core.Math.Point[][])[]>;
             /**
-             * Sets the underlying annotation used by the tool
+             * Exports all saved initials as an array
+             * The array can be stringified using JSON.stringify and saved for later use
+             * @returns Returns a promise that resolves an array that contains arrays of path points or a base64 image data
+             */
+            exportInitials(): Promise<(string | Core.Math.Point[][])[]>;
+            /**
+             * Sets the underlying annotation used by the tool as a full signature
              * If a base64 string is passed, the underlying annotation will be a stamp annotation with the string being its ImageData
              * @param annotation - Annotation to set
              * @param [fileSize] - A number specifying the size in bytes of the signature file which will be compared with 'ACCEPTED_FILE_SIZE'.
-             * @returns Promise<void>
+             * @returns A promise that will resolve when the signature is set in the tool
              */
-            setSignature(annotation: Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation | string | object[], fileSize?: number): any;
+            setSignature(annotation: Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation | string | object[], fileSize?: number): Promise<void>;
+            /**
+             * Sets the underlying annotation used by the tool as initials
+             * If a base64 string is passed, the underlying annotation will be a stamp annotation with the string being its ImageData
+             * @param annotation - Annotation to set
+             * @param [fileSize] - A number specifying the size in bytes of the signature file which will be compared with 'ACCEPTED_FILE_SIZE'.
+             * @returns A promise that will resolve when the initials are set in the tool
+             */
+            setInitials(annotation: Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation | string | object[], fileSize?: number): Promise<void>;
             /**
              * Clear the location which is set when a mouse click is performed
              */
@@ -36330,17 +36801,30 @@ declare namespace Core {
             getPreview(annotation: Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation): Promise<string>;
             /**
              * Shows the preview about how the underlying annot looks like if it's drawn.
+             * @returns A promise that resolves when the preview is appended to the DOM and shown in the viewer
              */
-            showPreview(): void;
+            showPreview(): Promise<void>;
+            /**
+             * Shows the preview about how the underlying annot looks like if it's drawn.
+             * @returns A promise that resolves when the preview is appended to the DOM and shown in the viewer
+             */
+            showInitialsPreview(): Promise<void>;
             /**
              * Hide the preview element
              */
             hidePreview(): void;
             /**
-             * Add the signature to the document.
-             * @returns A promise that resolves when the signature is added
+             * Add the signature to the document. The signature added will be one that is currently set in the tool
+             * by {@link Core.Tools.SignatureCreateTool#setSignature}
+             * @returns A promise that resolves when the signature is added to the document
              */
             addSignature(): Promise<void>;
+            /**
+             * Add initials to the document. The initials added will be those that are currently set in the tool
+             * by {@link Core.Tools.SignatureCreateTool#setInitials}
+             * @returns A promise that resolves when the intials are added to the document
+             */
+            addInitials(): Promise<void>;
             /**
              * Checks if the underlying annotation is empty.
              * If the underlying annotation is a freehand, it's empty if it doesn't have any paths
@@ -36349,10 +36833,22 @@ declare namespace Core {
              */
             isEmptySignature(): Promise<boolean>;
             /**
-             * Sets the canvas to be used by the signature tool.
+             * Checks if the initials set in the tool are empty.
+             * If the underlying annotation is a freehand, it's empty if it doesn't have any paths
+             * If the underlying annotation is a stamp, it's empty if its ImageData property has a falsy value
+             * @returns If number of drawn paths is 0.
+             */
+            isEmptyInitialsSignature(): Promise<boolean>;
+            /**
+             * Sets the canvas to be used by the signature tool for full signatures.
              * @param canvas - The canvas that the signature tool uses to draw on.
              */
             setSignatureCanvas(canvas: HTMLCanvasElement): void;
+            /**
+             * Sets the canvas to be used by the signature tool for initials.
+             * @param canvas - The canvas that the signature tool uses to draw initials on.
+             */
+            setInitialsCanvas(canvas: HTMLCanvasElement): void;
             /**
              * Sets the default options for signatures created with the signature tool.
              * @param options - Signature options that should become the default
@@ -36362,17 +36858,146 @@ declare namespace Core {
                 maximumDimensionSize: number;
             }): void;
             /**
-             * The signature canvas context
+             * The signature canvas context Deprecated: Use object signatureDrawingCanvases object instead to access the context for the signature, or initials canvas
             */
             ctx: CanvasRenderingContext2D;
             /**
-             * The underlying annotation used by the tool
+             * Deprecated: Use the new methods {@link Core.Tools.SignatureCreateTool.getFullSignatureAnnotation} or {@link Core.Tools.SignatureCreateTool.getInitialsAnnotation} instead
             */
             annot: Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation;
+            /**
+             * Object that stores annotations used for each signature type (Initials and Full Signature)
+            */
+            signatureAnnotations: {
+                [key: string]: Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation;
+            };
+            /**
+             * Object that stores drawing canvases used for each signature type (Initials and Full Signature)
+            */
+            signatureDrawingCanvases: {
+                [key: string]: Core.Tools.SignatureCreateTool.SignatureDrawingCanvas;
+            };
             /**
              * A number specifying the accepted file size in bytes (exclusive). A null, undefined, or value zero and below means no limit.
             */
             ACCEPTED_FILE_SIZE: number;
+        }
+        /**
+         * Represents the tool for creating Signature Form Field Placeholders
+         * @param docViewer - An instance of DocumentViewer.
+         */
+        class SignatureFormFieldCreateTool extends Core.Tools.RectangleCreateTool {
+            constructor(docViewer: Core.DocumentViewer);
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            on(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            one(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationCreated', callback?: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            on(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            one(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            on(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            one(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationCreated', callback?: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            on(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            one(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            on(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            one(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationCreated', callback?: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            on(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            one(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationCreated', callback?: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            on(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            one(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            on(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            one(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationCreated', callback?: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            on(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            one(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            on(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            one(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
         }
         /**
          * Represents the tool for creating {@link Core.Annotations.StampAnnotation}.
@@ -37204,6 +37829,14 @@ declare namespace Core {
             FREETEXT2,
             FREETEXT3,
             FREETEXT4,
+            MARK_INSERT_TEXT,
+            MARK_INSERT_TEXT2,
+            MARK_INSERT_TEXT3,
+            MARK_INSERT_TEXT4,
+            MARK_REPLACE_TEXT,
+            MARK_REPLACE_TEXT2,
+            MARK_REPLACE_TEXT3,
+            MARK_REPLACE_TEXT4,
             FORM_FILL_CROSS,
             FORM_FILL_CHECKMARK,
             FORM_FILL_DOT,
@@ -38016,12 +38649,32 @@ declare namespace Core {
         };
         /**
          * @property TEXT_CONTENT_UPDATED - {@link Core.ContentEdit#event:textContentUpdated Core.ContentEdit.textContentUpdated }
+         * @property SEARCH_AND_REPLACE_STARTED - {@link Core.ContentEdit#event:searchAndReplaceStarted Core.ContentEdit.searchAndReplaceStarted }
+         * @property SEARCH_AND_REPLACE_TEXT_REPLACED - {@link Core.ContentEdit#event:searchAndReplaceTextReplaced Core.ContentEdit.searchAndReplaceTextReplaced }
+         * @property SEARCH_AND_REPLACE_TEXT_FOUND - {@link Core.ContentEdit#event:searchAndReplaceTextFound Core.ContentEdit.searchAndReplaceTextFound }
+         * @property SEARCH_AND_REPLACE_ENDED - {@link Core.ContentEdit#event:searchAndReplaceEnded Core.ContentEdit.searchAndReplaceEnded }
          */
         var Events: {
             /**
              * {@link Core.ContentEdit#event:textContentUpdated Core.ContentEdit.textContentUpdated }
              */
             TEXT_CONTENT_UPDATED: string;
+            /**
+             * {@link Core.ContentEdit#event:searchAndReplaceStarted Core.ContentEdit.searchAndReplaceStarted }
+             */
+            SEARCH_AND_REPLACE_STARTED: string;
+            /**
+             * {@link Core.ContentEdit#event:searchAndReplaceTextReplaced Core.ContentEdit.searchAndReplaceTextReplaced }
+             */
+            SEARCH_AND_REPLACE_TEXT_REPLACED: string;
+            /**
+             * {@link Core.ContentEdit#event:searchAndReplaceTextFound Core.ContentEdit.searchAndReplaceTextFound }
+             */
+            SEARCH_AND_REPLACE_TEXT_FOUND: string;
+            /**
+             * {@link Core.ContentEdit#event:searchAndReplaceEnded Core.ContentEdit.searchAndReplaceEnded }
+             */
+            SEARCH_AND_REPLACE_ENDED: string;
         };
         /**
          * Preloads the content editing worker. If this function isn't called then the worker will be loaded when the content editing tool is enabled.
@@ -38045,6 +38698,34 @@ declare namespace Core {
          * @returns content The document content associated with this content edit placeholder annotation
          */
         function getDocumentContent(contentEditPlaceholderAnnotation: Core.Annotations.RectangleAnnotation): Promise<string>;
+        /**
+         * A function that will search and replace text inside the document.
+         * @example
+         * instance.Core.ContentEdit.searchAndReplaceText({
+         *    toReplace: 'PDF',
+         *    replaceWith: 'DOCX',
+         *    documentViewer: instance.Core.documentViewer
+         * });
+         * @param options.toReplace - A string or global RegExp object that will be replaced on the page.
+         * @param options.replaceWith - The string that replaces the string or RegExp provided in the first parameter.
+         * @param options.documentViewer - DocumentViewer instance.
+         * @param [options.caseSensitive] - Is case sensitive search.
+         * @param [options.wholeWord] - Is serching the whole word.
+         * @param [options.wildcard] - Is searching with wildcard word.
+         * @param [options.regex] - Is searching with regular expression.
+         * @param [options.isSingleSearchReplace] - Is it single search and replace or whole document.
+         * @returns Returns promise which will resolve when the operation completes.
+         */
+        function searchAndReplaceText(options: {
+            toReplace: string | RegExp;
+            replaceWith: string;
+            documentViewer: Core.DocumentViewer;
+            caseSensitive?: boolean;
+            wholeWord?: boolean;
+            wildcard?: boolean;
+            regex?: boolean;
+            isSingleSearchReplace?: boolean;
+        }): Promise<void>;
         /**
          * Add a new content box
          * @param options.pageNumber - The page number that the content is on
@@ -38167,6 +38848,17 @@ declare namespace Core {
      *   });
      */
     var documentViewer: Core.DocumentViewer;
+    /**
+     * Gets an array of currently instantiated documentViewer objects.
+     * @example
+     * WebViewer(...)
+     *   .then(function(instance) {
+     *     const documentViewerList = instance.Core.getDocumentViewers();
+     *     documentViewerList.forEach(documentViewer => documentViewer.loadDocument(doc, options));
+     *   });
+     * @returns Array of documentViewer objects that are being used for the UI
+     */
+    function getDocumentViewers(): Core.DocumentViewer[];
 }
 
 /**
@@ -39295,6 +39987,15 @@ declare namespace UI {
      */
     function getZoomLevel(): number;
     /**
+     * Hide form field indicators.
+     * @example
+     * WebViewer(...)
+     *   .then(function(instance) {
+     *     instance.UI.hideFormFieldIndicators();
+     *   });
+     */
+    function hideFormFieldIndicators(): void;
+    /**
      * hide outline control
      * @example
      * WebViewer(...)
@@ -39792,6 +40493,32 @@ declare namespace UI {
             dataElement: string;
         };
     }
+    /**
+     * @example
+     * WebViewer(...)
+     *  .then((instance) => {
+     *     instance.UI.enableMultiViewerSync(1) // Value can be 1 (for left side) or 2 (for right side)
+     *   });
+     * @param [primaryViewerKey = 1] - Which DocumentViewer to set as primary for initial zoom sync (1 or 2)
+     */
+    function enableMultiViewerSync(primaryViewerKey?: number): void;
+    /**
+     * @example
+     * WebViewer(...)
+     *  .then((instance) => {
+     *     instance.UI.disableMultiViewerSync();
+     *   });
+     */
+    function disableMultiViewerSync(): void;
+    /**
+     * @example
+     * WebViewer(...)
+     *  .then((instance) => {
+     *     console.log(instance.UI.isMultiViewerSyncing());
+     *   });
+     * @returns returns true if sync is enabled false if disabled
+     */
+    function isMultiViewerSyncing(): boolean;
     namespace NotesPanel {
         /**
          * Enables the collapsing of the annotation's text in the Notes Panel.
@@ -39927,6 +40654,42 @@ declare namespace UI {
             hideIcon?: boolean;
             render?: UI.NotesPanel.renderCustomHeader;
         }): void;
+        /**
+         * Enable the preview of attachments.
+         * @example
+         * WebViewer(...)
+         *   .then(function(instance) {
+         *     instance.UI.NotesPanel.enableAttachmentPreview();
+         *   });
+         */
+        function enableAttachmentPreview(): void;
+        /**
+         * Disable the preview of attachments.
+         * @example
+         * WebViewer(...)
+         *   .then(function(instance) {
+         *     instance.UI.NotesPanel.disableAttachmentPreview();
+         *   });
+         */
+        function disableAttachmentPreview(): void;
+        /**
+         * @param file - The file selected to be uploaded
+         */
+        type attachmentHandler = (file: File) => Promise<string>;
+        /**
+         * Set the handler function for reply attachment. Can use this for uploading attachments to cloud.
+         * @example
+         * WebViewer(...)
+         *   .then(function(instance) {
+         *     instance.UI.NotesPanel.setAttachmentHandler(async (file) => {
+         *       const uploadedURL = await aws.upload(file); //e.g. https://pdftron.s3.amazonaws.com/downloads/pl/demo.pdf
+         *
+         *       return uploadedURL;
+         *     });
+         *   });
+         * @param handler - The handler function
+         */
+        function setAttachmentHandler(handler: UI.NotesPanel.attachmentHandler): void;
     }
     /**
      * Sets visibility states of the elements to be visible. Note that openElements works only for panel/overlay/popup/modal elements.
@@ -40136,6 +40899,24 @@ declare namespace UI {
          * @returns Current items in the PageManipulationOverlay.
          */
         getItems(): UI.PageManipulationOverlay.PageManipulationSection[];
+        /**
+         * Disables the Page Manipulation Overlay opening through right-click.
+         * @example
+         * WebViewer(...)
+         *   .then(function(instance) {
+         *     instance.UI.pageManipulationOverlay.disableOpeningByRightClick();
+         *   });
+         */
+        disableOpeningByRightClick(): void;
+        /**
+         * Enables the Page Manipulation Overlay opening through right-click.
+         * @example
+         * WebViewer(...)
+         *   .then(function(instance) {
+         *     instance.UI.pageManipulationOverlay.enableOpeningByRightClick();
+         *   });
+         */
+        enableOpeningByRightClick(): void;
     }
     /**
      * Print the current document.
@@ -40531,6 +41312,34 @@ declare namespace UI {
      */
     function setCustomMeasurementOverlay(customOverlayInfo: any[]): void;
     /**
+     * @param acceptedFileFormats - The file formats to support when accepting files in multiviewer mode
+     */
+    type CustomMultiViewerAcceptedFileFormats = (acceptedFileFormats: string[]) => void;
+    /**
+     * @example
+     * WebViewer(...)
+     *   .then(function(instance) {
+     *     instance.UI.setCustomMultiViewerAcceptedFormats(['pdf']);
+     *   });
+     */
+    function setCustomMultiViewerAcceptedFileFormats(customMultiViewerAcceptedFileFormats: UI.CustomMultiViewerAcceptedFileFormats): void;
+    /**
+     * @param primaryDocumentViewerKey - The primary documentViewerKey to be used when syncing
+     * @param removeHandlerFunctions - The event listeners to remove when syncing is finished
+     */
+    type CustomMultiViewerSyncHandler = (primaryDocumentViewerKey: number, removeHandlerFunctions: ((...params: any[]) => void)[]) => void;
+    /**
+     * @example
+     * WebViewer(...)
+     *   .then(function(instance) {
+     *     instance.UI.setCustomMultiViewerSyncHandler((primaryDocumentViewerKey, removeHandlerFunctions) => {
+     *       // some code
+     *     })
+     *   });
+     * @param customMultiViewerSyncHandler - The function that will be invoked when syncing documents in multi viewer mode.
+     */
+    function setCustomMultiViewerSyncHandler(customMultiViewerSyncHandler: UI.CustomMultiViewerSyncHandler): void;
+    /**
      * Filter the annotations shown in the notes panel
      * @example
      * WebViewer(...)
@@ -40851,13 +41660,13 @@ declare namespace UI {
      */
     function setLayoutMode(layoutMode: string): void;
     /**
-     * Set the number of signatures that can be stored in the WebViewer (default is 2)
+     * Set the number of signatures that can be stored in the WebViewer UI (default is 4)
      * @example
      * WebViewer(...)
      *   .then(function(instance) {
      *     instance.UI.setMaxSignaturesCount(5); // allow up to 5 stored signatures
      *   });
-     * @param [maxSignaturesCount = 2] - Number of signature webViewer can store
+     * @param [maxSignaturesCount = 4] - Number of signature webViewer can store
      */
     function setMaxSignaturesCount(maxSignaturesCount?: number): void;
     /**
@@ -41043,6 +41852,22 @@ declare namespace UI {
         width: number;
     }): void;
     /**
+     * Sets preset page dimensions to be used when selecting a page size in the Insert Page Modal
+     * @example
+     * WebViewer(...)
+     *   .then(function(instance) {
+     *     instance.UI.setPresetNewPageDimensions('Letter', {'height': 11, 'width': 8.5});
+     *   });
+     * @param presetName - The name of a current preset or the name to give to a new preset
+     * @param newPreset - A set of dimensions to use for a preset new page
+     * @param newPreset.height - The height of the new page in inches
+     * @param newPreset.width - The width of the new page in inches
+     */
+    function setPresetNewPageDimensions(presetName: string, newPreset: {
+        height: number;
+        width: number;
+    }): void;
+    /**
      * Sets the print quality. Higher values are higher quality but takes longer to complete and use more memory. The viewer's default quality is 1.
      * @example
      * WebViewer(...)
@@ -41152,14 +41977,13 @@ declare namespace UI {
      *     });
      *   });
      * @param language - The language code for which you want to add/edit translation data
-     * @param translationObject - A key/value object with the new/updated translations
-     * @param translationObject.key - A key value for the new/updated translation.
-     * Refer to the lib/ui/i18n folder to find the existing keys in the translation files
-     * @param translationObject.value - A value of the new/updated translation
+     * @param translationObject - <p> A key/value object with the new/updated translations. </p>
+     * <p> The key values of the translation object will be the translation key for the new/updated translation.
+     * Refer to the lib/ui/i18n folder to find the existing keys in the translation files </p>
+     * <p> The values of the translation object will be the value of the new/updated translation</p>
      */
     function setTranslations(language: string, translationObject: {
-        key: string;
-        value: string;
+        [key: string]: string;
     }): void;
     /**
      * Set the WV3D Properties Panel with an array of model data objects
@@ -41245,6 +42069,33 @@ declare namespace UI {
      */
     function setZoomLevel(zoomLevel: string | number): void;
     /**
+     * Set the zoom step size for zooming in/out. The API takes an array of zoomStepFactor that contains two properties:
+     * step: zoom step size when zooming in/out. It could be either percentage in a string or a number, ex. 50, '50', or '50%' all indicates 50%.
+     * startZoom: The zoom level that the step starts to apply. It could be either percentag in a string or a number, ex. 200, '200', or '200%' all indicates 200%.
+     * @example
+     * WebViewer(...)
+     *   .then(function(instance) {
+     *     const documentViewer = instance.Core.documentViewer;
+     *     // you must have a document loaded when calling this api
+     *     documentViewer.addEventListener('documentLoaded', function() {
+     *       instance.UI.setZoomStepFactors([
+     *         {
+     *           step: '25', // indicates 25%, also accepts '25%'
+     *           startZoom: '0'
+     *         },
+     *         {
+     *           step: 50, // indicates 50%
+     *           startZoom: 200 // indicates the step is 50% after zoom level 200%
+     *         },
+     *       ]);
+     *     });
+     *   });
+     * @property zoomStepFactors[].step - Zoom step size as percentage in a string or a number, ex. '50', '50%', or 50 all indicates 50%.
+     * @property zoomStepFactors[].startZoom - Zoom level that the zoom step size starts to apply. It could be percentage in a string or a number, ex. '200', '200%', or 200 all indicates 200%.
+     * @param zoomStepFactors - An array that contains objects of zoomStep and zoom start level. zoomStepFactors must contain at least one zoomStepFactor object that has startZoom: 0
+     */
+    function setZoomStepFactors(zoomStepFactors: object[]): void;
+    /**
      * Displays the custom error message
      * @example
      * WebViewer(...)
@@ -41254,6 +42105,15 @@ declare namespace UI {
      * @param message - An error message
      */
     function showErrorMessage(message: string): void;
+    /**
+     * Show form field indicators to help navigate or guide users through the process of form filling.
+     * @example
+     * WebViewer(...)
+     *   .then(function(instance) {
+     *     instance.UI.showFormFieldIndicators();
+     *   });
+     */
+    function showFormFieldIndicators(): void;
     /**
      * Show outline control
      * @example
@@ -41296,6 +42156,18 @@ declare namespace UI {
         onConfirm: (...params: any[]) => any;
         onCancel: (...params: any[]) => any;
     }): void;
+    /**
+     * Signs a specified signature widget with a specified signature.
+     * If no signature is provided, select an available signature or start the process to create a new one, and then use it to sign the signature widget.
+     * @example
+     * WebViewer(...)
+     *   .then(function(instance) {
+     *     instance.UI.signSignatureWidget(signatureWidget, signature);
+     *   });
+     * @param signatureWidget - The signature widget to sign.
+     * @param [signature] - The signature annotation to sign with.
+     */
+    function signSignatureWidget(signatureWidget: Core.Annotations.SignatureWidgetAnnotation, signature?: Core.Annotations.FreeHandAnnotation | Core.Annotations.StampAnnotation): void;
     /**
      * Syncs the namespaces under the Core namespace for the window, this instance, as well as others instances.
      * <br/><br/>
@@ -41723,6 +42595,7 @@ declare namespace UI {
      * @property TAB_ADDED - {@link UI#event:tabAdded UI.Events.tabAdded}
      * @property TAB_MOVED - {@link UI#event:tabMoved UI.Events.tabMoved}
      * @property LANGUAGE_CHANGED - {@link UI#event:tabMoved UI.Events.languageChanged}
+     * @property MULTI_VIEWER_READY - {@link UI#event:multiViewerReady  UI.Events.multiViewerReady }
      */
     var Events: {
         /**
@@ -41821,6 +42694,10 @@ declare namespace UI {
          * {@link UI#event:tabMoved UI.Events.languageChanged}
          */
         LANGUAGE_CHANGED: string;
+        /**
+         * {@link UI#event:multiViewerReady  UI.Events.multiViewerReady }
+         */
+        MULTI_VIEWER_READY: string;
     };
     /**
      * Contains string enums for all features for WebViewer UI
@@ -41854,6 +42731,9 @@ declare namespace UI {
      * @property NotesPanelVirtualizedList - Ability to use a virtualized list in the note panel. Will limit the number of notes rendered on the DOM
      * @property NotesShowLastUpdatedDate - Show last updated date in notes panel instead of created date
      * @property MultiTab - toggle feature to open multiple documents in the same viewer instance
+     * @property MultiViewerMode - toggle feature to activate 2 viewers in Compare Mode.
+     * @property Initials - toggle feature to activate initials signing mode in the Signature Modal
+     * @property SavedSignaturesTab - toggle feature to enable the saved signatures tab in the Signature Modal and use it to sign elements.
      */
     var Feature: {
         /**
@@ -41948,6 +42828,18 @@ declare namespace UI {
          * toggle feature to open multiple documents in the same viewer instance
          */
         MultiTab: string;
+        /**
+         * toggle feature to activate 2 viewers in Compare Mode.
+         */
+        MultiViewerMode: string;
+        /**
+         * toggle feature to activate initials signing mode in the Signature Modal
+         */
+        Initials: string;
+        /**
+         * toggle feature to enable the saved signatures tab in the Signature Modal and use it to sign elements.
+         */
+        SavedSignaturesTab: string;
     };
     /**
      * Contains all possible modes for fitting/zooming pages to the viewer. The behavior may vary depending on the LayoutMode.
@@ -43052,6 +43944,14 @@ declare type WebViewerOptions = {
      * If set to true, will expand outlines by default.
      */
     autoExpandOutlines?: boolean;
+    /**
+     * If set to true, as annotations are imported/created they will each be numbered. Starting at 1, each annotation will be assigned the next greatest available number.
+     */
+    enableAnnotationNumbering?: boolean;
+    /**
+     * If true then MultiViewerMode will not show compare overlay annotations.
+     */
+    disableMultiViewerComparison?: boolean;
 };
 
 /**
