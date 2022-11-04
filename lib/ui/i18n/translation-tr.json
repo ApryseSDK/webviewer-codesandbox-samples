@@ -1,11 +1,13 @@
 {
   "action": {
+    "addParagraph": "Paragraf Ekle",
     "add": "Ekle",
     "apply": "Uygulamak",
     "applyAll": "Tümünü uygula",
     "calendar": "Takvim",
     "calibrate": "kalibre et",
     "cancel": "İptal",
+    "confirm": "Onaylamak",
     "clear": "Temizlemek",
     "clearAll": "Hepsini temizle",
     "close": "Kapat",
@@ -42,6 +44,7 @@
     "save": "Kayıt etmek",
     "post": "Postalamak",
     "create": "Yaratmak",
+    "update": "Güncelleme",
     "showMoreResults": "Daha fazla sonuç göster",
     "sign": "İmza",
     "style": "stil",
@@ -55,8 +58,6 @@
     "type": "Tip",
     "upload": "Yüklemek",
     "link": "Bağlantı",
-    "darkMode": "karanlık mod",
-    "lightMode": "Işık modu",
     "fileAttachmentDownload": "Ekli dosyayı indirin",
     "prevResult": "Önceki sonuç",
     "nextResult": "Sonraki sonuç",
@@ -91,7 +92,9 @@
     "unselect": "Seçimi kaldır",
     "addMark": "İşaret Ekle",
     "viewFile": "Dosyayı görüntüle",
-    "switchLanguage": "Dilim"
+    "multiReplyAnnotations": "Seçili ek açıklamaları yanıtla ({{count}})",
+    "comparePages": "Sayfaları karşılaştır",
+    "startComparison": "Karşılaştırmayı Başlat"
   },
   "annotation": {
     "areaMeasurement": "Alan",
@@ -112,6 +115,8 @@
     "freehand": "Serbest El",
     "freeHandHighlight": "Serbest El Vurgusu",
     "freetext": "Ücretsiz Metin",
+    "markInsertText": "Metin Ekle",
+    "markReplaceText": "Metni Değiştir",
     "highlight": "Vurgulamak",
     "image": "resim",
     "line": "Astar",
@@ -141,7 +146,8 @@
     "other": "Diğer",
     "3D": "3 boyutlu",
     "sound": "Ses",
-    "changeView": "Görünümü değiştir"
+    "changeView": "Görünümü değiştir",
+    "newImage": "Yeni görüntü"
   },
   "rubberStamp": {
     "Approved": "Onaylı",
@@ -178,9 +184,11 @@
     "notesPanel": "Yorumlar",
     "outlinePanel": "anahat",
     "outlinesPanel": "Anahatlar",
+    "newOutlineTitle": "Yeni Anahat Başlığı",
+    "outlineTitle": "Anahat Başlığı",
+    "destination": "Hedef",
     "bookmarkPanel": "Yer imi",
     "bookmarksPanel": "Yer imleri",
-    "newBookmark": "Yeni Yer İşareti",
     "bookmarkTitle": "Yer İşareti Başlığı",
     "bookmarkPage": "Sayfa",
     "signaturePanel": "imzalar",
@@ -194,10 +202,16 @@
     "textPopup": "Metin Açılır Penceresi",
     "createStampButton": "Yeni Damga Oluştur",
     "filter": "filtre",
+    "multiSelectButton": "Çoklu seçim",
     "pageReplaceModalTitle": "Sayfayı Değiştir",
     "files": "Dosyalar",
     "editText": "Metni düzenle",
-    "redactionPanel": "Redaksiyon Paneli"
+    "redactionPanel": "Redaksiyon Paneli",
+    "noteGroupSection": {
+      "open": "Tüm Ek Açıklamaları Görüntüle",
+      "close": "Tüm Ek Açıklamaları Kapat"
+    },
+    "comparePanel": "Karşılaştır Paneli"
   },
   "message": {
     "toolsOverlayNoPresets": "Ön Ayar Yok",
@@ -238,6 +252,7 @@
     "existingAnnotationWarning": "Mevcut ek açıklamalar, düzenlendikten sonra metinle eşleşmeyebilir.",
     "changesCannotBeUndone": "Yapılan herhangi bir değişiklik geri alınamaz.",
     "doNotShowAgain": "Bunu bir daha bana gösterme",
+    "doNotAskAgain": "Tekrar sorma",
     "enterReplacementText": "Değiştirmek istediğiniz metni girin",
     "sortBy": "Çeşit",
     "emptyCustomStampInput": "Damga metni boş olamaz",
@@ -278,7 +293,9 @@
       "underline": "Altını çizmek",
       "squiggly": "dalgalı",
       "3D": "3 boyutlu",
-      "other": "Diğer"
+      "other": "Diğer",
+      "initials": "baş harfler",
+      "saved": "kaydedildi"
     },
     "notesOrder": {
       "dropdownLabel": "Sıralama Listesi",
@@ -299,6 +316,7 @@
       "toolbarGroup-Insert": "Sokmak",
       "toolbarGroup-Measure": "Ölçüm",
       "toolbarGroup-Edit": "Düzenlemek",
+      "toolbarGroup-EditText": "Metni düzenle",
       "toolbarGroup-FillAndSign": "Doldur ve İmzala",
       "toolbarGroup-Forms": "Formlar",
       "toolbarGroup-Redact": "Yazıya dökmek"
@@ -316,7 +334,6 @@
       "pageTransition": "Sayfa Geçişi"
     },
     "documentControls": {
-      "placeholder": "1, 3, 5-10",
       "selectTooltip": "Birden çok sayfa seçin",
       "closeTooltip": "Çoklu seçimi kapat"
     },
@@ -371,7 +388,15 @@
     "searchPanel": {
       "caseSensitive": "Harfe duyarlı",
       "wholeWordOnly": "Tüm dünya",
-      "wildcard": "joker karakter"
+      "wildcard": "joker karakter",
+      "replace": "Yer değiştirmek",
+      "replaceAll": "Hepsini değiştir",
+      "replaceText": "Metni Değiştir",
+      "confirmMessageReplaceAll": "Tüm metni değiştirmek istediğinizden emin misiniz?",
+      "confirmMessageReplaceOne": "Bu metni değiştirmek istediğinizden emin misiniz?",
+      "moreOptions": "Daha fazla seçenek",
+      "lessOptions": "Daha az seçenek",
+      "confirm": "Onaylamak"
     },
     "toolsOverlay": {
       "currentStamp": "Geçerli Damga",
@@ -382,14 +407,21 @@
       "addStamp": "Yeni Damga Ekle"
     },
     "signatureOverlay": {
-      "addSignature": "Yeni İmza Ekle"
+      "addSignature": "Yeni İmza Ekle",
+      "addSignatureOrInitials": "İmza/Baş Harfler"
     },
     "signatureModal": {
       "modalName": "Yeni İmza Oluştur",
       "dragAndDrop": "Resminizi buraya sürükleyip bırakın",
       "or": "Veya",
       "pickImage": "Bir imza seçin",
-      "selectImage": "Resminizi buradan seçin"
+      "selectImage": "Resminizi buradan seçin",
+      "typeSignature": "Tip İmza*",
+      "typeInitial": "Baş Harfleri yazın*",
+      "drawSignature": "İmza Çek*",
+      "drawInitial": "Baş Harflerini Çiz*",
+      "pickInitialsFile": "Baş Harfleri Seçin",
+      "noSignatures": "Şu anda kayıtlı imza yok."
     },
     "pageReplacementModal": {
       "dragAndDrop": "Dosyanızı buraya sürükleyip bırakın",
@@ -435,6 +467,40 @@
     },
     "measurementOption": {
       "scale": "Ölçek"
+    },
+    "measurement": {
+      "scaleModal": {
+        "calibrate": "kalibre et",
+        "custom": "Gelenek",
+        "fractionalUnits": "Kesirli Birimler",
+        "precision": "Kesinlik",
+        "preset": "ön ayar",
+        "paperUnits": "Kağıt Birimleri",
+        "displayUnits": "Görüntüleme birimleri",
+        "fractionUnitsTooltip": "Kesir birimleri yalnızca içeri ve ft-in için geçerlidir",
+        "incorrectSyntax": "Yanlış sözdizimi"
+      },
+      "scaleOverlay": {
+        "addNewScale": "Yeni Ölçek Ekle",
+        "selectTwoPoints": "Kalibre etmek için bilinen bir boyutun iki noktasını seçin",
+        "inputKnowDimension": "Bilinen boyutu ve kalibre edilecek birimleri girin",
+        "multipleScales": "Çoklu Ölçekler"
+      },
+      "deleteScaleModal": {
+        "deleteScale": "Ölçeği Sil",
+        "scaleIsOn-delete-info": "Bu ölçek şu anda kullanımda",
+        "page-delete-info": "sayfa",
+        "appliedTo-delete-info": "ve uygulanan",
+        "measurement": "ölçüm",
+        "measurements": "ölçümler",
+        "deletionIs": "Silme",
+        "irreversible": "geri döndürülemez",
+        "willDeleteMeasurement": "ve ilişkili ölçümleri siler.",
+        "confirmDelete": "Bu ölçeği silmek istediğinizden emin misiniz?",
+        "ifChangeScale": "Seçilen ölçüm veya araç için ölçeği değiştirirseniz, ölçek",
+        "notUsedWillDelete": " artık herhangi bir ölçüm veya araç tarafından kullanılmayacak ve silinecektir. Silme işlemi geri döndürülemez.",
+        "ifToContinue": "Devam etmek istediğinizden emin misiniz?"
+      }
     },
     "stylePopup": {
       "textStyle": "Yazı stili",
@@ -524,11 +590,45 @@
       "specify": "Sayfaları Belirtin",
       "odd": "Sadece tek sayfalar",
       "even": "Yalnızca Çift Sayfalar",
-      "header": "Sayfa Redaksiyonunu İşaretle",
-      "specifyPlaceholder": "1, 3, 5-10"
+      "header": "Sayfa Redaksiyonunu İşaretle"
     },
     "lineStyleOptions": {
       "title": "stil"
+    },
+    "settings": {
+      "settings": "Ayarlar",
+      "general": "Genel",
+      "keyboardShortcut": "Klavye kısayolu",
+      "advancedSetting": "Gelişmiş Ayarlar",
+      "language": "Dil",
+      "theme": "Tema",
+      "darkMode": "Karanlık mod",
+      "lightMode": "Işık modu",
+      "viewing": "görüntüleme",
+      "disableFadePageNavigationComponent": "Soldurma Sayfa Gezinme Bileşenini Devre Dışı Bırak",
+      "disableFadePageNavigationComponentDesc": "Sayfa Gezinme Bileşenini her zaman ekranda tutun. Varsayılan davranış, belirli bir hareketsizlik süresinden sonra onu soldurmaktır.",
+      "disableNativeScrolling": "Yerel Kaydırmayı Devre Dışı Bırak",
+      "disableNativeScrollingDesc": "Daha önce etkinleştirildiyse yerel mobil cihaz kaydırma davranışını devre dışı bırakın. Yerel mobil cihaz kaydırma davranışının varsayılan olarak kapalı olduğunu unutmayın.",
+      "annotations": "Ek açıklamalar",
+      "disableToolDefaultStyleUpdateFromAnnotationPopup": "Açıklama Açılır Penceresinden Araç Varsayılan Stil Güncellemesini Devre Dışı Bırak",
+      "disableToolDefaultStyleUpdateFromAnnotationPopupDesc": "Detaylandırma stili güncellemelerinin, detaylandırmayı oluşturan ilişkili araca eşitlenmesini devre dışı bırakır. Bu nedenle, bir detaylandırmanın stili değiştirilirse, araç varsayılan stilleri güncellenmeyecektir.",
+      "notesPanel": "Notlar Paneli",
+      "disableNoteSubmissionWithEnter": "Enter ile Not Göndermeyi Devre Dışı Bırak",
+      "disableNoteSubmissionWithEnterDesc": "Daha önce etkinleştirilmişse, yalnızca Enter tuşuna basarak not gönderme özelliğini devre dışı bırakın. Bu, not gönderimini Ctrl/Cmd + Enter olan varsayılana döndürür.",
+      "disableAutoExpandCommentThread": "Yorum Konusunu Otomatik Genişletmeyi Devre Dışı Bırak",
+      "disableAutoExpandCommentThreadDesc": "Notlar Panelindeki tüm yorum dizilerinin otomatik olarak genişletilmesini devre dışı bırakır.",
+      "disableReplyCollapse": "Yanıtı Daraltmayı Devre Dışı Bırak",
+      "disableReplyCollapseDesc": "Notlar Panelinde yanıtların daraltılmasını devre dışı bırakır.",
+      "disableTextCollapse": "Metin Daraltmasını Devre Dışı Bırak",
+      "disableTextCollapseDesc": "Notlar Panelinde ek açıklama metninin daraltılmasını devre dışı bırakır.",
+      "search": "Arama",
+      "disableClearSearchOnPanelClose": "Panel Kapatmada Aramayı Temizle'yi devre dışı bırakın",
+      "disableClearSearchOnPanelCloseDesc": "Kullanıcı arama panelini kapattığında arama sonuçlarını temizlemeyi devre dışı bırakın. Devre dışı bırakıldığında, kullanıcı arama panelini kapatıp yeniden açsa bile arama sonuçları korunur. Bu ayar etkinleştirilse bile mobil cihazların arama sonuçlarını asla temizlemediğini unutmayın. Bunun nedeni, belgedeki arama sonuçlarını görüntülemek için panelin kapatılması gerekmesidir.",
+      "pageManipulation": "Sayfa Manipülasyonu",
+      "disablePageDeletionConfirmationModal": "Sayfa Silme Onayı Kalıcılığını Devre Dışı Bırak",
+      "disablePageDeletionConfirmationModalDesc": "Küçük resim görünümünden bir sayfayı silerken onay modunu devre dışı bırakın",
+      "disableMultiselect": "Çoklu Seçimi Devre Dışı Bırak",
+      "disableMultiselectDesc": "Sol küçük resim panelinde çoklu seçimi devre dışı bırakın"
     }
   },
   "warning": {
@@ -553,7 +653,7 @@
     },
     "deleteOutline": {
       "title": "Anahat Silinsin mi?",
-      "message": "Bu anahatları silmek istediğinizden emin misiniz?\n\n İç içe geçmiş anahatları olan bir anahat, her şeyin silinmesine neden olur ve siz yeniden ayarlamadığınız sürece değiştirilemez."
+      "message": "Bu anahatları silmek istediğinizden emin misiniz?\n\nİç içe anahatları olan bir anahattı silmek, tüm iç yapının silinmesine ve gerekirse yeniden oluşturulmasına neden olacaktır."
     },
     "selectPage": {
       "selectTitle": "Sayfa Seçilmedi",
@@ -562,6 +662,15 @@
     "colorPicker": {
       "deleteTitle": "Özel rengi sil",
       "deleteMessage": "Seçilen özel renk silinsin mi? Renk paletinizden kaldırılacaktır."
+    },
+    "multiDeleteAnnotation": {
+      "title": "Ek Açıklamalar Silinsin mi?",
+      "message": "Silme işlemi tüm yorumları, yanıtları ve gruplandırmayı kaldırır ve geri alınamaz.\n\n Bu ek açıklamaları silmek istediğinizden emin misiniz?"
+    },
+    "closeFile": {
+      "title": "İndirmeden kapatılsın mı?",
+      "message": "Bu belgede yapılan değişiklikler var, çalışmanızı indirmeden kapatmak istediğinizden emin misiniz? Bu işlemi geri alamazsınız.",
+      "rejectDownloadButton": "İndirmeden kapat"
     }
   },
   "shortcut": {
@@ -694,6 +803,19 @@
       "options": "Seçenekler",
       "radioGroups": "Aynı Alan Adına sahip radyo düğmeleri aynı gruplamaya ait olacaktır.",
       "nameRequired": "Alan adı gerekli",
+      "fieldIndicator": "Alan Göstergeleri",
+      "documentFieldIndicator": "Belge Alanı Göstergeleri",
+      "indicatorPlaceHolders": {
+        "TextFormField": "Buraya Metin Ekle",
+        "CheckBoxFormField": "Kontrol",
+        "RadioButtonFormField": "Doldurmak",
+        "ListBoxFormField": "Seçme",
+        "ComboBoxFormField": "Seçme",
+        "SignatureFormField": {
+          "fullSignature": "Burayı imzalayın",
+          "initialsSignature": "İlk Burada"
+        }
+      },
       "size": "Boyut",
       "width": "Genişlik",
       "height": "Yükseklik",
@@ -834,6 +956,10 @@
       "cancelMessage": "Seçilen tüm sayfaları kırpmayı iptal etmek istediğinizden emin misiniz?"
     }
   },
+  "textEditingPanel": {
+    "paragraph": "Paragraf",
+    "text": "Metin"
+  },
   "redactionPanel": {
     "noMarkedRedactions": "Metni, bölgeleri, sayfaları işaretleyerek veya arama yaparak redaksiyona başlayın.",
     "redactionSearchPlaceholder": "Anahtar kelime araması veya kalıplara göre ekleyin",
@@ -844,6 +970,8 @@
       "regionRedaction": "Bölge redaksiyonu",
       "fullPageRedaction": "Tam sayfa redaksiyonu",
       "fullVideoFrameRedaction": "Video Redaksiyonu",
+      "audioRedaction": "Ses Düzeltme",
+      "fullVideoFrameAndAudioRedaction": "Video ve Ses Redaksiyonu",
       "image": "resim"
     },
     "expand": "Genişletmek",
@@ -861,9 +989,81 @@
   "wv3dPropertiesPanel": {
     "propertiesHeader": "Özellikler",
     "miscValuesHeader": "Tümü",
-    "emptyPanelMessage": "Özelliklerini görüntülemek için bir öğe seçin"
+    "emptyPanelMessage": "Özelliklerini görüntülemek için bir öğe seçin."
   },
   "languageModal": {
     "selectLanguage": "Dil Seçin"
+  },
+  "insertPageModal": {
+    "title": "Yeni Sayfa Ekle",
+    "tabs": {
+      "blank": "Boşluk",
+      "upload": "Yüklemek"
+    },
+    "pagePlacements": {
+      "header": "Sayfa Yerleşimi",
+      "above": "Sayfanın Üstü",
+      "below": "Sayfanın Altında"
+    },
+    "pageLocations": {
+      "header": "Sayfa Konumu",
+      "specify": "Sayfayı Belirtin",
+      "amount": "Sayfa Sayısı",
+      "total": "Toplam",
+      "pages": "Sayfalar"
+    },
+    "pageDimensions": {
+      "header": "Sayfa Boyutları",
+      "subHeader": "Ön ayarlar",
+      "presets": {
+        "letter": "Mektup",
+        "halfLetter": "yarım harf",
+        "juniorLegal": "küçük yasal",
+        "custom": "Gelenek"
+      }
+    },
+    "browse": "Dosyalara Gözat",
+    "fileSelected": {
+      "title": "Eklenecek Sayfaları Seçin"
+    },
+    "button": "Sayfa Ekle"
+  },
+  "multiViewer": {
+    "dragAndDrop": "Karşılaştırmak için dosyanızı buraya sürükleyip bırakın",
+    "or": "Veya",
+    "browse": "Dosyalara Gözat",
+    "startSync": "Senkronizasyonu Başlat",
+    "stopSync": "Senkronizasyonu Durdur",
+    "closeDocument": "Belgeyi Kapat",
+    "save": "Belgeyi Kaydet",
+    "comparePanel": {
+      "Find": "Belgede bul",
+      "changesList": "Değişiklik Listesi",
+      "change": "Değiştirmek",
+      "old": "Eskimiş",
+      "new": "Yeni",
+      "page": "Sayfa"
+    }
+  },
+  "saveModal": {
+    "close": "Kapat",
+    "saveAs": "Farklı kaydet",
+    "general": "Genel",
+    "fileName": "Dosya adı",
+    "fileType": "Dosya tipi",
+    "fileLocation": "Dosya konumu",
+    "browse": "Araştır",
+    "pageRange": "Sayfa aralığı",
+    "all": "Herşey",
+    "currentView": "Mevcut görünüm",
+    "currentPage": "Geçerli sayfa",
+    "specifyPage": "Sayfayı Belirtin",
+    "properties": "Özellikleri",
+    "includeAnnotation": "Ek Açıklamaları Dahil Et",
+    "includeComments": "Yorumları Dahil Et",
+    "watermark": "Filigran",
+    "addWatermark": "Filigran ekle",
+    "save": "Dosyayı kaydet",
+    "pageError": "Geçersiz sayfa. Geçerli sayfa aralıkları 1 -"
   }
 }
