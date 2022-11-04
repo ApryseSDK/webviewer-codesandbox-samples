@@ -1,7 +1,11 @@
 {
   "name": "webviewer",
   "description": "PDFTron WebViewer",
+<<<<<<< HEAD
   "version": "8.7.0",
+=======
+  "version": "8.10.0",
+>>>>>>> 161efc3... Update lib to 8.10
   "main": "webviewer.min.js",
   "author": "PDFTron Systems Inc.",
   "build": "MTU3NTkzMDE2ODA2OC02LjAuMC1iZXRhLTM=",
