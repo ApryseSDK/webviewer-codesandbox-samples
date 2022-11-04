@@ -14,19 +14,9 @@ WebViewer(
   document.getElementById('viewer')
 ).then(instance => {
   samplesSetup(instance);
+
   document.getElementById('form').onchange = e => {
     // Set language
     instance.UI.setLanguage(e.target.id);
   };
-
-  // To Create a new button into the settings menu and set the translation
-  instance.UI.settingsMenuOverlay.add(
-    {
-      type: 'actionButton',
-      className: 'row',
-      dataElement: 'languageButton',
-      label: 'Language',
-    },
-    'downloadButton'
-  );
 });

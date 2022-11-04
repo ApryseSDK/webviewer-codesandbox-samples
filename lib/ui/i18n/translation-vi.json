@@ -1,12 +1,15 @@
 {
   "action": {
+    "addParagraph": "Thêm đoạn văn",
     "add": "Thêm vào",
     "apply": "Áp dụng",
     "applyAll": "Áp dụng tất cả",
     "calendar": "Lịch",
     "calibrate": "Hiệu chỉnh",
     "cancel": "Hủy",
+    "confirm": "Xác nhận",
     "clear": "Xóa",
+    "clearAll": "Quet sạch tât cả",
     "close": "Đóng",
     "undo": "Hoàn tác",
     "redo": "Làm Lại",
@@ -41,6 +44,7 @@
     "save": "Lưu",
     "post": "Đăng",
     "create": "Tạo",
+    "update": "Cập nhật",
     "showMoreResults": "Hiển thị thêm kết quả",
     "sign": "Ký",
     "style": "Kiểu",
@@ -54,8 +58,6 @@
     "type": "Kiểu",
     "upload": "Tải lên",
     "link": "Liên kết",
-    "darkMode": "Chế độ tối",
-    "lightMode": "Chế độ sáng",
     "fileAttachmentDownload": "Tải xuống tệp đính kèm",
     "prevResult": "Kết quả trước",
     "nextResult": "Kết quả tiếp theo",
@@ -73,6 +75,7 @@
     "insertBlankPageBelow": "Chèn trang trống ở dưới",
     "pageManipulation": "Thao Tác Trang",
     "replace": "Thay thế",
+    "setDestination": "Đích đã được cài",
     "showLess": "hiển thị ít hơn",
     "showMore": "...nhiều hơn",
     "chooseFile": "Chọn một tệp",
@@ -89,7 +92,9 @@
     "unselect": "Bỏ chọn",
     "addMark": "Thêm dấu",
     "viewFile": "Xem tài liệu",
-    "switchLanguage": "Ngôn ngữ"
+    "multiReplyAnnotations": "Trả lời các chú thích đã chọn ({{count}})",
+    "comparePages": "So sánh các trang",
+    "startComparison": "Bắt đầu so sánh"
   },
   "annotation": {
     "areaMeasurement": "Diện tích",
@@ -110,6 +115,8 @@
     "freehand": "Free Hand",
     "freeHandHighlight": "Điểm Nhấn Free Hand",
     "freetext": "Văn Bản Tự Do",
+    "markInsertText": "Chèn văn bản",
+    "markReplaceText": "Thay thế Văn bản",
     "highlight": "Nổi bật",
     "image": "Ảnh",
     "line": "Đường kẻ",
@@ -132,13 +139,15 @@
     "textField": "Trường Văn Bản",
     "signatureFormField": "Trường Chữ Ký",
     "checkBoxFormField": "Trường Hộp Kiểm",
-    "radioButtonFormField": "Trường RadioButton",
+    "radioButtonFormField": "Trường nút radio",
     "listBoxFormField": "Trường Hộp Danh Sách",
     "comboBoxFormField": "Trường Hộp Kết Hợp",
     "link": "Liên kết",
     "other": "Khác",
     "3D": "3D",
-    "sound": "Âm thanh"
+    "sound": "Âm thanh",
+    "changeView": "Thay đổi góc nhìn",
+    "newImage": "Hình ảnh mới"
   },
   "rubberStamp": {
     "Approved": "Đã chấp thuận",
@@ -173,11 +182,16 @@
     "searchPanel": "Tìm kiếm",
     "menuOverlay": "Menu",
     "notesPanel": "Bình Luận",
+    "outlinePanel": "Đề cương",
     "outlinesPanel": "Tóm tắt",
+    "newOutlineTitle": "Tiêu đề phác thảo mới",
+    "outlineTitle": "Đề cương",
+    "destination": "Điểm đến",
+    "bookmarkPanel": "Dấu trang",
     "bookmarksPanel": "Đánh dấu",
-    "signaturePanel": "Chữ ký",
-    "newBookmark": "Đánh Dấu Mới",
+    "bookmarkTitle": "Tiêu đề Dấu trang",
     "bookmarkPage": "Trang",
+    "signaturePanel": "Chữ ký",
     "layersPanel": "Lớp",
     "thumbnailsPanel": "Hình nhỏ",
     "toolsButton": "Công cụ",
@@ -188,10 +202,16 @@
     "textPopup": "Bật Lên Văn Bản",
     "createStampButton": "Tạo Tem Mới",
     "filter": "Lọc",
+    "multiSelectButton": "Nhiều lựa chọn",
     "pageReplaceModalTitle": "Thay Thế Trang",
     "files": "Tệp",
     "editText": "Chỉnh Sửa Văn Bản",
-    "redactionPanel": "Bảng Biên Tập"
+    "redactionPanel": "Bảng Biên Tập",
+    "noteGroupSection": {
+      "open": "Xem tất cả các chú thích",
+      "close": "Đóng tất cả các chú thích"
+    },
+    "comparePanel": "So sánh bảng điều khiển"
   },
   "message": {
     "toolsOverlayNoPresets": "Không Có Cài Đặt Trước",
@@ -204,6 +224,7 @@
     "noAnnotations": "Bắt đầu tạo chú thích để lưu lại bình luận.",
     "noAnnotationsReadOnly": "Tài liệu này không có chú thích nào.",
     "noAnnotationsFilter": "Bắt đầu tạo chú thích và bộ lọc sẽ xuất hiện ở đây.",
+    "noBookmarks": "Không có dấu trang",
     "noOutlines": "Tài liệu này không có tóm tắt nào.",
     "noAttachments": "Tài liệu này không có tệp đính kèm nào.",
     "noResults": "Không tìm thấy kết quả nào.",
@@ -231,6 +252,7 @@
     "existingAnnotationWarning": "Chú thích hiện có có thể không khớp với văn bản sau khi đã được chỉnh sửa.",
     "changesCannotBeUndone": "Bất kỳ thay đổi nào được thực hiện không thể được hoàn tác.",
     "doNotShowAgain": "Không hiển thị lại điều này cho tôi",
+    "doNotAskAgain": "Đừng hỏi nữa",
     "enterReplacementText": "Nhập văn bản bạn muốn thay thế",
     "sortBy": "Sắp xếp",
     "emptyCustomStampInput": "Văn bản tem không thể trống",
@@ -246,6 +268,7 @@
     "selectPageToReplace": "Chọn các trang trong tài liệu bạn muốn thay thế.",
     "embeddedFiles": "Tệp Nhúng",
     "pageNum": "Số Trang",
+    "viewBookmark": "Xem dấu trang trên trang",
     "error": "Lỗi"
   },
   "option": {
@@ -270,7 +293,9 @@
       "underline": "Gạch chân",
       "squiggly": "Nguệch ngoạc",
       "3D": "3D",
-      "other": "Khác"
+      "other": "Khác",
+      "initials": "Tên viết tắt",
+      "saved": "Đã lưu"
     },
     "notesOrder": {
       "dropdownLabel": "Sắp Xếp Danh Sách Lệnh",
@@ -291,6 +316,7 @@
       "toolbarGroup-Insert": "Chèn",
       "toolbarGroup-Measure": "Đo",
       "toolbarGroup-Edit": "Chỉnh sửa",
+      "toolbarGroup-EditText": "Chỉnh sửa văn bản",
       "toolbarGroup-FillAndSign": "Điền và Ký",
       "toolbarGroup-Forms": "Biểu mẫu",
       "toolbarGroup-Redact": "Biên tập"
@@ -308,13 +334,13 @@
       "pageTransition": "Chuyển Tiếp Trang"
     },
     "documentControls": {
-      "placeholder": "1, 3, 5-10",
       "selectTooltip": "Chọn nhiều trang",
       "closeTooltip": "Đóng đa chọn"
     },
-    "outlineControls": {
-      "add": "Thêm mục",
-      "reorder": "Sắp xếp lại thứ tự"
+    "bookmarkOutlineControls": {
+      "edit": "Chỉnh sửa",
+      "done": "Xong",
+      "reorder": "Sắp xếp lại"
     },
     "layout": {
       "cover": "Trang Mặt Bìa",
@@ -362,7 +388,15 @@
     "searchPanel": {
       "caseSensitive": "Nhạy cảm viết hoa",
       "wholeWordOnly": "Toàn bộ từ",
-      "wildcard": "Wildcard"
+      "wildcard": "Wildcard",
+      "replace": "Thay thế",
+      "replaceAll": "Thay thế tất cả",
+      "replaceText": "Thay thế văn bản",
+      "confirmMessageReplaceAll": "Bạn có chắc chắn muốn thay thế tất cả văn bản không?",
+      "confirmMessageReplaceOne": "Bạn có chắc chắn muốn thay thế văn bản này không?",
+      "moreOptions": "Lựa chọn khác",
+      "lessOptions": "Ít tùy chọn hơn",
+      "confirm": "Xác nhận"
     },
     "toolsOverlay": {
       "currentStamp": "Tem Hiện Tại",
@@ -373,14 +407,21 @@
       "addStamp": "Thêm Tem Mới"
     },
     "signatureOverlay": {
-      "addSignature": "Thêm Chữ Ký Mới"
+      "addSignature": "Thêm Chữ Ký Mới",
+      "addSignatureOrInitials": "Chữ ký / Tên viết tắt"
     },
     "signatureModal": {
       "modalName": "Tạo Chữ Ký Mới",
       "dragAndDrop": "Kéo & Thả hình ảnh của bạn tại đây",
       "or": "Hoặc",
       "pickImage": "Chọn một chữ ký",
-      "selectImage": "Chọn hình ảnh của bạn tại đây"
+      "selectImage": "Chọn hình ảnh của bạn tại đây",
+      "typeSignature": "Nhập Chữ ký *",
+      "typeInitial": "Nhập tên viết tắt *",
+      "drawSignature": "Vẽ Chữ ký *",
+      "drawInitial": "Rút tên viết tắt *",
+      "pickInitialsFile": "Chọn tên viết tắt",
+      "noSignatures": "Hiện tại không có chữ ký nào được lưu."
     },
     "pageReplacementModal": {
       "dragAndDrop": "Kéo & Thả tệp của bạn tại đây",
@@ -391,12 +432,11 @@
       "pageReplaceInputFromSource": "bằng (các) trang"
     },
     "filterAnnotModal": {
-      "commentBy": "Nhận xét của",
-      "types": "Kiểu",
       "color": "Màu",
-      "includeReplies": "Bao Gồm Trả Lời"
-    },
-    "status": {
+      "includeReplies": "Bao Gồm Trả Lời",
+      "filters": "Bộ lọc",
+      "user": "Người sử dụng",
+      "type": "Loại hình",
       "status": "Trạng thái"
     },
     "state": {
@@ -427,6 +467,40 @@
     },
     "measurementOption": {
       "scale": "Quy mô"
+    },
+    "measurement": {
+      "scaleModal": {
+        "calibrate": "Hiệu chỉnh",
+        "custom": "Tập quán",
+        "fractionalUnits": "Đơn vị phân số",
+        "precision": "Độ chính xác",
+        "preset": "Đặt trước",
+        "paperUnits": "Đơn vị giấy",
+        "displayUnits": "Đơn vị hiển thị",
+        "fractionUnitsTooltip": "Đơn vị phân số chỉ áp dụng cho in và ft-in",
+        "incorrectSyntax": "Cú pháp không chính xác"
+      },
+      "scaleOverlay": {
+        "addNewScale": "Thêm quy mô mới",
+        "selectTwoPoints": "Chọn hai điểm có kích thước đã biết để hiệu chỉnh",
+        "inputKnowDimension": "Nhập kích thước và đơn vị đã biết để hiệu chỉnh",
+        "multipleScales": "Nhiều quy mô"
+      },
+      "deleteScaleModal": {
+        "deleteScale": "Xóa quy mô",
+        "scaleIsOn-delete-info": "Quy mô này hiện đang được sử dụng trên",
+        "page-delete-info": "trang",
+        "appliedTo-delete-info": "và áp dụng cho",
+        "measurement": "đo đạc",
+        "measurements": "đo",
+        "deletionIs": "Xóa là",
+        "irreversible": "không thể thay đổi",
+        "willDeleteMeasurement": "và sẽ xóa các phép đo liên quan.",
+        "confirmDelete": "Bạn có chắc chắn muốn xóa thang đo này không?",
+        "ifChangeScale": "Nếu bạn thay đổi thang đo cho phép đo hoặc công cụ đã chọn, hãy chia tỷ lệ",
+        "notUsedWillDelete": " sẽ không còn được sử dụng bởi bất kỳ phép đo hoặc công cụ nào nữa và sẽ bị xóa. Việc xóa là không thể hoàn tác.",
+        "ifToContinue": "Bạn có chắc chắn muốn tiếp tục không?"
+      }
     },
     "stylePopup": {
       "textStyle": "Kiểu Văn Bản",
@@ -495,10 +569,19 @@
       "modalName": "Tạo Tem Mới",
       "stampText": "Văn bản tem",
       "timestampText": "Văn bản dấu thời gian",
-      "stampColor": "Màu tem:",
       "Username": "Tên người dùng",
       "Date": "Ngày",
-      "Time": "Thời gian"
+      "Time": "Thời gian",
+      "fontStyle": "kiểu phông chữ",
+      "dateFormat": "Định dạng ngày tháng",
+      "month": "Tháng",
+      "day": "Ngày",
+      "year": "Năm",
+      "hour": "Giờ",
+      "minute": "Phút",
+      "second": "Thứ hai",
+      "textColor": "Văn bản màu",
+      "backgroundColor": "Màu nền"
     },
     "pageRedactModal": {
       "addMark": "Thêm dấu",
@@ -508,6 +591,44 @@
       "odd": "Chỉ các trang lẻ",
       "even": "Chỉ trang chẵn",
       "header": "Đánh dấu trang Redaction"
+    },
+    "lineStyleOptions": {
+      "title": "Phong cách"
+    },
+    "settings": {
+      "settings": "Cài đặt",
+      "general": "Chung",
+      "keyboardShortcut": "Phim tăt",
+      "advancedSetting": "Cài đặt nâng cao",
+      "language": "Ngôn ngữ",
+      "theme": "Chủ đề",
+      "darkMode": "Chế độ tối",
+      "lightMode": "Chế độ sáng",
+      "viewing": "Đang xem",
+      "disableFadePageNavigationComponent": "Tắt thành phần điều hướng trang làm mờ",
+      "disableFadePageNavigationComponentDesc": "Luôn giữ Thành phần Điều hướng Trang trên màn hình. Hành vi mặc định là làm mờ dần nó sau một thời gian không hoạt động nhất định.",
+      "disableNativeScrolling": "Tắt tính năng cuộn gốc",
+      "disableNativeScrollingDesc": "Tắt hành vi cuộn thiết bị di động gốc nếu nó đã được bật trước đó. Lưu ý rằng hành vi cuộn trên thiết bị di động gốc bị tắt theo mặc định.",
+      "annotations": "Chú thích",
+      "disableToolDefaultStyleUpdateFromAnnotationPopup": "Tắt cập nhật kiểu mặc định của công cụ từ cửa sổ bật lên chú thích",
+      "disableToolDefaultStyleUpdateFromAnnotationPopupDesc": "Tắt đồng bộ hóa các cập nhật kiểu chú thích với công cụ được liên kết đã tạo chú thích. Vì vậy, nếu kiểu của chú thích bị thay đổi, kiểu mặc định của công cụ sẽ không được cập nhật.",
+      "notesPanel": "Bảng ghi chú",
+      "disableNoteSubmissionWithEnter": "Tắt tính năng gửi ghi chú bằng phím Enter",
+      "disableNoteSubmissionWithEnterDesc": "Vô hiệu hóa khả năng gửi ghi chú bằng cách chỉ nhấn Enter nếu nó đã được bật trước đó. Thao tác này sẽ hoàn nguyên việc gửi ghi chú về mặc định là Ctrl / Cmd + Enter.",
+      "disableAutoExpandCommentThread": "Tắt tự động mở rộng chuỗi nhận xét",
+      "disableAutoExpandCommentThreadDesc": "Tắt tính năng mở rộng tự động của tất cả các chuỗi nhận xét trong Bảng ghi chú.",
+      "disableReplyCollapse": "Tắt thu gọn trả lời",
+      "disableReplyCollapseDesc": "Tắt tính năng thu gọn các câu trả lời trong Bảng ghi chú.",
+      "disableTextCollapse": "Tắt tính năng thu gọn văn bản",
+      "disableTextCollapseDesc": "Tắt tính năng thu gọn văn bản của chú thích trong Bảng ghi chú.",
+      "search": "Tìm kiếm",
+      "disableClearSearchOnPanelClose": "Vô hiệu hóa Xóa tìm kiếm trên bảng điều khiển Đóng",
+      "disableClearSearchOnPanelCloseDesc": "Tắt xóa kết quả tìm kiếm khi người dùng đóng bảng tìm kiếm. Khi bị tắt, kết quả tìm kiếm vẫn được giữ lại ngay cả khi người dùng đóng và mở lại bảng tìm kiếm. Lưu ý, thiết bị di động không bao giờ xóa kết quả tìm kiếm ngay cả khi cài đặt này được bật. Điều này là do bảng điều khiển cần được đóng lại để xem kết quả tìm kiếm trên tài liệu.",
+      "pageManipulation": "Thao tác trang",
+      "disablePageDeletionConfirmationModal": "Tắt phương thức xác nhận xóa trang",
+      "disablePageDeletionConfirmationModalDesc": "Tắt phương thức xác nhận khi xóa trang khỏi chế độ xem hình thu nhỏ",
+      "disableMultiselect": "Tắt nhiều lựa chọn",
+      "disableMultiselectDesc": "Tắt nhiều lựa chọn trong bảng hình thu nhỏ bên trái"
     }
   },
   "warning": {
@@ -526,6 +647,14 @@
       "applyTile": "Áp Dụng Biên Tập",
       "applyMessage": "Hành động này sẽ gỡ vĩnh viễn tất cả các mục được chọn để biên tập. Không thể hoàn tác hành động này."
     },
+    "deleteBookmark": {
+      "title": "Xóa Dấu trang?",
+      "message": "Bạn có chắc chắn muốn xóa các dấu trang này không? Bạn không thể hoàn tác hành động này."
+    },
+    "deleteOutline": {
+      "title": "Xóa dàn ý?",
+      "message": "Bạn có chắc chắn muốn xóa những đường viền này không?\n\nXóa một đường viền có các đường viền lồng nhau sẽ dẫn đến việc toàn bộ cấu trúc bên trong bị xóa và nếu cần, sẽ phải được tạo lại."
+    },
     "selectPage": {
       "selectTitle": "Không Có Trang nào được Chọn",
       "selectMessage": "Vui lòng chọn trang và thử lại."
@@ -533,6 +662,15 @@
     "colorPicker": {
       "deleteTitle": "Xóa màu tùy chỉnh",
       "deleteMessage": "Xóa màu tùy chỉnh đã chọn? Nó sẽ bị gỡ bỏ khỏi bảng màu của bạn."
+    },
+    "multiDeleteAnnotation": {
+      "title": "Xóa chú thích?",
+      "message": "Thao tác xóa sẽ xóa tất cả nhận xét, câu trả lời và nhóm và không thể hoàn tác.\n\n Bạn có chắc chắn muốn xóa các chú thích này không?"
+    },
+    "closeFile": {
+      "title": "Đóng mà không tải xuống?",
+      "message": "Có những thay đổi được thực hiện đối với tài liệu này, bạn có chắc chắn muốn đóng nó mà không tải xuống công việc của mình không? Bạn không thể hoàn tác hành động này.",
+      "rejectDownloadButton": "Đóng mà không cần tải xuống"
     }
   },
   "shortcut": {
@@ -665,6 +803,19 @@
       "options": "Tùy Chọn",
       "radioGroups": "Các nút radio có cùng Tên Trường sẽ thuộc cùng một nhóm.",
       "nameRequired": "Tên trường là bắt buộc",
+      "fieldIndicator": "Chỉ báo trường",
+      "documentFieldIndicator": "Chỉ báo trường tài liệu",
+      "indicatorPlaceHolders": {
+        "TextFormField": "Chèn văn bản tại đây",
+        "CheckBoxFormField": "Kiểm tra",
+        "RadioButtonFormField": "Lấp đầy",
+        "ListBoxFormField": "Lựa chọn",
+        "ComboBoxFormField": "Lựa chọn",
+        "SignatureFormField": {
+          "fullSignature": "Ký vào đây",
+          "initialsSignature": "Ban đầu tại đây"
+        }
+      },
       "size": "Kích thước",
       "width": "Chiều rộng",
       "height": "Chiều cao",
@@ -792,6 +943,7 @@
     "title": "Các trang cần cắt",
     "allPages": "Tất cả",
     "singlePage": "Trang hiện tại",
+    "multiPage": "Chỉ định trang",
     "cropDimensions": "Kích thước cây trồng",
     "dimensionInput": {
       "unitOfMeasurement": "Đơn vị",
@@ -804,6 +956,10 @@
       "cancelMessage": "Bạn có chắc chắn muốn hủy việc cắt xén tất cả các trang đã chọn không?"
     }
   },
+  "textEditingPanel": {
+    "paragraph": "Đoạn văn",
+    "text": "Chữ"
+  },
   "redactionPanel": {
     "noMarkedRedactions": "Bắt đầu biên tập lại bằng cách đánh dấu văn bản, vùng, trang hoặc thực hiện tìm kiếm.",
     "redactionSearchPlaceholder": "Bổ sung theo tìm kiếm từ khóa hoặc mẫu",
@@ -813,6 +969,9 @@
     "redactionItem": {
       "regionRedaction": "Biên tập vùng",
       "fullPageRedaction": "Biên tập toàn trang",
+      "fullVideoFrameRedaction": "Video Redaction",
+      "audioRedaction": "Phản hồi âm thanh",
+      "fullVideoFrameAndAudioRedaction": "Phản ứng lại video và âm thanh",
       "image": "Hình ảnh"
     },
     "expand": "Mở rộng",
@@ -827,7 +986,84 @@
       "start": "Bắt đầu thực hiện tìm kiếm của bạn"
     }
   },
+  "wv3dPropertiesPanel": {
+    "propertiesHeader": "Thuộc tính",
+    "miscValuesHeader": "Tất cả",
+    "emptyPanelMessage": "Chọn một phần tử để xem các thuộc tính của nó."
+  },
   "languageModal": {
     "selectLanguage": "Chọn ngôn ngữ"
+  },
+  "insertPageModal": {
+    "title": "Thêm trang mới",
+    "tabs": {
+      "blank": "Trống",
+      "upload": "Tải lên"
+    },
+    "pagePlacements": {
+      "header": "Vị trí trang",
+      "above": "Trang trên",
+      "below": "Dưới trang"
+    },
+    "pageLocations": {
+      "header": "Vị trí trang",
+      "specify": "Chỉ định Trang",
+      "amount": "Số lượng trang",
+      "total": "Tổng cộng",
+      "pages": "Các trang"
+    },
+    "pageDimensions": {
+      "header": "Kích thước trang",
+      "subHeader": "Cài đặt trước",
+      "presets": {
+        "letter": "Bức thư",
+        "halfLetter": "Nửa chữ cái",
+        "juniorLegal": "Pháp lý cơ sở",
+        "custom": "Phong tục"
+      }
+    },
+    "browse": "Duyệt qua tệp",
+    "fileSelected": {
+      "title": "Chọn các trang để thêm"
+    },
+    "button": "Thêm (các) Trang"
+  },
+  "multiViewer": {
+    "dragAndDrop": "Kéo và thả tệp của bạn vào đây để so sánh",
+    "or": "Hoặc",
+    "browse": "Duyệt qua tệp",
+    "startSync": "Bắt đầu đồng bộ hóa",
+    "stopSync": "Dừng đồng bộ hóa",
+    "closeDocument": "Đóng tài liệu",
+    "save": "Lưu tài liệu",
+    "comparePanel": {
+      "Find": "Tìm trong tài liệu",
+      "changesList": "Danh sách thay đổi",
+      "change": "Biến đổi",
+      "old": "Cũ",
+      "new": "Mới",
+      "page": "Trang"
+    }
+  },
+  "saveModal": {
+    "close": "Đóng",
+    "saveAs": "Lưu thành",
+    "general": "Chung",
+    "fileName": "Tên tệp",
+    "fileType": "Loại tệp",
+    "fileLocation": "Vị trí tập tin",
+    "browse": "Duyệt qua",
+    "pageRange": "Phạm vi trang",
+    "all": "Tất cả các",
+    "currentView": "Chế độ xem hiện tại",
+    "currentPage": "Trang hiện tại",
+    "specifyPage": "Chỉ định Trang",
+    "properties": "Đặc tính",
+    "includeAnnotation": "Bao gồm chú thích",
+    "includeComments": "Bao gồm các bình luận",
+    "watermark": "Chữ ký ảnh",
+    "addWatermark": "Thêm hình mờ",
+    "save": "Lưu tập tin",
+    "pageError": "Trang không hợp lệ. Phạm vi trang hợp lệ là từ 1 -"
   }
 }
