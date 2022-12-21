@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "Exibir teclas de atalho",
     "markAllRead": "Marcar todas como lidas",
     "insertPage": "Inserção de Página",
-    "insertBlankPageAbove": "Inserir página em branco acima",
-    "insertBlankPageBelow": "Inserir página em branco abaixo",
+    "insert": "Inserir",
     "pageManipulation": "Manipulação de página",
     "replace": "Substituir",
     "setDestination": "Definir destino",
     "showLess": "mostre menos",
     "showMore": "...mais",
     "chooseFile": "Escolha um arquivo",
+    "browse": "Procurar arquivos",
     "selectYourOption": "Selecione sua opção",
     "open": "Aberto",
     "deselectAll": "Desmarcar todos",
@@ -94,7 +94,8 @@
     "viewFile": "Visualizar arquivo",
     "multiReplyAnnotations": "Responder às anotações selecionadas ({{count}})",
     "comparePages": "Comparar páginas",
-    "startComparison": "Iniciar comparação"
+    "startComparison": "Iniciar comparação",
+    "back": "De volta"
   },
   "annotation": {
     "areaMeasurement": "Medição de área",
@@ -211,7 +212,8 @@
       "open": "Ver todas as anotações",
       "close": "Fechar todas as anotações"
     },
-    "comparePanel": "Painel de comparação"
+    "comparePanel": "Painel de comparação",
+    "watermarkPanel": "Painel de marca d'água"
   },
   "message": {
     "toolsOverlayNoPresets": "Sem predefinições",
@@ -269,7 +271,9 @@
     "embeddedFiles": "Arquivos incorporados",
     "pageNum": "Número de página",
     "viewBookmark": "Ver marcador na página",
-    "error": "Erro"
+    "error": "Erro",
+    "errorPageNumber": "Número de página inválido. Limite é",
+    "errorLoadingDocument": "Ocorreu um problema ao ler este documento e algumas páginas podem não ser exibidas. Isso indica que o documento pode estar corrompido. A contagem total de páginas é {{totalPageCount}} e o número de páginas exibidas é {{displayedPageCount}}."
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "Arraste e solte seu arquivo aqui",
+      "selectFile": "Selecione seu arquivo aqui",
       "or": "Ou",
+      "yourFiles": "Seus arquivos",
       "chooseFile": "Escolha um arquivo",
       "localFile": "Arquivo local",
       "pageReplaceInputLabel": "Substituir página(s)",
-      "pageReplaceInputFromSource": "com página(s)"
+      "pageReplaceInputFromSource": "com página(s)",
+      "warning": {
+        "title": "Sair da página de substituição?",
+        "message": "Sair cancelará todas as seleções feitas até agora. Tem certeza de que ainda deseja sair?"
+      }
     },
     "filterAnnotModal": {
       "color": "Cor",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "Todos",
     "emptyPanelMessage": "Selecione um elemento para ver suas propriedades."
   },
+  "watermarkPanel": {
+    "textWatermark": "Marca d'água de texto",
+    "uploadImage": "Enviar Imagem",
+    "browse": "Navegar",
+    "watermarkOptions": "Opções de marca d'água",
+    "watermarks": "Marcas d'água"
+  },
   "languageModal": {
     "selectLanguage": "Selecione o idioma"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "Localização da página",
       "specify": "Especificar página",
+      "specifyLocation": "Especifique o local da página",
       "amount": "Quantidade de páginas",
       "total": "Total",
       "pages": "Páginas"
@@ -1020,13 +1038,20 @@
         "halfLetter": "Meia letra",
         "juniorLegal": "Jurídico Júnior",
         "custom": "Personalizado"
-      }
+      },
+      "units": "Unidades"
     },
     "browse": "Procurar arquivos",
     "fileSelected": {
       "title": "Selecione as páginas a serem adicionadas"
     },
-    "button": "Adicionar página(s)"
+    "button": "Adicionar página(s)",
+    "selectPages": "Selecione as páginas a serem adicionadas",
+    "page": "Página",
+    "warning": {
+      "title": "Sair inserir nova página?",
+      "message": "Sair cancelará todas as seleções feitas até agora. Tem certeza de que ainda deseja sair?"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "Arraste e solte seu arquivo aqui para comparar",

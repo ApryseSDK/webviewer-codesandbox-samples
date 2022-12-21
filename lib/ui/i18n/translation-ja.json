@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "ショートカットキーを表示する",
     "markAllRead": "すべて既読にする",
     "insertPage": "ページ挿入",
-    "insertBlankPageAbove": "上に空白のページを挿入",
-    "insertBlankPageBelow": "下に空白のページを挿入",
+    "insert": "入れる",
     "pageManipulation": "ページ操作",
     "replace": "入れ替え",
     "setDestination": "行き先を設定する",
     "showLess": "表示を減らす",
     "showMore": "...さらに表示",
     "chooseFile": "ファイルを選択してください",
+    "browse": "ブラウズファイル",
     "selectYourOption": "オプションを選択してください",
     "open": "開ける",
     "deselectAll": "すべての選択を解除",
@@ -94,7 +94,8 @@
     "viewFile": "ファイルを閲覧する",
     "multiReplyAnnotations": "選択した注釈に返信 ({{count}})",
     "comparePages": "ページを比較する",
-    "startComparison": "比較を開始"
+    "startComparison": "比較を開始",
+    "back": "戻る"
   },
   "annotation": {
     "areaMeasurement": "面積測定",
@@ -211,7 +212,8 @@
       "open": "すべての注釈を表示",
       "close": "すべての注釈を閉じる"
     },
-    "comparePanel": "比較パネル"
+    "comparePanel": "比較パネル",
+    "watermarkPanel": "透かしパネル"
   },
   "message": {
     "toolsOverlayNoPresets": "プリセットなし",
@@ -269,7 +271,9 @@
     "embeddedFiles": "埋め込みファイル",
     "pageNum": "ページ番号",
     "viewBookmark": "ページにブックマークを表示",
-    "error": "エラー"
+    "error": "エラー",
+    "errorPageNumber": "ページ番号が無効です。限界は",
+    "errorLoadingDocument": "このドキュメントの読み取り中に問題が発生したため、一部のページが表示されない可能性があります。これは、ドキュメントが破損している可能性があることを示しています。総ページ数は {{totalPageCount}} で、表示されているページ数は {{displayedPageCount}} です。"
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "ここにファイルをドラッグ＆ドロップ",
+      "selectFile": "ここでファイルを選択",
       "or": "または",
+      "yourFiles": "あなたのファイル",
       "chooseFile": "ファイルを選択",
       "localFile": "ローカルファイル",
       "pageReplaceInputLabel": "ページを置き換える",
-      "pageReplaceInputFromSource": "ページ"
+      "pageReplaceInputFromSource": "ページ",
+      "warning": {
+        "title": "置換ページを終了しますか?",
+        "message": "終了すると、これまでに行ったすべての選択がキャンセルされます。終了してもよろしいですか？"
+      }
     },
     "filterAnnotModal": {
       "color": "色",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "すべて",
     "emptyPanelMessage": "プロパティを表示する要素を選択してください."
   },
+  "watermarkPanel": {
+    "textWatermark": "テキスト透かし",
+    "uploadImage": "画像をアップロード",
+    "browse": "ブラウズ",
+    "watermarkOptions": "透かしオプション",
+    "watermarks": "透かし"
+  },
   "languageModal": {
     "selectLanguage": "言語を選択する"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "ページの場所",
       "specify": "ページ指定",
+      "specifyLocation": "ページの場所を指定",
       "amount": "ページ数",
       "total": "合計",
       "pages": "ページ"
@@ -1020,13 +1038,20 @@
         "halfLetter": "ハーフレター",
         "juniorLegal": "ジュニアリーガル",
         "custom": "カスタム"
-      }
+      },
+      "units": "単位"
     },
     "browse": "ブラウズファイル",
     "fileSelected": {
       "title": "追加するページを選択"
     },
-    "button": "ページを追加"
+    "button": "ページを追加",
+    "selectPages": "追加するページを選択",
+    "page": "ページ",
+    "warning": {
+      "title": "終了 新しいページを挿入しますか?",
+      "message": "終了すると、これまでに行ったすべての選択がキャンセルされます。終了してもよろしいですか？"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "ここにファイルをドラッグ アンド ドロップして比較します",
