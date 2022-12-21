@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "शॉर्टकट कुंजियाँ देखें",
     "markAllRead": "सभी को पढ़ा हुआ मार्क करें",
     "insertPage": "पेज इंसर्शन",
-    "insertBlankPageAbove": "ऊपर खाली पेज डालें",
-    "insertBlankPageBelow": "नीचे खाली पेज डालें",
+    "insert": "डालना",
     "pageManipulation": "पृष्ठ हेरफेर",
     "replace": "बदलने के",
     "setDestination": "गंतव्य तय करें",
     "showLess": "कम दिखाएं",
     "showMore": "...अधिक",
     "chooseFile": "एक फ़ाइल चुनें",
+    "browse": "फ़ाइलों को ब्राउज़ करें",
     "selectYourOption": "अपना विकल्प चुनें",
     "open": "खुला हुआ",
     "deselectAll": "सबको अचयनित करो",
@@ -94,7 +94,8 @@
     "viewFile": "फ़ाइल देखें",
     "multiReplyAnnotations": "चयनित टिप्पणियों का उत्तर दें",
     "comparePages": "पृष्ठों की तुलना करें",
-    "startComparison": "तुलना शुरू करें"
+    "startComparison": "तुलना शुरू करें",
+    "back": "पीछे"
   },
   "annotation": {
     "areaMeasurement": "क्षेत्र",
@@ -211,7 +212,8 @@
       "open": "सभी टिप्पणियां देखें",
       "close": "सभी टिप्पणियां बंद करें"
     },
-    "comparePanel": "पैनल की तुलना करें"
+    "comparePanel": "पैनल की तुलना करें",
+    "watermarkPanel": "वॉटरमार्क पैनल"
   },
   "message": {
     "toolsOverlayNoPresets": "कोई प्रीसेट नहीं",
@@ -269,7 +271,9 @@
     "embeddedFiles": "एंबेडेड फ़ाइलें",
     "pageNum": "पृष्ठ संख्या",
     "viewBookmark": "पेज पर बुकमार्क देखें",
-    "error": "त्रुटि"
+    "error": "त्रुटि",
+    "errorPageNumber": "अमान्य पृष्ठ संख्या। सीमा है",
+    "errorLoadingDocument": "इस दस्तावेज़ को पढ़ने में एक समस्या थी और हो सकता है कि कुछ पृष्ठ प्रदर्शित न हों। यह इंगित करता है कि दस्तावेज़ दूषित हो सकता है। कुल पृष्ठ संख्या {{totalPageCount}} है और प्रदर्शित किए जा रहे पृष्ठों की संख्या {{displayedPageCount}} है।"
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "अपनी फ़ाइल को यहां खींचें और छोड़ें",
+      "selectFile": "यहां अपनी फाइल चुनें",
       "or": "या",
+      "yourFiles": "आपकी फ़ाइलें",
       "chooseFile": "एक फ़ाइल चुनें",
       "localFile": "स्थानीय फ़ाइल",
       "pageReplaceInputLabel": "पृष्ठ बदलें",
-      "pageReplaceInputFromSource": "पृष्ठ के साथ"
+      "pageReplaceInputFromSource": "पृष्ठ के साथ",
+      "warning": {
+        "title": "बदलें पृष्ठ से बाहर निकलें?",
+        "message": "बाहर निकलने से आपके द्वारा अब तक किए गए सभी चयन रद्द हो जाएंगे। क्या आप वाकई अभी भी बाहर निकलना चाहते हैं?"
+      }
     },
     "filterAnnotModal": {
       "color": "रंग",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "सभी",
     "emptyPanelMessage": "किसी एलीमेंट के गुणों को देखने के लिए उसका चयन करें."
   },
+  "watermarkPanel": {
+    "textWatermark": "टेक्स्ट वॉटरमार्क",
+    "uploadImage": "तस्विर अपलोड करना",
+    "browse": "ब्राउज़",
+    "watermarkOptions": "वॉटरमार्क विकल्प",
+    "watermarks": "वाटरमार्क"
+  },
   "languageModal": {
     "selectLanguage": "भाषा का चयन करें"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "पृष्ठ स्थान",
       "specify": "पृष्ठ निर्दिष्ट करें",
+      "specifyLocation": "पृष्ठ स्थान निर्दिष्ट करें",
       "amount": "पृष्ठों की मात्रा",
       "total": "कुल",
       "pages": "पृष्ठों"
@@ -1020,13 +1038,20 @@
         "halfLetter": "आधा अक्षर",
         "juniorLegal": "जूनियर कानूनी",
         "custom": "रीति"
-      }
+      },
+      "units": "इकाइयों"
     },
     "browse": "फ़ाइलों को ब्राउज़ करें",
     "fileSelected": {
       "title": "जोड़ने के लिए पेज चुनें"
     },
-    "button": "पृष्ठ जोड़ें"
+    "button": "पृष्ठ जोड़ें",
+    "selectPages": "जोड़ने के लिए पेज चुनें",
+    "page": "पृष्ठ",
+    "warning": {
+      "title": "नया पृष्ठ सम्मिलित करें से बाहर निकलें?",
+      "message": "बाहर निकलने से आपके द्वारा अब तक किए गए सभी चयन रद्द हो जाएंगे। क्या आप वाकई अभी भी बाहर निकलना चाहते हैं?"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "तुलना करने के लिए अपनी फ़ाइल को यहां खींचें और छोड़ें",

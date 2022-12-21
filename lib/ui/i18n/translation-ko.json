@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "3D 단축키 보기",
     "markAllRead": "모두 읽은상태로 표시",
     "insertPage": "페이지 삽입",
-    "insertBlankPageAbove": "위에 빈페이지 삽입",
-    "insertBlankPageBelow": "아래에 빈페이지 삽입",
+    "insert": "끼워 넣다",
     "pageManipulation": "페이지 편집",
     "replace": "바꾸기",
     "setDestination": "목적지 설정",
     "showLess": "간략히 보기",
     "showMore": "더보기",
     "chooseFile": "파일선택",
+    "browse": "파일 찾아보기",
     "selectYourOption": "옵션을 선택하세요",
     "open": "열기",
     "deselectAll": "모두 선택해제",
@@ -94,7 +94,8 @@
     "viewFile": "파일보기",
     "multiReplyAnnotations": "선택한 주석에 답장({{count}}개)",
     "comparePages": "페이지 비교",
-    "startComparison": "비교 시작"
+    "startComparison": "비교 시작",
+    "back": "뒤"
   },
   "annotation": {
     "areaMeasurement": "면적측정",
@@ -211,7 +212,8 @@
       "open": "모든 주석 보기",
       "close": "모든 주석 닫기"
     },
-    "comparePanel": "비교 패널"
+    "comparePanel": "비교 패널",
+    "watermarkPanel": "워터마크 패널"
   },
   "message": {
     "toolsOverlayNoPresets": "사전설정 없음",
@@ -269,7 +271,9 @@
     "embeddedFiles": "포함된 파일",
     "pageNum": "페이지 번호",
     "viewBookmark": "페이지에서 책갈피 보기",
-    "error": "오류"
+    "error": "오류",
+    "errorPageNumber": "잘못된 페이지 번호입니다. 한도",
+    "errorLoadingDocument": "이 문서를 읽는 동안 문제가 발생했으며 일부 페이지가 표시되지 않을 수 있습니다. 이는 문서가 손상되었을 수 있음을 나타냅니다. 총 페이지 수는 {{totalPageCount}}이고 표시되는 페이지 수는 {{displayedPageCount}}입니다."
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "여기에 드래그앤드롭 하세요.",
+      "selectFile": "여기에서 파일 선택",
       "or": "또는",
+      "yourFiles": "내 파일",
       "chooseFile": "파일 선택",
       "localFile": "업로드",
       "pageReplaceInputLabel": "페이지 교체",
-      "pageReplaceInputFromSource": "페이지 포함"
+      "pageReplaceInputFromSource": "페이지 포함",
+      "warning": {
+        "title": "교체 페이지를 종료하시겠습니까?",
+        "message": "종료하면 지금까지 선택한 모든 항목이 취소됩니다. 여전히 종료하시겠습니까?"
+      }
     },
     "filterAnnotModal": {
       "color": "색상",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "모두",
     "emptyPanelMessage": "속성을 보려면 요소를 선택하십시오."
   },
+  "watermarkPanel": {
+    "textWatermark": "텍스트 워터마크",
+    "uploadImage": "이미지 업로드",
+    "browse": "검색",
+    "watermarkOptions": "워터마크 옵션",
+    "watermarks": "워터마크"
+  },
   "languageModal": {
     "selectLanguage": "언어 선택"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "페이지 위치",
       "specify": "페이지 지정",
+      "specifyLocation": "페이지 위치 지정",
       "amount": "페이지 수",
       "total": "총",
       "pages": "페이지"
@@ -1020,13 +1038,20 @@
         "halfLetter": "반자",
         "juniorLegal": "주니어 법률",
         "custom": "관습"
-      }
+      },
+      "units": "단위"
     },
     "browse": "파일 찾아보기",
     "fileSelected": {
       "title": "추가할 페이지 선택"
     },
-    "button": "페이지 추가"
+    "button": "페이지 추가",
+    "selectPages": "추가할 페이지 선택",
+    "page": "페이지",
+    "warning": {
+      "title": "새 페이지 삽입을 종료하시겠습니까?",
+      "message": "종료하면 지금까지 선택한 모든 항목이 취소됩니다. 여전히 종료하시겠습니까?"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "비교하려면 여기에 파일을 끌어다 놓습니다.",
