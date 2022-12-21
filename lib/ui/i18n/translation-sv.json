@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "Visa kortkommandon",
     "markAllRead": "Markera allt som läst",
     "insertPage": "Sidinsättning",
-    "insertBlankPageAbove": "Infoga tom sida ovan",
-    "insertBlankPageBelow": "Infoga tom sida nedan",
+    "insert": "Föra in",
     "pageManipulation": "Sidmanipulation",
     "replace": "Byta ut",
     "setDestination": "Ställ in destination",
     "showLess": "visa mindre",
     "showMore": "...Mer",
     "chooseFile": "Välj en fil",
+    "browse": "Bläddra bland filer",
     "selectYourOption": "Välj ditt alternativ",
     "open": "Öppna",
     "deselectAll": "Avmarkera alla",
@@ -94,7 +94,8 @@
     "viewFile": "Visa fil",
     "multiReplyAnnotations": "Svara på valda kommentarer ({{count}})",
     "comparePages": "Jämför sidor",
-    "startComparison": "Starta jämförelse"
+    "startComparison": "Starta jämförelse",
+    "back": "Tillbaka"
   },
   "annotation": {
     "areaMeasurement": "Område",
@@ -211,7 +212,8 @@
       "open": "Visa alla kommentarer",
       "close": "Stäng alla anteckningar"
     },
-    "comparePanel": "Jämför panel"
+    "comparePanel": "Jämför panel",
+    "watermarkPanel": "Vattenstämpelpanel"
   },
   "message": {
     "toolsOverlayNoPresets": "Inga förinställningar",
@@ -269,7 +271,9 @@
     "embeddedFiles": "Inbäddade filer",
     "pageNum": "Sidonummer",
     "viewBookmark": "Visa bokmärke på sidan",
-    "error": "Fel"
+    "error": "Fel",
+    "errorPageNumber": "Ogiltigt sidnummer. Gränsen är",
+    "errorLoadingDocument": "Det uppstod ett problem med att läsa det här dokumentet och vissa sidor kanske inte visas. Detta indikerar att dokumentet kan vara skadat. Det totala antalet sidor är {{totalPageCount}} och antalet sidor som visas är {{displayedPageCount}}."
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "Dra och släpp din fil här",
+      "selectFile": "Välj din fil här",
       "or": "Eller",
+      "yourFiles": "Dina filer",
       "chooseFile": "Välj en fil",
       "localFile": "Lokal fil",
       "pageReplaceInputLabel": "Ersätt sida(r)",
-      "pageReplaceInputFromSource": "med sida(r)"
+      "pageReplaceInputFromSource": "med sida(r)",
+      "warning": {
+        "title": "Vill du avsluta ersättningssidan?",
+        "message": "Om du avslutar avbryts alla val du har gjort hittills. Är du säker på att du fortfarande vill avsluta?"
+      }
     },
     "filterAnnotModal": {
       "color": "Färg",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "Allt",
     "emptyPanelMessage": "Välj ett element för att se dess egenskaper"
   },
+  "watermarkPanel": {
+    "textWatermark": "Text vattenstämpel",
+    "uploadImage": "Ladda upp bild",
+    "browse": "Bläddra",
+    "watermarkOptions": "Vattenstämpelalternativ",
+    "watermarks": "Vattenstämplar"
+  },
   "languageModal": {
     "selectLanguage": "Välj språk"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "Sidans plats",
       "specify": "Ange sida",
+      "specifyLocation": "Ange sidplats",
       "amount": "Antal sidor",
       "total": "Total",
       "pages": "Sidor"
@@ -1020,13 +1038,20 @@
         "halfLetter": "Halv bokstav",
         "juniorLegal": "Junior juridisk",
         "custom": "Beställnings"
-      }
+      },
+      "units": "Enheter"
     },
     "browse": "Bläddra bland filer",
     "fileSelected": {
       "title": "Välj Sidor att lägga till"
     },
-    "button": "Lägg till sida(r)"
+    "button": "Lägg till sida(r)",
+    "selectPages": "Välj Sidor att lägga till",
+    "page": "Sida",
+    "warning": {
+      "title": "Avsluta infoga ny sida?",
+      "message": "Om du avslutar avbryts alla val du har gjort hittills. Är du säker på att du fortfarande vill avsluta?"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "Dra och släpp din fil här för att jämföra",

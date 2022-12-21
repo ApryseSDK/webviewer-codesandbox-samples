@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "Bekijk sneltoetsen",
     "markAllRead": "Markeer alles als gelezen",
     "insertPage": "Pagina invoegen",
-    "insertBlankPageAbove": "Lege pagina hierboven invoegen",
-    "insertBlankPageBelow": "Lege pagina hieronder invoegen",
+    "insert": "Invoegen",
     "pageManipulation": "Paginamanipulatie",
     "replace": "Vervangen",
     "setDestination": "Bestemming instellen",
     "showLess": "laat minder zien",
     "showMore": "...meer",
     "chooseFile": "Kies een bestand",
+    "browse": "Bestanden doorbladeren",
     "selectYourOption": "Selecteer uw optie",
     "open": "Open",
     "deselectAll": "Deselecteer alles",
@@ -94,7 +94,8 @@
     "viewFile": "Bestand bekijken",
     "multiReplyAnnotations": "Reageren op geselecteerde annotaties ({{count}})",
     "comparePages": "Vergelijk pagina's",
-    "startComparison": "Vergelijking starten"
+    "startComparison": "Vergelijking starten",
+    "back": "Rug"
   },
   "annotation": {
     "areaMeasurement": "Oppervlaktemeting",
@@ -211,7 +212,8 @@
       "open": "Bekijk alle annotaties",
       "close": "Sluit alle annotaties"
     },
-    "comparePanel": "Vergelijk Paneel"
+    "comparePanel": "Vergelijk Paneel",
+    "watermarkPanel": "Watermerkpaneel"
   },
   "message": {
     "toolsOverlayNoPresets": "Geen voorinstellingen",
@@ -269,7 +271,9 @@
     "embeddedFiles": "Ingesloten bestanden",
     "pageNum": "Paginanummer",
     "viewBookmark": "Bekijk bladwijzer op pagina",
-    "error": "Fout"
+    "error": "Fout",
+    "errorPageNumber": "Ongeldig paginanummer. Limiet is",
+    "errorLoadingDocument": "Er is een probleem opgetreden bij het lezen van dit document en sommige pagina's worden mogelijk niet weergegeven. Dit geeft aan dat het document mogelijk beschadigd is. Het totale aantal pagina's is {{totalPageCount}} en het aantal weergegeven pagina's is {{displayedPageCount}}."
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "Sleep en zet uw bestand hier neer",
+      "selectFile": "Selecteer hier uw bestand",
       "or": "Of",
+      "yourFiles": "Uw bestanden",
       "chooseFile": "Kies een bestand",
       "localFile": "Lokaal bestand",
       "pageReplaceInputLabel": "Pagina('s) vervangen",
-      "pageReplaceInputFromSource": "met pagina('s)"
+      "pageReplaceInputFromSource": "met pagina('s)",
+      "warning": {
+        "title": "Vervang pagina verlaten?",
+        "message": "Als u afsluit, worden alle selecties die u tot nu toe hebt gemaakt, geannuleerd. Weet je zeker dat je nog steeds wilt afsluiten?"
+      }
     },
     "filterAnnotModal": {
       "color": "Kleur",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "Alle",
     "emptyPanelMessage": "Selecteer een element om de eigenschappen ervan te bekijken."
   },
+  "watermarkPanel": {
+    "textWatermark": "Tekst watermerk",
+    "uploadImage": "Afbeelding uploaden",
+    "browse": "Bladeren",
+    "watermarkOptions": "Watermerkopties",
+    "watermarks": "Watermerken"
+  },
   "languageModal": {
     "selectLanguage": "Selecteer taal"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "Paginalocatie",
       "specify": "Specificeer pagina",
+      "specifyLocation": "Specificeer paginalocatie",
       "amount": "Aantal pagina's",
       "total": "Totaal",
       "pages": "Pagina's"
@@ -1020,13 +1038,20 @@
         "halfLetter": "halve letter",
         "juniorLegal": "Junior juridisch",
         "custom": "Aangepast"
-      }
+      },
+      "units": "Eenheden"
     },
     "browse": "Bestanden doorbladeren",
     "fileSelected": {
       "title": "Selecteer pagina's om toe te voegen"
     },
-    "button": "Pagina('s) toevoegen"
+    "button": "Pagina('s) toevoegen",
+    "selectPages": "Selecteer pagina's om toe te voegen",
+    "page": "Bladzijde",
+    "warning": {
+      "title": "Afsluiten nieuwe pagina invoegen?",
+      "message": "Als u afsluit, worden alle selecties die u tot nu toe hebt gemaakt, geannuleerd. Weet je zeker dat je nog steeds wilt afsluiten?"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "Sleep uw bestand hierheen om te vergelijken",

@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "Lihat Kekunci Pintasan",
     "markAllRead": "Tandai semua sebagai dibaca",
     "insertPage": "Sisipan Halaman",
-    "insertBlankPageAbove": "Sisipkan halaman kosong di atas",
-    "insertBlankPageBelow": "Sisipkan halaman kosong di bawah",
+    "insert": "Sisipkan",
     "pageManipulation": "Manipulasi Halaman",
     "replace": "Gantikan",
     "setDestination": "Tetapkan Destinasi",
     "showLess": "kurang menunjukkan",
     "showMore": "... lagi",
     "chooseFile": "Pilih fail",
+    "browse": "Semak imbas Fail",
     "selectYourOption": "Pilih pilihan anda",
     "open": "Buka",
     "deselectAll": "Nyahpilih Semua",
@@ -94,7 +94,8 @@
     "viewFile": "Lihat fail",
     "multiReplyAnnotations": "Balas kepada anotasi yang dipilih ({{count}})",
     "comparePages": "Bandingkan halaman",
-    "startComparison": "Mulakan Perbandingan"
+    "startComparison": "Mulakan Perbandingan",
+    "back": "belakang"
   },
   "annotation": {
     "areaMeasurement": "kawasan",
@@ -211,7 +212,8 @@
       "open": "Lihat Semua Anotasi",
       "close": "Tutup Semua Anotasi"
     },
-    "comparePanel": "Bandingkan Panel"
+    "comparePanel": "Bandingkan Panel",
+    "watermarkPanel": "Panel Tera Air"
   },
   "message": {
     "toolsOverlayNoPresets": "Tiada Pratetap",
@@ -269,7 +271,9 @@
     "embeddedFiles": "Fail Terbenam",
     "pageNum": "Mukasurat",
     "viewBookmark": "Lihat Penanda Halaman pada Halaman",
-    "error": "ralat"
+    "error": "ralat",
+    "errorPageNumber": "Nombor halaman tidak sah. Had ialah",
+    "errorLoadingDocument": "Terdapat masalah membaca dokumen ini dan beberapa halaman mungkin tidak dipaparkan. Ini menunjukkan dokumen itu mungkin rosak. Jumlah kiraan halaman ialah {{totalPageCount}} dan nombor halaman yang dipaparkan ialah {{displayedPageCount}}."
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "Seret & Lepaskan fail anda di sini",
+      "selectFile": "Pilih fail anda di sini",
       "or": "Ataupun",
+      "yourFiles": "Fail Anda",
       "chooseFile": "Pilih fail",
       "localFile": "Fail Tempatan",
       "pageReplaceInputLabel": "Gantikan Halaman",
-      "pageReplaceInputFromSource": "dengan halaman"
+      "pageReplaceInputFromSource": "dengan halaman",
+      "warning": {
+        "title": "Keluar dari halaman ganti?",
+        "message": "Keluar akan membatalkan semua pilihan yang telah anda buat setakat ini. Adakah anda pasti anda masih mahu keluar?"
+      }
     },
     "filterAnnotModal": {
       "color": "Warna",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "Semua",
     "emptyPanelMessage": "Pilih elemen untuk melihat sifatnya."
   },
+  "watermarkPanel": {
+    "textWatermark": "Tanda Air Teks",
+    "uploadImage": "Muat Naik Imej",
+    "browse": "Semak imbas",
+    "watermarkOptions": "Pilihan Tera Air",
+    "watermarks": "Tera air"
+  },
   "languageModal": {
     "selectLanguage": "Pilih Bahasa"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "Lokasi Halaman",
       "specify": "Nyatakan Halaman",
+      "specifyLocation": "Tentukan Lokasi Halaman",
       "amount": "Jumlah Halaman",
       "total": "Jumlah",
       "pages": "muka surat"
@@ -1020,13 +1038,20 @@
         "halfLetter": "Separuh huruf",
         "juniorLegal": "Undang-undang muda",
         "custom": "Adat"
-      }
+      },
+      "units": "Unit"
     },
     "browse": "Semak imbas Fail",
     "fileSelected": {
       "title": "Pilih Halaman untuk Ditambah"
     },
-    "button": "Tambah Halaman"
+    "button": "Tambah Halaman",
+    "selectPages": "Pilih Halaman untuk Ditambah",
+    "page": "Halaman",
+    "warning": {
+      "title": "Keluar dari sisipan halaman baharu?",
+      "message": "Keluar akan membatalkan semua pilihan yang telah anda buat setakat ini. Adakah anda pasti anda masih mahu keluar?"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "Seret dan Lepaskan fail anda di sini untuk membandingkan",

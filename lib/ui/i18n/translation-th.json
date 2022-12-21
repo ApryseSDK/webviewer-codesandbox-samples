@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "ดูปุ่มลัด",
     "markAllRead": "ทำเครื่องหมายทั้งหมดว่าอ่านแล้ว",
     "insertPage": "การแทรกหน้า",
-    "insertBlankPageAbove": "แทรกหน้าว่างด้านบน",
-    "insertBlankPageBelow": "แทรกหน้าว่างด้านล่าง",
+    "insert": "แทรก",
     "pageManipulation": "การจัดการหน้า",
     "replace": "แทนที่",
     "setDestination": "กำหนดปลายทาง",
     "showLess": "แสดงน้อยลง",
     "showMore": "...มากกว่า",
     "chooseFile": "เลือกไฟล์",
+    "browse": "เรียกดูไฟล์",
     "selectYourOption": "เลือกตัวเลือกของคุณ",
     "open": "เปิด",
     "deselectAll": "ยกเลิกการเลือกทั้งหมด",
@@ -94,7 +94,8 @@
     "viewFile": "ไฟล์มุมมอง",
     "multiReplyAnnotations": "ตอบกลับคำอธิบายประกอบที่เลือก ({{จำนวน}})",
     "comparePages": "เปรียบเทียบหน้า",
-    "startComparison": "เริ่มการเปรียบเทียบ"
+    "startComparison": "เริ่มการเปรียบเทียบ",
+    "back": "กลับ"
   },
   "annotation": {
     "areaMeasurement": "พื้นที่",
@@ -211,7 +212,8 @@
       "open": "ดูคำอธิบายประกอบทั้งหมด",
       "close": "ปิดคำอธิบายประกอบทั้งหมด"
     },
-    "comparePanel": "เปรียบเทียบแผง"
+    "comparePanel": "เปรียบเทียบแผง",
+    "watermarkPanel": "แผงลายน้ำ"
   },
   "message": {
     "toolsOverlayNoPresets": "ไม่มีสถานีที่ตั้งไว้",
@@ -269,7 +271,9 @@
     "embeddedFiles": "ไฟล์ที่ฝังตัว",
     "pageNum": "เลขหน้า",
     "viewBookmark": "ดูบุ๊กมาร์กบนเพจ",
-    "error": "ข้อผิดพลาด"
+    "error": "ข้อผิดพลาด",
+    "errorPageNumber": "หมายเลขหน้าไม่ถูกต้อง ขีดจำกัดคือ",
+    "errorLoadingDocument": "เกิดปัญหาในการอ่านเอกสารนี้และบางหน้าอาจไม่แสดง นี่แสดงว่าเอกสารอาจเสียหาย จำนวนหน้าทั้งหมดคือ {{totalPageCount}} และจำนวนหน้าที่แสดงคือ {{displayedPageCount}}"
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "ลากและวางไฟล์ของคุณที่นี่",
+      "selectFile": "เลือกไฟล์ของคุณที่นี่",
       "or": "หรือ",
+      "yourFiles": "ไฟล์ของคุณ",
       "chooseFile": "เลือกไฟล์",
       "localFile": "ไฟล์ในเครื่อง",
       "pageReplaceInputLabel": "แทนที่หน้า",
-      "pageReplaceInputFromSource": "กับเพจ"
+      "pageReplaceInputFromSource": "กับเพจ",
+      "warning": {
+        "title": "ออกจากหน้าแทนที่?",
+        "message": "การออกจะเป็นการยกเลิกการเลือกทั้งหมดที่คุณได้ทำไปแล้ว คุณแน่ใจหรือว่ายังต้องการออก"
+      }
     },
     "filterAnnotModal": {
       "color": "สี",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "ทั้งหมด",
     "emptyPanelMessage": "เลือกองค์ประกอบเพื่อดูคุณสมบัติของมัน"
   },
+  "watermarkPanel": {
+    "textWatermark": "ลายน้ำข้อความ",
+    "uploadImage": "อัพโหลดภาพ",
+    "browse": "เรียกดู",
+    "watermarkOptions": "ตัวเลือกลายน้ำ",
+    "watermarks": "ลายน้ำ"
+  },
   "languageModal": {
     "selectLanguage": "เลือกภาษา"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "ที่ตั้งเพจ",
       "specify": "ระบุหน้า",
+      "specifyLocation": "ระบุตำแหน่งหน้า",
       "amount": "จำนวนหน้า",
       "total": "ทั้งหมด",
       "pages": "หน้า"
@@ -1020,13 +1038,20 @@
         "halfLetter": "อักษรครึ่งตัว",
         "juniorLegal": "นิติศาสตร์จูเนียร์",
         "custom": "กำหนดเอง"
-      }
+      },
+      "units": "หน่วย"
     },
     "browse": "เรียกดูไฟล์",
     "fileSelected": {
       "title": "เลือกหน้าที่จะเพิ่ม"
     },
-    "button": "เพิ่มหน้า"
+    "button": "เพิ่มหน้า",
+    "selectPages": "เลือกหน้าที่จะเพิ่ม",
+    "page": "หน้าหนังสือ",
+    "warning": {
+      "title": "ออก แทรกหน้าใหม่?",
+      "message": "การออกจะเป็นการยกเลิกการเลือกทั้งหมดที่คุณได้ทำไปแล้ว คุณแน่ใจหรือว่ายังต้องการออก"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "ลากและวางไฟล์ของคุณที่นี่เพื่อเปรียบเทียบ",
