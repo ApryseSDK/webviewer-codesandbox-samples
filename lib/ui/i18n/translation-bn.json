@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "শর্টকাট কী দেখুন",
     "markAllRead": "সবগুলো পঠিত বলে সনাক্ত কর",
     "insertPage": "পৃষ্ঠা সন্নিবেশ",
-    "insertBlankPageAbove": "উপরে ফাঁকা পৃষ্ঠা ঢোকান",
-    "insertBlankPageBelow": "নীচে ফাঁকা পৃষ্ঠা ঢোকান",
+    "insert": "ঢোকান",
     "pageManipulation": "পৃষ্ঠা ম্যানিপুলেশন",
     "replace": "প্রতিস্থাপন করুন",
     "setDestination": "লক্ষ ঠিক করো",
     "showLess": "প্রদর্শন কম",
     "showMore": "...আরো",
     "chooseFile": "একটি ফাইল নির্বাচন করুন",
+    "browse": "ফাইল ব্রাউজ",
     "selectYourOption": "আপনার বিকল্প নির্বাচন করুন",
     "open": "খোলা",
     "deselectAll": "সব গুলো অনির্বাচিত কর",
@@ -94,7 +94,8 @@
     "viewFile": "নথি দেখ",
     "multiReplyAnnotations": "নির্বাচিত টীকাগুলির উত্তর দিন ({{count}})",
     "comparePages": "পৃষ্ঠাগুলির তুলনা করুন",
-    "startComparison": "তুলনা শুরু করুন"
+    "startComparison": "তুলনা শুরু করুন",
+    "back": "পেছনে"
   },
   "annotation": {
     "areaMeasurement": "এলাকা",
@@ -211,7 +212,8 @@
       "open": "সমস্ত টীকা দেখুন",
       "close": "সমস্ত টীকা বন্ধ করুন"
     },
-    "comparePanel": "প্যানেল তুলনা করুন"
+    "comparePanel": "প্যানেল তুলনা করুন",
+    "watermarkPanel": "ওয়াটারমার্ক প্যানেল"
   },
   "message": {
     "toolsOverlayNoPresets": "কোনো প্রিসেট নেই",
@@ -269,7 +271,9 @@
     "embeddedFiles": "এমবেডেড ফাইল",
     "pageNum": "পৃষ্ঠা সংখ্যা",
     "viewBookmark": "পৃষ্ঠায় বুকমার্ক দেখুন",
-    "error": "ত্রুটি"
+    "error": "ত্রুটি",
+    "errorPageNumber": "অবৈধ পৃষ্ঠা নম্বর। সীমা হল",
+    "errorLoadingDocument": "এই নথিটি পড়তে একটি সমস্যা হয়েছে এবং কিছু পৃষ্ঠাগুলি প্রদর্শিত নাও হতে পারে৷ এটি নির্দেশ করে যে নথিটি নষ্ট হতে পারে। মোট পৃষ্ঠা সংখ্যা হল {{totalPageCount}} এবং প্রদর্শিত পৃষ্ঠাগুলির সংখ্যা হল {{displayedPageCount}}৷"
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "এখানে আপনার ফাইল টানুন এবং ড্রপ করুন",
+      "selectFile": "এখানে আপনার ফাইল নির্বাচন করুন",
       "or": "বা",
+      "yourFiles": "আপনার ফাইল",
       "chooseFile": "একটি ফাইল নির্বাচন করুন",
       "localFile": "স্থানীয় ফাইল",
       "pageReplaceInputLabel": "পৃষ্ঠা(গুলি) প্রতিস্থাপন করুন",
-      "pageReplaceInputFromSource": "পৃষ্ঠা(গুলি) সহ"
+      "pageReplaceInputFromSource": "পৃষ্ঠা(গুলি) সহ",
+      "warning": {
+        "title": "প্রতিস্থাপন পৃষ্ঠা থেকে প্রস্থান করবেন?",
+        "message": "প্রস্থান করা আপনার এখন পর্যন্ত করা সমস্ত নির্বাচন বাতিল করবে। আপনি কি এখনও প্রস্থান করতে চান?"
+      }
     },
     "filterAnnotModal": {
       "color": "রঙ",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "Усе",
     "emptyPanelMessage": "Выберыце элемент, каб праглядзець яго ўласцівасці."
   },
+  "watermarkPanel": {
+    "textWatermark": "টেক্সট ওয়াটারমার্ক",
+    "uploadImage": "চিত্র আপলোড",
+    "browse": "ব্রাউজ করুন",
+    "watermarkOptions": "ওয়াটারমার্ক বিকল্প",
+    "watermarks": "জলছাপ"
+  },
   "languageModal": {
     "selectLanguage": "ভাষা নির্বাচন কর"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "পৃষ্ঠা অবস্থান",
       "specify": "পৃষ্ঠা নির্দিষ্ট করুন",
+      "specifyLocation": "পৃষ্ঠার অবস্থান নির্দিষ্ট করুন",
       "amount": "পৃষ্ঠার পরিমাণ",
       "total": "মোট",
       "pages": "পাতা"
@@ -1020,13 +1038,20 @@
         "halfLetter": "অর্ধেক চিঠি",
         "juniorLegal": "জুনিয়র আইনী",
         "custom": "কাস্টম"
-      }
+      },
+      "units": "ইউনিট"
     },
     "browse": "ফাইল ব্রাউজ",
     "fileSelected": {
       "title": "যোগ করার জন্য পৃষ্ঠা নির্বাচন করুন"
     },
-    "button": "পৃষ্ঠা(গুলি) যোগ করুন"
+    "button": "পৃষ্ঠা(গুলি) যোগ করুন",
+    "selectPages": "যোগ করার জন্য পৃষ্ঠা নির্বাচন করুন",
+    "page": "পাতা",
+    "warning": {
+      "title": "নতুন পৃষ্ঠা সন্নিবেশ থেকে প্রস্থান করবেন?",
+      "message": "প্রস্থান করা আপনার এখন পর্যন্ত করা সমস্ত নির্বাচন বাতিল করবে। আপনি কি এখনও প্রস্থান করতে চান?"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "তুলনা করতে আপনার ফাইলটি এখানে টেনে আনুন",

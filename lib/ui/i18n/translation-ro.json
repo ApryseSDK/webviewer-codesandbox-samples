@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "Vizualizați tastele de comenzi rapide",
     "markAllRead": "Marcheaza totul ca fiind citit",
     "insertPage": "Inserarea paginii",
-    "insertBlankPageAbove": "Introduceți o pagină goală deasupra",
-    "insertBlankPageBelow": "Introduceți o pagină goală mai jos",
+    "insert": "Introduce",
     "pageManipulation": "Manipularea paginii",
     "replace": "A inlocui",
     "setDestination": "Seteaza destinatia",
     "showLess": "arata mai putin",
     "showMore": "...Mai mult",
     "chooseFile": "Alegeți un fișier",
+    "browse": "Cauta fisiere",
     "selectYourOption": "Selectați opțiunea dvs",
     "open": "Deschis",
     "deselectAll": "Deselectați Toate",
@@ -94,7 +94,8 @@
     "viewFile": "Vezi fișierul",
     "multiReplyAnnotations": "Răspundeți la adnotările selectate ({{count}})",
     "comparePages": "Comparați paginile",
-    "startComparison": "Începeți comparația"
+    "startComparison": "Începeți comparația",
+    "back": "Înapoi"
   },
   "annotation": {
     "areaMeasurement": "Zonă",
@@ -211,7 +212,8 @@
       "open": "Vedeți toate adnotările",
       "close": "Închideți toate adnotările"
     },
-    "comparePanel": "Panoul de comparare"
+    "comparePanel": "Panoul de comparare",
+    "watermarkPanel": "Panoul filigran"
   },
   "message": {
     "toolsOverlayNoPresets": "Fără presetări",
@@ -269,7 +271,9 @@
     "embeddedFiles": "Fișiere încorporate",
     "pageNum": "Numărul paginii",
     "viewBookmark": "Vizualizați marcajul pe pagină",
-    "error": "Eroare"
+    "error": "Eroare",
+    "errorPageNumber": "Număr de pagină nevalid. Limita este",
+    "errorLoadingDocument": "A apărut o problemă la citirea acestui document și este posibil ca unele pagini să nu fie afișate. Acest lucru indică faptul că documentul poate fi corupt. Numărul total de pagini este {{totalPageCount}}, iar numărul de pagini afișate este {{displayedPageCount}}."
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "Trageți și plasați fișierul aici",
+      "selectFile": "Selectați fișierul dvs. aici",
       "or": "Sau",
+      "yourFiles": "Fișierele dvs",
       "chooseFile": "Alegeți un fișier",
       "localFile": "Fișier local",
       "pageReplaceInputLabel": "Înlocuiți paginile",
-      "pageReplaceInputFromSource": "cu pagina(e)"
+      "pageReplaceInputFromSource": "cu pagina(e)",
+      "warning": {
+        "title": "Ieși din pagina de înlocuire?",
+        "message": "Ieșirea va anula toate selecțiile pe care le-ați făcut până acum. Ești sigur că vrei totuși să ieși?"
+      }
     },
     "filterAnnotModal": {
       "color": "Culoare",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "Toate",
     "emptyPanelMessage": "Selectați un element pentru a-i vedea proprietățile"
   },
+  "watermarkPanel": {
+    "textWatermark": "Filigran text",
+    "uploadImage": "Incarca imaginea",
+    "browse": "Naviga",
+    "watermarkOptions": "Opțiuni filigran",
+    "watermarks": "Filigrane"
+  },
   "languageModal": {
     "selectLanguage": "Selecteaza limba"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "Locația paginii",
       "specify": "Specificați pagina",
+      "specifyLocation": "Specificați locația paginii",
       "amount": "Cantitatea de pagini",
       "total": "Total",
       "pages": "Pagini"
@@ -1020,13 +1038,20 @@
         "halfLetter": "Jumătate de scrisoare",
         "juniorLegal": "Junior legal",
         "custom": "Personalizat"
-      }
+      },
+      "units": "Unități"
     },
     "browse": "Cauta fisiere",
     "fileSelected": {
       "title": "Selectați Pagini de adăugat"
     },
-    "button": "Adăugați pagini"
+    "button": "Adăugați pagini",
+    "selectPages": "Selectați Pagini de adăugat",
+    "page": "Pagină",
+    "warning": {
+      "title": "Ieși din inserarea unei pagini noi?",
+      "message": "Ieșirea va anula toate selecțiile pe care le-ați făcut până acum. Ești sigur că vrei totuși să ieși?"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "Trageți și plasați fișierul aici pentru a compara",
