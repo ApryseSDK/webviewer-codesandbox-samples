@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "Kısayol Tuşlarını Görüntüle",
     "markAllRead": "Tümünü okundu olarak işaretle",
     "insertPage": "Sayfa Ekleme",
-    "insertBlankPageAbove": "Yukarıya boş sayfa ekle",
-    "insertBlankPageBelow": "Aşağıya boş sayfa ekle",
+    "insert": "Sokmak",
     "pageManipulation": "Sayfa Manipülasyonu",
     "replace": "Yer değiştirmek",
     "setDestination": "Hedef belirlemek",
     "showLess": "daha az göster",
     "showMore": "...daha fazla",
     "chooseFile": "Bir dosya seçin",
+    "browse": "Dosyalara Gözat",
     "selectYourOption": "Seçeneğinizi seçin",
     "open": "Açık",
     "deselectAll": "Hiçbirini seçme",
@@ -94,7 +94,8 @@
     "viewFile": "Dosyayı görüntüle",
     "multiReplyAnnotations": "Seçili ek açıklamaları yanıtla ({{count}})",
     "comparePages": "Sayfaları karşılaştır",
-    "startComparison": "Karşılaştırmayı Başlat"
+    "startComparison": "Karşılaştırmayı Başlat",
+    "back": "Geri"
   },
   "annotation": {
     "areaMeasurement": "Alan",
@@ -211,7 +212,8 @@
       "open": "Tüm Ek Açıklamaları Görüntüle",
       "close": "Tüm Ek Açıklamaları Kapat"
     },
-    "comparePanel": "Karşılaştır Paneli"
+    "comparePanel": "Karşılaştır Paneli",
+    "watermarkPanel": "Filigran Paneli"
   },
   "message": {
     "toolsOverlayNoPresets": "Ön Ayar Yok",
@@ -269,7 +271,9 @@
     "embeddedFiles": "Gömülü Dosyalar",
     "pageNum": "Sayfa numarası",
     "viewBookmark": "Sayfadaki Yer İşaretini Görüntüle",
-    "error": "Hata"
+    "error": "Hata",
+    "errorPageNumber": "Geçersiz sayfa numarası. Sınır (şimdiki değeri)",
+    "errorLoadingDocument": "Bu belge okunurken bir sorun oluştu ve bazı sayfalar görüntülenemeyebilir. Bu, belgenin bozuk olabileceğini gösterir. Toplam sayfa sayısı {{totalPageCount}} ve görüntülenen sayfa sayısı {{displayedPageCount}}."
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "Dosyanızı buraya sürükleyip bırakın",
+      "selectFile": "Dosyanızı buradan seçin",
       "or": "Veya",
+      "yourFiles": "Dosyalarınız",
       "chooseFile": "Bir dosya seçin",
       "localFile": "Yerel dosya",
       "pageReplaceInputLabel": "Sayfaları Değiştir",
-      "pageReplaceInputFromSource": "sayfa(lar) ile"
+      "pageReplaceInputFromSource": "sayfa(lar) ile",
+      "warning": {
+        "title": "Değiştir sayfasından çıkılsın mı?",
+        "message": "Çıkmak, o ana kadar yaptığınız tüm seçimleri iptal edecektir. Hala çıkmak istediğinizden emin misiniz?"
+      }
     },
     "filterAnnotModal": {
       "color": "Renk",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "Tümü",
     "emptyPanelMessage": "Özelliklerini görüntülemek için bir öğe seçin."
   },
+  "watermarkPanel": {
+    "textWatermark": "Metin Filigranı",
+    "uploadImage": "Fotoğraf yükleniyor",
+    "browse": "Araştır",
+    "watermarkOptions": "Filigran Seçenekleri",
+    "watermarks": "filigranlar"
+  },
   "languageModal": {
     "selectLanguage": "Dil Seçin"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "Sayfa Konumu",
       "specify": "Sayfayı Belirtin",
+      "specifyLocation": "Sayfa Konumunu Belirtin",
       "amount": "Sayfa Sayısı",
       "total": "Toplam",
       "pages": "Sayfalar"
@@ -1020,13 +1038,20 @@
         "halfLetter": "yarım harf",
         "juniorLegal": "küçük yasal",
         "custom": "Gelenek"
-      }
+      },
+      "units": "Birimler"
     },
     "browse": "Dosyalara Gözat",
     "fileSelected": {
       "title": "Eklenecek Sayfaları Seçin"
     },
-    "button": "Sayfa Ekle"
+    "button": "Sayfa Ekle",
+    "selectPages": "Eklenecek Sayfaları Seçin",
+    "page": "Sayfa",
+    "warning": {
+      "title": "Çık yeni sayfa eklensin mi?",
+      "message": "Çıkmak, o ana kadar yaptığınız tüm seçimleri iptal edecektir. Hala çıkmak istediğinizden emin misiniz?"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "Karşılaştırmak için dosyanızı buraya sürükleyip bırakın",
