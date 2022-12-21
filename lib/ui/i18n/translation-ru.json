@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "Просмотр горячих клавиш",
     "markAllRead": "Отметить все как прочитанные",
     "insertPage": "Вставка страницы",
-    "insertBlankPageAbove": "Вставить пустую страницу выше",
-    "insertBlankPageBelow": "Вставьте пустую страницу ниже",
+    "insert": "Вставлять",
     "pageManipulation": "Манипуляции со страницей",
     "replace": "Заменять",
     "setDestination": "Установить пункт назначения",
     "showLess": "показывай меньше",
     "showMore": "...более",
     "chooseFile": "Выберите файл",
+    "browse": "Просмотр файлов",
     "selectYourOption": "Выберите свой вариант",
     "open": "Открыть",
     "deselectAll": "Убрать выделение со всего",
@@ -94,7 +94,8 @@
     "viewFile": "Посмотреть файл",
     "multiReplyAnnotations": "Ответить на выбранные аннотации ({{count}})",
     "comparePages": "Сравните страницы",
-    "startComparison": "Начать сравнение"
+    "startComparison": "Начать сравнение",
+    "back": "Назад"
   },
   "annotation": {
     "areaMeasurement": "Площадь",
@@ -211,7 +212,8 @@
       "open": "Просмотреть все аннотации",
       "close": "Закрыть все аннотации"
     },
-    "comparePanel": "Панель сравнения"
+    "comparePanel": "Панель сравнения",
+    "watermarkPanel": "Панель водяных знаков"
   },
   "message": {
     "toolsOverlayNoPresets": "Нет пресетов",
@@ -269,7 +271,9 @@
     "embeddedFiles": "Встроенные файлы",
     "pageNum": "Номер страницы",
     "viewBookmark": "Посмотреть закладку на странице",
-    "error": "Ошибка"
+    "error": "Ошибка",
+    "errorPageNumber": "Неверный номер страницы. Лимит",
+    "errorLoadingDocument": "При чтении этого документа возникла проблема, и некоторые страницы могут не отображаться. Это указывает на то, что документ может быть поврежден. Общее количество страниц – {{totalPageCount}}, а количество отображаемых страниц – {{displayedPageCount}}."
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "Перетащите файл сюда",
+      "selectFile": "Выберите файл здесь",
       "or": "Или",
+      "yourFiles": "Ваши файлы",
       "chooseFile": "Выберите файл",
       "localFile": "Локальный файл",
       "pageReplaceInputLabel": "Заменить страницу(ы)",
-      "pageReplaceInputFromSource": "со страницей(ами)"
+      "pageReplaceInputFromSource": "со страницей(ами)",
+      "warning": {
+        "title": "Выйти заменить страницу?",
+        "message": "Выход отменит все сделанные вами выборы. Вы уверены, что все еще хотите выйти?"
+      }
     },
     "filterAnnotModal": {
       "color": "Цвет",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "Все",
     "emptyPanelMessage": "Выберите элемент, чтобы просмотреть его свойства."
   },
+  "watermarkPanel": {
+    "textWatermark": "Текстовый водяной знак",
+    "uploadImage": "Загрузить изображение",
+    "browse": "Просматривать",
+    "watermarkOptions": "Параметры водяного знака",
+    "watermarks": "Водяные знаки"
+  },
   "languageModal": {
     "selectLanguage": "Выбрать язык"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "Местоположение страницы",
       "specify": "Укажите страницу",
+      "specifyLocation": "Укажите местоположение страницы",
       "amount": "Количество страниц",
       "total": "Общий",
       "pages": "Страницы"
@@ -1020,13 +1038,20 @@
         "halfLetter": "Половина письма",
         "juniorLegal": "Младший юрист",
         "custom": "Обычай"
-      }
+      },
+      "units": "Единицы"
     },
     "browse": "Просмотр файлов",
     "fileSelected": {
       "title": "Выберите страницы для добавления"
     },
-    "button": "Добавить страницу(ы)"
+    "button": "Добавить страницу(ы)",
+    "selectPages": "Выберите страницы для добавления",
+    "page": "Страница",
+    "warning": {
+      "title": "Выйти вставить новую страницу?",
+      "message": "Выход отменит все сделанные вами выборы. Вы уверены, что все еще хотите выйти?"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "Перетащите файл сюда, чтобы сравнить",

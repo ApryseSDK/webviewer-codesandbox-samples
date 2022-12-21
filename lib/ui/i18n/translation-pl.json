@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "Wyświetl klawisze skrótów",
     "markAllRead": "Oznacz wszystkie jako przeczytane",
     "insertPage": "Wstawianie strony",
-    "insertBlankPageAbove": "Wstaw pustą stronę powyżej",
-    "insertBlankPageBelow": "Wstaw pustą stronę poniżej",
+    "insert": "Wstawić",
     "pageManipulation": "Manipulacja stronami",
     "replace": "Zastępować",
     "setDestination": "Ustaw cel",
     "showLess": "Pokaż mniej",
     "showMore": "...jeszcze",
     "chooseFile": "Wybierz plik",
+    "browse": "Przeglądaj pliki",
     "selectYourOption": "Wybierz swoją opcję",
     "open": "otwarty",
     "deselectAll": "Odznacz wszystkie",
@@ -94,7 +94,8 @@
     "viewFile": "Zobaczyć plik",
     "multiReplyAnnotations": "Odpowiedz na wybrane adnotacje ({{count}})",
     "comparePages": "Porównaj strony",
-    "startComparison": "Rozpocznij porównanie"
+    "startComparison": "Rozpocznij porównanie",
+    "back": "Z powrotem"
   },
   "annotation": {
     "areaMeasurement": "Powierzchnia",
@@ -211,7 +212,8 @@
       "open": "Wyświetl wszystkie adnotacje",
       "close": "Zamknij wszystkie adnotacje"
     },
-    "comparePanel": "Porównaj panel"
+    "comparePanel": "Porównaj panel",
+    "watermarkPanel": "Panel znaku wodnego"
   },
   "message": {
     "toolsOverlayNoPresets": "Brak ustawień wstępnych",
@@ -269,7 +271,9 @@
     "embeddedFiles": "Osadzone pliki",
     "pageNum": "Numer strony",
     "viewBookmark": "Wyświetl zakładkę na stronie",
-    "error": "Błąd"
+    "error": "Błąd",
+    "errorPageNumber": "Nieprawidłowy numer strony. Limit to",
+    "errorLoadingDocument": "Podczas czytania tego dokumentu wystąpił problem i niektóre strony mogą nie być wyświetlane. Oznacza to, że dokument może być uszkodzony. Całkowita liczba stron to {{totalPageCount}}, a liczba wyświetlanych stron to {{displayedPageCount}}."
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "Przeciągnij i upuść plik tutaj",
+      "selectFile": "Wybierz swój plik tutaj",
       "or": "Lub",
+      "yourFiles": "Twoje pliki",
       "chooseFile": "Wybierz plik",
       "localFile": "Plik lokalny",
       "pageReplaceInputLabel": "Zastąp strony",
-      "pageReplaceInputFromSource": "ze stronami"
+      "pageReplaceInputFromSource": "ze stronami",
+      "warning": {
+        "title": "Wyjść z zamiany strony?",
+        "message": "Wyjście anuluje wszystkie dotychczasowe wybory. Czy na pewno nadal chcesz wyjść?"
+      }
     },
     "filterAnnotModal": {
       "color": "Kolor",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "Wszystko",
     "emptyPanelMessage": "Wybierz element, aby wyświetlić jego właściwości"
   },
+  "watermarkPanel": {
+    "textWatermark": "Tekstowy znak wodny",
+    "uploadImage": "Załaduj obrazek",
+    "browse": "Przeglądaj",
+    "watermarkOptions": "Opcje znaku wodnego",
+    "watermarks": "Znaki wodne"
+  },
   "languageModal": {
     "selectLanguage": "Wybierz język"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "Lokalizacja strony",
       "specify": "Określ stronę",
+      "specifyLocation": "Określ lokalizację strony",
       "amount": "Ilość stron",
       "total": "Całkowity",
       "pages": "Strony"
@@ -1020,13 +1038,20 @@
         "halfLetter": "Pół litery",
         "juniorLegal": "Młodszy prawnik",
         "custom": "Zwyczaj"
-      }
+      },
+      "units": "Jednostki"
     },
     "browse": "Przeglądaj pliki",
     "fileSelected": {
       "title": "Wybierz strony do dodania"
     },
-    "button": "Dodaj strony"
+    "button": "Dodaj strony",
+    "selectPages": "Wybierz strony do dodania",
+    "page": "Strona",
+    "warning": {
+      "title": "Zakończyć wstawić nową stronę?",
+      "message": "Wyjście anuluje wszystkie dotychczasowe wybory. Czy na pewno nadal chcesz wyjść?"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "Przeciągnij i upuść plik tutaj, aby porównać",
