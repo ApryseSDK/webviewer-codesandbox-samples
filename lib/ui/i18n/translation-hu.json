@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "Gyorsbillentyűk megtekintése",
     "markAllRead": "összes megjelölése olvasottként",
     "insertPage": "Oldal beillesztése",
-    "insertBlankPageAbove": "Szúrjon be egy üres oldalt fent",
-    "insertBlankPageBelow": "Szúrjon be egy üres oldalt alább",
+    "insert": "Beszúrás",
     "pageManipulation": "Oldal Manipuláció",
     "replace": "Cserélje ki",
     "setDestination": "Uticél beállítása",
     "showLess": "mutass kevesebbet",
     "showMore": "...több",
     "chooseFile": "Válasszon egy fájlt",
+    "browse": "Tallózás a fájlok között",
     "selectYourOption": "Válassza ki az opciót",
     "open": "Nyisd ki",
     "deselectAll": "Törölje az Összes kijelölését",
@@ -94,7 +94,8 @@
     "viewFile": "Fájl megtekintése",
     "multiReplyAnnotations": "Válasz a kiválasztott megjegyzésekre ({{count}})",
     "comparePages": "Oldalak összehasonlítása",
-    "startComparison": "Indítsa el az összehasonlítást"
+    "startComparison": "Indítsa el az összehasonlítást",
+    "back": "Vissza"
   },
   "annotation": {
     "areaMeasurement": "Terület",
@@ -211,7 +212,8 @@
       "open": "Az összes megjegyzés megtekintése",
       "close": "Zárja be az összes megjegyzést"
     },
-    "comparePanel": "Panel összehasonlítása"
+    "comparePanel": "Panel összehasonlítása",
+    "watermarkPanel": "Vízjel panel"
   },
   "message": {
     "toolsOverlayNoPresets": "Nincs előbeállítás",
@@ -269,7 +271,9 @@
     "embeddedFiles": "Beágyazott fájlok",
     "pageNum": "Oldalszám",
     "viewBookmark": "Könyvjelző megtekintése az oldalon",
-    "error": "Hiba"
+    "error": "Hiba",
+    "errorPageNumber": "Érvénytelen oldalszám. A határ az",
+    "errorLoadingDocument": "Hiba történt a dokumentum olvasása közben, és előfordulhat, hogy egyes oldalak nem jelennek meg. Ez azt jelzi, hogy a dokumentum sérült. A teljes oldalszám {{totalPageCount}}, a megjelenített oldalak száma pedig {{displayedPageCount}}."
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "Drag & Drop ide a fájlt",
+      "selectFile": "Válassza ki a fájlt itt",
       "or": "Vagy",
+      "yourFiles": "Az Ön Fájljai",
       "chooseFile": "Válasszon egy fájlt",
       "localFile": "Helyi fájl",
       "pageReplaceInputLabel": "Oldal(ok) cseréje",
-      "pageReplaceInputFromSource": "oldalakkal"
+      "pageReplaceInputFromSource": "oldalakkal",
+      "warning": {
+        "title": "Kilép a csereoldalról?",
+        "message": "A kilépés visszavonja az összes eddig végzett kijelölést. Biztos, hogy továbbra is ki akar lépni?"
+      }
     },
     "filterAnnotModal": {
       "color": "Szín",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "Összes",
     "emptyPanelMessage": "Jelöljön ki egy elemet a tulajdonságainak megtekintéséhez"
   },
+  "watermarkPanel": {
+    "textWatermark": "Szöveges vízjel",
+    "uploadImage": "Kép feltöltése",
+    "browse": "Tallózás",
+    "watermarkOptions": "Vízjel opciók",
+    "watermarks": "Vízjelek"
+  },
   "languageModal": {
     "selectLanguage": "Válasszon nyelvet"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "Oldal helye",
       "specify": "Oldal megadása",
+      "specifyLocation": "Adja meg az oldal helyét",
       "amount": "Oldalak mennyisége",
       "total": "Teljes",
       "pages": "Oldalak"
@@ -1020,13 +1038,20 @@
         "halfLetter": "Fél betű",
         "juniorLegal": "Junior jogi",
         "custom": "Egyedi"
-      }
+      },
+      "units": "Egységek"
     },
     "browse": "Tallózás a fájlok között",
     "fileSelected": {
       "title": "Válassza a Hozzáadandó oldalak lehetőséget"
     },
-    "button": "Oldal(ok) hozzáadása"
+    "button": "Oldal(ok) hozzáadása",
+    "selectPages": "Válassza a Hozzáadandó oldalak lehetőséget",
+    "page": "oldal",
+    "warning": {
+      "title": "Kilép új oldal beszúrása?",
+      "message": "A kilépés visszavonja az összes eddig végzett kijelölést. Biztos, hogy továbbra is ki akar lépni?"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "Húzza ide a fájlt az összehasonlításhoz",
