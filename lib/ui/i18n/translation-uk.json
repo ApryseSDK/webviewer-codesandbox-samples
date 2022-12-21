@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "Перегляд комбінацій клавіш",
     "markAllRead": "Позначити все як прочитане",
     "insertPage": "Вставка сторінки",
-    "insertBlankPageAbove": "Вставте порожню сторінку вище",
-    "insertBlankPageBelow": "Вставте порожню сторінку нижче",
+    "insert": "Вставка",
     "pageManipulation": "Маніпулювання сторінками",
     "replace": "Замінити",
     "setDestination": "Встановити пункт призначення",
     "showLess": "показувати менше",
     "showMore": "...більше",
     "chooseFile": "Виберіть файл",
+    "browse": "Огляд файлів",
     "selectYourOption": "Виберіть свій варіант",
     "open": "відчинено",
     "deselectAll": "Скасуйте вибір усіх",
@@ -94,7 +94,8 @@
     "viewFile": "Переглянути файл",
     "multiReplyAnnotations": "Відповідь на вибрані анотації ({{count}})",
     "comparePages": "Порівняти сторінки",
-    "startComparison": "Почати порівняння"
+    "startComparison": "Почати порівняння",
+    "back": "Назад"
   },
   "annotation": {
     "areaMeasurement": "Площа",
@@ -211,7 +212,8 @@
       "open": "Переглянути всі анотації",
       "close": "Закрити всі анотації"
     },
-    "comparePanel": "Панель порівняння"
+    "comparePanel": "Панель порівняння",
+    "watermarkPanel": "Панель водяних знаків"
   },
   "message": {
     "toolsOverlayNoPresets": "Без попередніх налаштувань",
@@ -269,7 +271,9 @@
     "embeddedFiles": "Вбудовані файли",
     "pageNum": "Номер сторінки",
     "viewBookmark": "Переглянути закладку на сторінці",
-    "error": "Помилка"
+    "error": "Помилка",
+    "errorPageNumber": "Недійсний номер сторінки. Обмеження є",
+    "errorLoadingDocument": "Під час читання цього документа виникла проблема, тому деякі сторінки можуть не відображатися. Це означає, що документ може бути пошкоджено. Загальна кількість сторінок становить {{totalPageCount}}, а кількість сторінок, які відображаються, — {{displayedPageCount}}."
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "Перетягніть свій файл сюди",
+      "selectFile": "Виберіть свій файл тут",
       "or": "Або",
+      "yourFiles": "Ваші файли",
       "chooseFile": "Виберіть файл",
       "localFile": "Локальний файл",
       "pageReplaceInputLabel": "Замінити сторінки",
-      "pageReplaceInputFromSource": "зі сторінкою(ами)"
+      "pageReplaceInputFromSource": "зі сторінкою(ами)",
+      "warning": {
+        "title": "Вийти зі сторінки заміни?",
+        "message": "Вихід призведе до скасування всіх вибраних параметрів. Ви впевнені, що все ще хочете вийти?"
+      }
     },
     "filterAnnotModal": {
       "color": "Колір",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "Усі",
     "emptyPanelMessage": "Виберіть елемент, щоб переглянути його властивості."
   },
+  "watermarkPanel": {
+    "textWatermark": "Текстовий водяний знак",
+    "uploadImage": "Завантажити зображення",
+    "browse": "переглядати",
+    "watermarkOptions": "Параметри водяного знака",
+    "watermarks": "Водяні знаки"
+  },
   "languageModal": {
     "selectLanguage": "Оберіть мову"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "Розташування сторінки",
       "specify": "Вкажіть сторінку",
+      "specifyLocation": "Укажіть розташування сторінки",
       "amount": "Кількість сторінок",
       "total": "Всього",
       "pages": "сторінки"
@@ -1020,13 +1038,20 @@
         "halfLetter": "Половина листа",
         "juniorLegal": "Молодший юридичний",
         "custom": "Custom"
-      }
+      },
+      "units": "одиниці"
     },
     "browse": "Огляд файлів",
     "fileSelected": {
       "title": "Виберіть Сторінки для додавання"
     },
-    "button": "Додати сторінку(и)"
+    "button": "Додати сторінку(и)",
+    "selectPages": "Виберіть Сторінки для додавання",
+    "page": "Сторінка",
+    "warning": {
+      "title": "Вийти, вставити нову сторінку?",
+      "message": "Вихід призведе до скасування всіх вибраних параметрів. Ви впевнені, що все ще хочете вийти?"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "Перетягніть свій файл сюди, щоб порівняти",

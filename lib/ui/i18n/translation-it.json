@@ -71,14 +71,14 @@
     "viewShortCutKeysFor3D": "Visualizza i tasti di scelta rapida",
     "markAllRead": "segna tutto come letto",
     "insertPage": "Inserimento pagina",
-    "insertBlankPageAbove": "Inserisci una pagina vuota sopra",
-    "insertBlankPageBelow": "Inserisci una pagina vuota qui sotto",
+    "insert": "Inserire",
     "pageManipulation": "Manipolazione della pagina",
     "replace": "Sostituire",
     "setDestination": "Impostare la destinazione",
     "showLess": "mostra meno",
     "showMore": "...Di più",
     "chooseFile": "Scegli un file",
+    "browse": "Sfoglia i file",
     "selectYourOption": "Seleziona la tua opzione",
     "open": "Aprire",
     "deselectAll": "Deselezionare tutto",
@@ -94,7 +94,8 @@
     "viewFile": "Vedi il file",
     "multiReplyAnnotations": "Rispondi alle annotazioni selezionate ({{count}})",
     "comparePages": "Confronta le pagine",
-    "startComparison": "Inizia il confronto"
+    "startComparison": "Inizia il confronto",
+    "back": "Di ritorno"
   },
   "annotation": {
     "areaMeasurement": "Misurazione dell'area",
@@ -211,7 +212,8 @@
       "open": "Visualizza tutte le annotazioni",
       "close": "Chiudi tutte le annotazioni"
     },
-    "comparePanel": "Confronta pannello"
+    "comparePanel": "Confronta pannello",
+    "watermarkPanel": "Pannello filigrana"
   },
   "message": {
     "toolsOverlayNoPresets": "Nessun preset",
@@ -269,7 +271,9 @@
     "embeddedFiles": "File incorporati",
     "pageNum": "Numero di pagina",
     "viewBookmark": "Visualizza segnalibro sulla pagina",
-    "error": "Errore"
+    "error": "Errore",
+    "errorPageNumber": "Numero di pagina non valido. Il limite è",
+    "errorLoadingDocument": "Si è verificato un problema durante la lettura di questo documento e alcune pagine potrebbero non essere visualizzate. Ciò indica che il documento potrebbe essere danneggiato. Il conteggio totale delle pagine è {{totalPageCount}} e il numero di pagine visualizzate è {{displayedPageCount}}."
   },
   "option": {
     "type": {
@@ -425,11 +429,17 @@
     },
     "pageReplacementModal": {
       "dragAndDrop": "Trascina e rilascia il tuo file qui",
+      "selectFile": "Seleziona qui il tuo file",
       "or": "O",
+      "yourFiles": "I tuoi file",
       "chooseFile": "Scegli un file",
       "localFile": "File locale",
       "pageReplaceInputLabel": "Sostituisci pagina/e",
-      "pageReplaceInputFromSource": "con pagina/e"
+      "pageReplaceInputFromSource": "con pagina/e",
+      "warning": {
+        "title": "Uscire dalla pagina di sostituzione?",
+        "message": "L'uscita annullerà tutte le selezioni effettuate fino a quel momento. Sei sicuro di voler ancora uscire?"
+      }
     },
     "filterAnnotModal": {
       "color": "Colore",
@@ -991,6 +1001,13 @@
     "miscValuesHeader": "Tutti",
     "emptyPanelMessage": "Seleziona un elemento per visualizzarne le proprietà."
   },
+  "watermarkPanel": {
+    "textWatermark": "Filigrana di testo",
+    "uploadImage": "Carica immagine",
+    "browse": "Navigare",
+    "watermarkOptions": "Opzioni filigrana",
+    "watermarks": "Filigrane"
+  },
   "languageModal": {
     "selectLanguage": "Seleziona la lingua"
   },
@@ -1008,6 +1025,7 @@
     "pageLocations": {
       "header": "Posizione della pagina",
       "specify": "Specificare la pagina",
+      "specifyLocation": "Specificare la posizione della pagina",
       "amount": "Quantità di pagine",
       "total": "Totale",
       "pages": "Pagine"
@@ -1020,13 +1038,20 @@
         "halfLetter": "Mezza lettera",
         "juniorLegal": "Junior legale",
         "custom": "Costume"
-      }
+      },
+      "units": "Unità"
     },
     "browse": "Sfoglia i file",
     "fileSelected": {
       "title": "Seleziona Pagine da aggiungere"
     },
-    "button": "Aggiungi pagina/e"
+    "button": "Aggiungi pagina/e",
+    "selectPages": "Seleziona Pagine da aggiungere",
+    "page": "Pagina",
+    "warning": {
+      "title": "Esci inserisci una nuova pagina?",
+      "message": "L'uscita annullerà tutte le selezioni effettuate fino a quel momento. Sei sicuro di voler ancora uscire?"
+    }
   },
   "multiViewer": {
     "dragAndDrop": "Trascina e rilascia qui il tuo file per confrontarlo",
