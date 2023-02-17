@@ -95,7 +95,8 @@
     "multiReplyAnnotations": "Απάντηση σε επιλεγμένους σχολιασμούς ({{count}})",
     "comparePages": "Συγκρίνετε σελίδες",
     "startComparison": "Έναρξη σύγκρισης",
-    "back": "Πίσω"
+    "back": "Πίσω",
+    "clearSignature": "Καθαρή υπογραφή"
   },
   "annotation": {
     "areaMeasurement": "Περιοχή",
@@ -379,7 +380,8 @@
       "qualityHigh": "Υψηλός",
       "includeAnnotations": "Συμπεριλάβετε σχολιασμούς",
       "includeComments": "Συμπεριλάβετε σχόλια",
-      "printSettings": "Ρυθμίσεις εκτύπωσης"
+      "printSettings": "Ρυθμίσεις εκτύπωσης",
+      "printGrayscale": "Εκτύπωση κλίμακας του γκρι"
     },
     "printInfo": {
       "author": "Συγγραφέας",
@@ -608,12 +610,11 @@
     "settings": {
       "settings": "Ρυθμίσεις",
       "general": "Γενικός",
-      "keyboardShortcut": "Συντόμευση πληκτρολογίου",
-      "advancedSetting": "Προχωρημένη ρύθμιση",
       "language": "Γλώσσα",
       "theme": "Θέμα",
       "darkMode": "Σκοτεινή λειτουργία",
       "lightMode": "Λειτουργία φωτός",
+      "advancedSetting": "Προχωρημένη ρύθμιση",
       "viewing": "Προβολή",
       "disableFadePageNavigationComponent": "Απενεργοποιήστε το στοιχείο πλοήγησης Fade Page",
       "disableFadePageNavigationComponentDesc": "Διατηρείτε πάντα το στοιχείο πλοήγησης σελίδας στην οθόνη. Η προεπιλεγμένη συμπεριφορά είναι να εξαφανιστεί μετά από ορισμένη περίοδο αδράνειας.",
@@ -638,7 +639,52 @@
       "disablePageDeletionConfirmationModal": "Απενεργοποιήστε το Modal επιβεβαίωσης διαγραφής σελίδας",
       "disablePageDeletionConfirmationModalDesc": "Απενεργοποιήστε τον τρόπο επιβεβαίωσης όταν διαγράφετε μια σελίδα από την προβολή μικρογραφιών",
       "disableMultiselect": "Απενεργοποιήστε την πολλαπλή επιλογή",
-      "disableMultiselectDesc": "Απενεργοποιήστε την πολλαπλή επιλογή στον αριστερό πίνακα μικρογραφιών"
+      "disableMultiselectDesc": "Απενεργοποιήστε την πολλαπλή επιλογή στον αριστερό πίνακα μικρογραφιών",
+      "miscellaneous": "Διάφορα",
+      "keyboardShortcut": "Συντόμευση πληκτρολογίου",
+      "command": "Εντολή",
+      "description": "Περιγραφή",
+      "action": "Δράση",
+      "rotateDocumentClockwise": "Περιστρέψτε το έγγραφο δεξιόστροφα",
+      "rotateDocumentCounterclockwise": "Περιστρέψτε το έγγραφο αριστερόστροφα",
+      "copyText": "Αντιγράψτε επιλεγμένο κείμενο ή σχολιασμούς",
+      "pasteText": "Επικόλληση κειμένου ή σχολιασμών",
+      "undoChange": "Αναίρεση αλλαγής σχολιασμού",
+      "redoChange": "Επαναλάβετε μια αλλαγή σχολιασμού",
+      "openFile": "Ανοίξτε το εργαλείο επιλογής αρχείων",
+      "openSearch": "Ανοίξτε την επικάλυψη αναζήτησης",
+      "zoomIn": "Μεγέθυνση",
+      "zoomOut": "Σμίκρυνση",
+      "fitScreenWidth": "Τοποθετήστε το έγγραφο στο πλάτος της οθόνης σε μια μικρή οθόνη (< 640 px), διαφορετικά προσαρμόστε το στο αρχικό του μέγεθος",
+      "print": "Τυπώνω",
+      "bookmarkOpenPanel": "Προσθέστε γρήγορα σελιδοδείκτη σε μια σελίδα και ανοίξτε τον πίνακα σελιδοδεικτών",
+      "goToPreviousPage": "Μεταβείτε στην προηγούμενη σελίδα",
+      "goToNextPage": "Μεταβείτε στην επόμενη σελίδα",
+      "goToPreviousPageArrowUp": "Μετάβαση στην προηγούμενη σελίδα σε λειτουργία μονής διάταξης (ArrowUp)",
+      "goToNextPageArrowDown": "Μετάβαση στην επόμενη σελίδα σε λειτουργία μονής διάταξης (ArrowDown)",
+      "holdSwitchPan": "Κρατήστε πατημένο για να μεταβείτε στη λειτουργία Pan και αφήστε το για να επιστρέψετε στο προηγούμενο εργαλείο",
+      "selectAnnotationEdit": "Επιλέξτε το εργαλείο AnnotationEdit",
+      "selectPan": "Επιλέξτε το εργαλείο Pan",
+      "selectCreateArrowTool": "Επιλέξτε το εργαλείο AnnotationCreateArrow",
+      "selectCreateCalloutTool": "Επιλέξτε το εργαλείο AnnotationCreateCallout",
+      "selectEraserTool": "Επιλέξτε το εργαλείο AnnotationEraser",
+      "selectCreateFreeHandTool": "Επιλέξτε το εργαλείο AnnotationCreateFreeHand",
+      "selectCreateStampTool": "Επιλέξτε το εργαλείο AnnotationCreateStamp",
+      "selectCreateLineTool": "Επιλέξτε το εργαλείο AnnotationCreateLine",
+      "selectCreateStickyTool": "Επιλέξτε το εργαλείο AnnotationCreateSticky",
+      "selectCreateEllipseTool": "Επιλέξτε το εργαλείο AnnotationCreateEllipse",
+      "selectCreateRectangleTool": "Επιλέξτε το εργαλείο AnnotationCreateRectangle",
+      "selectCreateRubberStampTool": "Επιλέξτε το εργαλείο AnnotationCreateRubberStamp",
+      "selectCreateFreeTextTool": "Επιλέξτε το εργαλείο AnnotationCreateFreeText",
+      "openSignatureModal": "Ανοίξτε το modal υπογραφής ή την επικάλυψη",
+      "selectCreateTextSquigglyTool": "Επιλέξτε το εργαλείο AnnotationCreateTextSquiggly",
+      "selectCreateTextHighlightTool": "Επιλέξτε το εργαλείο AnnotationCreateTextHighlight",
+      "selectCreateTextStrikeoutTool": "Επιλέξτε το εργαλείο AnnotationCreateTextStrikeout",
+      "selectCreateTextUnderlineTool": "Επιλέξτε το εργαλείο AnnotationCreateTextUnderline",
+      "editKeyboardShorcut": "Επεξεργασία συντόμευσης πληκτρολογίου",
+      "setShorcut": "Ορισμός συντόμευσης",
+      "pressKeyToSet": "Πατήστε το πλήκτρο ή τα πλήκτρα για να ορίσετε νέα συντόμευση.",
+      "shortcutAlreadyExists": "Η παραπάνω συντόμευση πληκτρολογίου υπάρχει ήδη."
     }
   },
   "warning": {
@@ -890,13 +936,16 @@
     "certifier": "πιστοποιώ",
     "certified": "πιστοποιημένο",
     "Certified": "Πιστοποιημένο",
+    "Certification": "Πιστοποίηση",
     "signer": "σημάδι",
     "signed": "υπογεγραμμένος",
     "Signed": "Υπογεγραμμένο",
+    "Signature": "Υπογραφή",
     "by": "με",
     "on": "επί",
     "disallowedChange": "Μη επιτρεπόμενη αλλαγή: {{type}}, objnum: {{objnum}}",
     "unsignedSignatureField": "Ανυπόγραφο πεδίο υπογραφής: {{fieldName}}",
+    "signatureProperties": "Ιδιότητες υπογραφής",
     "trustVerification": {
       "current": "Ο χρόνος επαλήθευσης που χρησιμοποιήθηκε ήταν η τρέχουσα ώρα",
       "signing": "Ο χρόνος επαλήθευσης είναι από το ρολόι στον υπολογιστή του υπογράφοντος",
@@ -947,6 +996,10 @@
       "noSignatureFields": "Αυτό το έγγραφο δεν έχει πεδία υπογραφής",
       "certificateDownloadError": "Παρουσιάστηκε σφάλμα κατά την προσπάθεια λήψης ενός αξιόπιστου πιστοποιητικού",
       "localCertificateError": "Υπάρχουν ορισμένα ζητήματα με την ανάγνωση ενός τοπικού πιστοποιητικού"
+    },
+    "verificationStatus": {
+      "valid": "Το {{verificationType}} είναι έγκυρο.",
+      "failed": "Το {{verificationType}} απέτυχε."
     }
   },
   "cropPopUp": {
@@ -1067,7 +1120,11 @@
       "change": "Αλλαγή",
       "old": "Παλαιός",
       "new": "Νέος",
-      "page": "Σελίδα"
+      "page": "Σελίδα",
+      "textContent": "Περιεχόμενο κειμένου",
+      "delete": "διαγράφω",
+      "insert": "εισάγετε",
+      "edit": "επεξεργασία"
     }
   },
   "saveModal": {
