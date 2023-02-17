@@ -95,7 +95,8 @@
     "multiReplyAnnotations": "Membalas anotasi yang dipilih ({{count}})",
     "comparePages": "Bandingkan halaman",
     "startComparison": "Mulai Perbandingan",
-    "back": "Kembali"
+    "back": "Kembali",
+    "clearSignature": "Tanda tangan yang jelas"
   },
   "annotation": {
     "areaMeasurement": "Daerah",
@@ -379,7 +380,8 @@
       "qualityHigh": "Tinggi",
       "includeAnnotations": "Sertakan anotasi",
       "includeComments": "Sertakan komentar",
-      "printSettings": "Pengaturan Cetak"
+      "printSettings": "Pengaturan Cetak",
+      "printGrayscale": "Cetak Skala abu-abu"
     },
     "printInfo": {
       "author": "Pengarang",
@@ -608,12 +610,11 @@
     "settings": {
       "settings": "Pengaturan",
       "general": "Umum",
-      "keyboardShortcut": "Pintasan Keyboard",
-      "advancedSetting": "Pengaturan Lanjut",
       "language": "Bahasa",
       "theme": "Tema",
       "darkMode": "Mode gelap",
       "lightMode": "Mode cahaya",
+      "advancedSetting": "Pengaturan Lanjut",
       "viewing": "Melihat",
       "disableFadePageNavigationComponent": "Nonaktifkan Komponen Navigasi Halaman Pudar",
       "disableFadePageNavigationComponentDesc": "Selalu simpan Komponen Navigasi Halaman di layar. Perilaku default adalah memudarnya setelah periode tidak aktif tertentu.",
@@ -638,7 +639,52 @@
       "disablePageDeletionConfirmationModal": "Nonaktifkan Modal Konfirmasi Penghapusan Halaman",
       "disablePageDeletionConfirmationModalDesc": "Nonaktifkan modal konfirmasi saat menghapus halaman dari tampilan thumbnail",
       "disableMultiselect": "Nonaktifkan Multipilih",
-      "disableMultiselectDesc": "Nonaktifkan multi pilih di panel gambar mini kiri"
+      "disableMultiselectDesc": "Nonaktifkan multi pilih di panel gambar mini kiri",
+      "miscellaneous": "Aneka ragam",
+      "keyboardShortcut": "Pintasan Keyboard",
+      "command": "Memerintah",
+      "description": "Keterangan",
+      "action": "Tindakan",
+      "rotateDocumentClockwise": "Putar dokumen searah jarum jam",
+      "rotateDocumentCounterclockwise": "Putar dokumen berlawanan arah jarum jam",
+      "copyText": "Salin teks atau anotasi yang dipilih",
+      "pasteText": "Tempel teks atau anotasi",
+      "undoChange": "Urungkan perubahan anotasi",
+      "redoChange": "Ulangi perubahan anotasi",
+      "openFile": "Buka pemilih file",
+      "openSearch": "Buka hamparan pencarian",
+      "zoomIn": "Perbesar",
+      "zoomOut": "Perkecil",
+      "fitScreenWidth": "Sesuaikan dokumen dengan lebar layar di layar kecil (<640px), jika tidak sesuaikan dengan ukuran aslinya",
+      "print": "Mencetak",
+      "bookmarkOpenPanel": "Tandai halaman dengan cepat dan buka panel bookmark",
+      "goToPreviousPage": "Pergi ke halaman sebelumnya",
+      "goToNextPage": "Pergi ke halaman berikutnya",
+      "goToPreviousPageArrowUp": "Buka halaman sebelumnya dalam mode tata letak tunggal (ArrowUp)",
+      "goToNextPageArrowDown": "Buka halaman berikutnya dalam mode tata letak tunggal (Panah Bawah)",
+      "holdSwitchPan": "Tahan untuk beralih ke mode Pan dan lepaskan untuk kembali ke alat sebelumnya",
+      "selectAnnotationEdit": "Pilih alat AnnotationEdit",
+      "selectPan": "Pilih alat Pan",
+      "selectCreateArrowTool": "Pilih alat AnnotationCreateArrow",
+      "selectCreateCalloutTool": "Pilih alat AnnotationCreateCallout",
+      "selectEraserTool": "Pilih alat AnnotationEraser",
+      "selectCreateFreeHandTool": "Pilih alat AnnotationCreateFreeHand",
+      "selectCreateStampTool": "Pilih alat AnnotationCreateStamp",
+      "selectCreateLineTool": "Pilih alat AnnotationCreateLine",
+      "selectCreateStickyTool": "Pilih alat AnnotationCreateSticky",
+      "selectCreateEllipseTool": "Pilih alat AnnotationCreateEllipse",
+      "selectCreateRectangleTool": "Pilih alat AnnotationCreateRectangle",
+      "selectCreateRubberStampTool": "Pilih alat AnnotationCreateRubberStamp",
+      "selectCreateFreeTextTool": "Pilih alat AnnotationCreateFreeText",
+      "openSignatureModal": "Buka modal tanda tangan atau overlay",
+      "selectCreateTextSquigglyTool": "Pilih alat AnnotationCreateTextSquiggly",
+      "selectCreateTextHighlightTool": "Pilih alat AnnotationCreateTextHighlight",
+      "selectCreateTextStrikeoutTool": "Pilih alat AnnotationCreateTextStrikeout",
+      "selectCreateTextUnderlineTool": "Pilih alat AnnotationCreateTextUnderline",
+      "editKeyboardShorcut": "Edit Pintasan Keyboard",
+      "setShorcut": "Setel Pintasan",
+      "pressKeyToSet": "Tekan tombol atau tombol untuk mengatur pintasan baru.",
+      "shortcutAlreadyExists": "Pintasan keyboard di atas sudah ada."
     }
   },
   "warning": {
@@ -890,13 +936,16 @@
     "certifier": "menyatakan",
     "certified": "bersertifikat",
     "Certified": "bersertifikat",
+    "Certification": "Sertifikasi",
     "signer": "tanda",
     "signed": "tertanda",
     "Signed": "Tertanda",
+    "Signature": "Tanda tangan",
     "by": "oleh",
     "on": "di",
     "disallowedChange": "Perubahan yang Tidak Diizinkan: {{type}}, objnum: {{objnum}}",
     "unsignedSignatureField": "Bidang tanda tangan yang tidak ditandatangani: {{fieldName}}",
+    "signatureProperties": "Properti Tanda Tangan",
     "trustVerification": {
       "current": "Waktu verifikasi yang digunakan adalah waktu saat ini",
       "signing": "Waktu verifikasi adalah dari jam di komputer penanda tangan",
@@ -947,6 +996,10 @@
       "noSignatureFields": "Dokumen ini tidak memiliki bidang tanda tangan",
       "certificateDownloadError": "Terjadi kesalahan saat mencoba mengunduh sertifikat tepercaya",
       "localCertificateError": "Ada beberapa masalah dengan membaca sertifikat lokal"
+    },
+    "verificationStatus": {
+      "valid": "{{verificationType}} valid.",
+      "failed": "{{verificationType}} gagal."
     }
   },
   "cropPopUp": {
@@ -1067,7 +1120,11 @@
       "change": "Mengubah",
       "old": "Tua",
       "new": "Baru",
-      "page": "Halaman"
+      "page": "Halaman",
+      "textContent": "Konten Teks",
+      "delete": "menghapus",
+      "insert": "menyisipkan",
+      "edit": "sunting"
     }
   },
   "saveModal": {
