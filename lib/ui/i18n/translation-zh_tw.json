@@ -95,7 +95,8 @@
     "multiReplyAnnotations": "回复所選註釋 ({{count}})",
     "comparePages": "比較頁面",
     "startComparison": "開始比較",
-    "back": "後退"
+    "back": "後退",
+    "clearSignature": "清晰的簽名"
   },
   "annotation": {
     "areaMeasurement": "測量面積",
@@ -379,7 +380,8 @@
       "qualityHigh": "高",
       "includeAnnotations": "包括註釋",
       "includeComments": "包括評論",
-      "printSettings": "打印設置"
+      "printSettings": "打印設置",
+      "printGrayscale": "打印灰度"
     },
     "printInfo": {
       "author": "作者",
@@ -608,12 +610,11 @@
     "settings": {
       "settings": "設置",
       "general": "一般的",
-      "keyboardShortcut": "鍵盤快捷鍵",
-      "advancedSetting": "高級設置",
       "language": "語",
       "theme": "主題",
       "darkMode": "黑暗模式",
       "lightMode": "燈光模式",
+      "advancedSetting": "高級設置",
       "viewing": "查看",
       "disableFadePageNavigationComponent": "禁用淡入淡出頁面導航組件",
       "disableFadePageNavigationComponentDesc": "始終保持頁面導航組件在屏幕上。默認行為是在一段時間不活動後將其淡化。",
@@ -638,7 +639,52 @@
       "disablePageDeletionConfirmationModal": "禁用頁面刪除確認模式",
       "disablePageDeletionConfirmationModalDesc": "從縮略圖視圖中刪除頁面時禁用確認模式",
       "disableMultiselect": "禁用多選",
-      "disableMultiselectDesc": "在左側縮略圖面板中禁用多選"
+      "disableMultiselectDesc": "在左側縮略圖面板中禁用多選",
+      "miscellaneous": "各種各樣的",
+      "keyboardShortcut": "鍵盤快捷鍵",
+      "command": "命令",
+      "description": "描述",
+      "action": "行動",
+      "rotateDocumentClockwise": "順時針旋轉文檔",
+      "rotateDocumentCounterclockwise": "逆時針旋轉文檔",
+      "copyText": "複製選定的文本或註釋",
+      "pasteText": "粘貼文本或註釋",
+      "undoChange": "撤消註釋更改",
+      "redoChange": "重做註釋更改",
+      "openFile": "打開文件選擇器",
+      "openSearch": "打開搜索疊加層",
+      "zoomIn": "放大",
+      "zoomOut": "縮小",
+      "fitScreenWidth": "在小屏幕（< 640px）中將文檔調整為屏幕寬度，否則將其調整為原始大小",
+      "print": "打印",
+      "bookmarkOpenPanel": "快速為頁面添加書籤並打開書籤面板",
+      "goToPreviousPage": "轉到上一頁",
+      "goToNextPage": "轉到下一頁",
+      "goToPreviousPageArrowUp": "以單一佈局模式轉到上一頁（ArrowUp）",
+      "goToNextPageArrowDown": "以單一佈局模式轉到下一頁（ArrowDown）",
+      "holdSwitchPan": "按住切換到平移模式並鬆開返回上一個工具",
+      "selectAnnotationEdit": "選擇註釋編輯工具",
+      "selectPan": "選擇平移工具",
+      "selectCreateArrowTool": "選擇 AnnotationCreateArrow 工具",
+      "selectCreateCalloutTool": "選擇 AnnotationCreateCallout 工具",
+      "selectEraserTool": "選擇 AnnotationEraser 工具",
+      "selectCreateFreeHandTool": "選擇 AnnotationCreateFreeHand 工具",
+      "selectCreateStampTool": "選擇 AnnotationCreateStamp 工具",
+      "selectCreateLineTool": "選擇 AnnotationCreateLine 工具",
+      "selectCreateStickyTool": "選擇 AnnotationCreateSticky 工具",
+      "selectCreateEllipseTool": "選擇 AnnotationCreateEllipse 工具",
+      "selectCreateRectangleTool": "選擇 AnnotationCreateRectangle 工具",
+      "selectCreateRubberStampTool": "選擇 AnnotationCreateRubberStamp 工具",
+      "selectCreateFreeTextTool": "選擇 AnnotationCreateFreeText 工具",
+      "openSignatureModal": "打開簽名模式或覆蓋",
+      "selectCreateTextSquigglyTool": "選擇 AnnotationCreateTextSquiggly 工具",
+      "selectCreateTextHighlightTool": "選擇 AnnotationCreateTextHighlight 工具",
+      "selectCreateTextStrikeoutTool": "選擇 AnnotationCreateTextStrikeout 工具",
+      "selectCreateTextUnderlineTool": "選擇 AnnotationCreateTextUnderline 工具",
+      "editKeyboardShorcut": "編輯快捷鍵",
+      "setShorcut": "設置快捷方式",
+      "pressKeyToSet": "按 鍵或 鍵設置新的快捷方式。",
+      "shortcutAlreadyExists": "上面的鍵盤快捷鍵已經存在。"
     }
   },
   "warning": {
@@ -890,13 +936,16 @@
     "certifier": "證明",
     "certified": "認證的",
     "Certified": "已認證",
+    "Certification": "認證",
     "signer": "標誌",
     "signed": "簽",
     "Signed": "簽",
+    "Signature": "簽名",
     "by": "通過",
     "on": "上",
     "disallowedChange": "不允許更改：{{type}}，objnum：{{objnum}}",
     "unsignedSignatureField": "未簽名的簽名字段：{{fieldName}}",
+    "signatureProperties": "簽名屬性",
     "trustVerification": {
       "current": "驗證時間為當前時間",
       "signing": "驗證時間是來自簽名者計算機上的時鐘",
@@ -947,6 +996,10 @@
       "noSignatureFields": "該文檔沒有簽名字段",
       "certificateDownloadError": "嘗試下載受信任的證書時遇到錯誤",
       "localCertificateError": "讀取本地證書存在一些問題"
+    },
+    "verificationStatus": {
+      "valid": "{{verificationType}} 有效。",
+      "failed": "{{verificationType}} 失敗。"
     }
   },
   "cropPopUp": {
@@ -1067,7 +1120,11 @@
       "change": "改變",
       "old": "老的",
       "new": "新的",
-      "page": "頁"
+      "page": "頁",
+      "textContent": "文字內容",
+      "delete": "刪除",
+      "insert": "插入",
+      "edit": "編輯"
     }
   },
   "saveModal": {

@@ -95,7 +95,8 @@
     "multiReplyAnnotations": "Reply to selected annotations ({{count}})",
     "comparePages": "Compare pages",
     "startComparison": "Start Comparison",
-    "back": "Back"
+    "back": "Back",
+    "clearSignature": "Clear signature"
   },
   "annotation": {
     "areaMeasurement": "Area",
@@ -379,7 +380,8 @@
       "qualityHigh": "High",
       "includeAnnotations": "Include annotations",
       "includeComments": "Include comments",
-      "printSettings": "Print Settings"
+      "printSettings": "Print Settings",
+      "printGrayscale": "Print Grayscale"
     },
     "printInfo": {
       "author": "Author",
@@ -934,13 +936,16 @@
     "certifier": "certifier",
     "certified": "certified",
     "Certified": "Certified",
+    "Certification": "Certification",
     "signer": "signer",
     "signed": "signed",
     "Signed": "Signed",
+    "Signature": "Signature",
     "by": "by",
     "on": "on",
     "disallowedChange": "Disallowed Change: {{type}}, objnum: {{objnum}}",
     "unsignedSignatureField": "Unsigned signature field: {{fieldName}}",
+    "signatureProperties": "Signature Properties",
     "trustVerification": {
       "current": "Verification time used was the current time",
       "signing": "Verification time is from the clock on the signer's computer",
@@ -991,6 +996,10 @@
       "noSignatureFields": "This document has no signature fields",
       "certificateDownloadError": "Error encountered when trying to download a trusted certificate",
       "localCertificateError": "There are some issues with reading a local certificate"
+    },
+    "verificationStatus": {
+      "valid": "{{verificationType}} is valid.",
+      "failed": "{{verificationType}} failed."
     }
   },
   "cropPopUp": {
@@ -1111,7 +1120,11 @@
       "change": "Change",
       "old": "Old",
       "new": "New",
-      "page": "Page"
+      "page": "Page",
+			"textContent": "Text Content",
+			"delete": "delete",
+			"insert": "insert",
+			"edit": "edit"
     }
   },
   "saveModal": {
