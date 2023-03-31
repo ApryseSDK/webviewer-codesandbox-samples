@@ -1,14 +1,14 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link Core.setWorkerPath: https://www.pdftron.com/api/web/Core.html#.setWorkerPath__anchor
-// @link Core.getDefaultBackendType: https://www.pdftron.com/api/web/Core.html#.getDefaultBackendType__anchor
-// @link Core.initPDFWorkerTransports: https://www.pdftron.com/api/web/Core.html#.initPDFWorkerTransports__anchor
-// @link ExternalPdfPartRetriever: https://www.pdftron.com/api/web/PartRetrievers.ExternalPdfPartRetriever.html
-// @link Document: https://www.pdftron.com/api/web/Core.Document.html
-// @link Document.loadAsync: https://www.pdftron.com/api/web/Core.Document.html#loadAsync__anchor
-// @link Document.getPageInfo: https://www.pdftron.com/api/web/Core.Document.html#getPageInfo__anchor
-// @link Document.getPageCount: https://www.pdftron.com/api/web/Core.Document.html#getPageCount__anchor
-// @link Document.requirePage: https://www.pdftron.com/api/web/Core.Document.html#requirePage__anchor
-// @link Document.loadCanvasAsync: https://www.pdftron.com/api/web/Core.Document.html#loadCanvasAsync__anchor
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
+// @link Core.setWorkerPath: https://docs.apryse.com/api/web/Core.html#.setWorkerPath__anchor
+// @link Core.getDefaultBackendType: https://docs.apryse.com/api/web/Core.html#.getDefaultBackendType__anchor
+// @link Core.initPDFWorkerTransports: https://docs.apryse.com/api/web/Core.html#.initPDFWorkerTransports__anchor
+// @link ExternalPdfPartRetriever: https://docs.apryse.com/api/web/PartRetrievers.ExternalPdfPartRetriever.html
+// @link Document: https://docs.apryse.com/api/web/Core.Document.html
+// @link Document.loadDocument: https://docs.apryse.com/api/web/Core.Document.html#loadDocument__anchor
+// @link Document.getPageInfo: https://docs.apryse.com/api/web/Core.Document.html#getPageInfo__anchor
+// @link Document.getPageCount: https://docs.apryse.com/api/web/Core.Document.html#getPageCount__anchor
+// @link Document.requirePage: https://docs.apryse.com/api/web/Core.Document.html#requirePage__anchor
+// @link Document.loadCanvas: https://docs.apryse.com/api/web/Core.Document.html#loadCanvas__anchor
 
 Core.setWorkerPath('../../../lib/core');
 

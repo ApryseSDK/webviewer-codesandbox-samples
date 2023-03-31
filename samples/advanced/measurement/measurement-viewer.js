@@ -1,9 +1,9 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link UI.setHeaderItems: https://www.pdftron.com/api/web/UI.html#setHeaderItems__anchor
-// @link UI.openElements: https://www.pdftron.com/api/web/UI.html#openElements__anchor
-// @link UI.loadDocument: https://www.pdftron.com/api/web/UI.html#loadDocument__anchor
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
+// @link UI.setHeaderItems: https://docs.apryse.com/api/web/UI.html#setHeaderItems__anchor
+// @link UI.openElements: https://docs.apryse.com/api/web/UI.html#openElements__anchor
+// @link UI.loadDocument: https://docs.apryse.com/api/web/UI.html#loadDocument__anchor
 
-// @link Header: https://www.pdftron.com/api/web/Header.html
+// @link Header: https://docs.apryse.com/api/web/UI.Header.html
 
 WebViewer(
   {

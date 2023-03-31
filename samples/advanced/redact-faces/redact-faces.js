@@ -157,7 +157,7 @@ WebViewer(
   const documentViewer = webViewerInstance.Core.documentViewer;
   function onDocumentLoaded() {
     const instructionModal = createInstructionsModal(onRedactFacesButtonClick);
-    webViewerInstance.UI.setCustomModal(instructionModal);
+    webViewerInstance.UI.addCustomModal(instructionModal);
     webViewerInstance.UI.openElements(['redact-faces-instructions-modal']);
   }
   documentViewer.addEventListener('documentLoaded', onDocumentLoaded);

@@ -1,4 +1,4 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
 
 /* global Diff */
 

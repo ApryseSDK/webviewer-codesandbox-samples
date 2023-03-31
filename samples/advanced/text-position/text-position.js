@@ -1,19 +1,19 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link UI.loadDocument: https://www.pdftron.com/api/web/UI.html#loadDocument__anchor
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
+// @link UI.loadDocument: https://docs.apryse.com/api/web/UI.html#loadDocument__anchor
 
-// @link DocumentViewer: https://www.pdftron.com/api/web/Core.DocumentViewer.html
+// @link DocumentViewer: https://docs.apryse.com/api/web/Core.DocumentViewer.html
 
-// @link AnnotationManager: https://www.pdftron.com/api/web/Core.AnnotationManager.html
-// @link AnnotationManager.addAnnotations: https://www.pdftron.com/api/web/Core.AnnotationManager.html#addAnnotations__anchor
-// @link AnnotationManager.deleteAnnotations: https://www.pdftron.com/api/web/Core.AnnotationManager.html#deleteAnnotations__anchor
-// @link AnnotationManager.selectAnnotations: https://www.pdftron.com/api/web/Core.AnnotationManager.html#selectAnnotations__anchor
-// @link AnnotationManager.getAnnotationsList: https://www.pdftron.com/api/web/Core.AnnotationManager.html#getAnnotationsList__anchor
+// @link AnnotationManager: https://docs.apryse.com/api/web/Core.AnnotationManager.html
+// @link AnnotationManager.addAnnotations: https://docs.apryse.com/api/web/Core.AnnotationManager.html#addAnnotations__anchor
+// @link AnnotationManager.deleteAnnotations: https://docs.apryse.com/api/web/Core.AnnotationManager.html#deleteAnnotations__anchor
+// @link AnnotationManager.selectAnnotations: https://docs.apryse.com/api/web/Core.AnnotationManager.html#selectAnnotations__anchor
+// @link AnnotationManager.getAnnotationsList: https://docs.apryse.com/api/web/Core.AnnotationManager.html#getAnnotationsList__anchor
 
-// @link Annotations: https://www.pdftron.com/api/web/Annotations.html
+// @link Annotations: https://docs.apryse.com/api/web/Core.Annotations.html
 
-// @link Document: https://www.pdftron.com/api/web/Core.Document.html
-// @link Document.loadPageText: https://www.pdftron.com/api/web/Core.Document.html#loadPageText__anchor
-// @link Document.getTextPosition: https://www.pdftron.com/api/web/Core.Document.html#getTextPosition__anchor
+// @link Document: https://docs.apryse.com/api/web/Core.Document.html
+// @link Document.loadPageText: https://docs.apryse.com/api/web/Core.Document.html#loadPageText__anchor
+// @link Document.getTextPosition: https://docs.apryse.com/api/web/Core.Document.html#getTextPosition__anchor
 
 const viewerElement = document.getElementById('viewer');
 WebViewer(
@@ -60,7 +60,7 @@ WebViewer(
     const doc = documentViewer.getDocument();
 
     // gets all text on the requested page
-    // see https://pdftron.com/api/web/Core.Document.html#loadPageText__anchor
+    // see https://docs.apryse.com/api/web/Core.Document.html#loadPageText__anchor
     doc.loadPageText(pageNumber).then(text => {
       let textStartIndex = 0;
       let textIndex;
@@ -71,7 +71,7 @@ WebViewer(
         textStartIndex = textIndex + searchText.length;
         // gets quads for each of the characters from start to end index. Then,
         // resolve the annotation and return.
-        // see https://pdftron.com/api/web/Core.Document.html#getTextPosition__anchor
+        // see https://docs.apryse.com/api/web/Core.Document.html#getTextPosition__anchor
         const annotationPromise = doc.getTextPosition(pageNumber, textIndex, textIndex + searchText.length).then(quads => {
           const annotation = new Annotations.TextHighlightAnnotation();
           annotation.Author = annotationManager.getCurrentUser();

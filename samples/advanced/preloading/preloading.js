@@ -1,5 +1,5 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link UI.loadDocument: https://www.pdftron.com/api/web/UI.html#loadDocument__anchor
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
+// @link UI.loadDocument: https://docs.apryse.com/api/web/UI.html#loadDocument__anchor
 
 const viewerElement = document.getElementById('viewer');
 

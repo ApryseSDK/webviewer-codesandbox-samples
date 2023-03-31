@@ -33,7 +33,7 @@ WebViewer(
   async function loadDoc() {
     updateFileStatus();
     // Loading the template document with doTemplatePrep, so that we can access the schema and bounding boxes:
-    await instance.loadDocument(sampleFilePath[viewingFile] || viewingFile, {
+    await instance.UI.loadDocument(sampleFilePath[viewingFile] || viewingFile, {
       officeOptions: {
         doTemplatePrep: true,
       },
