@@ -1,14 +1,14 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link UI.openElements: https://www.pdftron.com/api/web/UI.html#openElements__anchor
-// @link UI.closeElements: https://www.pdftron.com/api/web/UI.html#closeElements__anchor
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
+// @link UI.openElements: https://docs.apryse.com/api/web/UI.html#.openElements__anchor
+// @link UI.closeElements: https://docs.apryse.com/api/web/UI.html#.closeElements__anchor
 
-// @link DocumentViewer: https://www.pdftron.com/api/web/Core.DocumentViewer.html
-// @link DocumentViewer.refreshAll: https://www.pdftron.com/api/web/Core.DocumentViewer.html#refreshAll__anchor
-// @link DocumentViewer.updateView: https://www.pdftron.com/api/web/Core.DocumentViewer.html#updateView__anchor
+// @link DocumentViewer: https://docs.apryse.com/api/web/Core.DocumentViewer.html
+// @link DocumentViewer.refreshAll: https://docs.apryse.com/api/web/Core.DocumentViewer.html#refreshAll__anchor
+// @link DocumentViewer.updateView: https://docs.apryse.com/api/web/Core.DocumentViewer.html#updateView__anchor
 
-// @link Document: https://www.pdftron.com/api/web/Core.Document.html
-// @link Document.getLayersArray: https://www.pdftron.com/api/web/Core.Document.html#getLayersArray__anchor
-// @link Document.setLayersArray: https://www.pdftron.com/api/web/Core.Document.html#setLayersArray__anchor
+// @link Document: https://docs.apryse.com/api/web/Core.Document.html
+// @link Document.getLayersArray: https://docs.apryse.com/api/web/Core.Document.html#getLayersArray__anchor
+// @link Document.setLayersArray: https://docs.apryse.com/api/web/Core.Document.html#setLayersArray__anchor
 
 WebViewer(
   {

@@ -1,11 +1,11 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
 
-// @link UI.enableElements: https://www.pdftron.com/api/web/UI.html#enableElements__anchor
-// @link UI.enableFeatures: https://www.pdftron.com/api/web/UI.html#enableFeatures__anchor
-// @link UI.selectThumbnailPages: https://www.pdftron.com/api/web/UI.html#selectThumbnailPages__anchor
+// @link UI.enableElements: https://docs.apryse.com/api/web/UI.html#.enableElements__anchor
+// @link UI.enableFeatures: https://docs.apryse.com/api/web/UI.html#.enableFeatures__anchor
+// @link UI.ThumbnailsPanel.selectPages: https://docs.apryse.com/api/web/UI.ThumbnailsPanel.html#.selectPages__anchor
 
-// @link Core: https://www.pdftron.com/api/web/Core.html
-// @link Core.initPDFWorkerTransports: https://www.pdftron.com/api/web/Core.html#.initPDFWorkerTransports__anchor
+// @link Core: https://docs.apryse.com/api/web/Core.html
+// @link Core.initPDFWorkerTransports: https://docs.apryse.com/api/web/Core.html#.initPDFWorkerTransports__anchor
 
 const viewers = [
   {
@@ -47,7 +47,7 @@ const initializeWebViewer = viewer => {
     document.getElementById(`${viewer.domElement}`)
   ).then(instance => {
     const { documentViewer } = instance.Core;
-    const { enableFeatures, enableElements, openElements, selectThumbnailPages, loadDocument } = instance.UI;
+    const { enableFeatures, enableElements, openElements, ThumbnailsPanel, loadDocument } = instance.UI;
     enableFeatures(['ThumbnailMultiselect', 'MultipleViewerMerging']);
     enableElements(['documentControl']);
 
@@ -55,7 +55,7 @@ const initializeWebViewer = viewer => {
       openElements(['thumbnailsPanel']);
 
       // select some pages
-      selectThumbnailPages([1]);
+      ThumbnailsPanel.selectPages([1]);
     });
 
     document.getElementById(`${viewer.domElement}`).addEventListener('documentMerged', data => {

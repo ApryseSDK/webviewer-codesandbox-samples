@@ -1,19 +1,19 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
 
-// @link DocumentViewer: https://www.pdftron.com/api/web/Core.DocumentViewer.html
+// @link DocumentViewer: https://docs.apryse.com/api/web/Core.DocumentViewer.html
 
-// @link Document: https://www.pdftron.com/api/web/Core.Document.html
-// @link Document.getPageInfo: https://www.pdftron.com/api/web/Core.Document.html#getPageInfo__anchor
-// @link Document.rotatePages: https://www.pdftron.com/api/web/Core.Document.html#rotatePages__anchor
-// @link Document.cropPages: https://www.pdftron.com/api/web/Core.Document.html#cropPages__anchor
-// @link Document.getPageCount: https://www.pdftron.com/api/web/Core.Document.html#getPageCount__anchor
-// @link Document.removePages: https://www.pdftron.com/api/web/Core.Document.html#removePages__anchor
-// @link Document.movePages: https://www.pdftron.com/api/web/Core.Document.html#movePages__anchor
-// @link Document.insertBlankPages: https://www.pdftron.com/api/web/Core.Document.html#insertBlankPages__anchor
+// @link Document: https://docs.apryse.com/api/web/Core.Document.html
+// @link Document.getPageInfo: https://docs.apryse.com/api/web/Core.Document.html#getPageInfo__anchor
+// @link Document.rotatePages: https://docs.apryse.com/api/web/Core.Document.html#rotatePages__anchor
+// @link Document.cropPages: https://docs.apryse.com/api/web/Core.Document.html#cropPages__anchor
+// @link Document.getPageCount: https://docs.apryse.com/api/web/Core.Document.html#getPageCount__anchor
+// @link Document.removePages: https://docs.apryse.com/api/web/Core.Document.html#removePages__anchor
+// @link Document.movePages: https://docs.apryse.com/api/web/Core.Document.html#movePages__anchor
+// @link Document.insertBlankPages: https://docs.apryse.com/api/web/Core.Document.html#insertBlankPages__anchor
 
-// @link Core: https://www.pdftron.com/api/web/Core.html
+// @link Core: https://docs.apryse.com/api/web/Core.html
 
-// @link partRetriever: https://www.pdftron.com/api/web/PartRetrievers.html
+// @link partRetriever: https://docs.apryse.com/api/web/Core.PartRetrievers.html
 /* global saveAs */
 WebViewer(
   {

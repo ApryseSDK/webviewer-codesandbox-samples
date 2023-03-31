@@ -1,19 +1,19 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link UI.openElements: https://www.pdftron.com/api/web/UI.html#openElements__anchor
-// @link UI.closeElements: https://www.pdftron.com/api/web/UI.html#closeElements__anchor
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
+// @link UI.openElements: https://docs.apryse.com/api/web/UI.html#.openElements__anchor
+// @link UI.closeElements: https://docs.apryse.com/api/web/UI.html#.closeElements__anchor
 
-// @link DocumentViewer: https://www.pdftron.com/api/web/Core.DocumentViewer.html
-// @link DocumentViewer.getToolMode.getMouseLocation: https://www.pdftron.com/api/web/Tools.Tool.html#getMouseLocation__anchor
-// @link DocumentViewer.getDisplayModeManager.getDisplayMode: https://www.pdftron.com/api/web/Core.DisplayMode.html
-// @link DocumentViewer.getColorSeparationsAtPoint: https://www.pdftron.com/api/web/Core.DocumentViewer.html#getColorSeparationsAtPoint__anchor
-// @link DocumentViewer.refreshAll: https://www.pdftron.com/api/web/Core.DocumentViewer.html#refreshAll__anchor
-// @link DocumentViewer.updateView: https://www.pdftron.com/api/web/Core.DocumentViewer.html#updateView__anchor
+// @link DocumentViewer: https://docs.apryse.com/api/web/Core.DocumentViewer.html
+// @link DocumentViewer.getToolMode.getMouseLocation: https://docs.apryse.com/api/web/Core.Tools.Tool.html#getMouseLocation__anchor
+// @link DocumentViewer.getDisplayModeManager.getDisplayMode: https://docs.apryse.com/api/web/Core.DisplayMode.html
+// @link DocumentViewer.getColorSeparationsAtPoint: https://docs.apryse.com/api/web/Core.DocumentViewer.html#getColorSeparationsAtPoint__anchor
+// @link DocumentViewer.refreshAll: https://docs.apryse.com/api/web/Core.DocumentViewer.html#refreshAll__anchor
+// @link DocumentViewer.updateView: https://docs.apryse.com/api/web/Core.DocumentViewer.html#updateView__anchor
 
-// @link displayMode.windowToPage: https://www.pdftron.com/api/web/Core.DisplayMode.html#windowToPage__anchor
+// @link displayMode.windowToPage: https://docs.apryse.com/api/web/Core.DisplayMode.html#windowToPage__anchor
 
-// @link Document: https://www.pdftron.com/api/web/Core.Document.html
-// @link Document.enableColorSeparations: https://www.pdftron.com/api/web/Core.Document.html#enableColorSeparations__anchor
-// @link Document.enableSeparation: https://www.pdftron.com/api/web/Core.Document.html#enableSeparation__anchor
+// @link Document: https://docs.apryse.com/api/web/Core.Document.html
+// @link Document.enableColorSeparations: https://docs.apryse.com/api/web/Core.Document.html#enableColorSeparations__anchor
+// @link Document.enableSeparation: https://docs.apryse.com/api/web/Core.Document.html#enableSeparation__anchor
 
 WebViewer(
   {
