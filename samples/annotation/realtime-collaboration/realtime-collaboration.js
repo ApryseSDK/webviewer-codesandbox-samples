@@ -1,14 +1,14 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link WebViewerInstance.openElements: https://www.pdftron.com/api/web/WebViewerInstance.html#openElements__anchor
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
+// @link WebViewerInstance.openElements: https://docs.apryse.com/api/web/WebViewerInstance.html#openElements__anchor
 
-// @link AnnotationManager: https://www.pdftron.com/api/web/Core.AnnotationManager.html
-// @link AnnotationManager.importAnnotationCommand: https://www.pdftron.com/api/web/Core.AnnotationManager.html#importAnnotationCommand__anchor
-// @link AnnotationManager.redrawAnnotation: https://www.pdftron.com/api/web/Core.AnnotationManager.html#redrawAnnotation__anchor
-// @link AnnotationManager.setCurrentUser: https://www.pdftron.com/api/web/Core.AnnotationManager.html#setCurrentUser__anchor
-// @link AnnotationManager.exportAnnotationCommand: https://www.pdftron.com/api/web/Core.AnnotationManager.html#exportAnnotationCommand__anchor
-// @link AnnotationManager.getAnnotationbyId: https://www.pdftron.com/api/web/Core.AnnotationManager.html#getAnnotationById__anchor
-// @link AnnotationManager.updateAnnotation: https://www.pdftron.com/api/web/Core.AnnotationManager.html#updateAnnotation__anchor
-// @link AnnotationManager.setPermissionCheckCallback: https://www.pdftron.com/api/web/Core.AnnotationManager.html#setPermissionCheckCallback__anchor
+// @link AnnotationManager: https://docs.apryse.com/api/web/Core.AnnotationManager.html
+// @link AnnotationManager.importAnnotationCommand: https://docs.apryse.com/api/web/Core.AnnotationManager.html#importAnnotationCommand__anchor
+// @link AnnotationManager.redrawAnnotation: https://docs.apryse.com/api/web/Core.AnnotationManager.html#redrawAnnotation__anchor
+// @link AnnotationManager.setCurrentUser: https://docs.apryse.com/api/web/Core.AnnotationManager.html#setCurrentUser__anchor
+// @link AnnotationManager.exportAnnotationCommand: https://docs.apryse.com/api/web/Core.AnnotationManager.html#exportAnnotationCommand__anchor
+// @link AnnotationManager.getAnnotationbyId: https://docs.apryse.com/api/web/Core.AnnotationManager.html#getAnnotationById__anchor
+// @link AnnotationManager.updateAnnotation: https://docs.apryse.com/api/web/Core.AnnotationManager.html#updateAnnotation__anchor
+// @link AnnotationManager.setPermissionCheckCallback: https://docs.apryse.com/api/web/Core.AnnotationManager.html#setPermissionCheckCallback__anchor
 
 const IDS = {
   'https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf': 'foo-12',
@@ -50,7 +50,7 @@ WebViewer(
     xhttp.open('GET', '/ip', true);
     xhttp.send();
   } else {
-    urlInput.value = 'https://pdftron.com/samples/web/samples/annotation/realtime-collaboration/';
+    urlInput.value = 'https://docs.apryse.com/samples/web/samples/annotation/realtime-collaboration/';
   }
 
   copyButton.onclick = () => {

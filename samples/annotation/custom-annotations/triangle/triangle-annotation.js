@@ -45,14 +45,14 @@
       serialize(element, pageMatrix) {
         const el = super.serialize(element, pageMatrix);
         // create an attribute to save the vertices list
-        el.setAttribute('vertices', Annotations.XfdfUtils.serializePointArray(this.vertices, pageMatrix));
+        el.setAttribute('vertices', Annotations.XFDFUtils.serializePointArray(this.vertices, pageMatrix));
         return el;
       }
 
       deserialize(element, pageMatrix) {
         super.deserialize(element, pageMatrix);
         // read it back as points from the attribute
-        this.vertices = Annotations.XfdfUtils.deserializePointArray(element.getAttribute('vertices'), pageMatrix);
+        this.vertices = Annotations.XFDFUtils.deserializePointArray(element.getAttribute('vertices'), pageMatrix);
       }
     }
 

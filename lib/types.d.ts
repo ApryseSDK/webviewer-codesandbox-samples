@@ -10,11 +10,6 @@ declare namespace Core.PDFNet {
      */
     class Convert {
         /**
-         * Method to create an AdvancedImagingConvertOptions object
-         * @returns A promise that resolves to a PDFNet.Convert.AdvancedImagingConvertOptions.
-         */
-        static createAdvancedImagingConvertOptions(): Promise<PDFNet.Convert.AdvancedImagingConvertOptions>;
-        /**
          * Method to create an OfficeToPDFOptions object
          * @param [json] - options in JSON format.
          * @returns A promise that resolves to a PDFNet.Convert.OfficeToPDFOptions.
@@ -3058,7 +3053,7 @@ declare namespace Core.PDFNet {
          * embedded timestamps, DocTimeStamps, or CMS signing time), to the digital signature dictionary.
          * The digital signature field must have been prepared for signing first. This function should
          * only be used if no secure embedded timestamping support is available from your signing provider.
-         * Useful for custom signing workflows, where signing time is not set automatically by the PDFTron SDK,
+         * Useful for custom signing workflows, where signing time is not set automatically by the Apryse SDK,
          * unlike in the usual standard handler signing workflow. A secure embedded timestamp can also be added
          * later and should override this "M" date entry when the signature is read by signature-verifying PDF processor applications.
          * At least one signing time, whether "M" or a secure embedded timestamp (see GenerateContentsWithEmbeddedTimestamp),
@@ -6002,6 +5997,30 @@ declare namespace Core.PDFNet {
          * indicates the criteria for which elements are flattened.
          */
         processPage(page: PDFNet.Page, mode: number): Promise<void>;
+    }
+    /**
+     * [Missing documentation]
+     */
+    class FlowDocument extends PDFNet.Destroyable {
+        /**
+         * Constructor
+         * @returns A promise that resolves to an object of type: "PDFNet.FlowDocument"
+         */
+        static create(): Promise<PDFNet.FlowDocument>;
+        setDefaultPageSize(width: number, height: number): Promise<void>;
+        setDefaultMargins(left: number, top: number, right: number, bottom: number): Promise<void>;
+        /**
+         * @returns A promise that resolves to an object of type: "PDFNet.Paragraph"
+         */
+        addParagraph(): Promise<PDFNet.Paragraph>;
+        /**
+         * @returns A promise that resolves to an object of type: "PDFNet.Paragraph"
+         */
+        addParagraphWithText(text: string): Promise<PDFNet.Paragraph>;
+        /**
+         * @returns A promise that resolves to an object of type: "PDFNet.PDFDoc"
+         */
+        paginateToPDF(): Promise<PDFNet.PDFDoc>;
     }
     /**
      * A font that is used to draw text on a page. It corresponds to a Font Resource
@@ -11549,6 +11568,11 @@ declare namespace Core.PDFNet {
          */
         static createTextDiffOptions(): Promise<PDFNet.PDFDoc.TextDiffOptions>;
         /**
+         * Method to create a SnapToOptions object
+         * @returns A promise that resolves to a PDFNet.PDFDoc.SnapToOptions.
+         */
+        static createSnapToOptions(): Promise<PDFNet.PDFDoc.SnapToOptions>;
+        /**
          * Method to create a MergeXFDFOptions object
          * @returns A promise that resolves to a PDFNet.PDFDoc.MergeXFDFOptions.
          */
@@ -12443,6 +12467,13 @@ declare namespace Core.PDFNet {
          * @returns A promise that resolves to an object of type: "PDFNet.GeometryCollection"
          */
         getGeometryCollectionForPage(page_num: number): Promise<PDFNet.GeometryCollection>;
+        /**
+         * Create a GeometryCollection for the snapping operations.
+         * @param page_num - the page number of the pdf for snapping to.
+         * @param [options] - the options for snapping.
+         * @returns A promise that resolves to an object of type: "PDFNet.GeometryCollection"
+         */
+        getGeometryCollectionForPageWithOptions(page_num: number, options?: PDFNet.PDFDoc.SnapToOptions): Promise<PDFNet.GeometryCollection>;
         /**
          * @returns A promise that resolves to the UndoManager object (one-to-one mapped to document)
          */
@@ -14420,6 +14451,104 @@ declare namespace Core.PDFNet {
          * 		-e_even: Includes even numbers in the range (discards odd numbers)
          */
         addRange(range_start: number, range_end: number, filter?: number): Promise<void>;
+    }
+    /**
+     * [Missing documentation]
+     */
+    class Paragraph {
+        addText(text: string): Promise<void>;
+        /**
+         * set the font name to be used for the style
+         * @param font_name - the font name
+         */
+        setFontFace(font_name: string): Promise<void>;
+        /**
+         * @returns A promise that resolves to the font name used for the style
+         */
+        getFontFace(): Promise<string>;
+        /**
+         * set font size used for the style
+         * @param font_size - the font size
+         */
+        setFontSize(font_size: number): Promise<void>;
+        /**
+         * @returns A promise that resolves to the font size used for the style
+         */
+        getFontSize(): Promise<number>;
+        /**
+         * set the style set as 'italic'
+         * @param val - the new value for 'italic'
+         */
+        setItalic(val: boolean): Promise<void>;
+        /**
+         * @returns A promise that resolves to true if the style set as 'italic'
+         */
+        isItalic(): Promise<boolean>;
+        /**
+         * set the style set as 'Bold'
+         * @param val - the new value for 'Bold'
+         */
+        setBold(val: boolean): Promise<void>;
+        /**
+         * @returns A promise that resolves to true if the style set as 'Bold'
+         */
+        isBold(): Promise<boolean>;
+        /**
+         * set text color for the style
+         * @param red - the red value of the color
+         * @param green - the green value of the color
+         * @param blue - the blue value of the color
+         */
+        setTextColor(red: number, green: number, blue: number): Promise<void>;
+        /**
+         * set the "space before" value for paragraph style
+         * @param val - the new value for 'space before'
+         */
+        setSpaceBefore(val: number): Promise<void>;
+        /**
+         * @returns A promise that resolves to "space before" value for paragraph style
+         */
+        getSpaceBefore(): Promise<number>;
+        /**
+         * set the "space after" value for paragraph style
+         * @param val - the new value for 'space after'
+         */
+        setSpaceAfter(val: number): Promise<void>;
+        /**
+         * @returns A promise that resolves to "space after" value for paragraph style
+         */
+        getSpaceAfter(): Promise<number>;
+        /**
+         * set Justification mode for paragraph style
+         * @param val - <pre>
+         * PDFNet.ParagraphStyle.TextJustification = {
+         * 	e_text_justification_invalid : 0
+         * 	e_text_justify_left : 1
+         * 	e_text_justify_right : 2
+         * 	e_text_justify_center : 3
+         * }
+         * </pre>
+         */
+        setJustificationMode(val: number): Promise<void>;
+        /**
+         * @example
+         * Return value enum:
+         * <pre>
+         * PDFNet.ParagraphStyle.TextJustification = {
+         * 	e_text_justification_invalid : 0
+         * 	e_text_justify_left : 1
+         * 	e_text_justify_right : 2
+         * 	e_text_justify_center : 3
+         * }
+         * </pre>
+         * @returns A promise that resolves to justification mode for paragraph style
+         */
+        getJustificationMode(): Promise<number>;
+    }
+    /**
+     * [Missing documentation]
+     */
+    class ParagraphStyle {
     }
     /**
      * Patterns are quite general, and have many uses; for example, they can be used
@@ -20034,6 +20163,66 @@ declare namespace Core.PDFNet {
              */
             setOpacityB(opacity: number): PDFNet.PDFDoc.TextDiffOptions;
             /**
+             * Gets the value ExtraMoveColor from the options object
+             * The difference color for extra moves
+             * @returns an object in form {R: number, G: number, B: number}, the current value for ExtraMoveColor.
+             */
+            getExtraMoveColor(): any;
+            /**
+             * Sets the value for ExtraMoveColor in the options object
+             * The difference color for extra moves
+             * @param color - the new value for ExtraMoveColor, in form {R: number, G: number, B: number}
+             * @returns this object, for call chaining
+             */
+            setExtraMoveColor(color: any): PDFNet.PDFDoc.TextDiffOptions;
+            /**
+             * Gets the value ExtraMoveOpacity from the options object
+             * The difference opacity for extra moves
+             * @returns the current value for ExtraMoveOpacity in between 0.0 (transparent) and 1.0 (opaque).
+             */
+            getExtraMoveOpacity(): number;
+            /**
+             * Sets the value for ExtraMoveOpacity in the options object
+             * The difference opacity for extra moves
+             * @param opacity - the new value for ExtraMoveOpacity in between 0.0 (transparent) and 1.0 (opaque)
+             * @returns this object, for call chaining
+             */
+            setExtraMoveOpacity(opacity: number): PDFNet.PDFDoc.TextDiffOptions;
+            /**
+             * Gets the value ExtraMoveHighlight from the options object
+             * Whether to highlight text in between short-distance moves when comparing text between A and B. Off by default.
+             * @returns whether to highlight text in between short-distance moves when comparing text between A and B. Off by default.
+             */
+            getExtraMoveHighlight(): boolean;
+            /**
+             * Sets the value for ExtraMoveHighlight in the options object
+             * Whether to highlight text in between short-distance moves when comparing text between A and B. Off by default.
+             * @param value - whether to highlight text in between short-distance moves when comparing text between A and B. Off by default.
+             * @returns this object, for call chaining
+             */
+            setExtraMoveHighlight(value: boolean): PDFNet.PDFDoc.TextDiffOptions;
+            /**
+             * Gets the value ShowPlaceholders from the options object
+             * Whether to show placeholder annotations. On by default.
+             * Placeholders are insertion locations in document A and deletion locations in document B.
+             * For example, if a word is removed from document B, we can highlight the location of the original word in document A,
+             * but there is no word to highlight in B (it's removed). In this case a small "placeholder" annotation is placed in B
+             * to identify the location of the removal.
+             * @returns whether to show placeholder annotations. On by default.
+             */
+            getShowPlaceholders(): boolean;
+            /**
+             * Sets the value for ShowPlaceholders in the options object
+             * Whether to show placeholder annotations. On by default.
+             * Placeholders are insertion locations in document A and deletion locations in document B.
+             * For example, if a word is removed from document B, we can highlight the location of the original word in document A,
+             * but there is no word to highlight in B (it's removed). In this case a small "placeholder" annotation is placed in B
+             * to identify the location of the removal.
+             * @param whether - to show placeholder annotations. On by default.
+             * @returns this object, for call chaining
+             */
+            setShowPlaceholders(whether: boolean): PDFNet.PDFDoc.TextDiffOptions;
+            /**
              * Adds a collection of ignorable regions for the given page,
              * an optional list of page areas not to be included in analysis
              * @param regions - the zones to be added to the ignore list
@@ -20043,18 +20232,30 @@ declare namespace Core.PDFNet {
             addIgnoreZonesForPage(regions: PDFNet.Rect[], page_num: number): PDFNet.PDFDoc.TextDiffOptions;
         }
         /**
-         * Options for PDFNet.PDFDoc.saveAsXFDFWithOptions and PDFNet.PDFDoc.saveAsXFDFAsStringWithOptions
+         * Options for PDFNet.PDFDoc.getGeometryCollectionForPageWithOptions
+         */
+        class SnapToOptions {
+            /**
+             * Sets the value for ShapeLimit in the options object
+             * The maximum number of shapes to process for snapping operations.
+             * @param value - the new value for ShapeLimit
+             * @returns this object, for call chaining
+             */
+            setShapeLimit(value: number): PDFNet.PDFDoc.SnapToOptions;
+        }
+        /**
+         * Options for PDFNet.PDFDoc.MergeXFDFOptions and PDFNet.PDFDoc.mergeXFDFString
          */
         class MergeXFDFOptions {
             /**
              * Gets the value Force from the options object
-             * If true, merge will be performed even if the conditions below are true. If false, the MergeXFDF operation will be aborted with exception if one of these conditions is true: 1)xfdf contains annotations with no 'name' attribute 2)annotations in pdf or xfdf have names that are not unique, i.e. multiple annotations in the same document have the same name. In order for the merge operation to work correctly, all the annotations in xfdf need to have a unique 'name' attribute. If pdf document has unnamed annotatations (no 'NM' attribute), xfdf files generated using PDFTron SDK will still have names that will allow the MergeXFDF algorithm to work.
+             * If true, merge will be performed even if the conditions below are true. If false, the MergeXFDF operation will be aborted with exception if one of these conditions is true: 1)xfdf contains annotations with no 'name' attribute 2)annotations in pdf or xfdf have names that are not unique, i.e. multiple annotations in the same document have the same name. In order for the merge operation to work correctly, all the annotations in xfdf need to have a unique 'name' attribute. If pdf document has unnamed annotatations (no 'NM' attribute), xfdf files generated using Apryse SDK will still have names that will allow the MergeXFDF algorithm to work.
              * @returns the current value for Force.
              */
             getForce(): boolean;
             /**
              * Sets the value for Force in the options object
-             * If true, merge will be performed even if the conditions below are true. If false, the MergeXFDF operation will be aborted with exception if one of these conditions is true: 1)xfdf contains annotations with no 'name' attribute 2)annotations in pdf or xfdf have names that are not unique, i.e. multiple annotations in the same document have the same name. In order for the merge operation to work correctly, all the annotations in xfdf need to have a unique 'name' attribute. If pdf document has unnamed annotatations (no 'NM' attribute), xfdf files generated using PDFTron SDK will still have names that will allow the MergeXFDF algorithm to work.
+             * If true, merge will be performed even if the conditions below are true. If false, the MergeXFDF operation will be aborted with exception if one of these conditions is true: 1)xfdf contains annotations with no 'name' attribute 2)annotations in pdf or xfdf have names that are not unique, i.e. multiple annotations in the same document have the same name. In order for the merge operation to work correctly, all the annotations in xfdf need to have a unique 'name' attribute. If pdf document has unnamed annotatations (no 'NM' attribute), xfdf files generated using Apryse SDK will still have names that will allow the MergeXFDF algorithm to work.
              * @param value - the new value for Force
              * @returns this object, for call chaining
              */
@@ -20166,53 +20367,369 @@ declare namespace Core.PDFNet {
             setWriteImagedata(value: boolean): PDFNet.FDFDoc.XFDFExportOptions;
         }
     }
-    namespace Convert {
+    /**
+     * QuadPoint
+    
+    A QuadpPoint struct contains 8 values representing the (x,y) coordinates of four points in a rectangle..
+    
+    --------------------
+    Since QuadPoint is a struct, it can be created manually by calling "new PDFNet.QuadPoint(p1x, p1y, p2x, p2y, p3x, p3y, p4x, p4y)"
+    eg. var myfoo = new PDFNet.QuadPoint(1, 2, 3, 4, 5, 6, 7, 8)
+    
+    Default values for a Point struct are:
+    p1x = 0
+    p1y = 0
+    p2x = 0
+    p2y = 0
+    p3x = 0
+    p3y = 0
+    p4x = 0
+    p4y = 0
+     */
+    class QuadPoint {
+        constructor(p1x?: number, p1y?: number, p2x?: number, p2y?: number, p3x?: number, p3y?: number, p4x?: number, p4y?: number);
+        p1x: number;
+        p1y: number;
+        p2x: number;
+        p2y: number;
+        p3x: number;
+        p3y: number;
+        p4x: number;
+        p4y: number;
+    }
+    /**
+     * 2D Point
+    
+    A Point represents an (x,y) coordinate point.
+    
+    --------------------
+    Since Point is a struct, it can be created manually by calling "new PDFNet.Point(x, y)"
+    eg. var myfoo = new PDFNet.Point(1,2);
+    
+    Default values for a Point struct are:
+    x = 0
+    y = 0
+     */
+    class Point {
+        constructor(x?: number, y?: number);
+        x: number;
+        y: number;
+    }
+    /**
+     * CharData is a data structure returned by PDFNet.Iterator<CharData>.current() that is
+    used to provide extra information about a character within a text run. The extra
+    information includes positioning information, the character data and a number of
+    bytes taken by the character.
+     * @property char_code - 'Char code' For SimpleFonts char_code := char_data[0],
+    for composite fonts char_code is the numeric value of data stored in char_data buffer.
+     * @property x - glyph horizontal position
+     * @property y - glyph vertical position
+     * @property char_data - the buffer containing character data. For simple fonts
+    each character is represented by a single byte. For multi-byte (CID or Type0) fonts
+    each character may take more than one byte.
+     * @property bytes - Number of bytes representing this character in char_data buffer.
+    For simple fonts 'bytes' will equal 1. For multi-byte (CID or Type0) fonts 'bytes' may
+    be larger than 1. Should not be less than 0.
+     * @param charData - An object to construct PDFNet.CharData with
+     */
+    class CharData {
+        constructor(charData: any);
         /**
-         * An object containing options for fromDICOM functions
+         * 'Char code' For SimpleFonts char_code := char_data[0],
+         * for composite fonts char_code is the numeric value of data stored in char_data buffer.
+        */
+        char_code: number;
+        /**
+         * glyph horizontal position
+        */
+        x: number;
+        /**
+         * glyph vertical position
+        */
+        y: number;
+        /**
+         * the buffer containing character data. For simple fonts
+         * each character is represented by a single byte. For multi-byte (CID or Type0) fonts
+         * each character may take more than one byte.
+        */
+        char_data: Uint8Array;
+        /**
+         * Number of bytes representing this character in char_data buffer.
+         * For simple fonts 'bytes' will equal 1. For multi-byte (CID or Type0) fonts 'bytes' may
+         * be larger than 1. Should not be less than 0.
+        */
+        bytes: number;
+    }
+    /**
+     * This class is used to store separations in PDFRasterize and PDFDraw
+     * @property data - the buffer containing separation data.
+     * @property data_size - number of bytes in data buffer.
+     * @property separation_name - name of the separation.
+     * @property c - separation cyan value
+     * @property m - separation magenta value
+     * @property y - separation yellow value
+     * @property k - separation key value
+     */
+    class Separation {
+        /**
+         * the buffer containing separation data.
+        */
+        data: Uint8Array;
+        /**
+         * number of bytes in data buffer.
+        */
+        data_size: number;
+        /**
+         * name of the separation.
+        */
+        separation_name: string;
+        /**
+         * separation cyan value
+        */
+        c: number;
+        /**
+         * separation magenta value
+        */
+        m: number;
+        /**
+         * separation yellow value
+        */
+        y: number;
+        /**
+         * separation key value
+        */
+        k: number;
+    }
+    namespace Optimizer {
+        /**
+         * An object that stores downsampling/recompression settings for color and grayscale images.
          */
-        class AdvancedImagingConvertOptions {
+        class ImageSettings {
             /**
-             * Gets the value DefaultDPI from the options object
-             * Default dpi used when rendering content when resolution is not provided in the image file.
-             * No image pixel data is lost by specifiying this option. Note: In case of DICOM images,
-             * we assume that the resolution is specified by Pixel Spacing attribute.
-             * @returns the current value for DefaultDPI.
-             */
-            getDefaultDPI(): number;
-            /**
-             * Sets the value for DefaultDPI in the options object
-             * Default dpi used when rendering content when resolution is not provided in the image file.
-             * No image pixel data is lost by specifiying this option. Note: In case of DICOM images,
-             * we assume that the resolution is specified by Pixel Spacing attribute.
-             * @param value - the new value for DefaultDPI
+             * Sets the maximum and resampling dpi for images.
+            By default these are set to 225 and 150 respectively.
+             * @param maximum - the highest dpi of an image before it will be resampled
+             * @param resampling - the image dpi to resample to if an image is encountered over the maximum dpi
              * @returns this object, for call chaining
              */
-            setDefaultDPI(value: number): PDFNet.Convert.AdvancedImagingConvertOptions;
+            setImageDPI(maximum: number, resampling: number): PDFNet.Optimizer.ImageSettings;
             /**
-             * Gets the value EnableAutoLevel from the options object
-             * When the option is enabled, the maximum and minimum pixel values of the entire image
-             * are calculated and all the image pixel values are streched to make use of the full range
-             * of values. In effect, this option enables normalization of the entire image and can
-             * potentially improve its brightness and contrast.
-             * @returns the current value for EnableAutoLevel.
-             */
-            getEnableAutoLevel(): boolean;
-            /**
-             * Sets the value for DefaultDPI in the options object
-             * Default dpi used when rendering content when resolution is not provided in the image file.
-             * No image pixel data is lost by specifiying this option. Note: In case of DICOM images,
-             * we assume that the resolution is specified by Pixel Spacing attribute.
-             * @param value - the new value for DefaultDPI
+             * Sets the output compression mode for this type of image
+            The default value is e_retain
+             * @param mode - the compression mode to set
+            <pre>
+            PDFNet.Optimizer.ImageSettings.CompressionMode = {
+             e_retain : 0,
+             e_flate : 1,
+             e_jpeg : 2,
+             e_jpeg2000 : 3,
+             e_none : 4
+            }
+            </pre>
              * @returns this object, for call chaining
              */
-            setDefaultDPI(value: number): PDFNet.Convert.AdvancedImagingConvertOptions;
+            setCompressionMode(mode: number): PDFNet.Optimizer.ImageSettings;
+            /**
+             * Sets the downsample mode for this type of image
+            The default value is e_default which will allow downsampling of images
+             * @param mode - the compression mode to set
+            <pre>
+            PDFNet.Optimizer.ImageSettings.DownsampleMode = {
+             e_off : 0,
+                e_default : 1
+            }
+            </pre>
+             * @returns this object, for call chaining
+             */
+            setDownsampleMode(mode: number): PDFNet.Optimizer.ImageSettings;
+            /**
+             * Sets the quality for lossy compression modes.
+            from 1 to 10 where 10 is lossless (if possible)
+            the default value is 5
+             * @param quality - the quality for lossy compression modes.
+             * @returns this object, for call chaining
+             */
+            setQuality(quality: number): PDFNet.Optimizer.ImageSettings;
+            /**
+             * Sets whether recompression to the specified compression method, should be forced when the image is not downsampled.
+            By default the compression method for these images will not be changed.
+             * @param force - if true the compression method for all
+             * @returns this object, for call chaining
+             */
+            forceRecompression(force: boolean): PDFNet.Optimizer.ImageSettings;
+            /**
+             * Sets whether image changes that grow the PDF file should be kept.
+            This is off by default.
+             * @param force - if true all image changes will be kept.
+             * @returns this object, for call chaining
+             */
+            forceChanges(force: boolean): PDFNet.Optimizer.ImageSettings;
         }
+        /**
+         * An object that stores downsampling/recompression settings for monochrome images.
+         */
+        class MonoImageSettings {
+            /**
+             * Sets the maximum and resampling dpi for monochrome images.
+            By default these are set to 450 and 300 respectively.
+             * @param maximum - the highest dpi of an image before it will be resampled
+             * @param resampling - the image dpi to resample to if an image is encountered over the maximum dpi
+             * @returns this object, for call chaining
+             */
+            setImageDPI(maximum: number, resampling: number): PDFNet.Optimizer.MonoImageSettings;
+            /**
+             * Sets the output compression mode for monochrome images
+            The default value is e_jbig2
+             * @param mode - the compression mode to set
+            <pre>
+            PDFNet.Optimizer.MonoImageSettings.CompressionMode = {
+                e_jbig2 : 0,
+                e_flate : 1,
+                e_none : 2
+            }
+            </pre>
+             * @returns this object, for call chaining
+             */
+            setCompressionMode(mode: number): PDFNet.Optimizer.MonoImageSettings;
+            /**
+             * Sets the downsample mode for monochrome images
+            The default value is e_default
+             * @param mode - the compression mode to set
+            <pre>
+            PDFNet.Optimizer.MonoImageSettings.DownsampleMode = {
+             e_off : 0,
+                e_default : 1
+            }
+            </pre>
+             * @returns this object, for call chaining
+             */
+            setDownsampleMode(mode: number): PDFNet.Optimizer.MonoImageSettings;
+            /**
+             * Sets the quality for lossy JBIG2Decode compression mode.
+            The threshold is a floating point number in the range from 4 to 9
+            The default value for JBIG2 is 8.5.  The setting is ignored for FLATE.
+             * @param jbig2_threshold - the quality for lossy compression modes.
+             * @returns this object, for call chaining
+             */
+            setJBIG2Threshold(jbig2_threshold: number): PDFNet.Optimizer.MonoImageSettings;
+            /**
+             * Sets whether recompression to the specified compression method, should be forced when the image is not downsampled.
+            By default the compression method for these images will not be changed.
+             * @param force - if true the compression method for all
+             * @returns this object, for call chaining
+             */
+            forceRecompression(force: boolean): PDFNet.Optimizer.MonoImageSettings;
+            /**
+             * Sets whether image changes that grow the PDF file should be kept.
+            This is off by default.
+             * @param force - if true all image changes will be kept.
+             * @returns this object, for call chaining
+             */
+            forceChanges(force: boolean): PDFNet.Optimizer.MonoImageSettings;
+        }
+        /**
+         * An object that stores image text optimization settings.
+         */
+        class TextSettings {
+            /**
+             * Sets whether embedded fonts will be subset. This will generally reduce the size of fonts,
+            but will strip font hinting.
+            Subsetting is off by default.
+             * @param subset - if true all embedded fonts will be subsetted.
+             * @returns this object, for call chaining
+             */
+            subsetFonts(subset: boolean): PDFNet.Optimizer.TextSettings;
+            /**
+             * Sets whether fonts should be embedded. This will generally increase the size of the file,
+            but will make the file appear the same on different machines.
+            Font embedding is off by default.
+             * @param embed - if true all fonts will be embedded.
+             * @returns this object, for call chaining
+             */
+            embedFonts(embed: boolean): PDFNet.Optimizer.TextSettings;
+        }
+        /**
+         * An object that stores settings for the optimizer
+         */
+        class OptimizerSettings {
+            /**
+             * updates the settings for color image processing
+             * @param settings - settings for color image processing
+             * @returns this object, for call chaining
+             */
+            setColorImageSettings(settings: PDFNet.Optimizer.ImageSettings): PDFNet.Optimizer.OptimizerSettings;
+            /**
+             * updates the settings for grayscale image processing
+             * @param settings - settings for grayscale image processing
+             * @returns this object, for call chaining
+             */
+            setGrayscaleImageSettings(settings: PDFNet.Optimizer.ImageSettings): PDFNet.Optimizer.OptimizerSettings;
+            /**
+             * updates the settings for monochrome image processing
+             * @param settings - settings for monochrome image processing
+             * @returns this object, for call chaining
+             */
+            setMonoImageSettings(settings: PDFNet.Optimizer.MonoImageSettings): PDFNet.Optimizer.OptimizerSettings;
+            /**
+             * updates the settings for text processing
+             * @param settings - settings for text processing
+             * @returns this object, for call chaining
+             */
+            setTextSettings(settings: PDFNet.Optimizer.TextSettings): PDFNet.Optimizer.OptimizerSettings;
+            /**
+             * Enable or disable removal of custom entries in the PDF.
+            By default custom entries are removed.
+             * @param should_remove - if true custom entries will be removed.
+             * @returns this object, for call chaining
+             */
+            removeCustomEntries(should_remove: boolean): PDFNet.Optimizer.OptimizerSettings;
+        }
+        namespace ImageSettings {
+            enum CompressionMode {
+                e_retain,
+                e_flate,
+                e_jpeg,
+                e_jpeg2000,
+                e_none
+            }
+            enum DownsampleMode {
+                e_off,
+                e_default
+            }
+        }
+        namespace MonoImageSettings {
+            enum CompressionMode {
+                e_jbig2,
+                e_flate,
+                e_none
+            }
+            enum DownsampleMode {
+                e_off,
+                e_default
+            }
+        }
+    }
+    namespace Convert {
         /**
          * An object containing options for wordToPdf functions
          * @param [json] - options in JSON format.
          */
         class ConversionOptions {
             constructor(json?: string);
+            /**
+             * Sets the value for FileExtension in the options object
+            Override file extension used to determine conversion type.
+             * @param value - the new value for FileExtension
+             * @returns this object, for call chaining
+             */
+            setFileExtension(value: string): PDFNet.Convert.ConversionOptions;
+            /**
+             * Sets the value for EnableExternalMediaDownloads in the options object
+            Determines if downloading external resources is allowed during conversion.
+             * @param value - the new value for EnableExternalMediaDownloads
+             * @returns this object, for call chaining
+             */
+            setEnableExternalMediaDownloads(value: boolean): PDFNet.Convert.ConversionOptions;
         }
         /**
          * An object containing options for wordToPdf functions
@@ -20915,348 +21432,6 @@ declare namespace Core.PDFNet {
             e_interop_only,
             e_printer_only,
             e_prefer_builtin_converter
-        }
-    }
-    /**
-     * QuadPoint
-    
-    A QuadpPoint struct contains 8 values representing the (x,y) coordinates of four points in a rectangle..
-    
-    --------------------
-    Since QuadPoint is a struct, it can be created manually by calling "new PDFNet.QuadPoint(p1x, p1y, p2x, p2y, p3x, p3y, p4x, p4y)"
-    eg. var myfoo = new PDFNet.QuadPoint(1, 2, 3, 4, 5, 6, 7, 8)
-    
-    Default values for a Point struct are:
-    p1x = 0
-    p1y = 0
-    p2x = 0
-    p2y = 0
-    p3x = 0
-    p3y = 0
-    p4x = 0
-    p4y = 0
-     */
-    class QuadPoint {
-        constructor(p1x?: number, p1y?: number, p2x?: number, p2y?: number, p3x?: number, p3y?: number, p4x?: number, p4y?: number);
-        p1x: number;
-        p1y: number;
-        p2x: number;
-        p2y: number;
-        p3x: number;
-        p3y: number;
-        p4x: number;
-        p4y: number;
-    }
-    /**
-     * 2D Point
-    
-    A Point represents an (x,y) coordinate point.
-    
-    --------------------
-    Since Point is a struct, it can be created manually by calling "new PDFNet.Point(x, y)"
-    eg. var myfoo = new PDFNet.Point(1,2);
-    
-    Default values for a Point struct are:
-    x = 0
-    y = 0
-     */
-    class Point {
-        constructor(x?: number, y?: number);
-        x: number;
-        y: number;
-    }
-    /**
-     * CharData is a data structure returned by PDFNet.Iterator<CharData>.current() that is
-    used to provide extra information about a character within a text run. The extra
-    information includes positioning information, the character data and a number of
-    bytes taken by the character.
-     * @property char_code - 'Char code' For SimpleFonts char_code := char_data[0],
-    for composite fonts char_code is the numeric value of data stored in char_data buffer.
-     * @property x - glyph horizontal position
-     * @property y - glyph vertical position
-     * @property char_data - the buffer containing character data. For simple fonts
-    each character is represented by a single byte. For multi-byte (CID or Type0) fonts
-    each character may take more than one byte.
-     * @property bytes - Number of bytes representing this character in char_data buffer.
-    For simple fonts 'bytes' will equal 1. For multi-byte (CID or Type0) fonts 'bytes' may
-    be larger than 1. Should not be less than 0.
-     * @param charData - An object to construct PDFNet.CharData with
-     */
-    class CharData {
-        constructor(charData: any);
-        /**
-         * 'Char code' For SimpleFonts char_code := char_data[0],
-         * for composite fonts char_code is the numeric value of data stored in char_data buffer.
-        */
-        char_code: number;
-        /**
-         * glyph horizontal position
-        */
-        x: number;
-        /**
-         * glyph vertical position
-        */
-        y: number;
-        /**
-         * the buffer containing character data. For simple fonts
-         * each character is represented by a single byte. For multi-byte (CID or Type0) fonts
-         * each character may take more than one byte.
-        */
-        char_data: Uint8Array;
-        /**
-         * Number of bytes representing this character in char_data buffer.
-         * For simple fonts 'bytes' will equal 1. For multi-byte (CID or Type0) fonts 'bytes' may
-         * be larger than 1. Should not be less than 0.
-        */
-        bytes: number;
-    }
-    /**
-     * This class is used to store separations in PDFRasterize and PDFDraw
-     * @property data - the buffer containing separation data.
-     * @property data_size - number of bytes in data buffer.
-     * @property separation_name - name of the separation.
-     * @property c - separation cyan value
-     * @property m - separation magenta value
-     * @property y - separation yellow value
-     * @property k - separation key value
-     */
-    class Separation {
-        /**
-         * the buffer containing separation data.
-        */
-        data: Uint8Array;
-        /**
-         * number of bytes in data buffer.
-        */
-        data_size: number;
-        /**
-         * name of the separation.
-        */
-        separation_name: string;
-        /**
-         * separation cyan value
-        */
-        c: number;
-        /**
-         * separation magenta value
-        */
-        m: number;
-        /**
-         * separation yellow value
-        */
-        y: number;
-        /**
-         * separation key value
-        */
-        k: number;
-    }
-    namespace Optimizer {
-        /**
-         * An object that stores downsampling/recompression settings for color and grayscale images.
-         */
-        class ImageSettings {
-            /**
-             * Sets the maximum and resampling dpi for images.
-            By default these are set to 225 and 150 respectively.
-             * @param maximum - the highest dpi of an image before it will be resampled
-             * @param resampling - the image dpi to resample to if an image is encountered over the maximum dpi
-             * @returns this object, for call chaining
-             */
-            setImageDPI(maximum: number, resampling: number): PDFNet.Optimizer.ImageSettings;
-            /**
-             * Sets the output compression mode for this type of image
-            The default value is e_retain
-             * @param mode - the compression mode to set
-            <pre>
-            PDFNet.Optimizer.ImageSettings.CompressionMode = {
-             e_retain : 0,
-             e_flate : 1,
-             e_jpeg : 2,
-             e_jpeg2000 : 3,
-             e_none : 4
-            }
-            </pre>
-             * @returns this object, for call chaining
-             */
-            setCompressionMode(mode: number): PDFNet.Optimizer.ImageSettings;
-            /**
-             * Sets the downsample mode for this type of image
-            The default value is e_default which will allow downsampling of images
-             * @param mode - the compression mode to set
-            <pre>
-            PDFNet.Optimizer.ImageSettings.DownsampleMode = {
-             e_off : 0,
-                e_default : 1
-            }
-            </pre>
-             * @returns this object, for call chaining
-             */
-            setDownsampleMode(mode: number): PDFNet.Optimizer.ImageSettings;
-            /**
-             * Sets the quality for lossy compression modes.
-            from 1 to 10 where 10 is lossless (if possible)
-            the default value is 5
-             * @param quality - the quality for lossy compression modes.
-             * @returns this object, for call chaining
-             */
-            setQuality(quality: number): PDFNet.Optimizer.ImageSettings;
-            /**
-             * Sets whether recompression to the specified compression method, should be forced when the image is not downsampled.
-            By default the compression method for these images will not be changed.
-             * @param force - if true the compression method for all
-             * @returns this object, for call chaining
-             */
-            forceRecompression(force: boolean): PDFNet.Optimizer.ImageSettings;
-            /**
-             * Sets whether image changes that grow the PDF file should be kept.
-            This is off by default.
-             * @param force - if true all image changes will be kept.
-             * @returns this object, for call chaining
-             */
-            forceChanges(force: boolean): PDFNet.Optimizer.ImageSettings;
-        }
-        /**
-         * An object that stores downsampling/recompression settings for monochrome images.
-         */
-        class MonoImageSettings {
-            /**
-             * Sets the maximum and resampling dpi for monochrome images.
-            By default these are set to 450 and 300 respectively.
-             * @param maximum - the highest dpi of an image before it will be resampled
-             * @param resampling - the image dpi to resample to if an image is encountered over the maximum dpi
-             * @returns this object, for call chaining
-             */
-            setImageDPI(maximum: number, resampling: number): PDFNet.Optimizer.MonoImageSettings;
-            /**
-             * Sets the output compression mode for monochrome images
-            The default value is e_jbig2
-             * @param mode - the compression mode to set
-            <pre>
-            PDFNet.Optimizer.MonoImageSettings.CompressionMode = {
-                e_jbig2 : 0,
-                e_flate : 1,
-                e_none : 2
-            }
-            </pre>
-             * @returns this object, for call chaining
-             */
-            setCompressionMode(mode: number): PDFNet.Optimizer.MonoImageSettings;
-            /**
-             * Sets the downsample mode for monochrome images
-            The default value is e_default
-             * @param mode - the compression mode to set
-            <pre>
-            PDFNet.Optimizer.MonoImageSettings.DownsampleMode = {
-             e_off : 0,
-                e_default : 1
-            }
-            </pre>
-             * @returns this object, for call chaining
-             */
-            setDownsampleMode(mode: number): PDFNet.Optimizer.MonoImageSettings;
-            /**
-             * Sets the quality for lossy JBIG2Decode compression mode.
-            The threshold is a floating point number in the range from 4 to 9
-            The default value for JBIG2 is 8.5.  The setting is ignored for FLATE.
-             * @param jbig2_threshold - the quality for lossy compression modes.
-             * @returns this object, for call chaining
-             */
-            setJBIG2Threshold(jbig2_threshold: number): PDFNet.Optimizer.MonoImageSettings;
-            /**
-             * Sets whether recompression to the specified compression method, should be forced when the image is not downsampled.
-            By default the compression method for these images will not be changed.
-             * @param force - if true the compression method for all
-             * @returns this object, for call chaining
-             */
-            forceRecompression(force: boolean): PDFNet.Optimizer.MonoImageSettings;
-            /**
-             * Sets whether image changes that grow the PDF file should be kept.
-            This is off by default.
-             * @param force - if true all image changes will be kept.
-             * @returns this object, for call chaining
-             */
-            forceChanges(force: boolean): PDFNet.Optimizer.MonoImageSettings;
-        }
-        /**
-         * An object that stores image text optimization settings.
-         */
-        class TextSettings {
-            /**
-             * Sets whether embedded fonts will be subset. This will generally reduce the size of fonts,
-            but will strip font hinting.
-            Subsetting is off by default.
-             * @param subset - if true all embedded fonts will be subsetted.
-             * @returns this object, for call chaining
-             */
-            subsetFonts(subset: boolean): PDFNet.Optimizer.TextSettings;
-            /**
-             * Sets whether fonts should be embedded. This will generally increase the size of the file,
-            but will make the file appear the same on different machines.
-            Font embedding is off by default.
-             * @param embed - if true all fonts will be embedded.
-             * @returns this object, for call chaining
-             */
-            embedFonts(embed: boolean): PDFNet.Optimizer.TextSettings;
-        }
-        /**
-         * An object that stores settings for the optimizer
-         */
-        class OptimizerSettings {
-            /**
-             * updates the settings for color image processing
-             * @param settings - settings for color image processing
-             * @returns this object, for call chaining
-             */
-            setColorImageSettings(settings: PDFNet.Optimizer.ImageSettings): PDFNet.Optimizer.OptimizerSettings;
-            /**
-             * updates the settings for grayscale image processing
-             * @param settings - settings for grayscale image processing
-             * @returns this object, for call chaining
-             */
-            setGrayscaleImageSettings(settings: PDFNet.Optimizer.ImageSettings): PDFNet.Optimizer.OptimizerSettings;
-            /**
-             * updates the settings for monochrome image processing
-             * @param settings - settings for monochrome image processing
-             * @returns this object, for call chaining
-             */
-            setMonoImageSettings(settings: PDFNet.Optimizer.MonoImageSettings): PDFNet.Optimizer.OptimizerSettings;
-            /**
-             * updates the settings for text processing
-             * @param settings - settings for text processing
-             * @returns this object, for call chaining
-             */
-            setTextSettings(settings: PDFNet.Optimizer.TextSettings): PDFNet.Optimizer.OptimizerSettings;
-            /**
-             * Enable or disable removal of custom entries in the PDF.
-            By default custom entries are removed.
-             * @param should_remove - if true custom entries will be removed.
-             * @returns this object, for call chaining
-             */
-            removeCustomEntries(should_remove: boolean): PDFNet.Optimizer.OptimizerSettings;
-        }
-        namespace ImageSettings {
-            enum CompressionMode {
-                e_retain,
-                e_flate,
-                e_jpeg,
-                e_jpeg2000,
-                e_none
-            }
-            enum DownsampleMode {
-                e_off,
-                e_default
-            }
-        }
-        namespace MonoImageSettings {
-            enum CompressionMode {
-                e_jbig2,
-                e_flate,
-                e_none
-            }
-            enum DownsampleMode {
-                e_off,
-                e_default
-            }
         }
     }
     namespace PrinterMode {
@@ -22515,6 +22690,14 @@ declare namespace Core.PDFNet {
             e_unknown
         }
     }
+    namespace ParagraphStyle {
+        enum TextJustification {
+            e_text_justification_invalid,
+            e_text_justify_left,
+            e_text_justify_right,
+            e_text_justify_center
+        }
+    }
     /**
      * @returns A promise that resolves to an object of type: "string"
      */
@@ -22625,7 +22808,7 @@ declare namespace Core.PDFNet {
      */
     function getVersionString(): Promise<string>;
     /**
-     * Sets the connection error handling behaviour for PDFTron SDK
+     * Sets the connection error handling behaviour for Apryse SDK
      * The default for this method is e_continue
      * @param mode - <pre>
      * PDFNet.ConnectionErrorHandlingMode = {
@@ -22634,7 +22817,7 @@ declare namespace Core.PDFNet {
      * 	e_stop : 2
      * }
      * </pre>
-     * Rules that PDFTron SDK will follow after a connection error.
+     * Rules that Apryse SDK will follow after a connection error.
      */
     function setConnectionErrorHandlingMode(mode: number): Promise<void>;
     /**
@@ -22739,6 +22922,42 @@ declare namespace Core.PDFNet {
 
     
     /**
+ * The TextGalley class
+ */
+declare class TextGalley {
+}
+
+/**
+ * The PdfBBox class which is used for creating bounding box object for galleys.
+ */
+declare class PdfBBox {
+}
+
+/**
+ * The PdfPoint class which is used for creating a set of xy coordinates.
+ */
+declare class PdfPoint {
+}
+
+/**
+ * The PdfQuad class used for creating the Quad object of a single character
+ */
+declare class PdfQuad {
+}
+
+/**
+ * The PDFContentBoxData class for creating text box data object.
+ */
+declare class PDFContentBoxData {
+}
+
+/**
+ * The PDFObjectBoxData class for creating PDF object box data object.
+ */
+declare class PDFObjectBoxData {
+}
+
+/**
  * The style tab in the annotation style popup window. See {@link UI.AnnotationStylePopupTabs} for valid style tabs.
  */
 declare type StyleTab = string;
@@ -23244,11 +23463,6 @@ declare namespace Core {
                  */
                 setType(type: string): void;
                 /**
-                 * Sets the visibility of all child widgets
-                 * @param visible - Should the field be visible?
-                 */
-                setVisible(visible: boolean): void;
-                /**
                  * Enable visibility of all child widgets
                  */
                 show(): void;
@@ -23670,11 +23884,6 @@ declare namespace Core {
              */
             hasRotationControlEnabled(): boolean;
             /**
-             * Enables or disables the rotation control for the annotation
-             * @param rotationControlEnabled - true if the rotation control should be enabled
-             */
-            setRotationControlEnabled(rotationControlEnabled: boolean): void;
-            /**
              * Enables the rotation control for the annotation
              */
             enableRotationControl(): void;
@@ -23825,11 +24034,6 @@ declare namespace Core {
              * @returns A promise that resolves when the resources have finished loading
              */
             resourcesLoaded(): Promise<void>;
-            /**
-             * Returns true if annotation is part of the original document, false otherwise.
-             * @returns Whether the annotation is internal to the document or not
-             */
-            getInternal(): boolean;
             /**
              * Returns true if annotation is part of the original document, false otherwise.
              * @returns Whether the annotation is internal to the document or not
@@ -25040,6 +25244,7 @@ declare namespace Core {
             isAutoSized(): boolean;
             /**
              * Sets how the freetext annotation auto-sizes to content.
+             * If you are passing 'AUTO' as the parameter, you will need to invoke the {@link Core.Annotations.FreeTextAnnotation#fitText} method afterwards.
              * @param type - Use one of the types provided by {@link Core.Annotations.FreeTextAnnotation.AutoSizeTypes AutoSizeTypes}
              */
             setAutoSizeType(type: string): void;
@@ -25192,11 +25397,6 @@ declare namespace Core {
              * @returns An object containing the two leader points
              */
             getLeaderPoints(): Core.Annotations.LineAnnotation.LeaderPoints;
-            /**
-             * Returns the leader point located at the center (midpoint) of measurement line.
-             * @returns Center (midpoint) of measurement line.
-             */
-            getCenterLeaderPoint(): Core.Math.Point;
             /**
              * Returns the leader point located at the given caption snap position, in viewer coordinates.
              * @param [captionSnapPosition] - Indicates which side of measurement line to calculate leader point.
@@ -27331,17 +27531,7 @@ declare namespace Core {
          * Returns whether the current user has admin privileges.
          * @returns true if the current user is an admin, false otherwise.
          */
-        getIsAdminUser(): boolean;
-        /**
-         * Returns whether the current user has admin privileges.
-         * @returns true if the current user is an admin, false otherwise.
-         */
         isUserAdmin(): boolean;
-        /**
-         * Sets whether the current user is an admin user.
-         * @param isAdminUser - true if the current user is an admin, false otherwise.
-         */
-        setIsAdminUser(isAdminUser: boolean): void;
         /**
          * Promote the current user to be an admin user. Admin users can edit any annotations.
          */
@@ -27354,17 +27544,7 @@ declare namespace Core {
          * Returns whether the viewer is currently in read-only mode.
          * @returns true if the current viewer is in read-only mode, false otherwise.
          */
-        getReadOnly(): boolean;
-        /**
-         * Returns whether the viewer is currently in read-only mode.
-         * @returns true if the current viewer is in read-only mode, false otherwise.
-         */
         isReadOnlyModeEnabled(): boolean;
-        /**
-         * Sets whether the viewer is currently in read-only mode.
-         * @param readOnly - true if the viewer is in read-only mode, false otherwise.
-         */
-        setReadOnly(readOnly: boolean): void;
         /**
          * Enables read-only mode in the viewer. In this mode no annotations can be added or commented on.
          */
@@ -27373,24 +27553,6 @@ declare namespace Core {
          * Disables read-only mode in the viewer.
          */
         disableReadOnlyMode(): void;
-        /**
-         * Returns whether freeform rotation is enabled for annotations.
-         * @returns true if freeform rotation is enabled, false otherwise.
-         */
-        isFreeformRotationEnabled(): boolean;
-        /**
-         * Sets whether the annotations will have freeform rotation enabled.
-         * @param freeformRotationEnabled - true if freeform rotation should be enabled, false otherwise.
-         */
-        setFreeformRotationEnabled(freeformRotationEnabled: boolean): void;
-        /**
-         * Enables freeform rotation for annotations
-         */
-        enableFreeformRotation(): void;
-        /**
-         * Disables freeform rotation for annotations.
-         */
-        disableFreeformRotation(): void;
         /**
          * Sets the rotation options for annotation manager.
          * @example
@@ -27425,11 +27587,6 @@ declare namespace Core {
          * @returns An object containing rotation options for annotation manager.
          */
         getRotationOptions(): any;
-        /**
-         * Returns whether free text editing is enabled directly on the annotation.
-         * @returns true if free text editing is enabled, false otherwise.
-         */
-        useFreeTextEditing(): boolean;
         /**
          * Returns whether free text editing is enabled directly on the annotation.
          * @returns true if free text editing is enabled, false otherwise.
@@ -27509,12 +27666,6 @@ declare namespace Core {
          * @param annotation - The annotation to be redrawn.
          */
         redrawAnnotation(annotation: Core.Annotations.Annotation): void;
-        /**
-         * Sets the rate at which the redrawing of annotations is throttled. This can improve
-         * annotation rendering on lower quality devices and browsers.
-         * @param value - The throttled rate at which annotations will be redrawn, in milliseconds
-         */
-        setRedrawThrottle(value: number): void;
         /**
          * Sets the rate at which the redrawing of annotations is throttled. This can improve
          * annotation rendering on lower quality devices and browsers.
@@ -27861,14 +28012,6 @@ declare namespace Core {
          * while deleted annotations will only include their id.
          * @returns Returns a promise that resolves to an XFDF command string
          */
-        exportAnnotCommand(): Promise<string>;
-        /**
-         * Gets an XML string from the last time this function was called.
-         * XML string specifies the added, modified and deleted annotations.
-         * Added and modified annotations will have their XFDF representation included
-         * while deleted annotations will only include their id.
-         * @returns Returns a promise that resolves to an XFDF command string
-         */
         exportAnnotationCommand(): Promise<string>;
         /**
          * Loads XFDF annotations into the viewer
@@ -27884,12 +28027,6 @@ declare namespace Core {
             batchDelay?: number;
             replace?: Core.Annotations.Annotation | Core.Annotations.Annotation[];
         }): Promise<any>;
-        /**
-         * Updates the viewer with the xfdf changes (add/modify/delete) in the xml string
-         * @param xfdfString - The XML annotation updates as a string
-         * @returns A promise that resolves to the list of annotations that were updated
-         */
-        importAnnotCommand(xfdfString: string): Promise<Core.Annotations.Annotation[]>;
         /**
          * Updates the viewer with the xfdf changes (add/modify/delete) in the xml string
          * @param xfdfString - The XML annotation updates as a string
@@ -28374,6 +28511,244 @@ declare namespace Core {
      */
     function setAdvancedImageScaling(advanced: boolean): void;
     /**
+     * The namespace for APIs dealing with document content editing
+     */
+    namespace ContentEdit {
+        /**
+         * Content Edit types.
+         * @property TEXT - Text type content.
+         * @property OBJECT - Object type content.
+         */
+        var Types: {
+            /**
+             * Text type content.
+             */
+            TEXT: string;
+            /**
+             * Object type content.
+             */
+            OBJECT: string;
+        };
+        /**
+         * Preloads the content editing worker. If this function isn't called then the worker will be loaded when the content editing tool is enabled.
+         * @param contentEditManager - The contentEditManager to use as context for the page editing.
+         * @returns Resolves after the worker has been loaded
+         */
+        function preloadWorker(contentEditManager: ContentEditManager): Promise<void>;
+        /**
+         * Sends a request to the Worker to reexport the page, regenerating the Content Boxes and Page Content
+         * @param doc - The document of current page
+         * @param page - The page number that should be prepared for content editing
+         * @returns Resolves after the page is prepared for editing
+         */
+        function reExportPage(doc: Core.Document, page: number): Promise<void>;
+        /**
+         * Update the document with new content
+         * @example
+         * instance.Core.ContentEdit.updateDocumentContent(contentEditPlaceholderAnnotation, 'New content');
+         * @param content - The new content
+         * @returns Resolves after the content has been updated
+         */
+        function updateDocumentContent(contentEditPlaceholderAnnotation: Core.Annotations.RectangleAnnotation, content: string): Promise<void>;
+        /**
+         * Gets the content box data for the passed in annotation.
+         * The passed in annotation must be a content edit placeholder annotation.
+         * @example
+         * const content = await instance.Core.ContentEdit.getDocumentContent(contentEditPlaceholderAnnotation);
+         * @returns content The document content associated with this content edit placeholder annotation
+         */
+        function getDocumentContent(contentEditPlaceholderAnnotation: Core.Annotations.RectangleAnnotation): Promise<string>;
+        /**
+         * A function that will search and replace text inside the document.
+         * @example
+         * instance.Core.ContentEdit.searchAndReplaceText({
+         *    toReplace: 'PDF',
+         *    replaceWith: 'DOCX',
+         *    documentViewer: instance.Core.documentViewer
+         * });
+         * @param options.toReplace - A string or global RegExp object that will be replaced on the page.
+         * @param options.replaceWith - The string that replaces the string or RegExp provided in the first parameter.
+         * @param options.documentViewer - DocumentViewer instance.
+         * @param [options.caseSensitive] - Is case sensitive search.
+         * @param [options.wholeWord] - Is serching the whole word.
+         * @param [options.wildcard] - Is searching with wildcard word.
+         * @param [options.regex] - Is searching with regular expression.
+         * @param [options.isSingleSearchReplace] - Is it single search and replace or whole document.
+         * @returns Returns promise which will resolve when the operation completes.
+         */
+        function searchAndReplaceText(options: {
+            toReplace: string | RegExp;
+            replaceWith: string;
+            documentViewer: Core.DocumentViewer;
+            caseSensitive?: boolean;
+            wholeWord?: boolean;
+            wildcard?: boolean;
+            regex?: boolean;
+            isSingleSearchReplace?: boolean;
+        }): Promise<void>;
+        /**
+         * Add a new content box
+         * @param options.pageNumber - The page number that the content is on
+         * @param options.position - The new position of content box, in PDF coordinates
+         * @param content - The content to add to the content box
+         * @returns Resolves after the content has been updated
+         */
+        function addNewParagraph(options: {
+            pageNumber: number;
+            position: string;
+        }, content: string): Promise<void>;
+        /**
+         * Set font of text content
+         * @param contentEditPlaceholderAnnotation - The annotation that represents the content where the font should be set
+         * @param font - The font to set
+         * @returns Resolves after the content has been updated
+         */
+        function setContentFont(contentEditPlaceholderAnnotation: Core.Annotations.Annotation, font: string): Promise<void>;
+        /**
+         * Set font size of text content
+         * @param contentEditPlaceholderAnnotation - The annotation that represents the content where font size should be set
+         * @param size - The font size to set
+         * @returns Resolves after the content has been updated
+         */
+        function setContentFontSize(contentEditPlaceholderAnnotation: Core.Annotations.Annotation, size: string): Promise<void>;
+        /**
+         * Align text content
+         * @param contentEditPlaceholderAnnotation - The annotation that represents the content where the text alignment should be set
+         * @param alignment - The text alignment to set
+         * @returns Resolves after the content has been updated
+         */
+        function alignContents(contentEditPlaceholderAnnotation: Core.Annotations.Annotation, alignment: string): Promise<void>;
+        /**
+         * Bold or unbold text content
+         * @param contentEditPlaceholderAnnotation - The annotation that represents the content where bold should be toggled
+         * @returns Resolves after the content has been updated
+         */
+        function toggleBoldContents(contentEditPlaceholderAnnotation: Core.Annotations.Annotation): Promise<void>;
+        /**
+         * Italicize or unitalicize text content
+         * @param contentEditPlaceholderAnnotation - The annotation that represents the content where italics should be toggled
+         * @returns Resolves after the content has been updated
+         */
+        function toggleItalicContents(contentEditPlaceholderAnnotation: Core.Annotations.Annotation): Promise<void>;
+        /**
+         * Underline or de-underline text content
+         * @param contentEditPlaceholderAnnotation - The annotation that represents the content where underline should be toggled
+         * @returns Resolves after the content has been updated
+         */
+        function toggleUnderlineContents(contentEditPlaceholderAnnotation: Core.Annotations.Annotation): Promise<void>;
+        /**
+         * Set font color of text content
+         * @param contentEditPlaceholderAnnotation - The annotation that represents the content where the text color should be set
+         * @param color - The color of the text to set
+         * @returns Resolves after the content has been updated
+         */
+        function setTextColor(contentEditPlaceholderAnnotation: Core.Annotations.Annotation, color: string): Promise<void>;
+        /**
+         * Get a list of fonts available for content editing
+         * @returns Resolves after the content has been updated, returns list of fonts
+         */
+        function getContentEditingFonts(): Promise<string[]>;
+        /**
+         * Begins the editing of a page already loaded into InfixServer.
+         * @param webFontURL - The web font URL
+         */
+        function beginEditing(webFontURL: string): void;
+        /**
+         * Gets the web font URL.
+         * @returns The web font URL
+         */
+        function getWebFontURL(): string;
+        /**
+         * Calls the "DumpTextBox" command to get the galley contents and store them.
+         * @param textBoxData - The galley text box data
+         * @param zoom - The initial zoom level
+         * @returns The XML command
+         */
+        function loadGalleyContents(textBoxData: Record<string, any>, zoom: string): string;
+        /**
+         * Draws the content box galley canvas
+         */
+        function drawContentBoxCanvas(): void;
+        /**
+         * NOTE: This function was added as part of a larger refactor to clean up WorkerAPI.
+         * It will most likely be removed in the future.
+         *
+         * TODO(Adam): Investigate if galleyId and galleyParent parameters can be combined into one.
+         *
+         * Parses XML galley text data from DumpTextBox command and then adds canvas and input elements to galley container to make it editable.
+         * @param galleyId - The ID of galley container.
+         * @param resultsXML - The results of "DumpTextBox" command from InfixServer.
+         * @param galleyParent - The container that will contain newly created canvas and input elements.
+         */
+        function loadGalleyEditResults(galleyId: string, resultsXML: string, galleyParent: HTMLElement): void;
+        /**
+         * The ContentBox class which includes a control handle and an HTML text edit element.
+         */
+        class ContentBox {
+            /**
+             * Gets the text box properties used for creating the content box.
+             * @returns The text box object.
+             */
+            getBoxData(): any;
+            /**
+             * Starts editing the content of the content box.
+             */
+            startContentEditing(): void;
+            /**
+             * Stops editing the content of the content box.
+             */
+            stopContentEditing(): void;
+        }
+        /**
+         * @property TEXT_CONTENT_UPDATED - {@link Core.ContentEdit#event:textContentUpdated Core.ContentEdit.textContentUpdated }
+         * @property SEARCH_AND_REPLACE_STARTED - {@link Core.ContentEdit#event:searchAndReplaceStarted Core.ContentEdit.searchAndReplaceStarted }
+         * @property SEARCH_AND_REPLACE_TEXT_REPLACED - {@link Core.ContentEdit#event:searchAndReplaceTextReplaced Core.ContentEdit.searchAndReplaceTextReplaced }
+         * @property SEARCH_AND_REPLACE_TEXT_FOUND - {@link Core.ContentEdit#event:searchAndReplaceTextFound Core.ContentEdit.searchAndReplaceTextFound }
+         * @property SEARCH_AND_REPLACE_ENDED - {@link Core.ContentEdit#event:searchAndReplaceEnded Core.ContentEdit.searchAndReplaceEnded }
+         */
+        var Events: {
+            /**
+             * {@link Core.ContentEdit#event:textContentUpdated Core.ContentEdit.textContentUpdated }
+             */
+            TEXT_CONTENT_UPDATED: string;
+            /**
+             * {@link Core.ContentEdit#event:searchAndReplaceStarted Core.ContentEdit.searchAndReplaceStarted }
+             */
+            SEARCH_AND_REPLACE_STARTED: string;
+            /**
+             * {@link Core.ContentEdit#event:searchAndReplaceTextReplaced Core.ContentEdit.searchAndReplaceTextReplaced }
+             */
+            SEARCH_AND_REPLACE_TEXT_REPLACED: string;
+            /**
+             * {@link Core.ContentEdit#event:searchAndReplaceTextFound Core.ContentEdit.searchAndReplaceTextFound }
+             */
+            SEARCH_AND_REPLACE_TEXT_FOUND: string;
+            /**
+             * {@link Core.ContentEdit#event:searchAndReplaceEnded Core.ContentEdit.searchAndReplaceEnded }
+             */
+            SEARCH_AND_REPLACE_ENDED: string;
+        };
+    }
+    /**
+     * Set the location of the ContentEdit workers for InfixServerModule.js, InfixServerWasm.br.js.mem,
+     * InfixServerWasm.br.wasm, and InfixServerWasm.gz.js.mem files. This will override the location
+     * specified by Core.setWorkerPath for ContentEdit worker files.
+     */
+    var setWorkerPath: any;
+    /**
+     * Get the location of the ContentEdit worker files InfixServerModule.js, InfixServerWasm.br.js.mem, InfixServerWasm.br.wasm, and InfixServerWasm.gz.js.mem
+     */
+    var getWorkerPath: any;
+    /**
+     * Set the location of the ContentEdit worker resource file InfixServerWasm.br.mem
+     * This will override the location specified by Core.setWorkerPath for InfixServerWasm.br.mem file.
+     */
+    var setResourcePath: any;
+    /**
+     * Get the location of the ContentEdit worker resource file InfixServerWasm.br.mem
+     */
+    var getResourcePath: any;
+    /**
      * A manager class that controls document content editing
      */
     class ContentEditManager extends EventHandler {
@@ -28459,7 +28834,7 @@ declare namespace Core {
          */
         customHeaders?: any;
         /**
-         * A boolean indicating whether Downloader should be used on urls (PDF only). https://www.pdftron.com/documentation/web/guides/usedownloader-option/.
+         * A boolean indicating whether Downloader should be used on urls (PDF only). https://docs.apryse.com/documentation/web/guides/usedownloader-option.
          */
         useDownloader?: boolean;
         /**
@@ -28485,7 +28860,7 @@ declare namespace Core {
             startOffline?: boolean;
         };
         /**
-         * A URL to the WebViewer server drop-in backend https://www.pdftron.com/documentation/web/guides/wv-server-deployment.
+         * A URL to the WebViewer server drop-in backend https://docs.apryse.com/documentation/web/guides/wv-server-deployment.
          */
         webviewerServerURL?: string;
         /**
@@ -28539,6 +28914,10 @@ declare namespace Core {
                 locale?: string;
             };
         };
+        /**
+         * If true, will load office files with editing capabilities.
+         */
+        enableOfficeEditing?: boolean;
     };
     /**
      * Creates an initialized Core.Document instance.
@@ -28751,17 +29130,7 @@ declare namespace Core {
          * Gets the vertical position of the bookmark.
          * @returns The vertical position of the bookmark
          */
-        getVPos(): number;
-        /**
-         * Gets the vertical position of the bookmark.
-         * @returns The vertical position of the bookmark
-         */
         getVerticalPosition(): number;
-        /**
-         * Gets the horizontal position of the bookmark.
-         * @returns The horizontal position of the bookmark
-         */
-        getHPos(): number;
         /**
          * Gets the horizontal position of the bookmark.
          * @returns The horizontal position of the bookmark
@@ -28809,15 +29178,23 @@ declare namespace Core {
      */
     function getAllowedFileExtensions(): void;
     /**
-     * Set the caching level between 0 and 20, where 0 is no caching and 20 uses a very large cache. The default is 10.
      * @param level - The level to set
      */
     function SetCachingLevel(level: number): void;
     /**
-     * Set the pre-render level between 0 and 10, where 0 has pre-rendering and 10 has a lot of pre-rendering.
+     * Set the caching level, where 0 is no caching and higher numbers increase the size of the cache. The default is 10.
+     * @param level - The level to set
+     */
+    function setCachingLevel(level: number): void;
+    /**
      * @param level - The level to set
      */
     function SetPreRenderLevel(level: number): void;
+    /**
+     * Set the pre-render level where 0 has no pre-rendering and higher numbers have more pre-rendering. The default is 5.
+     * @param level - The level to set
+     */
+    function setPreRenderLevel(level: number): void;
     /**
      * Constructs a new empty Document, representing a document with individual pages (canvases) that can be displayed on screen and printed.
      * @param id - Unique string identifier for the document
@@ -29021,49 +29398,6 @@ declare namespace Core {
          * @param [options.allowUseOfOptimizedThumbnail] - Whether to allow the use of optimized thumbnails.
          * @returns An id that can be passed to the corresponding Pause, Resume or Cancel functions
          */
-        loadCanvasAsync(options: {
-            pageNumber: number;
-            zoom?: number;
-            getZoom?: (...params: any[]) => any;
-            pageRotation?: Core.PageRotation;
-            getPageRotation?: (...params: any[]) => any;
-            finishedLoading?: (...params: any[]) => any;
-            acquireResources?: (...params: any[]) => any;
-            resourcesLoaded?: (...params: any[]) => any;
-            getPageTransform?: (...params: any[]) => any;
-            drawComplete?: (...params: any[]) => any;
-            drawProgressive?: (...params: any[]) => any;
-            renderRect?: any;
-            useProgress?: boolean;
-            height?: number;
-            width?: number;
-            multiplier?: number;
-            source?: string;
-            allowUseOfOptimizedThumbnail?: boolean;
-        }): string;
-        /**
-         * Loads a canvas for a particular page number.
-         * @param options - An object specifying the options for loading the canvas. The following parameters should be properties on this object. The only non-optional parameter is pageNumber.
-         * @param options.pageNumber - The page number of the requested canvas.
-         * @param [options.zoom] - The zoom value to render the page at.
-         * @param [options.getZoom] - A function that returns the zoom value to render the page at. Use this instead of "zoom" if the value might change in the process of setting up the canvas.
-         * @param [options.pageRotation] - The rotation of the page. Valid values are Core.PageRotation.E_0, Core.PageRotation.E_90, Core.PageRotation.E_180, Core.PageRotation.E_270.
-         * @param [options.getPageRotation] - A function that returns the rotation of the page. Use this instead of "pageRotation" if the value might change in the process of setting up the canvas.
-         * @param [options.finishedLoading] - A callback called after the list of page resources is retrieved. Return true if rendering should continue, false otherwise.
-         * @param [options.acquireResources] - A function that returns whether resources need to be acquired or not, defaults to true.
-         * @param [options.resourcesLoaded] - A callback called after the page's resources have been loaded. Return true if rendering should continue, false otherwise.
-         * @param [options.getPageTransform] - A function that returns the x and y values of the page's translation.
-         * @param [options.drawComplete] - The callback to call when the canvas has been completely rendered. The first parameter is a canvas object, and the second parameter is the page number.
-         * @param [options.drawProgressive] - The callback to call when the canvas has been partially rendered.
-         * @param [options.renderRect] - An object with x1, y1, x2, y2 properties which is the partial rectangle to render of the entire page. The top left of the page is (0, 0).
-         * @param [options.useProgress] - Whether progressive rendering should be used or not.
-         * @param [options.height] - Used to calculate the zoom level if zoom level is not provided. If it's passed the zoom level will be set so the document fits this height. If both width and height are passed the zoom level will be set so the document fits the box delimited by them.
-         * @param [options.width] - Used to calculate the zoom level if zoom level is not provided. If it's passed the zoom level will be set so the document fits this width. If both width and height are passed the zoom level will be set so the document fits the box delimited by them.
-         * @param [options.multiplier] - The quality of the loaded canvas. Must be a positive number. Higher values are higher quality but take longer to complete and use more memory.
-         * @param [options.source] - Indicate the origin of the call. This may be used by the Document's implementation of loadCanvasAsync.
-         * @param [options.allowUseOfOptimizedThumbnail] - Whether to allow the use of optimized thumbnails.
-         * @returns An id that can be passed to the corresponding Pause, Resume or Cancel functions
-         */
         loadCanvas(options: {
             pageNumber: number;
             zoom?: number;
@@ -29104,14 +29438,6 @@ declare namespace Core {
          * @returns The id of the request that can later be used for cancelling the request
          * It is passed an image element if the .xod file contains thumbnails and a canvas element otherwise.
          */
-        loadThumbnailAsync(pageNumber: number, onLoadThumbnail: (...params: any[]) => any): string;
-        /**
-         * Loads a thumbnail image for a particular page.
-         * @param pageNumber - The page number of the requested thumbnail (1-indexed).
-         * @param onLoadThumbnail - The callback to call when the thumbnail has been retrieved. Accepts an HTMLImageElement or HTMLCanvasElement as a parameter.
-         * @returns The id of the request that can later be used for cancelling the request
-         * It is passed an image element if the .xod file contains thumbnails and a canvas element otherwise.
-         */
         loadThumbnail(pageNumber: number, onLoadThumbnail: (...params: any[]) => any): string;
         /**
          * Pauses the loadCanvasAsync call corresponding to the passed in id
@@ -29129,11 +29455,6 @@ declare namespace Core {
          * @returns A promise that resolves to the PDFDoc object.
          */
         getPDFDoc(): Promise<Core.PDFNet.PDFDoc>;
-        /**
-         * [XOD Document only] Sets whether offline mode is enabled or not.
-         * @param enabled - The new value for whether offline mode is enabled or not.
-         */
-        setOfflineModeEnabled(enabled: boolean): void;
         /**
          * [XOD Document only] Enable offline mode.
          */
@@ -29201,7 +29522,7 @@ declare namespace Core {
             includeAnnotations?: boolean;
         }): Promise<ArrayBuffer>;
         /**
-         * [PDFTron Server only] Provides a URL to a the PDF with annotations and watermarks merged, and an open action specifying that it should be printed.
+         * [WebViewer Server only] Provides a URL to a the PDF with annotations and watermarks merged, and an open action specifying that it should be printed.
          * @returns Will be null if not supported. Otherwise a promise that resolves to an object with a `url` property pointing to the printable PDF.
          */
         getPrintablePDF(): Promise<object> | null;
@@ -29211,7 +29532,12 @@ declare namespace Core {
          */
         getFilename(): string;
         /**
-         * [PDFTron Server only] Provides a URL to a the PDF with annotations and watermarks merged.
+         * Set the document filename used for downloading.
+         * @param filename - Filename of the document.
+         */
+        setFilename(filename: string): void;
+        /**
+         * [WebViewer Server only] Provides a URL to a the PDF with annotations and watermarks merged.
          * @param [options] - An optional object containing download options and parameters.
          * @param [options.filename] - The preferred name for the downloaded file on the client side. This has no effect on the backend target of the returned link, only the filename used by the browser when the link is accessed.
          * @returns Will be null if not supported. Otherwise a promise that resolves to an object with a `url` property pointing to the printable PDF.
@@ -29331,10 +29657,6 @@ declare namespace Core {
          * WebViewer({ documentId: 'foo-11', initialDoc: 'url'  }) or instance.loadDocument(url, { documentId: 'foo-11' })
          */
         getDocumentId(): string;
-        /**
-         * @returns A promise that resolves when all of the page information is available for the document
-         */
-        documentCompletePromise(): Promise<void>;
         /**
          * @returns A promise that resolves when all of the page information is available for the document
          */
@@ -29512,6 +29834,41 @@ declare namespace Core {
          */
         arePagesAltered(): boolean;
         /**
+         * For Office Editor Document, returns the OfficeEditor object. Otherwise, an error will be thrown.
+         */
+        getOfficeEditor(): Core.Document.OfficeEditor;
+        /**
+         * Triggered only in an Office Editor Document. Triggered when the main cursor properties are updated.
+         * @param cursorProperties - The cursor properties.
+         */
+        on(event: 'cursorPropertiesUpdated', callback: (cursorProperties: Core.Document.OfficeEditorTextStyle) => void): void;
+        /**
+         * Triggered only in an Office Editor Document. Triggered when the main cursor properties are updated.
+         * @param cursorProperties - The cursor properties.
+         */
+        one(event: 'cursorPropertiesUpdated', callback: (cursorProperties: Core.Document.OfficeEditorTextStyle) => void): void;
+        off(event?: 'cursorPropertiesUpdated', callback?: (cursorProperties: Core.Document.OfficeEditorTextStyle) => void): void;
+        /**
+         * Triggered only in an Office Editor Document. Triggered when the text selection properties are updated.
+         * @param selectionProperties - The selection properties.
+         */
+        on(event: 'selectionPropertiesUpdated', callback: (selectionProperties: Core.Document.OfficeEditorTextStyle) => void): void;
+        /**
+         * Triggered only in an Office Editor Document. Triggered when the text selection properties are updated.
+         * @param selectionProperties - The selection properties.
+         */
+        one(event: 'selectionPropertiesUpdated', callback: (selectionProperties: Core.Document.OfficeEditorTextStyle) => void): void;
+        off(event?: 'selectionPropertiesUpdated', callback?: (selectionProperties: Core.Document.OfficeEditorTextStyle) => void): void;
+        /**
+         * Triggered only in an Office Editor Document. Triggered when the document has been edited.
+         */
+        on(event: 'officeDocumentEdited', callback: () => void): void;
+        /**
+         * Triggered only in an Office Editor Document. Triggered when the document has been edited.
+         */
+        one(event: 'officeDocumentEdited', callback: () => void): void;
+        off(event?: 'officeDocumentEdited', callback?: () => void): void;
+        /**
          * Triggered when a color separation is loaded and available on the document.
          * @param colorData - An object with properties of the color separation
          * @param colorData.name - The name of the color separation
@@ -29600,6 +29957,123 @@ declare namespace Core {
              * the layer's children (if any). This is not defined if the layer is a label.
              */
             children: Core.Document.LayerContext[];
+        };
+        /**
+         * Represents an interface with APIs for editing office files
+         */
+        interface OfficeEditor {
+            /**
+             * Returns true if the license key is valid for office editor and false otherwise.
+             * @example
+             * officeEditor.isLicenseValid();
+             */
+            isLicenseValid(): boolean;
+            /**
+             * Set the style of the cursor.
+             * @example
+             * officeEditor.setCursorStyle({ pointSize: 24, italic: false, bold: false});
+             * @param style - The style object
+             */
+            setCursorStyle(style: Core.Document.OfficeEditorTextStyle): void;
+            /**
+             * Returns whether text is being selected.
+             */
+            isTextSelected(): boolean;
+            /**
+             * Toggle style of the selected text.
+             * @param style - The style to toggle
+             * @returns Returns a promise that resolves when the style has been toggled
+             */
+            toggleSelectedTextStyle(style: Core.Document.OfficeEditorToggleableStyles): Promise<void>;
+            /**
+             * Update the style of the current selection.
+             * @param style - The styles to apply.
+             * @returns Returns a promise that resolves when the action finishes.
+             */
+            updateSelectionStyle(style: Core.Document.OfficeEditorTextStyle): Promise<void>;
+            /**
+             * Toggle the list selection.
+             * @param listType - The type of the list.
+             * @returns Returns a promise that resolves when the action finishes.
+             */
+            toggleListSelection(listType: 'ordered' | 'unordered'): Promise<void>;
+            /**
+             * Updates the style of the current paragraph.
+             * @param style - The styles to apply.
+             * @returns Returns a promise that resolves when the action finishes.
+             */
+            updateParagraphStyle(style: Core.Document.OfficeEditorParagraphStyle): Promise<void>;
+            /**
+             * Remove the current selected text.
+             */
+            removeSelection(): void;
+            /**
+             * Update the search data. Should be called whenever a search is performed to make
+             * sure all text data has been downloaded for the document.
+             */
+            updateSearchData(): void;
+            /**
+             * Copy the current selected text to clipboard.
+             * @returns Returns a promise that resolves when the action finishes.
+             */
+            copySelectedText(): Promise<void>;
+            /**
+             * Paste text from clipboard.
+             * @param withFormatting - Whether to paste with formatting or not.
+             */
+            pasteText(withFormatting: boolean): void;
+        }
+        /**
+         */
+        type OfficeEditorParagraphStyle = {
+            /**
+             * The text style of the selected lines.
+             */
+            textStyle?: OfficeEditorTextStyle;
+            /**
+             * The justification of the selected lines.
+             */
+            justification?: any;
+            /**
+             * The spacing of the selected lines.
+             */
+            lineSpacing?: number;
+        };
+        /**
+         * An enum representing the toggleable text styles in Office Editor.
+         */
+        enum OfficeEditorToggleableStyles {
+            BOLD,
+            ITALIC,
+            UNDERLINE
+        }
+        /**
+         */
+        type OfficeEditorTextStyle = {
+            /**
+             * Whether the selected text should be bold
+             */
+            bold?: boolean;
+            /**
+             * Whether the selected text should be italic
+             */
+            italic?: boolean;
+            /**
+             * Whether the selected text should have underline
+             */
+            underline?: boolean;
+            /**
+             * The font face of the text
+             */
+            fontFace?: string;
+            /**
+             * The point size of the text
+             */
+            pointSize?: number;
+            /**
+             * The font color of the text, e.g. { r: 255, g: 0, b: 0, a: 255 }
+             */
+            fontColor?: any;
         };
     }
     /**
@@ -29908,7 +30382,7 @@ declare namespace Core {
          */
         customHeaders?: any;
         /**
-         * A boolean indicating whether Downloader should be used on urls (PDF only). https://www.pdftron.com/documentation/web/guides/usedownloader-option/.
+         * A boolean indicating whether Downloader should be used on urls (PDF only). https://docs.apryse.com/documentation/web/guides/usedownloader-option/.
          */
         useDownloader?: boolean;
         /**
@@ -29934,7 +30408,7 @@ declare namespace Core {
             startOffline?: boolean;
         };
         /**
-         * A URL to the WebViewer server drop-in backend https://www.pdftron.com/documentation/web/guides/wv-server-deployment.
+         * A URL to the WebViewer server drop-in backend https://docs.apryse.com/documentation/web/guides/wv-server-deployment/.
          */
         webviewerServerURL?: string;
         /**
@@ -29988,6 +30462,10 @@ declare namespace Core {
                 locale?: string;
             };
         };
+        /**
+         * If true, will load docx files with editing capabilities.
+         */
+        enableOfficeEditing?: boolean;
     };
     /**
      * Creates a new empty DocumentViewer.
@@ -30016,12 +30494,6 @@ declare namespace Core {
          */
         isAutomaticLinkingEnabled(): boolean;
         /**
-         * Sets whether automatic linking should be enabled.
-         * If enabled then any URLs detected in the document text will automatically be linked.
-         * @param enable - Whether to enable automatic linking.
-         */
-        setEnableAutomaticLinking(enable: boolean): void;
-        /**
          * Enable automatic linking.
          * If enabled then any URLs detected in the document text will automatically be linked.
          */
@@ -30031,27 +30503,6 @@ declare namespace Core {
          * If disabled then any URLs detected in the document text will not automatically be linked.
          */
         disableAutomaticLinking(): void;
-        /**
-         * Initialize the viewer and load a .xod document into the viewer.
-         * @param partRetriever - An instance of PartRetriever.
-         * @param options - An object that can contain the following optional parameters
-         * @param [options.type] - The type of document being loaded. Values are xod, pdf, office, webviewerServer. Default is xod.
-         * @param [options.docId] - An optional unique identifier for the document, used for offline mode
-         * @param [options.onError] - A callback of the form function(err) which will be called when a loading error occurs.
-         * @param [options.workerTransportPromise] - Required for PDF viewing. A promise that will be resolved when a worker transport has been initialized. This can be created by calling Core.initializeWorkerTransport
-         * @param [options.getPassword] - An method of the form function(callback) where callback is of the form function(password). getPassword will be called when a password is required to load a PDF document and should call the callback with the retrieved password.
-         * @param [options.extension] - An field used to specify the type of file being read. This is only relevant for PDF viewing and at the moment only works for certain image formats and .pdf
-         * @param [options.licenseKey] - The license key to use. Only necessary for client side and WebViewer Server rendering.
-         */
-        loadAsync(partRetriever: Core.PartRetrievers.PartRetriever, options: {
-            type?: string;
-            docId?: string;
-            onError?: (...params: any[]) => any;
-            workerTransportPromise?: Promise<void>;
-            getPassword?: (...params: any[]) => any;
-            extension?: string;
-            licenseKey?: string;
-        }): void;
         /**
          * Initialize the viewer and load the given file into the viewer.
          * @param src - Source parameter, path/url to document or File.
@@ -30132,12 +30583,6 @@ declare namespace Core {
             batchDelay: number;
         }): void;
         /**
-         * Sets whether annotations should only be loaded from the visible pages and removed when a page is no longer visible.
-         * Note that when enabling this option only annotations on the visible pages will be exported or included in the downloaded document
-         * @param val - Whether the option should be enabled or not
-         */
-        setLoadAnnotationsFromVisiblePages(val: boolean): void;
-        /**
          * Enable annotations to only be loaded from the visible pages and removed when a page is no longer visible.
          * Note that when enabling this option only annotations on the visible pages will be exported or included in the downloaded document
          */
@@ -30188,11 +30633,6 @@ declare namespace Core {
          */
         snapToNearest(pageNumber: number, x: number, y: number, mode?: number): Promise<Core.DocumentViewer.SnapData>;
         /**
-         * Sets specific DocumentViewer options.
-         * @param options - An options object, currently valid options are enableAnnotations and annotMode
-         */
-        setOptions(options: any): void;
-        /**
          * Enable annotations. Any annotations in the document will be visible.
          */
         enableAnnotations(): void;
@@ -30200,11 +30640,6 @@ declare namespace Core {
          * Disable annotations. Annotations in the document will not be visible.
          */
         disableAnnotations(): void;
-        /**
-         * Returns the current zoom level
-         * @returns The current zoom level.
-         */
-        getZoom(): number;
         /**
          * Returns the current zoom level.
          * @returns The current zoom level.
@@ -30265,11 +30700,6 @@ declare namespace Core {
          */
         getTool(Name: string | Core.Tools.ToolNames): Core.Tools.Tool;
         /**
-         * Returns whether stylus annotating mode is enabled.
-         * @returns Returns whether stylus annotating mode is enabled
-         */
-        setEnableStylusMode(): boolean;
-        /**
          * Puts all annotation tools in the stylus annotating mode.
          * When in this mode, finger movements will scroll the document and using a stylus device will annotate the document.
          */
@@ -30286,6 +30716,11 @@ declare namespace Core {
          * Disables read-only mode in the viewer.
          */
         disableReadOnlyMode(): void;
+        /**
+         * Returns whether stylus annotating mode is enabled.
+         * @returns Returns whether stylus annotating mode is enabled
+         */
+        setEnableStylusMode(): boolean;
         /**
          * Returns the current viewing rotation.
          * @example
@@ -30345,19 +30780,9 @@ declare namespace Core {
         getFitMode(): Core.DocumentViewer.FitMode;
         /**
          * Returns whether right to left page rendering is enabled.
-         * @returns The current page rendering order.
-         */
-        getRightToLeftPages(): boolean;
-        /**
-         * Returns whether right to left page rendering is enabled.
          * @returns True if right to left page rendering is enabled, false otherwise.
          */
         isRightToLeftPageRenderingEnabled(): boolean;
-        /**
-         * Sets the page rendering order.
-         * @param rightToLeftPages - Whether the new page rendering order should be right to left or not.
-         */
-        setRightToLeftPages(rightToLeftPages: boolean): void;
         /**
          * Enable the right to left page rendering order.
          */
@@ -30383,7 +30808,7 @@ declare namespace Core {
         displayBookmark(bookmark: Core.Bookmark): void;
         /**
          * Shifts the current viewport of the viewer such that it can display the specified viewer coordinate position
-         * Please refer to https://www.pdftron.com/documentation/web/guides/coordinates/#viewer-page-coordinates for more details
+         * Please refer to https://docs.apryse.com/documentation/web/guides/coordinates/#viewer-page-coordinates for more details
          * @param pageNumber - The page number the location is on
          * @param horizontalPosition - The horizontal position from the x-axis origin of the page (in viewer page coordinates)
          * @param verticalPostion - The vertical position from the y-axis of the page (in viewer page coordinates)
@@ -30560,8 +30985,9 @@ declare namespace Core {
          * @param zoom - Zoom value
          * @param offsetX - The x offset from the mouse position to the viewer's position (e.g. taking into account toolbars)
          * @param offsetY - The y offset from the mouse position to the viewer's position (e.g. taking into side panels)
+         * @param [event] - A DOM mouse event. If used then the mouse will be zoomed to the location of where this event originated.
          */
-        zoomToMouse(zoom: number, offsetX: number, offsetY: number): void;
+        zoomToMouse(zoom: number, offsetX: number, offsetY: number, event?: MouseEvent): void;
         /**
          * Get the PDF coordinates of the current mouse event
          * @param event - A DOM mouse event.
@@ -30672,11 +31098,6 @@ declare namespace Core {
          */
         stopPageRender(pageNumber: number): void;
         /**
-         * Sets whether viewport rendering mode should be used
-         * @param val - Whether viewport rendering mode should be used or not
-         */
-        setViewportRenderMode(val: boolean): void;
-        /**
          * Enables viewport rendering mode. This only renders the part of the page that is visible within the viewport.
          */
         enableViewportRenderMode(): void;
@@ -30715,14 +31136,6 @@ declare namespace Core {
          * Disable viewing annotations in grayscale
          */
         disableGrayscaleAnnotationsMode(): void;
-        /**
-         * Enable viewing annotations in grayscale
-         */
-        enableGrayscaleAnnotations(): void;
-        /**
-         * Disable viewing annotations in grayscale
-         */
-        disableGrayscaleAnnotations(): void;
         /**
          * Returns whether grayscale annotations mode is enabled for viewing the document
          * @returns Whether grayscale annotation mode is enabled or not
@@ -32538,26 +32951,6 @@ declare namespace Core {
              */
             static disableDragScroll(): void;
             /**
-             * Set if the tool should trigger action immediately after clicking an annotation.
-             * For example, if this is enabled then you can immediately click and drag an annotation without making a separate click to select the annotation.
-             * @example
-             * To enable this for one tool (The Pan tool, for example), this can be done:
-             *
-             * const tool = docViewer.getTool(window.Core.Tools.ToolNames.PAN);
-             * tool.setEnableImmediateActionOnAnnotationSelection(true);
-             *
-             * To enable this for all selection tools, this can be done:
-             *
-             * const allTools = Object.values(docViewer.getToolModeMap());
-             * for (const tool of allTools) {
-             *   if (tool instanceof Tools.AnnotationSelectTool) {
-             *     tool.setEnableImmediateActionOnAnnotationSelection(true);
-             *   }
-             * }
-             * @param enable - A boolean indicating whether actions are triggered immediately on clicking on an annotation
-             */
-            setEnableImmediateActionOnAnnotationSelection(enable: boolean): void;
-            /**
              * Sets if the tool should trigger actions immediately after clicking an annotation.
              * For example, if this is enabled then you can immediately click and drag an annotation without making a separate click to select the annotation.
              * @example
@@ -33331,12 +33724,6 @@ declare namespace Core {
              */
             static setTextHandler(handler: (...params: any[]) => any): void;
             /**
-             * Set if the text box of the annotation should auto resize with a fixed width on text change
-             * The width can be adjusted by changing calloutTool.defaults.Width to a different value
-             * @param enable - A boolean indicating whether only the box height will resize on text change
-             */
-            setEnableAutoSized(enable: boolean): void;
-            /**
              * Enables the text box of the annotation to auto resize with a fixed width when the text changes
              * The width can be adjusted by changing calloutTool.defaults.Width to a different value
              */
@@ -34011,6 +34398,243 @@ declare namespace Core {
         class CountMeasurementCreateTool extends Core.Tools.StickyCreateTool {
             constructor(docViewer: Core.DocumentViewer);
         }
+        namespace CropCreateTool {
+            enum CropModes {
+                SINGLE_PAGE,
+                ALL_PAGES,
+                MULTI_PAGE
+            }
+            /**
+             */
+            type Events = {
+                /**
+                 * {@link Core.Tools.CropCreateTool#event:cropApplied Core.Tools.CropCreateTool.cropApplied}
+                 */
+                CROP_APPLIED: string;
+                /**
+                 * {@link Core.Tools.CropCreateTool#event:cropCancelled Core.Tools.CropCreateTool.cropCancelled}
+                 */
+                CROP_CANCELLED: string;
+                /**
+                 * {@link Core.Tools.CropCreateTool#event:cropModeChanged Core.Tools.CropCreateTool.cropModeChanged}
+                 */
+                CROP_MODE_CHANGED: string;
+            };
+        }
+        /**
+         * Creates a new instance of the CropCreateTool.
+         * @param docViewer - An instance of DocumentViewer.
+         */
+        class CropCreateTool extends Core.Tools.RectangleCreateTool {
+            constructor(docViewer: Core.DocumentViewer);
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            on(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            one(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationCreated', callback?: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            on(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            one(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            on(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            one(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationCreated', callback?: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            on(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            one(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when a cropCreateTool has been applied
+             * @param cropInfo.pageNumber - The page number the crop was applied on
+             * @param cropInfo.left - The number of points (pts) cut off the left edge
+             * @param cropInfo.right - The number of points (pts) cut off the right edge
+             * @param cropInfo.bottom - The number of points (pts) cut off the bottom edge
+             * @param cropInfo.top - The number of points (pts) cut off the top edge
+             */
+            on(event: 'cropApplied', callback: (cropInfo: {
+                pageNumber: number;
+                left: number;
+                right: number;
+                bottom: number;
+                top: number;
+            }) => void): void;
+            /**
+             * Triggered when a cropCreateTool has been applied
+             * @param cropInfo.pageNumber - The page number the crop was applied on
+             * @param cropInfo.left - The number of points (pts) cut off the left edge
+             * @param cropInfo.right - The number of points (pts) cut off the right edge
+             * @param cropInfo.bottom - The number of points (pts) cut off the bottom edge
+             * @param cropInfo.top - The number of points (pts) cut off the top edge
+             */
+            one(event: 'cropApplied', callback: (cropInfo: {
+                pageNumber: number;
+                left: number;
+                right: number;
+                bottom: number;
+                top: number;
+            }) => void): void;
+            off(event?: 'cropApplied', callback?: (cropInfo: {
+                pageNumber: number;
+                left: number;
+                right: number;
+                bottom: number;
+                top: number;
+            }) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            on(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            one(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationCreated', callback?: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            on(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            one(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            on(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            one(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationCreated', callback?: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            on(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            one(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when a cropCreateTool has been cancelled
+             */
+            on(event: 'cropCancelled', callback: () => void): void;
+            /**
+             * Triggered when a cropCreateTool has been cancelled
+             */
+            one(event: 'cropCancelled', callback: () => void): void;
+            off(event?: 'cropCancelled', callback?: () => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            on(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            one(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationCreated', callback?: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            on(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            one(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            on(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been created by the tool
+             * @param annotations - The annotation that was created
+             */
+            one(event: 'annotationCreated', callback: (annotations: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationCreated', callback?: (annotations: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            on(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when an annotation has been added to the document by the tool
+             * @param annotation - The annotation that was added
+             */
+            one(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
+            off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
+            /**
+             * Triggered when a cropCreateTool has been changed
+             */
+            on(event: 'cropModeChanged', callback: () => void): void;
+            /**
+             * Triggered when a cropCreateTool has been changed
+             */
+            one(event: 'cropModeChanged', callback: () => void): void;
+            off(event?: 'cropModeChanged', callback?: () => void): void;
+            /**
+             * Sets the crop mode for the tool
+             * @example
+             * WebViewer(...).then(instance => {
+             *  const tool = instance.Core.documentViewer.getTool('CropPage');
+             *  tool.setCropMode(instance.Core.Tools.CropCreateTool.CropModes.ALL_PAGES);
+             * })
+             * @param cropMode - The crop mode to select
+             */
+            setCropMode(cropMode: Core.Tools.CropCreateTool.CropModes): void;
+            /**
+             * Gets the current crop mode.
+             * @returns Returns the current crop mode;
+             */
+            getCropMode(): Core.Tools.CropCreateTool.CropModes;
+            /**
+             * Applies the currently selected crop regions.
+             * @returns A promise that resolves when the crop regions have been applied.
+             */
+            applyCrop(): Promise<void>;
+        }
         /**
          * Represents the tool for creating {@link Core.Annotations.FreeTextAnnotation} with an associated date format.
          * @param docViewer - An instance of DocumentViewer.
@@ -34162,19 +34786,6 @@ declare namespace Core {
          */
         class DistanceMeasurementCreateTool extends Core.Tools.LineCreateTool {
             constructor(docViewer: Core.DocumentViewer);
-            /**
-             * Set if the tool should draw leader lines after the first mouse up instead of finishing it
-             * @param enable - A boolean indicating whether leader lines should be drawn
-             */
-            setEnableLeaderLines(enable: boolean): void;
-            /**
-             * Enables the drawing of leader lines after the first mouse up instead of finishing the creation of the annotation
-             */
-            enableLeaderLines(): void;
-            /**
-             * Disables drawing of leader lines after the first mouse up. The annotation will be immediately created.
-             */
-            disableLeaderLines(): void;
             /**
              * Enables the creation of new distance annotations where the units are shown as imperial marks: ' and "
              * @example
@@ -35938,11 +36549,6 @@ declare namespace Core {
         class PolylineCreateTool extends Core.Tools.GenericAnnotationCreateTool {
             constructor(docViewer: Core.DocumentViewer);
             /**
-             * Sets whether new annotations can be created by the tool when hovering over an existing annotation
-             * @param val - Whether creation of annotation is allowed when hovering over another annotation
-             */
-            setAllowCreationOverAnnotation(val: boolean): void;
-            /**
              * Allow the tool to create new annotations when hovering over an existing annotation
              */
             enableCreationOverAnnotation(): void;
@@ -36449,11 +37055,6 @@ declare namespace Core {
         class RedactionCreateTool extends Core.Tools.TextAnnotationCreateTool {
             constructor(docViewer: Core.DocumentViewer);
             /**
-             * Set if tool should automatically set font size based on the selected text (if redacting text)
-             * @param enable - a boolean indicating whether overlay text font should be automatically set
-             */
-            setEnableTextAutoSize(enable: boolean): void;
-            /**
              * Enable automatically setting the font size based on the selected text (if redacting text)
              */
             enableAutoSizedText(): void;
@@ -36547,6 +37148,10 @@ declare namespace Core {
                  */
                 color?: Core.Annotations.Color;
                 /**
+                 * Stamp ID
+                 */
+                id?: string;
+                /**
                  * Font family to use for stamp text
                  */
                 font?: string;
@@ -36628,7 +37233,7 @@ declare namespace Core {
              *  {
              *    "title": "Sample Text",
              *    "subtitle": "DD-MM-YYYY",
-             *    "color": window.Annotations.Color(0,0,0)
+             *    "color": window.Core.Annotations.Color(0,0,0)
              *  }
              * ]
              */
@@ -37323,11 +37928,6 @@ declare namespace Core {
             one(event: 'annotationAdded', callback: (annotation: Core.Annotations.Annotation) => void): void;
             off(event?: 'annotationAdded', callback?: (annotation: Core.Annotations.Annotation) => void): void;
             /**
-             * Sets whether new annotations can be created by the tool when hovering over an existing annotation
-             * @param val - Whether creation of annotation is allowed when hovering over another annotation
-             */
-            setAllowCreationOverAnnotation(val: boolean): void;
-            /**
              * Allow the tool to create new annotations when hovering over an existing annotation
              */
             enableCreationOverAnnotation(): void;
@@ -37335,13 +37935,6 @@ declare namespace Core {
              * Prevent the tool from creating new annotations when hovering over an existing annotation. The annotation will be selected instead.
              */
             disableCreationOverAnnotation(): void;
-            /**
-             * Sets whether new annotations have a ViewState applied to them.
-             * ViewState is the state of the viewer when the annotation is created.
-             * When the annotation is double clicked and ViewState exists, the viewer state will
-             * be set to the ViewState
-             */
-            setSaveViewState(val: boolean): void;
             /**
              * When enabled, new annotations will have a ViewState applied to them.
              * ViewState is the state of the viewer when the annotation is created.
@@ -38297,7 +38890,7 @@ declare namespace Core {
     function resetWorker(): void;
     /**
      * Set the URL at which PDFNetJS backend will request font resources for the purposes
-     * of font substitution. By default they are retrieved from the pdftron website.
+     * of font substitution. By default they are retrieved from the Apryse website.
      * @param url - The url at which font resources should be requested.
      */
     function setCustomFontURL(url: string): void;
@@ -38330,17 +38923,15 @@ declare namespace Core {
      */
     function initPDFWorkerTransports(pdfBackendType: string, workerHandlers: any, l: string): any;
     /**
-     * Gets the path to the Web Worker JavaScript file
-     * @returns The path to the worker
+     * Get the location of the ContentEdit worker files InfixServerModule.js, InfixServerWasm.br.js.mem, InfixServerWasm.br.wasm, and InfixServerWasm.gz.js.mem
      */
-    function getWorkerPath(): string;
+    var getWorkerPath: any;
     /**
-     * Sets the path to the Web Worker JavaScript file.
-     * By default the file is expected to be in the same directory as the html file of the viewer
-     * and the path should be specified relative to the html file
-     * @param path - Path to the Web Worker JS file relative to the html file of the viewer
+     * Set the location of the ContentEdit workers for InfixServerModule.js, InfixServerWasm.br.js.mem,
+     * InfixServerWasm.br.wasm, and InfixServerWasm.gz.js.mem files. This will override the location
+     * specified by Core.setWorkerPath for ContentEdit worker files.
      */
-    function setWorkerPath(path: string): void;
+    var setWorkerPath: any;
     /**
      * Returns whether demo mode is active or not. Must be called after the document is loaded
      * or after the call to Core.initPDFWorkerTransports if you're calling it directly.
@@ -38357,6 +38948,16 @@ declare namespace Core {
      * @returns A hashed commit id
      */
     function getBuild(): string;
+    /**
+     * Set the location of the OfficeEditor workers for OfficeEditorModule.js, OfficeEditorWorkerWasm.br.js.mem
+     * and OfficeEditorWorkerWasm.br.wasm files. This will override the location
+     * specified by Core.setWorkerPath for OfficeEditor worker files.
+     */
+    var setOfficeEditorWorkerPath: any;
+    /**
+     * Get the location of the OfficeEditor worker files OfficeEditorModule.js, OfficeEditorWorkerWasm.br.js.mem and OfficeEditorWorkerWasm.br.wasm files
+     */
+    var getOfficeEditorWorkerPath: any;
     /**
      * Set the location of the Office worker. This will override the location specified by Core.setWorkerPath for Office worker files.
      */
@@ -38691,42 +39292,17 @@ declare namespace Core {
             once: boolean;
         }): any;
         /**
-         * Add a handler to the given event name
+         * Remove a handler of the given event name and namespace (if given) or with a function reference
          * @example
-         * myObject.on('eventName', (eventParameter1, eventParameter2) => {
-         *   ...
-         * });
-         * @param type - The name of the event to listen to
-         * @param fn - The handler to be called when the event is triggered
-         * @returns Returns the object that 'on' is being called on
-         */
-        on(type: string | number, fn: (...params: any[]) => any): any;
-        /**
-         * Remove a handler of the given event name
-         * @example
-         * myObject.removeEventListener();
-         * myObject.removeEventListener('eventName');
+         * myObject.removeEventListener('eventName.namespace');
          * myObject.removeEventListener('eventName', fn);
-         * @param [type] - The name of the event to remove the handler of.
-         * If type is undefined, all the handlers of the object will be removed
+         * @param [type] - The name of the event to remove the handler of with an optional namespace.
          * @param [fn] - The handler associated with this event to be removed.
-         * If fn is undefined, all the handlers of the given event name will be removed
+         * If fn is undefined, all the handlers of the given event namespace will be removed.
+         * If you are not passing in this parameter then a namespace must be used with the event name.
          * @returns Returns the object that 'removeEventListener' is being called on
          */
         removeEventListener(type?: string | number, fn?: (...params: any[]) => any): any;
-        /**
-         * Remove a handler of the given event name
-         * @example
-         * myObject.off();
-         * myObject.off('eventName');
-         * myObject.off('eventName', fn);
-         * @param [type] - The name of the event to remove the handler of.
-         * If type is undefined, all the handlers of the object will be removed
-         * @param [fn] - The handler associated with this event to be removed.
-         * If fn is undefined, all the handlers of the given event name will be removed
-         * @returns Returns the object that 'off' is being called on
-         */
-        off(type?: string | number, fn?: (...params: any[]) => any): any;
         /**
          * Calls the handlers of the event name with given data
          * @example
@@ -38738,17 +39314,6 @@ declare namespace Core {
          * @returns Returns the object that 'trigger' is being called on
          */
         trigger(type: string | number, data?: any): any;
-        /**
-         * Same as 'on' except the handler will be called only once
-         * @example
-         * myObject.one('eventName', (eventParameter1, eventParameter2) => {
-         *  ...
-         * });
-         * @param type - The name of the event to listen to
-         * @param fn - The handler to be called when the event is triggered
-         * @returns Returns the object that 'one' is being called on
-         */
-        one(type: string | number, fn: (...params: any[]) => any): any;
     }
     /**
      * Gets the value of the specified hash parameter from the window URL
@@ -38756,19 +39321,7 @@ declare namespace Core {
      * @param defaultValue - Default return value
      * @returns A value of the hash parameter
      */
-    function getHashParam<T>(property: string, defaultValue: T): T;
-    /**
-     * Gets the value of the specified hash parameter from the window URL
-     * @param property - The property key from hash parameter
-     * @param defaultValue - Default return value
-     * @returns A value of the hash parameter
-     */
     function getHashParameter<T>(property: string, defaultValue: T): T;
-    /**
-     * Sets whether WebViewer is running inside a Windows App and should automatically use the WinRTPartRetriever for loading local XOD files
-     * @param isWindowsApp - Whether WebViewer is running inside a Windows app or not
-     */
-    function setIsWindowsApp(isWindowsApp: boolean): void;
     /**
      * Flag WebViewer as running inside a Windows App so that it automatically uses the WinRTPartRetriever for loading local XOD files
      */
@@ -38882,188 +39435,6 @@ declare namespace Core {
         };
     }
     /**
-     * The namespace for APIs dealing with document content editing
-     */
-    namespace ContentEdit {
-        /**
-         * Content Edit types.
-         * @property TEXT - Text type content.
-         * @property OBJECT - Object type content.
-         */
-        var Types: {
-            /**
-             * Text type content.
-             */
-            TEXT: string;
-            /**
-             * Object type content.
-             */
-            OBJECT: string;
-        };
-        /**
-         * @property TEXT_CONTENT_UPDATED - {@link Core.ContentEdit#event:textContentUpdated Core.ContentEdit.textContentUpdated }
-         * @property SEARCH_AND_REPLACE_STARTED - {@link Core.ContentEdit#event:searchAndReplaceStarted Core.ContentEdit.searchAndReplaceStarted }
-         * @property SEARCH_AND_REPLACE_TEXT_REPLACED - {@link Core.ContentEdit#event:searchAndReplaceTextReplaced Core.ContentEdit.searchAndReplaceTextReplaced }
-         * @property SEARCH_AND_REPLACE_TEXT_FOUND - {@link Core.ContentEdit#event:searchAndReplaceTextFound Core.ContentEdit.searchAndReplaceTextFound }
-         * @property SEARCH_AND_REPLACE_ENDED - {@link Core.ContentEdit#event:searchAndReplaceEnded Core.ContentEdit.searchAndReplaceEnded }
-         */
-        var Events: {
-            /**
-             * {@link Core.ContentEdit#event:textContentUpdated Core.ContentEdit.textContentUpdated }
-             */
-            TEXT_CONTENT_UPDATED: string;
-            /**
-             * {@link Core.ContentEdit#event:searchAndReplaceStarted Core.ContentEdit.searchAndReplaceStarted }
-             */
-            SEARCH_AND_REPLACE_STARTED: string;
-            /**
-             * {@link Core.ContentEdit#event:searchAndReplaceTextReplaced Core.ContentEdit.searchAndReplaceTextReplaced }
-             */
-            SEARCH_AND_REPLACE_TEXT_REPLACED: string;
-            /**
-             * {@link Core.ContentEdit#event:searchAndReplaceTextFound Core.ContentEdit.searchAndReplaceTextFound }
-             */
-            SEARCH_AND_REPLACE_TEXT_FOUND: string;
-            /**
-             * {@link Core.ContentEdit#event:searchAndReplaceEnded Core.ContentEdit.searchAndReplaceEnded }
-             */
-            SEARCH_AND_REPLACE_ENDED: string;
-        };
-        /**
-         * Preloads the content editing worker. If this function isn't called then the worker will be loaded when the content editing tool is enabled.
-         * @param documentViewer - The DocumentViewer to use as context for the page editing
-         * @returns Resolves after the worker has been loaded
-         */
-        function preloadWorker(documentViewer: Core.DocumentViewer): Promise<void>;
-        /**
-         * Update the document with new content
-         * @example
-         * instance.Core.ContentEdit.updateDocumentContent(contentEditPlaceholderAnnotation, 'New content');
-         * @param content - The new content
-         * @returns Resolves after the content has been updated
-         */
-        function updateDocumentContent(contentEditPlaceholderAnnotation: Core.Annotations.RectangleAnnotation, content: string): Promise<void>;
-        /**
-         * Gets the content box data for the passed in annotation.
-         * The passed in annotation must be a content edit placeholder annotation.
-         * @example
-         * const content = await instance.Core.ContentEdit.getDocumentContent(contentEditPlaceholderAnnotation);
-         * @returns content The document content associated with this content edit placeholder annotation
-         */
-        function getDocumentContent(contentEditPlaceholderAnnotation: Core.Annotations.RectangleAnnotation): Promise<string>;
-        /**
-         * A function that will search and replace text inside the document.
-         * @example
-         * instance.Core.ContentEdit.searchAndReplaceText({
-         *    toReplace: 'PDF',
-         *    replaceWith: 'DOCX',
-         *    documentViewer: instance.Core.documentViewer
-         * });
-         * @param options.toReplace - A string or global RegExp object that will be replaced on the page.
-         * @param options.replaceWith - The string that replaces the string or RegExp provided in the first parameter.
-         * @param options.documentViewer - DocumentViewer instance.
-         * @param [options.caseSensitive] - Is case sensitive search.
-         * @param [options.wholeWord] - Is serching the whole word.
-         * @param [options.wildcard] - Is searching with wildcard word.
-         * @param [options.regex] - Is searching with regular expression.
-         * @param [options.isSingleSearchReplace] - Is it single search and replace or whole document.
-         * @returns Returns promise which will resolve when the operation completes.
-         */
-        function searchAndReplaceText(options: {
-            toReplace: string | RegExp;
-            replaceWith: string;
-            documentViewer: Core.DocumentViewer;
-            caseSensitive?: boolean;
-            wholeWord?: boolean;
-            wildcard?: boolean;
-            regex?: boolean;
-            isSingleSearchReplace?: boolean;
-        }): Promise<void>;
-        /**
-         * Add a new content box
-         * @param options.pageNumber - The page number that the content is on
-         * @param options.position - The new position of content box, in PDF coordinates
-         * @param content - The content to add to the content box
-         * @returns Resolves after the content has been updated
-         */
-        function addNewParagraph(options: {
-            pageNumber: number;
-            position: string;
-        }, content: string): Promise<void>;
-        /**
-         * Set font of text content
-         * @param contentEditPlaceholderAnnotation - The annotation that represents the content where the font should be set
-         * @param font - The font to set
-         * @returns Resolves after the content has been updated
-         */
-        function setContentFont(contentEditPlaceholderAnnotation: Core.Annotations.Annotation, font: string): Promise<void>;
-        /**
-         * Set font size of text content
-         * @param contentEditPlaceholderAnnotation - The annotation that represents the content where font size should be set
-         * @param size - The font size to set
-         * @returns Resolves after the content has been updated
-         */
-        function setContentFontSize(contentEditPlaceholderAnnotation: Core.Annotations.Annotation, size: string): Promise<void>;
-        /**
-         * Align text content
-         * @param contentEditPlaceholderAnnotation - The annotation that represents the content where the text alignment should be set
-         * @param alignment - The text alignment to set
-         * @returns Resolves after the content has been updated
-         */
-        function alignContents(contentEditPlaceholderAnnotation: Core.Annotations.Annotation, alignment: string): Promise<void>;
-        /**
-         * Bold or unbold text content
-         * @param contentEditPlaceholderAnnotation - The annotation that represents the content where bold should be toggled
-         * @returns Resolves after the content has been updated
-         */
-        function toggleBoldContents(contentEditPlaceholderAnnotation: Core.Annotations.Annotation): Promise<void>;
-        /**
-         * Italicize or unitalicize text content
-         * @param contentEditPlaceholderAnnotation - The annotation that represents the content where italics should be toggled
-         * @returns Resolves after the content has been updated
-         */
-        function toggleItalicContents(contentEditPlaceholderAnnotation: Core.Annotations.Annotation): Promise<void>;
-        /**
-         * Underline or de-underline text content
-         * @param contentEditPlaceholderAnnotation - The annotation that represents the content where underline should be toggled
-         * @returns Resolves after the content has been updated
-         */
-        function toggleUnderlineContents(contentEditPlaceholderAnnotation: Core.Annotations.Annotation): Promise<void>;
-        /**
-         * Set font color of text content
-         * @param contentEditPlaceholderAnnotation - The annotation that represents the content where the text color should be set
-         * @param color - The color of the text to set
-         * @returns Resolves after the content has been updated
-         */
-        function setTextColor(contentEditPlaceholderAnnotation: Core.Annotations.Annotation, color: string): Promise<void>;
-        /**
-         * Get a list of fonts available for content editing
-         * @returns Resolves after the content has been updated, returns list of fonts
-         */
-        function getContentEditingFonts(): Promise<string[]>;
-    }
-    /**
-     * Sets the path to the Web Worker JavaScript file.
-     * By default the file is expected to be in the same directory as the html file of the viewer
-     * and the path should be specified relative to the html file
-     * @param path - Path to the Web Worker JS file relative to the html file of the viewer
-     */
-    function setWorkerPath(path: string): void;
-    /**
-     * Gets the path to the Web Worker JavaScript file
-     * @returns The path to the worker
-     */
-    function getWorkerPath(): string;
-    /**
-     * Set the location of the ContentEdit worker resource file InfixServerWasm.br.mem
-     * This will override the location specified by Core.setWorkerPath for InfixServerWasm.br.mem file.
-     */
-    var setResourcePath: any;
-    /**
-     * Get the location of the ContentEdit worker resource file InfixServerWasm.br.mem
-     */
-    var getResourcePath: any;
-    /**
      * The types of backend workers.
      * @property ASM - 'asm' Use of ASM.js worker.
      * @property WASM - 'ems' Use of the WebAssembly worker (or ASM.js on non-wasm browsers).
@@ -39107,7 +39478,7 @@ declare namespace Core {
      * WebViewer(...)
      *   .then(function(instance) {
      *     const documentViewerList = instance.Core.getDocumentViewers();
-     *     documentViewerList.forEach(documentViewer => documentViewer.loadDocument(doc, options));
+     *     documentViewerList.forEach(documentViewer => documentViewer.UI.loadDocument(doc, options));
      *   });
      * @returns Array of documentViewer objects that are being used for the UI
      */
@@ -39192,13 +39563,13 @@ declare namespace UI {
     /**
      * Add custom modal element to WebViewer.
      * <br /><br />
-     * Controlling custom modals is done using the element API, for example {@link UI.openElements openElements}, {@link UI.closeElements closeElements}, {@link UI.toggleElement toggleElement}, and {@link UI.disableElements disableElements}.
+     * Controlling custom modals is done using the element API, for example {@link UI.openElements openElements}, {@link UI.closeElements closeElements}, {@link UI.toggleElementVisibility toggleElementVisibility}, and {@link UI.disableElements disableElements}.
      * dateElement string passed on these function should be same as you set in options.dataElement.
      * <br /><br />
      * Every custom modal will add new &lt;div&gt; element with <b>CustomModal</b> and <b>&lt;options.dataElement string&gt;</b> set as class attribute
      * Modal with identical <em>options.dataElement</em> will get replaced by the latest modal options.
      * <br /><br />
-     * For styling these components, see <a href="https://www.pdftron.com/documentation/web/guides/customizing-styles/" target="_blank">Customizing WebViewer UI Styles</a>
+     * For styling these components, see <a href="https://docs.apryse.com/documentation/web/guides/customizing-styles/" target="_blank">Customizing WebViewer UI Styles</a>
      * <br /><br />
      * Note that in most cases WebViewer is run inside an iframe and in order for <i>options.disableEscapeKeyDown</i> to automatically work, the iframe must be the
      * active element. This can be done by setting the focus to the iframe programmatically.
@@ -39257,18 +39628,6 @@ declare namespace UI {
         header: any;
         body: any;
         footer: any;
-    }): void;
-    /**
-     * @param options.dataElement - Unique name of custom modal.
-     * @param [options.disableBackdropClick = false] - Disable closing modal when user clicks outside of content area
-     * @param [options.disableEscapeKeyDown = false] - Disable closing modal when user hit escape from keyboard
-     * @param options.render - Function rendering custom model contents
-     */
-    function setCustomModal(options: {
-        dataElement: string;
-        disableBackdropClick?: boolean;
-        disableEscapeKeyDown?: boolean;
-        render: UI.renderCustomModal;
     }): void;
     /**
      * Callback that gets passed to `options.render` in {@link UI.addCustomModal addCustomModal}.
@@ -39529,7 +39888,7 @@ declare namespace UI {
      *     // closes (hides) text popup and left panel in the UI
      *     instance.UI.closeElements([ 'menuOverlay', 'leftPanel' ]);
      *   });
-     * @param dataElements - Array of data-element attribute values for DOM elements. To find data-element of a DOM element, refer to <a href='https://www.pdftron.com/documentation/web/guides/hiding-elements/#finding-dataelement-attribute-values' target='_blank'>Finding data-element attribute values</a>.
+     * @param dataElements - Array of data-element attribute values for DOM elements. To find data-element of a DOM element, refer to <a href='https://docs.apryse.com/documentation/web/guides/hiding-elements/#finding-dataelement-attribute-values' target='_blank'>Finding data-element attribute values</a>.
      */
     function closeElements(dataElements: string[]): void;
     /**
@@ -39620,7 +39979,7 @@ declare namespace UI {
      * All toolbar groups have the data element in this format <strong>toolbarGroup-&#60;dataElementSuffix&#62</strong>.</p> <p>For example, if you set the dataElementSuffix as 'Draw',
      * the dataElement of your ribbon will be <strong>toolbarGroup-Draw</strong></p>
      * @param toolbarGroup.children - A list of elements to be added on the toolbar group header.
-     * Check [this guide]{@link https://www.pdftron.com/documentation/web/guides/customizing-header/#header-items} to see the available options to be used as a toolbar group child.
+     * Check [this guide]{@link https://docs.apryse.com/documentation/web/guides/customizing-header/#header-items} to see the available options to be used as a toolbar group child.
      * @param [toolbarGroup.useDefaultElements] - <p>If true, the common elements used in most toolbar groups will be added to the children list.</p>
      * <p>These elements are a spacer in the beginning and at the end of the header, the undo and redo buttons, and the eraser button.</p>
      * <p>In the example below you can see these elements being added. By default, the value will be false and these elements will not be added.</p>
@@ -39685,7 +40044,7 @@ declare namespace UI {
      *     // remove the 'Edit' toolbar group
      *     instance.UI.disableElements(['toolbarGroup-Edit']);
      *   });
-     * @param dataElements - Array of data-element attribute values for DOM elements. To find data-element of a DOM element, refer to <a href='https://www.pdftron.com/documentation/web/guides/hiding-elements/#finding-dataelement-attribute-values' target='_blank'>Finding data-element attribute values</a>.
+     * @param dataElements - Array of data-element attribute values for DOM elements. To find data-element of a DOM element, refer to <a href='https://docs.apryse.com/documentation/web/guides/hiding-elements/#finding-dataelement-attribute-values' target='_blank'>Finding data-element attribute values</a>.
      */
     function disableElements(dataElements: string[]): void;
     /**
@@ -39754,7 +40113,7 @@ declare namespace UI {
      *
      *     // disable reply for Freehand annotations
      *     instance.UI.disableReplyForAnnotations((annotation) => {
-     *       return annotation instanceof instance.Annotations.FreeHandAnnotation;
+     *       return annotation instanceof instance.Core.Annotations.FreeHandAnnotation;
      *     });
      *
      *     // disable reply for annotations authored by Guest
@@ -39903,7 +40262,7 @@ declare namespace UI {
      *     // remove left panel and left panel button from the DOM
      *     instance.UI.enableElements([ 'leftPanel', 'leftPanelButton' ]);
      *   });
-     * @param dataElements - Array of data-element attribute values for DOM elements. To find data-element of a DOM element, refer to <a href='https://www.pdftron.com/documentation/web/guides/hiding-elements/#finding-dataelement-attribute-values' target='_blank'>Finding data-element attribute values</a>.
+     * @param dataElements - Array of data-element attribute values for DOM elements. To find data-element of a DOM element, refer to <a href='https://docs.apryse.com/documentation/web/guides/hiding-elements/#finding-dataelement-attribute-values' target='_blank'>Finding data-element attribute values</a>.
      */
     function enableElements(dataElements: string[]): void;
     /**
@@ -40151,7 +40510,7 @@ declare namespace UI {
     function getCurrentLanguage(): string;
     /**
      * A getter that returns a stringified version of the 'custom' property that is passed to the WebViewer constructor
-     * <a href='https://www.pdftron.com/documentation/web/guides/config-files/#passing-custom-data' target='_blank'>Refer to the passing custom data section</a>.
+     * <a href='https://docs.apryse.com/documentation/web/guides/config-files/#passing-custom-data' target='_blank'>Refer to the passing custom data section</a>.
      * @returns returns a stringified version of the 'custom' property that is passed to the WebViewer constructor
      */
     function getCustomData(): string;
@@ -40170,15 +40529,6 @@ declare namespace UI {
      * @returns Current fit mode
      */
     function getFitMode(): string;
-    /**
-     * Check whether high contrast mode is enabled or not.
-     * @example
-     * WebViewer(...)
-     *   .then(function(instance) {
-     *     instance.UI.getIsHighContrastMode();
-     *   });
-     */
-    function getIsHighContrastMode(): void;
     /**
      * Return the current layout mode of the WebViewerInstance.
      * @example
@@ -40256,17 +40606,6 @@ declare namespace UI {
      * @returns min zoom level
      */
     function getMinZoomLevel(): number;
-    /**
-     * Get the currently selected pages
-     * @example
-     * // 6.0 and after
-     * WebViewer(...)
-     *   .then(function(instance) {
-     *     instance.UI.getSelectedThumbnailPageNumbers();
-     *   });
-     * @returns an array of select page numbers
-     */
-    function getSelectedThumbnailPageNumbers(): number[];
     /**
      * Return the current tool object.
      * @example
@@ -40347,7 +40686,7 @@ declare namespace UI {
      *   .then(function(instance) {
      *     console.log(instance.UI.isElementDisabled('leftPanel'));
      *   });
-     * @param dataElement - data-element attribute value for a DOM element. To find data-element of a DOM element, refer to <a href='https://www.pdftron.com/documentation/web/guides/hiding-elements/#finding-dataelement-attribute-values' target='_blank'>Finding data-element attribute values</a>.
+     * @param dataElement - data-element attribute value for a DOM element. To find data-element of a DOM element, refer to <a href='https://docs.apryse.com/documentation/web/guides/hiding-elements/#finding-dataelement-attribute-values' target='_blank'>Finding data-element attribute values</a>.
      * @returns Whether the element is disabled.
      */
     function isElementDisabled(dataElement: string): boolean;
@@ -40358,7 +40697,7 @@ declare namespace UI {
      *   .then(function(instance) {
      *     console.log(instance.UI.isElementOpen('leftPanel'));
      *   });
-     * @param dataElement - data-element attribute value for a DOM element. To find data-element of a DOM element, refer to <a href='https://www.pdftron.com/documentation/web/guides/hiding-elements/#finding-dataelement-attribute-values' target='_blank'>Finding data-element attribute values</a>.
+     * @param dataElement - data-element attribute value for a DOM element. To find data-element of a DOM element, refer to <a href='https://docs.apryse.com/documentation/web/guides/hiding-elements/#finding-dataelement-attribute-values' target='_blank'>Finding data-element attribute values</a>.
      * @returns Whether the element is open.
      */
     function isElementOpen(dataElement: string): boolean;
@@ -40398,7 +40737,7 @@ declare namespace UI {
      *   .then(function(instance) {
      *     console.log(instance.UI.isToolDisabled());
      *   });
-     * @param toolName - Name of the tool, either from <a href='https://www.pdftron.com/documentation/web/guides/annotations-and-tools/#list-of-tool-names' target='_blank'>tool names list</a> or the name you registered your custom tool with.
+     * @param toolName - Name of the tool, either from <a href='https://docs.apryse.com/documentation/web/guides/annotations-and-tools/#list-of-tool-names' target='_blank'>tool names list</a> or the name you registered your custom tool with.
      * @returns Whether the tool is disabled.
      */
     function isToolDisabled(toolName: string): boolean;
@@ -40453,6 +40792,10 @@ declare namespace UI {
          */
         rasterizerOptions?: any;
         /**
+         * If true, will load docx files with editing capabilities.
+         */
+        enableOfficeEditing?: boolean;
+        /**
          * A string that will be used to as the password to load a password protected document.
          */
         password?: string;
@@ -40473,7 +40816,7 @@ declare namespace UI {
          */
         xoddecryptOptions?: boolean;
         /**
-         * A boolean indicating whether to use http or streaming PartRetriever, it is recommended to keep streaming false for better performance. https://www.pdftron.com/documentation/web/guides/streaming-option.
+         * A boolean indicating whether to use http or streaming PartRetriever, it is recommended to keep streaming false for better performance. https://docs.apryse.com/documentation/web/guides/streaming-option/.
          */
         xodstreaming?: boolean;
         /**
@@ -40490,7 +40833,7 @@ declare namespace UI {
      * @example
      * WebViewer(...)
      *   .then(function(instance) {
-     *     instance.UI.loadDocument('https://www.pdftron.com/downloads/pl/test.pdf', {
+     *     instance.UI.loadDocument('https://myserver.com/files/test.pdf', {
      *       documentId: '1',
      *       filename: 'sample-1.pdf'
      *     });
@@ -40608,7 +40951,7 @@ declare namespace UI {
          *       label:'print button'
          *     });
          *   });
-         * @param items - Same as <a href='https://www.pdftron.com/documentation/web/guides/customizing-header#actionbutton' target='_blank'>ActionButton</a>
+         * @param items - Same as <a href='https://docs.apryse.com/documentation/web/guides/customizing-header/#actionbutton' target='_blank'>ActionButton</a>
          * @param [dataElement] - An optional string. If not given, items will be added in the beginning
          * @returns The instance itself
          */
@@ -41014,7 +41357,7 @@ declare namespace UI {
      *     // opens (shows) text popup and annotation popup in the UI
      *     instance.UI.openElements([ 'menuOverlay', 'leftPanel' ]);
      *   });
-     * @param dataElements - Array of data-element attribute values for DOM elements. To find data-element of a DOM element, refer to <a href='https://www.pdftron.com/documentation/web/guides/hiding-elements/#finding-dataelement-attribute-values' target='_blank'>Finding data-element attribute values</a>.
+     * @param dataElements - Array of data-element attribute values for DOM elements. To find data-element of a DOM element, refer to <a href='https://docs.apryse.com/documentation/web/guides/hiding-elements/#finding-dataelement-attribute-values' target='_blank'>Finding data-element attribute values</a>.
      */
     function openElements(dataElements: string[]): void;
     namespace OutlinesPanel {
@@ -41280,7 +41623,7 @@ declare namespace UI {
         onProgress?: (...params: any[]) => any;
     }): void;
     /**
-     * Registers tool in the document viewer tool mode map, and adds a button object to be used in the header. See <a href='https://www.pdftron.com/documentation/web/guides/customizing-tools' target='_blank'>Customizing tools</a> to learn how to make a tool.
+     * Registers tool in the document viewer tool mode map, and adds a button object to be used in the header. See <a href='https://docs.apryse.com/documentation/web/guides/customizing-tools/' target='_blank'>Customizing tools</a> to learn how to make a tool.
      * @example
      * WebViewer(...)
      *   .then(function(instance) {
@@ -41460,20 +41803,6 @@ declare namespace UI {
         regex?: boolean;
     }): void;
     /**
-     * Select thumbnails in the thumbnail panel. This requires the "ThumbnailMultiselect" feature to be enabled
-     * @example
-     * // 6.1 and after
-     * WebViewer(...)
-     *   .then(function(instance) {
-     *     instance.UI.enableFeatures(['ThumbnailMultiselect']);
-     *
-     *     const pageNumbersToSelect = [1, 2, 3];
-     *     instance.UI.selectThumbnailPages(pageNumbersToSelect);
-     *   });
-     * @param pageNumbers - array of page numbers to select
-     */
-    function selectThumbnailPages(pageNumbers: number[]): void;
-    /**
      * Sets a header group to be rendered in the Header element. This API comes useful when replacing the entire header items in small screens.
      * @example
      * WebViewer(...)
@@ -41502,7 +41831,7 @@ declare namespace UI {
      *   .then(function(instance) {
      *     instance.UI.setActivePalette('AnnotationCreateFreeText', 'fill')
      *   });
-     * @param toolName - Name of the tool, either from <a href='https://www.pdftron.com/documentation/web/guides/annotations-and-tools/#list-of-tool-names' target='_blank'>tool names list</a> or the name you registered your custom tool with.
+     * @param toolName - Name of the tool, either from <a href='https://docs.apryse.com/documentation/web/guides/annotations-and-tools/#list-of-tool-names' target='_blank'>tool names list</a> or the name you registered your custom tool with.
      * @param colorPalette - The palette to be activated. One of 'text', 'border' and 'fill'.
      */
     function setActivePalette(toolName: string, colorPalette: 'text' | 'border' | 'fill'): void;
@@ -41612,7 +41941,7 @@ declare namespace UI {
      *         title: "Radius Measurement", //Title for overlay
      *         label: "Radius", // Label to be shown for the value
      *         // Validate is a function to validate the annotation is valid for the current custom overlay
-     *         validate: annotation => annotation instanceof instance.Annotations.EllipseAnnotation,
+     *         validate: annotation => annotation instanceof instance.Core.Annotations.EllipseAnnotation,
      *         // The value to be shown in the custom overlay
      *         value: annotation => annotation.Width / 2,
      *         // onChange will be called whenever the value in the overlay changes from user input
@@ -41668,7 +41997,7 @@ declare namespace UI {
      */
     function setCustomNoteFilter(filterAnnotation: UI.filterAnnotation): void;
     /**
-     * Callback that gets passed to {@link UI.setCustomNoteFilter setCustomNoteFilter}.
+     * Callback that gets passed to {@link UI.setInlineCommmentFilter setInlineCommmentFilter}.
      * @param annotation - Annotation object
      */
     type filterAnnotation = (annotation: Core.Annotations.Annotation) => boolean;
@@ -41697,7 +42026,7 @@ declare namespace UI {
      *       tab:{
      *         dataElement: 'customPanelTab',
      *         title: 'customPanelTab',
-     *         img: 'https://www.pdftron.com/favicon-32x32.png',
+     *         img: '/favicon-32x32.png',
      *       },
      *       panel: {
      *         dataElement: 'customPanel',
@@ -41789,7 +42118,7 @@ declare namespace UI {
      */
     function setGrayscaleDarknessFactor(darknessFactor: number): void;
     /**
-     * Customize header. Refer to <a href='https://www.pdftron.com/documentation/web/guides/customizing-header' target='_blank'>Customizing header</a> for details.
+     * Customize header. Refer to <a href='https://docs.apryse.com/documentation/web/guides/customizing-header/' target='_blank'>Customizing header</a> for details.
      * @example
      * // Adding save annotations button to the end of the top header
      * WebViewer(...)
@@ -41823,12 +42152,12 @@ declare namespace UI {
      *         type: 'customElement',
      *         render: function() {
      *           var logo = document.createElement('img');
-     *           logo.src = 'https://www.pdftron.com/downloads/logo.svg';
+     *           logo.src = '/logo.svg';
      *           logo.style.width = '200px';
      *           logo.style.marginLeft = '10px';
      *           logo.style.cursor = 'pointer';
      *           logo.onclick = function() {
-     *             window.open('https://www.pdftron.com', '_blank');
+     *             window.open('https://www.apryse.com', '_blank');
      *           }
      *           return logo;
      *         }
@@ -41885,13 +42214,13 @@ declare namespace UI {
         getHeader(headerGroup: string): UI.Header;
         /**
          * Insert a button before the selected button from {@link UI.Header#get get}.
-         * @param obj - A header object. See <a href='https://www.pdftron.com/documentation/web/guides/customizing-header#header-items' target='_blank'>Header items</a> for details.
+         * @param obj - A header object. See <a href='https://docs.apryse.com/documentation/web/guides/customizing-header/#header-items' target='_blank'>Header items</a> for details.
          * @returns Header object for chaining. You can call {@link UI.Header#get get}, {@link UI.Header#getItems getItems}, {@link UI.Header#shift shift}, {@link UI.Header#unshift unshift}, {@link UI.Header#push push}, {@link UI.Header#pop pop} and {@link UI.Header#update update}.
          */
         insertBefore(obj: any): UI.Header;
         /**
          * Insert a button after the selected button from {@link UI.Header#get get}.
-         * @param obj - A header object. See <a href='https://www.pdftron.com/documentation/web/guides/customizing-header#header-items' target='_blank'>Header items</a> for details.
+         * @param obj - A header object. See <a href='https://docs.apryse.com/documentation/web/guides/customizing-header/#header-items' target='_blank'>Header items</a> for details.
          * @returns Header object for chaining. You can call {@link UI.Header#get get}, {@link UI.Header#getItems getItems}, {@link UI.Header#shift shift}, {@link UI.Header#unshift unshift}, {@link UI.Header#push push}, {@link UI.Header#pop pop} and {@link UI.Header#update update}.
          */
         insertAfter(obj: any): UI.Header;
@@ -41908,13 +42237,13 @@ declare namespace UI {
         shift(): UI.Header;
         /**
          * Adds a button (or buttons) to the beginning of the header.
-         * @param obj - Either one or array of header objects. See <a href='https://www.pdftron.com/documentation/web/guides/customizing-header#header-items' target='_blank'>Header items</a> for details.
+         * @param obj - Either one or array of header objects. See <a href='https://docs.apryse.com/documentation/web/guides/customizing-header/#header-items' target='_blank'>Header items</a> for details.
          * @returns Header object for chaining. You can call {@link UI.Header#get get}, {@link UI.Header#getItems getItems}, {@link UI.Header#shift shift}, {@link UI.Header#unshift unshift}, {@link UI.Header#push push}, {@link UI.Header#pop pop} and {@link UI.Header#update update}.
          */
         unshift(obj: any | object[]): UI.Header;
         /**
          * Adds a button (or buttons) to the end of the header.
-         * @param obj - Either one or array of header objects. See <a href='https://www.pdftron.com/documentation/web/guides/customizing-header#header-items' target='_blank'>Header items</a> for details.
+         * @param obj - Either one or array of header objects. See <a href='https://docs.apryse.com/documentation/web/guides/customizing-header/#header-items' target='_blank'>Header items</a> for details.
          * @returns Header object for chaining. You can call {@link UI.Header#get get}, {@link UI.Header#getItems getItems}, {@link UI.Header#shift shift}, {@link UI.Header#unshift unshift}, {@link UI.Header#push push}, {@link UI.Header#pop pop} and {@link UI.Header#update update}.
          */
         push(obj: any | object[]): UI.Header;
@@ -41931,17 +42260,6 @@ declare namespace UI {
         update(headerObjects: object[]): UI.Header;
     }
     /**
-     * Turns high contrast mode on or off to help with accessibility.
-     * @example
-     * // Using predefined string
-     * WebViewer(...)
-     *   .then(function(instance) {
-     *     instance.UI.setHighContrastMode(true);
-     *   });
-     * @param useHighContrastMode - If true then the UI will use high contrast colors to help with accessibility.
-     */
-    function setHighContrastMode(useHighContrastMode: boolean): void;
-    /**
      * Sets the color palette that will be used as a tool button's icon color.
      * @example
      * WebViewer(...)
@@ -41950,10 +42268,23 @@ declare namespace UI {
      *     // by default freetext tool button will use the color in text palette as its icon color
      *     instance.UI.setIconColor('AnnotationCreateFreeText', 'fill')
      *   });
-     * @param toolName - Name of the tool, either from <a href='https://www.pdftron.com/documentation/web/guides/annotations-and-tools/#list-of-tool-names' target='_blank'>tool names list</a> or the name you registered your custom tool with.
+     * @param toolName - Name of the tool, either from <a href='https://docs.apryse.com/documentation/web/guides/annotations-and-tools/#list-of-tool-names' target='_blank'>tool names list</a> or the name you registered your custom tool with.
      * @param colorPalette - The palette which will be used as a tool button's icon color. One of 'text', 'border' and 'fill'.
      */
     function setIconColor(toolName: string, colorPalette: string): void;
+    /**
+     * Return the annotations that have inline comment enabled on select
+     * @example
+     * WebViewer(...)
+     *   .then(function(instance) {
+     *     // only enable inline comment for free-hand annotations on select
+     *     instance.UI.setInlineCommmentFilter((annotation) => {
+     *       return annotation.ToolName === instance.Core.Tools.ToolNames.FREEHAND;
+     *     });
+     *   });
+     * @param filterAnnotation - Function that takes an annotation and returns if the annotation should have inline comment feature enabled when it's selected
+     */
+    function setInlineCommmentFilter(filterAnnotation: UI.filterAnnotation): void;
     /**
      * Set the language of WebViewer UI.
      * @example
@@ -42053,7 +42384,7 @@ declare namespace UI {
      * <span style='font-size: 18px'><b>Please carefully read the documentation and the notes below before using this API</b></span><br><br>
      *
      * <b>This API is experimental and should be used sparingly.</b> If you find you are heavily relying on this function,
-     *  it is recommended that you <a href='https://www.pdftron.com/documentation/web/guides/advanced-customization/'>fork the UI repo</a> and make the changes directly in the source code (Note.js).
+     *  it is recommended that you <a href='https://docs.apryse.com/documentation/web/guides/advanced-customization/'>fork the UI repo</a> and make the changes directly in the source code (Note.js).
      * <br><br>
      *
      *
@@ -42093,7 +42424,7 @@ declare namespace UI {
      *       // Add a button that makes the annotation blue
      *       const button = createElement('button');
      *       button.onmousedown = (e) => {
-     *         state.annotation.StrokeColor = new instance.Annotations.Color(0, 0, 255);
+     *         state.annotation.StrokeColor = new instance.Core.Annotations.Color(0, 0, 255);
      *         instance.UI.annotManager.redrawAnnotation(state.annotation)
      *       };
      *       button.innerHTML = 'Make me blue'
@@ -42271,7 +42602,7 @@ declare namespace UI {
      *   .then(function(instance) {
      *     instance.UI.setToolMode('AnnotationEdit');
      *   });
-     * @param toolName - Name of the tool, either from <a href='https://www.pdftron.com/documentation/web/guides/annotations-and-tools/#list-of-tool-names' target='_blank'>tool names list</a> or the name you registered your custom tool with.
+     * @param toolName - Name of the tool, either from <a href='https://docs.apryse.com/documentation/web/guides/annotations-and-tools/#list-of-tool-names' target='_blank'>tool names list</a> or the name you registered your custom tool with.
      */
     function setToolMode(toolName: string | Core.Tools.ToolNames): void;
     /**
@@ -42416,16 +42747,6 @@ declare namespace UI {
      * @param zoomStepFactors - An array that contains objects of zoomStep and zoom start level. zoomStepFactors must contain at least one zoomStepFactor object that has startZoom: 0
      */
     function setZoomStepFactors(zoomStepFactors: object[]): void;
-    /**
-     * Displays the custom error message
-     * @example
-     * WebViewer(...)
-     *   .then(function(instance) {
-     *     instance.UI.showErrorMessage('My error message');
-     *   });
-     * @param message - An error message
-     */
-    function showErrorMessage(message: string): void;
     /**
      * Show form field indicators to help navigate or guide users through the process of form filling.
      * @example
@@ -42694,23 +43015,13 @@ declare namespace UI {
         }): void;
     }
     /**
-     * Toggles a visibility state of the element to be visible/hidden. Note that toggleElement works only for panel/overlay/popup/modal elements.
-     * @example
-     * WebViewer(...)
-     *   .then(function(instance) {
-     *     instance.UI.toggleElement('leftPanel'); // open LeftPanel if it is closed, or vice versa
-     *   });
-     * @param dataElement - data-element attribute value for a DOM element. To find data-element of a DOM element, refer to <a href='https://www.pdftron.com/documentation/web/guides/hiding-elements/#finding-dataelement-attribute-values' target='_blank'>Finding data-element attribute values</a>.
-     */
-    function toggleElement(dataElement: string): void;
-    /**
      * Toggles the visibility of the element to be visible/hidden. Note that toggleElementVisibility works only for panel/overlay/popup/modal elements.
      * @example
      * WebViewer(...)
      *   .then(function(instance) {
      *     instance.UI.toggleElementVisibility('leftPanel'); // open LeftPanel if it is closed, or vice versa
      *   });
-     * @param dataElement - data-element attribute value for a DOM element. To find data-element of a DOM element, refer to <a href='https://www.pdftron.com/documentation/web/guides/hiding-elements/#finding-dataelement-attribute-values' target='_blank'>Finding data-element attribute values</a>.
+     * @param dataElement - data-element attribute value for a DOM element. To find data-element of a DOM element, refer to <a href='https://docs.apryse.com/documentation/web/guides/hiding-elements/#finding-dataelement-attribute-values' target='_blank'>Finding data-element attribute values</a>.
      */
     function toggleElementVisibility(dataElement: string): void;
     /**
@@ -42759,21 +43070,9 @@ declare namespace UI {
      *   .then(function(instance) {
      *     instance.UI.unregisterTool('MyTool');
      *   });
-     * @param toolName - Name of the tool, either from <a href='https://www.pdftron.com/documentation/web/guides/annotations-and-tools/#list-of-tool-names' target='_blank'>tool names list</a> or the name you registered your custom tool with.
+     * @param toolName - Name of the tool, either from <a href='https://docs.apryse.com/documentation/web/guides/annotations-and-tools/#list-of-tool-names' target='_blank'>tool names list</a> or the name you registered your custom tool with.
      */
     function unregisterTool(toolName: string): void;
-    /**
-     * Unselect selected thumbnails
-     * @example
-     * // 6.1 and after
-     * WebViewer(...)
-     *   .then(function(instance) {
-     *     const pageNumbersToUnselect = [1, 2];
-     *     instance.UI.unselectThumbnailPages(pageNumbersToUnselect);
-     *   });
-     * @param pageNumbers - array of page numbers to unselect
-     */
-    function unselectThumbnailPages(pageNumbers: number[]): void;
     /**
      * Update an element in the viewer.
      * @example
@@ -42794,10 +43093,10 @@ declare namespace UI {
      * WebViewer(...)
      *   .then(function(instance) {
      *     instance.UI.updateTool('AnnotationCreateSticky', {
-     *       buttonImage: 'https://www.pdftron.com/favicon-32x32.png'
+     *       buttonImage: '/favicon-32x32.png'
      *     });
      *   });
-     * @param toolName - Name of the tool, either from <a href='https://www.pdftron.com/documentation/web/guides/annotations-and-tools/#list-of-tool-names' target='_blank'>tool names list</a> or the name you registered your custom tool with.
+     * @param toolName - Name of the tool, either from <a href='https://docs.apryse.com/documentation/web/guides/annotations-and-tools/#list-of-tool-names' target='_blank'>tool names list</a> or the name you registered your custom tool with.
      * @param [properties] - Tool properties
      * @param [properties.buttonImage] - Path to an image or base64 data for the tool button
      * @param [properties.buttonName] - Name of the tool button that will be used in data-element
@@ -42966,7 +43265,6 @@ declare namespace UI {
      * @property DOCUMENT_LOADED - {@link UI#event:documentLoaded UI.Events.documentLoaded}
      * @property DOCUMENT_MERGED - {@link UI#event:documentMerged UI.Events.documentMerged}
      * @property FILE_DOWNLOADED - {@link UI#event:fileDownloaded UI.Events.fileDownloaded}
-     * @property FINISHED_SAVING_PDF - {@link UI#event:finishedSavingPDF UI.Events.finishedSavingPDF}
      * @property LOAD_ERROR - {@link UI#event:loaderror UI.Events.loaderror}
      * @property DRAG_OUTLINE - {@link UI#event:dragOutline UI.Events.dragOutline}
      * @property DROP_OUTLINE - {@link UI#event:dragOutline UI.Events.dragOutline}
@@ -43005,10 +43303,6 @@ declare namespace UI {
          * {@link UI#event:fileDownloaded UI.Events.fileDownloaded}
          */
         FILE_DOWNLOADED: string;
-        /**
-         * {@link UI#event:finishedSavingPDF UI.Events.finishedSavingPDF}
-         */
-        FINISHED_SAVING_PDF: string;
         /**
          * {@link UI#event:loaderror UI.Events.loaderror}
          */
@@ -43106,6 +43400,8 @@ declare namespace UI {
      * @property FilePicker - Ctrl/Cmd + O hotkey and a open file button that can be clicked to load local files.
      * @property LocalStorage - Store and retrieve tool styles from window.localStorage.
      * @property NotesPanel - A panel that displays information of listable annotations.
+     * @property InlineComment - A popup that allows to directly comment on the annotation when an annotation is selected.
+     * @property RightClickAnnotationPopup - Ability to open the annotation menu popup on right click.
      * @property Print - Ctrl/Cmd + P hotkey and a print button that can be clicked to print the current document.
      * @property Redaction - Redaction tools that can redact text or areas. Need fullAPI to be on to use this feature.
      * @property TextSelection - Ability to select text in a document.
@@ -43158,6 +43454,14 @@ declare namespace UI {
          * A panel that displays information of listable annotations.
          */
         NotesPanel: string;
+        /**
+         * A popup that allows to directly comment on the annotation when an annotation is selected.
+         */
+        InlineComment: string;
+        /**
+         * Ability to open the annotation menu popup on right click.
+         */
+        RightClickAnnotationPopup: string;
         /**
          * Ctrl/Cmd + P hotkey and a print button that can be clicked to print the current document.
          */
@@ -43979,7 +44283,7 @@ declare namespace UI {
          *       onClick: instance.downloadPdf,
          *     });
          *   });
-         * @param items - Same as <a href='https://www.pdftron.com/documentation/web/guides/customizing-header#header-items' target='_blank'>header items</a>
+         * @param items - Same as <a href='https://docs.apryse.com/documentation/web/guides/customizing-header/#header-items' target='_blank'>header items</a>
          * @param [dataElement] - An optional string. If not given, items will be added in the beginning
          * @returns The instance itself
          */
@@ -44126,9 +44430,10 @@ declare namespace UI {
     /**
      * Cleans up listeners and data from the WebViewer instance. Should be called when removing the WebViewer instance from the DOM.
      * @example
-     * webViewerInstance.UI.dispose()
+     * await webViewerInstance.UI.dispose();
+     * @returns A promise that resolves when disposing has been completed
      */
-    function dispose(): void;
+    function dispose(): Promise<void>;
     /**
      * WebViewer iframe window object
      * @example
@@ -44187,7 +44492,7 @@ declare type WebViewerOptions = {
      */
     config?: string;
     /**
-     * A serialized data object that will be passed into the iframe. The data can be accessed in the config file after deserializing. https://www.pdftron.com/documentation/web/guides/config-files/#passing-custom-data
+     * A serialized data object that will be passed into the iframe. The data can be accessed in the config file after deserializing. https://docs.apryse.com/documentation/web/guides/config-files/#passing-custom-data
      */
     custom?: string;
     /**
@@ -44286,7 +44591,7 @@ declare type WebViewerOptions = {
      */
     backendType?: string;
     /**
-     * A boolean indicating whether Downloader should be used on urls (PDF only). https://www.pdftron.com/documentation/web/guides/usedownloader-option/.
+     * A boolean indicating whether Downloader should be used on urls (PDF only). https://docs.apryse.com/documentation/web/guides/usedownloader-option/.
      */
     useDownloader?: boolean;
     workerTransportPromise?: {
@@ -44330,7 +44635,7 @@ declare type WebViewerOptions = {
      */
     documentXFDFRetriever?: Core.DocumentViewer.DocumentXFDFRetriever;
     /**
-     * A boolean indicating whether to use http or streaming PartRetriever, it is recommended to keep streaming false for better performance. https://www.pdftron.com/documentation/web/guides/streaming-option.
+     * A boolean indicating whether to use http or streaming PartRetriever, it is recommended to keep streaming false for better performance. https://docs.apryse.com/documentation/web/guides/streaming-option/.
      */
     streaming?: boolean;
     /**
@@ -44355,6 +44660,10 @@ declare type WebViewerOptions = {
      * If set to true, as annotations are imported/created they will each be numbered. Starting at 1, each annotation will be assigned the next greatest available number.
      */
     enableAnnotationNumbering?: boolean;
+    /**
+     * If true, will load docx files with editing capabilities.
+     */
+    enableOfficeEditing?: boolean;
     /**
      * If true then MultiViewerMode will not show compare overlay annotations.
      */

@@ -1,15 +1,16 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link WebViewerInstance.openElements: https://www.pdftron.com/api/web/WebViewerInstance.html#openElements__anchor
-// @link WebViewerInstance.setToolMode: https://www.pdftron.com/api/web/WebViewerInstance.html#setToolMode__anchor
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
+// @link WebViewerInstance.openElements: https://docs.apryse.com/api/web/UI.html#.openElements__anchor
+// @link WebViewerInstance.setToolMode: https://docs.apryse.com/api/web/UI.html#.setToolMode__anchor
 
-// @link AnnotationManager: https://www.pdftron.com/api/web/Core.AnnotationManager.html
-// @link AnnotationManager.setCurrentUser: https://www.pdftron.com/api/web/Core.AnnotationManager.html#setCurrentUser__anchor
-// @link AnnotationManager.getCurrentUser: https://www.pdftron.com/api/web/Core.AnnotationManager.html#getCurrentUser__anchor
-// @link AnnotationManager.setIsAdminUser: https://www.pdftron.com/api/web/Core.AnnotationManager.html#setIsAdminUser__anchor
-// @link AnnotationManager.setReadOnly: https://www.pdftron.com/api/web/Core.AnnotationManager.html#setReadOnly__anchor
-// @link AnnotationManager.getAnnotationsList: https://www.pdftron.com/api/web/Core.AnnotationManager.html#getAnnotationsList__anchor
-// @link AnnotationManager.showAnnotations: https://www.pdftron.com/api/web/Core.AnnotationManager.html#showAnnotations__anchor
-// @link AnnotationManager.hideAnnotations: https://www.pdftron.com/api/web/Core.AnnotationManager.html#hideAnnotations__anchor
+// @link AnnotationManager: https://docs.apryse.com/api/web/Core.AnnotationManager.html
+// @link AnnotationManager.setCurrentUser: https://docs.apryse.com/api/web/Core.AnnotationManager.html#setCurrentUser__anchor
+// @link AnnotationManager.getCurrentUser: https://docs.apryse.com/api/web/Core.AnnotationManager.html#getCurrentUser__anchor
+// @link AnnotationManager.promoteUserToAdmin: https://docs.apryse.com/api/web/Core.AnnotationManager.html#promoteUserToAdmin__anchor
+// @link AnnotationManager.demoteUserFromAdmin: https://docs.apryse.com/api/web/Core.AnnotationManager.html#demoteUserFromAdmin__anchor
+// @link AnnotationManager.enableReadOnlyMode: https://docs.apryse.com/api/web/Core.AnnotationManager.html#enableReadOnlyMode__anchor
+// @link AnnotationManager.getAnnotationsList: https://docs.apryse.com/api/web/Core.AnnotationManager.html#getAnnotationsList__anchor
+// @link AnnotationManager.showAnnotations: https://docs.apryse.com/api/web/Core.AnnotationManager.html#showAnnotations__anchor
+// @link AnnotationManager.hideAnnotations: https://docs.apryse.com/api/web/Core.AnnotationManager.html#hideAnnotations__anchor
 
 WebViewer(
   {

@@ -1,13 +1,13 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link WebViewerInstance.registerTool: https://www.pdftron.com/api/web/WebViewerInstance.html#registerTool__anchor
-// @link WebViewerInstance.unregisterTool: https://www.pdftron.com/api/web/WebViewerInstance.html#unregisterTool__anchor
-// @link WebViewerInstance.setHeaderItems: https://www.pdftron.com/api/web/WebViewerInstance.html#setHeaderItems__anchor
-// @link WebViewerInstance.setToolMode: https://www.pdftron.com/api/web/WebViewerInstance.html#setToolMode__anchor
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
+// @link WebViewerInstance.registerTool: https://docs.apryse.com/api/web/WebViewerInstance.html#registerTool__anchor
+// @link WebViewerInstance.unregisterTool: https://docs.apryse.com/api/web/WebViewerInstance.html#unregisterTool__anchor
+// @link WebViewerInstance.setHeaderItems: https://docs.apryse.com/api/web/WebViewerInstance.html#setHeaderItems__anchor
+// @link WebViewerInstance.setToolMode: https://docs.apryse.com/api/web/WebViewerInstance.html#setToolMode__anchor
 
-// @link Header: https://www.pdftron.com/api/web/Header.html
-// @link Header.get: https://www.pdftron.com/api/web/Header.html#get__anchor
-// @link Header.getHeader: https://www.pdftron.com/api/web/Header.html#getHeader__anchor
-// @link Header.insertBefore: https://www.pdftron.com/api/web/Header.html#insertBefore__anchor
+// @link Header: https://docs.apryse.com/api/web/UI.Header.html
+// @link Header.get: https://docs.apryse.com/api/web/UI.Header.html#get__anchor
+// @link Header.getHeader: https://docs.apryse.com/api/web/UI.Header.html#getHeader__anchor
+// @link Header.insertBefore: https://docs.apryse.com/api/web/UI.Header.html#insertBefore__anchor
 (function(exports) {
   const TRIANGLE_TOOL_NAME = 'AnnotationCreateTriangle';
   WebViewer(

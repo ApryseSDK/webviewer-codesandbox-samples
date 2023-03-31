@@ -16,6 +16,9 @@
     "comment": "Komentarz",
     "reply": "Odpowiedz",
     "copy": "Kopiuj",
+    "cut": "Cięcie",
+    "paste": "Pasta",
+    "pasteWithoutFormatting": "Wklej bez formatowania",
     "delete": "Usuń",
     "group": "Grupuj",
     "ungroup": "Rozgrupuj",
@@ -78,6 +81,7 @@
     "showLess": "Pokaż mniej",
     "showMore": "Pokaż więcej",
     "chooseFile": "Wybierz plik",
+    "changeDate": "Zmień datę",
     "browse": "Przeglądaj pliki",
     "selectYourOption": "Wybierz swoją opcję",
     "open": "Otwóz",
@@ -85,6 +89,7 @@
     "select": "Wybierz",
     "moveToTop": "Przejdź na górę",
     "moveToBottom": "Przejdź na dół",
+    "backToMenu": "Powrót do menu",
     "redactPages": "Redaguj strony",
     "playAudio": "Odtwórz dźwięk",
     "pauseAudio": "Wstrzymaj dźwięk",
@@ -96,7 +101,8 @@
     "comparePages": "Porównaj strony",
     "startComparison": "Rozpocznij porównanie",
     "back": "Z powrotem",
-    "clearSignature": "Wyraźny podpis"
+    "clearSignature": "Wyraźny podpis",
+    "newDocument": "Nowy dokument"
   },
   "annotation": {
     "areaMeasurement": "Pomiar powierzchni",
@@ -1063,6 +1069,23 @@
   },
   "languageModal": {
     "selectLanguage": "Wybierz język"
+  },
+  "officeEditor": {
+    "bold": "Pogrubiony",
+    "italic": "italski",
+    "underline": "Podkreślać",
+    "textColor": "Kolor tekstu",
+    "leftAlign": "Wyrównaj do lewej",
+    "centerAlign": "Wyrównaj do środka",
+    "rightAlign": "Wyrównaj do prawej",
+    "justify": "Uzasadniać",
+    "lineSpacing": "Odstępy między wierszami i akapitami",
+    "bulletList": "Lista wypunktowana",
+    "numberList": "Lista numerowana",
+    "insertLink": "Wstaw łącze",
+    "insertImage": "Umieść obraz",
+    "notAvailableInDemoMode": "Niedostępne w trybie demonstracyjnym",
+    "notSupportedOnMobile": "Edycja pakietu Office nie jest obsługiwana na urządzeniach mobilnych."
   },
   "insertPageModal": {
     "title": "Dodaj nową stronę",
