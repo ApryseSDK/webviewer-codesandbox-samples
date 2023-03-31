@@ -1,14 +1,14 @@
 //---------------------------------------------------------------------------------------
-// Copyright (c) 2001-2019 by PDFTron Systems Inc. All Rights Reserved.
+// Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
-  // @link PDFNet.TextSearch: https://www.pdftron.com/api/web/Core.PDFNet.TextSearch.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
-  // @link PDFNet.LinkAnnot: https://www.pdftron.com/api/web/Core.PDFNet.LinkAnnot.html
-  // @link Highlights: https://www.pdftron.com/api/web/Core.PDFNet.Highlights.html
+  // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
+  // @link PDFNet.TextSearch: https://docs.apryse.com/api/web/Core.PDFNet.TextSearch.html
+  // @link PDFNet.PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.LinkAnnot: https://docs.apryse.com/api/web/Core.PDFNet.LinkAnnot.html
+  // @link Highlights: https://docs.apryse.com/api/web/Core.PDFNet.Highlights.html
 
   exports.runTextSearchTest = () => {
     const PDFNet = exports.Core.PDFNet;
@@ -99,7 +99,7 @@
                   const y2 = Math.max(Math.max(Math.max(currQuad.p1y, currQuad.p2y), currQuad.p3y), currQuad.p4y);
 
                   const hyperLink = await PDFNet.LinkAnnot.create(doc, await PDFNet.Rect.init(x1, y1, x2, y2));
-                  await hyperLink.setAction(await PDFNet.Action.createURI(doc, 'http://www.pdftron.com'));
+                  await hyperLink.setAction(await PDFNet.Action.createURI(doc, 'http://www.apryse.com'));
                   await curPage.annotPushBack(hyperLink);
                 }
                 hlts.next();

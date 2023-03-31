@@ -1,18 +1,18 @@
 //---------------------------------------------------------------------------------------
-// Copyright (c) 2001-2020 by PDFTron Systems Inc. All Rights Reserved.
+// Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/PDFNet.PDFNet.html
-  // @link PDFDoc: https://www.pdftron.com/api/web/PDFNet.PDFDoc.html
-  // @link ElementBuilder: https://www.pdftron.com/api/web/PDFNet.ElementBuilder.html
-  // @link ElementWriter: https://www.pdftron.com/api/web/PDFNet.ElementWriter.html
-  // @link Image: https://www.pdftron.com/api/web/PDFNet.Image.html
-  // @link Page: https://www.pdftron.com/api/web/PDFNet.Page.html
-  // @link WidgetAnnot: https://www.pdftron.com/api/web/PDFNet.WidgetAnnot.html
-  // @link Obj: https://www.pdftron.com/api/web/PDFNet.Obj.html
-  // @link PDFNet.Field: https://www.pdftron.com/api/web/PDFNet.Field.html
+  // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
+  // @link PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link ElementBuilder: https://docs.apryse.com/api/web/Core.PDFNet.ElementBuilder.html
+  // @link ElementWriter: https://docs.apryse.com/api/web/Core.PDFNet.ElementWriter.html
+  // @link Image: https://docs.apryse.com/api/web/Core.PDFNet.Image.html
+  // @link Page: https://docs.apryse.com/api/web/Core.PDFNet.Page.html
+  // @link WidgetAnnot: https://docs.apryse.com/api/web/Core.PDFNet.WidgetAnnot.html
+  // @link Obj: https://docs.apryse.com/api/web/Core.PDFNet.Obj.html
+  // @link PDFNet.Field: https://docs.apryse.com/api/web/Core.PDFNet.Field.html
 
   exports.runDigitalSignaturesTest = () => {
     const PDFNet = exports.Core.PDFNet;
@@ -516,7 +516,7 @@
       }
 
       // ////////////////// TEST 4: Verify a document's digital signatures.
-      // EXPERIMENTAL. Digital signature verification is undergoing active development, but currently does not support a number of features. If we are missing a feature that is important to you, or if you have files that do not act as expected, please contact us using one of the following forms: https://www.pdftron.com/form/trial-support/ or https://www.pdftron.com/form/request/
+      // EXPERIMENTAL. Digital signature verification is undergoing active development, but currently does not support a number of features. If we are missing a feature that is important to you, or if you have files that do not act as expected, please contact us using one of the following forms: https://apryse.com/form/trial-support or https://apryse.com/form/request
       try {
         if (!(await VerifyAllAndPrint(input_path + 'waiver_withApprovalField_certified_approved.pdf', input_path + 'pdftron.cer'))) {
           ret = 1;

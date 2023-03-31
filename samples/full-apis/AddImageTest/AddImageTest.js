@@ -1,23 +1,23 @@
 //---------------------------------------------------------------------------------------
-// Copyright (c) 2001-2019 by PDFTron Systems Inc. All Rights Reserved.
+// Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------
-// Copyright (c) 2001-2019 by PDFTron Systems Inc. All Rights Reserved.
+// Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.PDFNet.html
-  // @link PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
-  // @link ElementBuilder: https://www.pdftron.com/api/web/Core.PDFNet.ElementBuilder.html
-  // @link ElementWriter: https://www.pdftron.com/api/webCore./PDFNet.ElementWriter.html
-  // @link Image: https://www.pdftron.com/api/web/Core.PDFNet.Image.html
-  // @link Matrix2D: https://www.pdftron.com/api/web/Core.PDFNet.Matrix2D.html
-  // @link ObjSet: https://www.pdftron.com/api/web/Core.PDFNet.ObjSet.html
-  // @link Obj: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html
-  // @link PDFNet.Font: https://www.pdftron.com/api/web/Core.PDFNet.Font.html
-  // @link SDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.SDFDoc.html
+  // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
+  // @link PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link ElementBuilder: https://docs.apryse.com/api/web/Core.PDFNet.ElementBuilder.html
+  // @link ElementWriter: https://docs.apryse.com/api/web/Core.PDFNet.ElementWriter.html
+  // @link Image: https://docs.apryse.com/api/web/Core.PDFNet.Image.html
+  // @link Matrix2D: https://docs.apryse.com/api/web/Core.PDFNet.Matrix2D.html
+  // @link ObjSet: https://docs.apryse.com/api/web/Core.PDFNet.ObjSet.html
+  // @link Obj: https://docs.apryse.com/api/web/Core.PDFNet.Obj.html
+  // @link PDFNet.Font: https://docs.apryse.com/api/web/Core.PDFNet.Font.html
+  // @link SDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.SDFDoc.html
 
   exports.runAddImageTest = () => {
     const PDFNet = exports.Core.PDFNet;

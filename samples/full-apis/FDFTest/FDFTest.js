@@ -1,20 +1,20 @@
 //---------------------------------------------------------------------------------------
-// Copyright (c) 2001-2019 by PDFTron Systems Inc. All Rights Reserved.
+// Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.PDFNet.html
-  // @link PDFNet.runWithCleanup: https://www.pdftron.com/api/web/Core.PDFNet.html#.runWithCleanup__anchor
+  // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
+  // @link PDFNet.runWithCleanup: https://docs.apryse.com/api/web/Core.PDFNet.html#.runWithCleanup__anchor
 
-  // @link PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
-  // @link PDFDoc.createFromURL: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#.createFromURL__anchor
-  // @link PDFDoc.initSecurityHandler: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#initSecurityHandler__anchor
-  // @link PDFDoc.fdfUpdate: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#fdfUpdate__anchor
-  // @link PDFDoc.saveMemoryBuffer: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#saveMemoryBuffer__anchor
+  // @link PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFDoc.createFromURL: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html#.createFromURL__anchor
+  // @link PDFDoc.initSecurityHandler: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html#initSecurityHandler__anchor
+  // @link PDFDoc.fdfUpdate: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html#fdfUpdate__anchor
+  // @link PDFDoc.saveMemoryBuffer: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html#saveMemoryBuffer__anchor
 
-  // @link FDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.FDFDoc.html
-  // @link FDFDoc.createFromXFDF: https://www.pdftron.com/api/web/Core.PDFNet.FDFDoc.html#.createFromXFDF__anchor
+  // @link FDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.FDFDoc.html
+  // @link FDFDoc.createFromXFDF: https://docs.apryse.com/api/web/Core.PDFNet.FDFDoc.html#.createFromXFDF__anchor
 
   const PDFNet = exports.Core.PDFNet;
 

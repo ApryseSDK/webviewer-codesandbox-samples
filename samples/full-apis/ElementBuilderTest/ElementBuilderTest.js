@@ -1,14 +1,14 @@
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.PDFNet.html
-  // @link PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
-  // @link ElementBuilder: https://www.pdftron.com/api/web/Core.PDFNet.ElementBuilder.html
-  // @link ElementWriter: https://www.pdftron.com/api/web/Core.PDFNet.ElementWriter.html
-  // @link GState: https://www.pdftron.com/api/web/Core.PDFNet.GState.html
-  // @link Image: https://www.pdftron.com/api/web/Core.PDFNet.Image.html
-  // @link Matrix2D: https://www.pdftron.com/api/web/Core.PDFNet.Matrix2D.html
-  // @link ColorPt: https://www.pdftron.com/api/web/Core.PDFNet.ColorPt.html
-  // @link ColorSpace: https://www.pdftron.com/api/web/Core.PDFNet.ColorSpace.html
-  // @link PDFNet.Rect: https://www.pdftron.com/api/web/Core.PDFNet.Rect.html
+  // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
+  // @link PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link ElementBuilder: https://docs.apryse.com/api/web/Core.PDFNet.ElementBuilder.html
+  // @link ElementWriter: https://docs.apryse.com/api/web/Core.PDFNet.ElementWriter.html
+  // @link GState: https://docs.apryse.com/api/web/Core.PDFNet.GState.html
+  // @link Image: https://docs.apryse.com/api/web/Core.PDFNet.Image.html
+  // @link Matrix2D: https://docs.apryse.com/api/web/Core.PDFNet.Matrix2D.html
+  // @link ColorPt: https://docs.apryse.com/api/web/Core.PDFNet.ColorPt.html
+  // @link ColorSpace: https://docs.apryse.com/api/web/Core.PDFNet.ColorSpace.html
+  // @link PDFNet.Rect: https://docs.apryse.com/api/web/Core.PDFNet.Rect.html
 
   exports.runElementBuilderTest = () => {
     const PDFNet = exports.Core.PDFNet;

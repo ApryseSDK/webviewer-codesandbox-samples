@@ -1,22 +1,22 @@
 //---------------------------------------------------------------------------------------
-// Copyright (c) 2001-2019 by PDFTron Systems Inc. All Rights Reserved.
+// Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
-  // @link PDFNet.ElementWriter: https://www.pdftron.com/api/web/Core.PDFNet.ElementWriter.html
-  // @link PDFNet.ElementBuilder: https://www.pdftron.com/api/web/Core.PDFNet.ElementBuilder.html
-  // @link PDFNet.Element: https://www.pdftron.com/api/web/Core.PDFNet.Element.html
-  // @link PDFNet.Font: https://www.pdftron.com/api/web/Core.PDFNet.Font.html
-  // @link PDFNet.GState: https://www.pdftron.com/api/web/Core.PDFNet.GState.html
-  // @link PDFNet.ColorSpace: https://www.pdftron.com/api/web/Core.PDFNet.ColorSpace.html
-  // @link PDFNet.ColorPt: https://www.pdftron.com/api/web/Core.PDFNet.ColorPt.html
-  // @link PDFNet.Annot: https://www.pdftron.com/api/web/Core.PDFNet.Annot.html
-  // @link PDFNet.WidgetAnnot: https://www.pdftron.com/api/web/Core.PDFNet.WidgetAnnot.html
-  // @link PDFNet.FileSpec: https://www.pdftron.com/api/web/Core.PDFNet.FileSpec.html
-  // @link PDFNet.Action: https://www.pdftron.com/api/web/Core.PDFNet.Action.html
-  // @link PDFNet.Field: https://www.pdftron.com/api/web/Core.PDFNet.Field.html
+  // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.ElementWriter: https://docs.apryse.com/api/web/Core.PDFNet.ElementWriter.html
+  // @link PDFNet.ElementBuilder: https://docs.apryse.com/api/web/Core.PDFNet.ElementBuilder.html
+  // @link PDFNet.Element: https://docs.apryse.com/api/web/Core.PDFNet.Element.html
+  // @link PDFNet.Font: https://docs.apryse.com/api/web/Core.PDFNet.Font.html
+  // @link PDFNet.GState: https://docs.apryse.com/api/web/Core.PDFNet.GState.html
+  // @link PDFNet.ColorSpace: https://docs.apryse.com/api/web/Core.PDFNet.ColorSpace.html
+  // @link PDFNet.ColorPt: https://docs.apryse.com/api/web/Core.PDFNet.ColorPt.html
+  // @link PDFNet.Annot: https://docs.apryse.com/api/web/Core.PDFNet.Annot.html
+  // @link PDFNet.WidgetAnnot: https://docs.apryse.com/api/web/Core.PDFNet.WidgetAnnot.html
+  // @link PDFNet.FileSpec: https://docs.apryse.com/api/web/Core.PDFNet.FileSpec.html
+  // @link PDFNet.Action: https://docs.apryse.com/api/web/Core.PDFNet.Action.html
+  // @link PDFNet.Field: https://docs.apryse.com/api/web/Core.PDFNet.Field.html
 
   exports.runInteractiveFormsTest = () => {
     const PDFNet = exports.Core.PDFNet;
@@ -177,7 +177,7 @@
         await annot4.setAppearance(trueButtonApp, PDFNet.Annot.State.e_down);
 
         // Create 'SubmitForm' action. The action will be linked to the button.
-        const url = await PDFNet.FileSpec.createURL(doc, 'http://www.pdftron.com');
+        const url = await PDFNet.FileSpec.createURL(doc, 'http://www.apryse.com');
         const buttonAction = await PDFNet.Action.createSubmitForm(url);
 
         // Associate the above action with 'Down' event in annotations action dictionary.

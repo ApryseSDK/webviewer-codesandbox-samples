@@ -1,47 +1,47 @@
 //---------------------------------------------------------------------------------------
-// Copyright (c) 2001-2019 by PDFTron Systems Inc. All Rights Reserved.
+// Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
 (exports => {
   exports.runAnnotationTest = async () => {
-    // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.PDFNet.html
-    // @link PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
-    // @link ElementBuilder: https://www.pdftron.com/api/web/Core.PDFNet.ElementBuilder.html
-    // @link ElementWriter: https://www.pdftron.com/api/web/Core.PDFNet.ElementWriter.html
-    // @link GState: https://www.pdftron.com/api/web/Core.PDFNet.GState.html
+    // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
+    // @link PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
+    // @link ElementBuilder: https://docs.apryse.com/api/web/Core.PDFNet.ElementBuilder.html
+    // @link ElementWriter: https://docs.apryse.com/api/web/Core.PDFNet.ElementWriter.html
+    // @link GState: https://docs.apryse.com/api/web/Core.PDFNet.GState.html
 
-    // @link Iterator: https://www.pdftron.com/api/web/Core.PDFNet.Iterator.html
-    // @link DictIterator: https://www.pdftron.com/api/web/Core.PDFNet.DictIterator.html
-    // @link Page: https://www.pdftron.com/api/web/Core.PDFNet.Page.html
-    // @link ColorPt: https://www.pdftron.com/api/web/Core.PDFNet.ColorPt.html
-    // @link Annot: https://www.pdftron.com/api/web/Core.PDFNet.Annot.html
-    // @link AnnotBorderStyle: https://www.pdftron.com/api/web/Core.PDFNet.AnnotBorderStyle.html
+    // @link Iterator: https://docs.apryse.com/api/web/Core.PDFNet.Iterator.html
+    // @link DictIterator: https://docs.apryse.com/api/web/Core.PDFNet.DictIterator.html
+    // @link Page: https://docs.apryse.com/api/web/Core.PDFNet.Page.html
+    // @link ColorPt: https://docs.apryse.com/api/web/Core.PDFNet.ColorPt.html
+    // @link Annot: https://docs.apryse.com/api/web/Core.PDFNet.Annot.html
+    // @link AnnotBorderStyle: https://docs.apryse.com/api/web/Core.PDFNet.AnnotBorderStyle.html
 
-    // @link CaretAnnot: https://www.pdftron.com/api/web/Core.PDFNet.CaretAnnot.html
-    // @link CircleAnnot: https://www.pdftron.com/api/web/Core.PDFNet.CircleAnnot.html
-    // @link FileAttachmentAnnot: https://www.pdftron.com/api/web/Core.PDFNet.FileAttachmentAnnot.html
-    // @link FileSpec: https://www.pdftron.com/api/web/Core.PDFNet.FileSpec.html
-    // @link FreeTextAnnot: https://www.pdftron.com/api/web/Core.PDFNet.FreeTextAnnot.html
-    // @link HighlightAnnot: https://www.pdftron.com/api/web/Core.PDFNet.HighlightAnnot.html
-    // @link InkAnnot: https://www.pdftron.com/api/web/Core.PDFNet.InkAnnot.html
-    // @link LinkAnnot: https://www.pdftron.com/api/web/Core.PDFNet.LinkAnnot.html
-    // @link LineAnnot: https://www.pdftron.com/api/web/Core.PDFNet.LineAnnot.html
-    // @link PolygonAnnot: https://www.pdftron.com/api/web/Core.PDFNet.PolygonAnnot.html
-    // @link PolyLineAnnot: https://www.pdftron.com/api/web/Core.PDFNet.PolyLineAnnot.html
-    // @link RubberStampAnnot: https://www.pdftron.com/api/web/Core.PDFNet.RubberStampAnnot.html
-    // @link SquareAnnot: https://www.pdftron.com/api/web/Core.PDFNet.SquareAnnot.html
-    // @link SquigglyAnnot: https://www.pdftron.com/api/web/Core.PDFNet.SquigglyAnnot.html
-    // @link SoundAnnot: https://www.pdftron.com/api/web/Core.PDFNet.SoundAnnot.html
-    // @link TextAnnot: https://www.pdftron.com/api/web/Core.PDFNet.TextAnnot.html
+    // @link CaretAnnot: https://docs.apryse.com/api/web/Core.PDFNet.CaretAnnot.html
+    // @link CircleAnnot: https://docs.apryse.com/api/web/Core.PDFNet.CircleAnnot.html
+    // @link FileAttachmentAnnot: https://docs.apryse.com/api/web/Core.PDFNet.FileAttachmentAnnot.html
+    // @link FileSpec: https://docs.apryse.com/api/web/Core.PDFNet.FileSpec.html
+    // @link FreeTextAnnot: https://docs.apryse.com/api/web/Core.PDFNet.FreeTextAnnot.html
+    // @link HighlightAnnot: https://docs.apryse.com/api/web/Core.PDFNet.HighlightAnnot.html
+    // @link InkAnnot: https://docs.apryse.com/api/web/Core.PDFNet.InkAnnot.html
+    // @link LinkAnnot: https://docs.apryse.com/api/web/Core.PDFNet.LinkAnnot.html
+    // @link LineAnnot: https://docs.apryse.com/api/web/Core.PDFNet.LineAnnot.html
+    // @link PolygonAnnot: https://docs.apryse.com/api/web/Core.PDFNet.PolygonAnnot.html
+    // @link PolyLineAnnot: https://docs.apryse.com/api/web/Core.PDFNet.PolyLineAnnot.html
+    // @link RubberStampAnnot: https://docs.apryse.com/api/web/Core.PDFNet.RubberStampAnnot.html
+    // @link SquareAnnot: https://docs.apryse.com/api/web/Core.PDFNet.SquareAnnot.html
+    // @link SquigglyAnnot: https://docs.apryse.com/api/web/Core.PDFNet.SquigglyAnnot.html
+    // @link SoundAnnot: https://docs.apryse.com/api/web/Core.PDFNet.SoundAnnot.html
+    // @link TextAnnot: https://docs.apryse.com/api/web/Core.PDFNet.TextAnnot.html
 
-    // @link PDFNet.Rect: https://www.pdftron.com/api/web/Core.PDFNet.Rect.html
-    // @link PDFNet.Point: https://www.pdftron.com/api/web/Core.PDFNet.Point.html
-    // @link PDFNet.Action: https://www.pdftron.com/api/web/Core.PDFNet.Action.html
-    // @link PDFNet.Font: https://www.pdftron.com/api/web/Core.PDFNet.Font.html
-    // @link SDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.SDFDoc.html
-    // @link Obj: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html
-    // @link Destination: https://www.pdftron.com/api/web/Core.PDFNet.Destination.html
+    // @link PDFNet.Rect: https://docs.apryse.com/api/web/Core.PDFNet.Rect.html
+    // @link PDFNet.Point: https://docs.apryse.com/api/web/Core.PDFNet.Point.html
+    // @link PDFNet.Action: https://docs.apryse.com/api/web/Core.PDFNet.Action.html
+    // @link PDFNet.Font: https://docs.apryse.com/api/web/Core.PDFNet.Font.html
+    // @link SDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.SDFDoc.html
+    // @link Obj: https://docs.apryse.com/api/web/Core.PDFNet.Obj.html
+    // @link Destination: https://docs.apryse.com/api/web/Core.PDFNet.Destination.html
 
     const PDFNet = exports.Core.PDFNet;
     const AnnotationLowLevelAPI = async doc => {
@@ -101,7 +101,7 @@
         // Create a URI action
         const action = await link3.putDict('A');
         await action.putName('S', 'URI');
-        await action.putString('URI', 'http://www.pdftron.com');
+        await action.putString('URI', 'http://www.apryse.com');
 
         await annots.pushBack(link3);
         await PDFNet.endDeallocateStack();
@@ -183,7 +183,7 @@
       }
       // create a hyperlink
       firstPage = await doc.getPage(1);
-      const createURIAction = await PDFNet.Action.createURI(doc, 'http://www.pdftron.com');
+      const createURIAction = await PDFNet.Action.createURI(doc, 'http://www.apryse.com');
       const linkRect = new PDFNet.Rect(85, 570, 503, 524);
       const hyperlink = await PDFNet.LinkAnnot.create(doc, linkRect);
       await hyperlink.setAction(createURIAction);

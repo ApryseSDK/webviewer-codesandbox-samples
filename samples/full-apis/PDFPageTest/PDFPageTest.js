@@ -1,11 +1,11 @@
 //---------------------------------------------------------------------------------------
-// Copyright (c) 2001-2019 by PDFTron Systems Inc. All Rights Reserved.
+// Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
-  // @link PDFNet.Page: https://www.pdftron.com/api/web/Core.PDFNet.Page.html
+  // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.Page: https://docs.apryse.com/api/web/Core.PDFNet.Page.html
 
   exports.runPDFPageTest = () => {
     const PDFNet = exports.Core.PDFNet;

@@ -1,35 +1,35 @@
 //---------------------------------------------------------------------------------------
-// Copyright (c) 2001-2019 by PDFTron Systems Inc. All Rights Reserved.
+// Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.PDFNet.html
-  // @link PDFNet.runWithCleanup: https://www.pdftron.com/api/web/Core.PDFNet.html#.runWithCleanup__anchor
+  // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
+  // @link PDFNet.runWithCleanup: https://docs.apryse.com/api/web/Core.PDFNet.html#.runWithCleanup__anchor
 
-  // @link PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
-  // @link PDFDoc.createFromURL: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#.createFromURL__anchor
-  // @link PDFDoc.createIndirectStreamFromFilter: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#createIndirectStreamFromFilter__anchor
-  // @link PDFDoc.initSecurityHandler: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#initSecurityHandler__anchor
-  // @link PDFDoc.lock: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#lock__anchor
-  // @link PDFDoc.getTrailer: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#getTrailer__anchor
-  // @link PDFDoc.getSecurityHandler: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#getSecurityHandler__anchor
-  // @link PDFDoc.saveMemoryBuffer: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#saveMemoryBuffer__anchor
-  // @link PDFDoc.removeSecurity: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html#removeSecurity__anchor
+  // @link PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFDoc.createFromURL: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html#.createFromURL__anchor
+  // @link PDFDoc.createIndirectStreamFromFilter: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html#createIndirectStreamFromFilter__anchor
+  // @link PDFDoc.initSecurityHandler: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html#initSecurityHandler__anchor
+  // @link PDFDoc.lock: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html#lock__anchor
+  // @link PDFDoc.getTrailer: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html#getTrailer__anchor
+  // @link PDFDoc.getSecurityHandler: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html#getSecurityHandler__anchor
+  // @link PDFDoc.saveMemoryBuffer: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html#saveMemoryBuffer__anchor
+  // @link PDFDoc.removeSecurity: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html#removeSecurity__anchor
 
-  // @link Filter: https://www.pdftron.com/api/web/Core.PDFNet.Filter.html
-  // @link Filter.createURLFilter: https://www.pdftron.com/api/web/Core.PDFNet.Filter.html#.createURLFilter__anchor
-  // @link Filter.createFlateEncode: https://www.pdftron.com/api/web/Core.PDFNet.Filter.html#.createFlateEncode__anchor
+  // @link Filter: https://docs.apryse.com/api/web/Core.PDFNet.Filter.html
+  // @link Filter.createURLFilter: https://docs.apryse.com/api/web/Core.PDFNet.Filter.html#.createURLFilter__anchor
+  // @link Filter.createFlateEncode: https://docs.apryse.com/api/web/Core.PDFNet.Filter.html#.createFlateEncode__anchor
 
-  // @link FilterReader: https://www.pdftron.com/api/web/Core.PDFNet.FilterReader.html
-  // @link FilterReader.create: https://www.pdftron.com/api/web/Core.PDFNet.FilterReader.html#.create__anchor
+  // @link FilterReader: https://docs.apryse.com/api/web/Core.PDFNet.FilterReader.html
+  // @link FilterReader.create: https://docs.apryse.com/api/web/Core.PDFNet.FilterReader.html#.create__anchor
 
-  // @link SecurityHandler: https://www.pdftron.com/api/web/Core.PDFNet.SecurityHandler.html
-  // @link SecurityHandler.getPermission: https://www.pdftron.com/api/web/Core.PDFNet.SecurityHandler.html#getPermission__anchor
+  // @link SecurityHandler: https://docs.apryse.com/api/web/Core.PDFNet.SecurityHandler.html
+  // @link SecurityHandler.getPermission: https://docs.apryse.com/api/web/Core.PDFNet.SecurityHandler.html#getPermission__anchor
 
-  // @link Obj: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html
-  // @link Obj.get: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html#get__anchor
-  // @link Obj.value: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html#value__anchor
-  // @link Obj.getAt: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html#getAt__anchor
+  // @link Obj: https://docs.apryse.com/api/web/Core.PDFNet.Obj.html
+  // @link Obj.get: https://docs.apryse.com/api/web/Core.PDFNet.Obj.html#get__anchor
+  // @link Obj.value: https://docs.apryse.com/api/web/Core.PDFNet.Obj.html#value__anchor
+  // @link Obj.getAt: https://docs.apryse.com/api/web/Core.PDFNet.Obj.html#getAt__anchor
 
   exports.runEncTest = () => {
     const PDFNet = exports.Core.PDFNet;

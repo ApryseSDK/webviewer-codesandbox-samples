@@ -1,25 +1,25 @@
 //---------------------------------------------------------------------------------------
-// Copyright (c) 2001-2019 by PDFTron Systems Inc. All Rights Reserved.
+// Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
-  // @link PDFNet.OCG: https://www.pdftron.com/api/web/Core.PDFNet.OCG.html
-  // @link PDFNet.OCGConfig: https://www.pdftron.com/api/web/Core.PDFNet.OCGConfig.html
-  // @link PDFNet.Obj: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html
-  // @link PDFNet.ElementWriter: https://www.pdftron.com/api/web/Core.PDFNet.ElementWriter.html
-  // @link PDFNet.ElementBuilder: https://www.pdftron.com/api/web/Core.PDFNet.ElementBuilder.html
-  // @link PDFNet.Element: https://www.pdftron.com/api/web/Core.PDFNet.Element.html
-  // @link PDFNet.Image: https://www.pdftron.com/api/web/Core.PDFNet.Image.html
-  // @link PDFNet.Matrix2D: https://www.pdftron.com/api/web/Core.PDFNet.Matrix2D.html
-  // @link PDFNet.GState: https://www.pdftron.com/api/web/Core.PDFNet.GState.html
-  // @link PDFNet.ColorSpace: https://www.pdftron.com/api/web/Core.PDFNet.ColorSpace.html
-  // @link PDFNet.ColorPt: https://www.pdftron.com/api/web/Core.PDFNet.ColorPt.html
-  // @link PDFNet.Font: https://www.pdftron.com/api/web/Core.PDFNet.Font.html
-  // @link PDFNet.OCMD: https://www.pdftron.com/api/web/Core.PDFNet.OCMD.html
-  // @link PDFNet.OCGContext: https://www.pdftron.com/api/web/Core.PDFNet.OCGContext.html
-  // @link PDFNet.PDFDocViewPrefs: https://www.pdftron.com/api/web/Core.PDFNet.PDFDocViewPrefs.html
+  // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.OCG: https://docs.apryse.com/api/web/Core.PDFNet.OCG.html
+  // @link PDFNet.OCGConfig: https://docs.apryse.com/api/web/Core.PDFNet.OCGConfig.html
+  // @link PDFNet.Obj: https://docs.apryse.com/api/web/Core.PDFNet.Obj.html
+  // @link PDFNet.ElementWriter: https://docs.apryse.com/api/web/Core.PDFNet.ElementWriter.html
+  // @link PDFNet.ElementBuilder: https://docs.apryse.com/api/web/Core.PDFNet.ElementBuilder.html
+  // @link PDFNet.Element: https://docs.apryse.com/api/web/Core.PDFNet.Element.html
+  // @link PDFNet.Image: https://docs.apryse.com/api/web/Core.PDFNet.Image.html
+  // @link PDFNet.Matrix2D: https://docs.apryse.com/api/web/Core.PDFNet.Matrix2D.html
+  // @link PDFNet.GState: https://docs.apryse.com/api/web/Core.PDFNet.GState.html
+  // @link PDFNet.ColorSpace: https://docs.apryse.com/api/web/Core.PDFNet.ColorSpace.html
+  // @link PDFNet.ColorPt: https://docs.apryse.com/api/web/Core.PDFNet.ColorPt.html
+  // @link PDFNet.Font: https://docs.apryse.com/api/web/Core.PDFNet.Font.html
+  // @link PDFNet.OCMD: https://docs.apryse.com/api/web/Core.PDFNet.OCMD.html
+  // @link PDFNet.OCGContext: https://docs.apryse.com/api/web/Core.PDFNet.OCGContext.html
+  // @link PDFNet.PDFDocViewPrefs: https://docs.apryse.com/api/web/Core.PDFNet.PDFDocViewPrefs.html
 
   exports.runPDFLayersTest = () => {
     const PDFNet = exports.Core.PDFNet;

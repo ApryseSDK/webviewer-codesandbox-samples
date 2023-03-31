@@ -1,20 +1,20 @@
 //---------------------------------------------------------------------------------------
-// Copyright (c) 2001-2019 by PDFTron Systems Inc. All Rights Reserved.
+// Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.PDFNet.html
-  // @link PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
-  // @link Iterator: https://www.pdftron.com/api/web/Core.PDFNet.Iterator.html
-  // @link DictIterator: https://www.pdftron.com/api/web/Core.PDFNet.DictIterator.html
-  // @link Page: https://www.pdftron.com/api/web/Core.PDFNet.Page.html
-  // @link FileSpec: https://www.pdftron.com/api/web/Core.PDFNet.FileSpec.html
-  // @link PDFNet.Rect: https://www.pdftron.com/api/web/Core.PDFNet.Rect.html
-  // @link PDFNet.Action: https://www.pdftron.com/api/web/Core.PDFNet.Action.html
-  // @link Destination: https://www.pdftron.com/api/web/Core.PDFNet.Destination.html
-  // @link SDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.SDFDoc.html
-  // @link Obj: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html
+  // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
+  // @link PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link Iterator: https://docs.apryse.com/api/web/Core.PDFNet.Iterator.html
+  // @link DictIterator: https://docs.apryse.com/api/web/Core.PDFNet.DictIterator.html
+  // @link Page: https://docs.apryse.com/api/web/Core.PDFNet.Page.html
+  // @link FileSpec: https://docs.apryse.com/api/web/Core.PDFNet.FileSpec.html
+  // @link PDFNet.Rect: https://docs.apryse.com/api/web/Core.PDFNet.Rect.html
+  // @link PDFNet.Action: https://docs.apryse.com/api/web/Core.PDFNet.Action.html
+  // @link Destination: https://docs.apryse.com/api/web/Core.PDFNet.Destination.html
+  // @link SDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.SDFDoc.html
+  // @link Obj: https://docs.apryse.com/api/web/Core.PDFNet.Obj.html
 
   exports.runBookmarkTest = () => {
     const PDFNet = exports.Core.PDFNet;

@@ -1,14 +1,14 @@
 //---------------------------------------------------------------------------------------
-// Copyright (c) 2001-2019 by PDFTron Systems Inc. All Rights Reserved.
+// Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
-  // @link PDFNet.SDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.SDFDoc.html
-  // @link PDFNet.Filter: https://www.pdftron.com/api/web/Core.PDFNet.Filter.html
-  // @link PDFNet.FilterReader: https://www.pdftron.com/api/web/Core.PDFNet.FilterReader.html
+  // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.SDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.SDFDoc.html
+  // @link PDFNet.Filter: https://docs.apryse.com/api/web/Core.PDFNet.Filter.html
+  // @link PDFNet.FilterReader: https://docs.apryse.com/api/web/Core.PDFNet.FilterReader.html
 
   exports.runSDFTest = () => {
     const PDFNet = exports.Core.PDFNet;

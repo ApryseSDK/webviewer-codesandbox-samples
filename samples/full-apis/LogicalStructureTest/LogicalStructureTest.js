@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------------------
-// Copyright (c) 2001-2019 by PDFTron Systems Inc. All Rights Reserved.
+// Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
@@ -16,15 +16,15 @@
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
-  // @link PDFNet.Page: https://www.pdftron.com/api/web/Core.PDFNet.Page.html
-  // @link PDFNet.ContentItem: https://www.pdftron.com/api/web/Core.PDFNet.ContentItem.html
-  // @link PDFNet.Obj: https://www.pdftron.com/api/web/Core.PDFNet.Obj.html
-  // @link PDFNet.Element: https://www.pdftron.com/api/web/Core.PDFNet.Element.html
-  // @link PDFNet.ElementReader: https://www.pdftron.com/api/web/Core.PDFNet.ElementReader.html
-  // @link PDFNet.STree: https://www.pdftron.com/api/web/Core.PDFNet.STree.html
-  // @link PDFNet.SElement: https://www.pdftron.com/api/web/Core.PDFNet.SElement.html
+  // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.Page: https://docs.apryse.com/api/web/Core.PDFNet.Page.html
+  // @link PDFNet.ContentItem: https://docs.apryse.com/api/web/Core.PDFNet.ContentItem.html
+  // @link PDFNet.Obj: https://docs.apryse.com/api/web/Core.PDFNet.Obj.html
+  // @link PDFNet.Element: https://docs.apryse.com/api/web/Core.PDFNet.Element.html
+  // @link PDFNet.ElementReader: https://docs.apryse.com/api/web/Core.PDFNet.ElementReader.html
+  // @link PDFNet.STree: https://docs.apryse.com/api/web/Core.PDFNet.STree.html
+  // @link PDFNet.SElement: https://docs.apryse.com/api/web/Core.PDFNet.SElement.html
 
   exports.runLogicalStructureTest = () => {
     const PDFNet = exports.Core.PDFNet;

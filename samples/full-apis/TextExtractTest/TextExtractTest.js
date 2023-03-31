@@ -1,14 +1,14 @@
 //---------------------------------------------------------------------------------------
-// Copyright (c) 2001-2019 by PDFTron Systems Inc. All Rights Reserved.
+// Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
 (exports => {
-  // @link PDFNet: https://www.pdftron.com/api/web/Core.PDFNet.html
-  // @link PDFNet.PDFDoc: https://www.pdftron.com/api/web/Core.PDFNet.PDFDoc.html
-  // @link PDFNet.TextExtractor: https://www.pdftron.com/api/web/Core.PDFNet.TextExtractor.html
-  // @link PDFNet.Rect: https://www.pdftron.com/api/web/Core.PDFNet.Rect.html
-  // @link PDFNet.ElementBuilder: https://www.pdftron.com/api/web/Core.PDFNet.ElementBuilder.html
+  // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
+  // @link PDFNet.PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
+  // @link PDFNet.TextExtractor: https://docs.apryse.com/api/web/Core.PDFNet.TextExtractor.html
+  // @link PDFNet.Rect: https://docs.apryse.com/api/web/Core.PDFNet.Rect.html
+  // @link PDFNet.ElementBuilder: https://docs.apryse.com/api/web/Core.PDFNet.ElementBuilder.html
 
   const PDFNet = exports.Core.PDFNet;
 
