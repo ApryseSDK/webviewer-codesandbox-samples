@@ -16,6 +16,9 @@
     "comment": "Коментар",
     "reply": "Додати відповідь",
     "copy": "Копія",
+    "cut": "Вирізати",
+    "paste": "Вставити",
+    "pasteWithoutFormatting": "Вставити без форматування",
     "delete": "Видалити",
     "group": "Група",
     "ungroup": "Розгрупувати",
@@ -78,6 +81,7 @@
     "showLess": "показувати менше",
     "showMore": "...більше",
     "chooseFile": "Виберіть файл",
+    "changeDate": "Змінити дату",
     "browse": "Огляд файлів",
     "selectYourOption": "Виберіть свій варіант",
     "open": "відчинено",
@@ -85,6 +89,7 @@
     "select": "Виберіть",
     "moveToTop": "Перейти вгору",
     "moveToBottom": "Переміститися вниз",
+    "backToMenu": "Назад до меню",
     "redactPages": "Редагувати сторінки",
     "playAudio": "Відтворити аудіо",
     "pauseAudio": "звукова пауза",
@@ -96,7 +101,8 @@
     "comparePages": "Порівняти сторінки",
     "startComparison": "Почати порівняння",
     "back": "Назад",
-    "clearSignature": "Чіткий підпис"
+    "clearSignature": "Чіткий підпис",
+    "newDocument": "Новий документ"
   },
   "annotation": {
     "areaMeasurement": "Площа",
@@ -1063,6 +1069,23 @@
   },
   "languageModal": {
     "selectLanguage": "Оберіть мову"
+  },
+  "officeEditor": {
+    "bold": "Жирний",
+    "italic": "Курсив",
+    "underline": "Підкреслити",
+    "textColor": "Колір тексту",
+    "leftAlign": "Вирівняти по лівому краю",
+    "centerAlign": "Вирівнювання по центру",
+    "rightAlign": "Вирівняти по правому краю",
+    "justify": "Обґрунтуйте",
+    "lineSpacing": "Міжрядковий і абзацний інтервали",
+    "bulletList": "Маркірований список",
+    "numberList": "Нумерований список",
+    "insertLink": "Вставте посилання",
+    "insertImage": "Вставте зображення",
+    "notAvailableInDemoMode": "Недоступно в демонстраційному режимі",
+    "notSupportedOnMobile": "Редагування Office не підтримується на мобільних пристроях."
   },
   "insertPageModal": {
     "title": "Додати нову сторінку",

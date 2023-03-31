@@ -1,5 +1,5 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link UI.setLanguage: https://www.pdftron.com/api/web/UI.html#setLanguage__anchor
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
+// @link UI.setLanguage: https://docs.apryse.com/api/web/UI.html#.setLanguage__anchor
 
 WebViewer(
   {
@@ -14,6 +14,12 @@ WebViewer(
   document.getElementById('viewer')
 ).then(instance => {
   samplesSetup(instance);
+
+  const currentLanguage = instance.UI.getCurrentLanguage();
+  const radioButton = document.querySelector(`form > #${currentLanguage}`);
+  if (radioButton) {
+    radioButton.checked = true;
+  }
 
   document.getElementById('form').onchange = e => {
     // Set language
