@@ -46,7 +46,7 @@
           throw new Error('diffing by annotation require Core property for document being compared');
         }
       }
-      return this.documentViewer['loadAsync']({ filesToCompare, options }, { type: COMPARE_DOCS });
+      return this.documentViewer['loadDocument']({ filesToCompare, options }, { type: COMPARE_DOCS });
     },
   };
   exports.CompareDocumentManager = CompareDocumentManager;

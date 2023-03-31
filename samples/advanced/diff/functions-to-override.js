@@ -35,6 +35,7 @@
       return pageLength;
     },
     loadThumbnailAsync: function() {},
+    loadThumbnail: function() {},
     extractXFDF: function() {
       return Promise.resolve(undefined);
     },
@@ -159,7 +160,10 @@
       const completePromises = this.getDocumentsToCompare().map(document => document.getDocumentCompletePromise());
       return Promise.all(completePromises);
     },
-    loadAsync: async function({ filesToCompare, options }, onDocumentLoaded) {
+    loadAsync: async function(response, onDocumentLoaded) {
+      const {
+        src: { filesToCompare, options },
+      } = response;
       this.filesToCompare = filesToCompare;
       this.options = options;
       this.sourcePageIndexToAlignForTarget = {};
@@ -443,7 +447,7 @@
 
                 const normalizedRenderRect = window.Core.normalizeRect(pageMatrix.mult({ x: renderRect.x1, y: renderRect.y1 }), pageMatrix.mult({ x: renderRect.x2, y: renderRect.y2 }));
 
-                pageMatrix = window.Core.getPageMatrix(zoomLevel, (pageRotation || 0) % 4, normalizedRenderRect, null, true, window.utils.getCanvasMultiplier());
+                pageMatrix = window.Core.getPageMatrix(zoomLevel, (pageRotation || 0) % 4, normalizedRenderRect, null, true, window.Core.getCanvasMultiplier());
                 ctx.setTransform(pageMatrix.m_a, pageMatrix.m_b, pageMatrix.m_c, pageMatrix.m_d, pageMatrix.m_h, pageMatrix.m_v);
               } else {
                 annotationManager.setAnnotationCanvasTransform(ctx, zoomLevel, exports.Util.convertToWebViewerRotationEnum(documentToRender.getPageRotation(pageNumberToRender)));

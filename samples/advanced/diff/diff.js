@@ -1,16 +1,16 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link UI.loadDocument: https://www.pdftron.com/api/web/UI.html#loadDocument__anchor
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
+// @link UI.loadDocument: https://docs.apryse.com/api/web/UI.html#loadDocument__anchor
 
-// @link DocumentViewer: https://www.pdftron.com/api/web/Core.DocumentViewer.html
-// @link DocumentViewer.getViewportRegionRect: https://www.pdftron.com/api/web/Core.DocumentViewer.html#getViewportRegionRect__anchor
-// @link DocumentViewer.getCurrentPage: https://www.pdftron.com/api/web/Core.DocumentViewer.html#getCurrentPage__anchor
+// @link DocumentViewer: https://docs.apryse.com/api/web/Core.DocumentViewer.html
+// @link DocumentViewer.getViewportRegionRect: https://docs.apryse.com/api/web/Core.DocumentViewer.html#getViewportRegionRect__anchor
+// @link DocumentViewer.getCurrentPage: https://docs.apryse.com/api/web/Core.DocumentViewer.html#getCurrentPage__anchor
 
-// @link Core: https://www.pdftron.com/api/web/Core.html
-// @link PartRetrievers: https://www.pdftron.com/api/web/PartRetrievers.html
+// @link Core: https://docs.apryse.com/api/web/Core.html
+// @link PartRetrievers: https://docs.apryse.com/api/web/Core.PartRetrievers.html
 
-// @link Document: https://www.pdftron.com/api/web/Core.Document.html
-// @link Document.loadAsync: https://www.pdftron.com/api/web/Core.Document.html#loadAsync__anchor
-// @link Document.cancelLoadCanvas: https://www.pdftron.com/api/web/Core.Document.html#cancelLoadCanvas__anchor
+// @link Document: https://docs.apryse.com/api/web/Core.Document.html
+// @link Document.loadDocument: https://docs.apryse.com/api/web/Core.Document.html#loadDocument__anchor
+// @link Document.cancelLoadCanvas: https://docs.apryse.com/api/web/Core.Document.html#cancelLoadCanvas__anchor
 
 // Workaround while WebViewer does not have an API to check if a document is loaded or not.
 let isLoading = false;

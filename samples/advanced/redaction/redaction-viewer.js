@@ -1,8 +1,8 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link UI.loadDocument: https://www.pdftron.com/api/web/UI.html#loadDocument__anchor
-// @link UI.disableTools: https://www.pdftron.com/api/web/UI.html#disableTools__anchor
-// @link UI.enableTools: https://www.pdftron.com/api/web/UI.html#enableTools__anchor
-// @link UI.setToolMode: https://www.pdftron.com/api/web/UI.html#setToolMode__anchor
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
+// @link UI.loadDocument: https://docs.apryse.com/api/web/UI.html#loadDocument__anchor
+// @link UI.disableTools: https://docs.apryse.com/api/web/UI.html#disableTools__anchor
+// @link UI.enableTools: https://docs.apryse.com/api/web/UI.html#enableTools__anchor
+// @link UI.setToolMode: https://docs.apryse.com/api/web/UI.html#setToolMode__anchor
 
 WebViewer(
   {
