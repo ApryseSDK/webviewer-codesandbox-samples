@@ -7,5 +7,5 @@ WebViewer(
 ).then(instance => {
   samplesSetup(instance);
 
-  instance.setToolbarGroup('toolbarGroup-Forms');
+  instance.UI.setToolbarGroup('toolbarGroup-Forms');
 });

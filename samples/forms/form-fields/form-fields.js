@@ -1,8 +1,8 @@
-// @link WebViewerInstance: https://www.pdftron.com/api/web/WebViewerInstance.html
-// @link DocumentViewer: https://www.pdftron.com/api/web/Core.DocumentViewer.html
-// @link AnnotationManager: https://www.pdftron.com/api/web/Core.AnnotationManager.html
-// @link AnnotationManager.drawAnnotations: https://www.pdftron.com/api/web/Core.AnnotationManager.html#drawAnnotations__anchor
-// @link Annotations: https://www.pdftron.com/api/web/Annotations.html
+// @link WebViewerInstance: https://docs.apryse.com/api/web/WebViewerInstance.html
+// @link DocumentViewer: https://docs.apryse.com/api/web/Core.DocumentViewer.html
+// @link AnnotationManager: https://docs.apryse.com/api/web/Core.AnnotationManager.html
+// @link AnnotationManager.drawAnnotations: https://docs.apryse.com/api/web/Core.AnnotationManager.html#drawAnnotations__anchor
+// @link Annotations: https://docs.apryse.com/api/web/Core.Annotations.html
 
 WebViewer(
   {
