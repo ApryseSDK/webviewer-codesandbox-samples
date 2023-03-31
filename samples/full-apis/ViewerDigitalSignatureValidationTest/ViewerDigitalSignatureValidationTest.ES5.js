@@ -398,8 +398,8 @@
         F = r(34).f,
         M = r(78),
         I = r(29),
-        A = r(5),
-        j = r(22),
+        j = r(5),
+        A = r(22),
         N = r(49),
         T = r(47),
         L = r(80),
@@ -418,12 +418,12 @@
         $ = Array.prototype,
         K = a.ArrayBuffer,
         J = a.DataView,
-        X = j(0),
-        H = j(2),
-        Z = j(3),
-        Q = j(4),
-        tt = j(5),
-        nt = j(6),
+        X = A(0),
+        H = A(2),
+        Z = A(3),
+        Q = A(4),
+        tt = A(5),
+        nt = A(6),
         rt = N(!0),
         et = N(!1),
         ot = L.values,
@@ -437,14 +437,14 @@
         ht = $.slice,
         pt = $.toString,
         vt = $.toLocaleString,
-        yt = A('iterator'),
-        dt = A('toStringTag'),
+        yt = j('iterator'),
+        dt = j('toStringTag'),
         gt = I('typed_constructor'),
         mt = I('def_constructor'),
         bt = f.CONSTR,
         xt = f.TYPED,
         St = f.VIEW,
-        wt = j(1, function(t, n) {
+        wt = A(1, function(t, n) {
           return Ft(T(t, t[mt]), n);
         }),
         _t = u(function() {
@@ -476,14 +476,14 @@
           for (var r = 0, e = n.length, o = Ft(t, e); e > r; ) o[r] = n[r++];
           return o;
         },
-        At = function(t, n, r) {
+        jt = function(t, n, r) {
           V(t, n, {
             get: function() {
               return this._d[r];
             },
           });
         },
-        jt = function(t) {
+        At = function(t) {
           var n,
             r,
             e,
@@ -621,10 +621,10 @@
       v(Vt, Dt),
         p(Vt, yt, Dt.values),
         v(Vt, { slice: kt, set: Ct, constructor: function() {}, toString: pt, toLocaleString: Lt }),
-        At(Vt, 'buffer', 'b'),
-        At(Vt, 'byteOffset', 'o'),
-        At(Vt, 'byteLength', 'l'),
-        At(Vt, 'length', 'e'),
+        jt(Vt, 'buffer', 'b'),
+        jt(Vt, 'byteOffset', 'o'),
+        jt(Vt, 'byteLength', 'l'),
+        jt(Vt, 'length', 'e'),
         V(Vt, dt, {
           get: function() {
             return this[xt];
@@ -667,7 +667,7 @@
                   s = 0,
                   h = 0;
                 if (w(r)) {
-                  if (!(r instanceof K || 'ArrayBuffer' == (f = S(r)) || 'SharedArrayBuffer' == f)) return xt in r ? It(v, r) : jt.call(v, r);
+                  if (!(r instanceof K || 'ArrayBuffer' == (f = S(r)) || 'SharedArrayBuffer' == f)) return xt in r ? It(v, r) : At.call(v, r);
                   (i = r), (h = Ot(e, n));
                   var y = r.byteLength;
                   if (void 0 === o) {
@@ -702,7 +702,7 @@
                         : new y(r)
                       : xt in r
                       ? It(v, r)
-                      : jt.call(v, r)
+                      : At.call(v, r)
                     : new y(g(r))
                 );
               })),
@@ -713,7 +713,7 @@
               o || (_.constructor = v));
           var M = _[yt],
             I = !!M && ('values' == M.name || null == M.name),
-            A = Dt.values;
+            j = Dt.values;
           p(v, gt, !0),
             p(_, xt, a),
             p(_, St, !0),
@@ -734,7 +734,7 @@
                     y.of.call(v, 1);
                   }),
               a,
-              { from: jt, of: Nt }
+              { from: At, of: Nt }
             ),
             'BYTES_PER_ELEMENT' in _ || p(_, 'BYTES_PER_ELEMENT', n),
             c(c.P, a, Rt),
@@ -763,8 +763,8 @@
               a,
               { toLocaleString: Lt }
             ),
-            (R[a] = I ? M : A),
-            o || I || p(_, yt, A);
+            (R[a] = I ? M : j),
+            o || I || p(_, yt, j);
         });
     } else t.exports = function() {};
   },
@@ -1741,8 +1741,8 @@
       F = x.log,
       M = x.LN2,
       I = o ? '_b' : 'buffer',
-      A = o ? '_l' : 'byteLength',
-      j = o ? '_o' : 'byteOffset';
+      j = o ? '_l' : 'byteLength',
+      A = o ? '_o' : 'byteOffset';
     function N(t, n, r) {
       var e,
         o,
@@ -1812,16 +1812,16 @@
     }
     function U(t, n, r, e) {
       var o = p(+r);
-      if (o + n > t[A]) throw S('Wrong index!');
+      if (o + n > t[j]) throw S('Wrong index!');
       var i = t[I]._b,
-        u = o + t[j],
+        u = o + t[A],
         c = i.slice(u, u + n);
       return e ? c : c.reverse();
     }
     function V(t, n, r, e, o, i) {
       var u = p(+r);
-      if (u + n > t[A]) throw S('Wrong index!');
-      for (var c = t[I]._b, f = u + t[j], a = e(+o), s = 0; s < n; s++) c[f + s] = a[i ? s : n - s - 1];
+      if (u + n > t[j]) throw S('Wrong index!');
+      for (var c = t[I]._b, f = u + t[A], a = e(+o), s = 0; s < n; s++) c[f + s] = a[i ? s : n - s - 1];
     }
     if (u.ABV) {
       if (
@@ -1869,15 +1869,15 @@
       (m = function(t) {
         s(this, m, 'ArrayBuffer');
         var n = p(t);
-        (this._b = d.call(new Array(n), 0)), (this[A] = n);
+        (this._b = d.call(new Array(n), 0)), (this[j] = n);
       }),
         (b = function(t, n, r) {
           s(this, b, 'DataView'), s(t, m, 'DataView');
-          var e = t[A],
+          var e = t[j],
             o = l(n);
           if (o < 0 || o > e) throw S('Wrong offset!');
           if (o + (r = void 0 === r ? e - o : h(r)) > e) throw S('Wrong length!');
-          (this[I] = t), (this[j] = o), (this[A] = r);
+          (this[I] = t), (this[A] = o), (this[j] = r);
         }),
         o && (B(m, 'byteLength', '_l'), B(b, 'buffer', '_b'), B(b, 'byteLength', '_l'), B(b, 'byteOffset', '_o')),
         f(b.prototype, {
@@ -2287,8 +2287,8 @@
       F = f.Promise,
       M = 'process' == s(E),
       I = function() {},
-      A = (o = b.f),
-      j = !!(function() {
+      j = (o = b.f),
+      A = !!(function() {
         try {
           var t = F.resolve(1),
             n = ((t.constructor = {})[r(5)('species')] = function(t) {
@@ -2390,7 +2390,7 @@
           }
         }
       };
-    j ||
+    A ||
       ((F = function(t) {
         v(this, F, 'Promise', '_h'), p(t), e.call(this);
         try {
@@ -2403,7 +2403,7 @@
         (this._c = []), (this._a = void 0), (this._s = 0), (this._d = !1), (this._v = void 0), (this._h = 0), (this._n = !1);
       }).prototype = r(43)(F.prototype, {
         then: function(t, n) {
-          var r = A(d(this, F));
+          var r = j(d(this, F));
           return (
             (r.ok = 'function' != typeof t || t),
             (r.fail = 'function' == typeof n && n),
@@ -2422,20 +2422,20 @@
         var t = new e();
         (this.promise = t), (this.resolve = a(D, t, 1)), (this.reject = a(C, t, 1));
       }),
-      (b.f = A = function(t) {
+      (b.f = j = function(t) {
         return t === F || t === u ? new i(t) : o(t);
       })),
-      l(l.G + l.W + l.F * !j, { Promise: F }),
+      l(l.G + l.W + l.F * !A, { Promise: F }),
       r(38)(F, 'Promise'),
       r(41)('Promise'),
       (u = r(7).Promise),
-      l(l.S + l.F * !j, 'Promise', {
+      l(l.S + l.F * !A, 'Promise', {
         reject: function(t) {
-          var n = A(this);
+          var n = j(this);
           return (0, n.reject)(t), n.promise;
         },
       }),
-      l(l.S + l.F * (c || !j), 'Promise', {
+      l(l.S + l.F * (c || !A), 'Promise', {
         resolve: function(t) {
           return w(c && this === u ? F : this, t);
         },
@@ -2444,7 +2444,7 @@
         l.S +
           l.F *
             !(
-              j &&
+              A &&
               r(52)(function(t) {
                 F.all(t).catch(I);
               })
@@ -2453,7 +2453,7 @@
         {
           all: function(t) {
             var n = this,
-              r = A(n),
+              r = j(n),
               e = r.resolve,
               o = r.reject,
               i = x(function() {
@@ -2475,7 +2475,7 @@
           },
           race: function(t) {
             var n = this,
-              r = A(n),
+              r = j(n),
               e = r.reject,
               o = x(function() {
                 y(t, !1, function(t) {
@@ -2933,8 +2933,8 @@
       F = r(20),
       M = r(50),
       I = r(9),
-      A = r(31),
-      j = F.f,
+      j = r(31),
+      A = F.f,
       N = I.f,
       T = P.f,
       L = o.Symbol,
@@ -2965,7 +2965,7 @@
           );
         })
           ? function(t, n, r) {
-              var e = j(G, n);
+              var e = A(G, n);
               e && delete G[n], N(t, n, r), e && t !== G && N(G, n, e);
             }
           : N,
@@ -3001,7 +3001,7 @@
       },
       Q = function(t, n) {
         if (((t = w(t)), (n = _(n, !0)), t !== G || !i(U, n) || i(V, n))) {
-          var r = j(t, n);
+          var r = A(t, n);
           return !r || !i(U, n) || (i(t, C) && t[C][n]) || (r.enumerable = !0), r;
         }
       },
@@ -3039,7 +3039,7 @@
       })),
       c(c.G + c.W + c.F * !z, { Symbol: L });
     for (var rt = 'hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables'.split(','), et = 0; rt.length > et; ) v(rt[et++]);
-    for (var ot = A(v.store), it = 0; ot.length > it; ) d(ot[it++]);
+    for (var ot = j(v.store), it = 0; ot.length > it; ) d(ot[it++]);
     c(c.S + c.F * !z, 'Symbol', {
       for: function(t) {
         return i(B, (t += '')) ? B[t] : (B[t] = L(t));
@@ -4422,9 +4422,9 @@
             if (p) {
               var I = [E].concat(P, O, h);
               void 0 !== M && I.push(M);
-              var A = String(n.apply(void 0, I));
-            } else A = y(E, h, O, P, M, n);
-            O >= w && ((S += h.slice(w, O) + A), (w = O + E.length));
+              var j = String(n.apply(void 0, I));
+            } else j = y(E, h, O, P, M, n);
+            O >= w && ((S += h.slice(w, O) + j), (w = O + E.length));
           }
           return S + h.slice(w);
         },
@@ -5401,154 +5401,160 @@
         'use strict';
         var r = Object.prototype,
           e = r.hasOwnProperty,
-          o = 'function' == typeof Symbol ? Symbol : {},
-          i = o.iterator || '@@iterator',
-          u = o.asyncIterator || '@@asyncIterator',
-          c = o.toStringTag || '@@toStringTag';
-        function f(t, n, r) {
+          o =
+            Object.defineProperty ||
+            function(t, n, r) {
+              t[n] = r.value;
+            },
+          i = 'function' == typeof Symbol ? Symbol : {},
+          u = i.iterator || '@@iterator',
+          c = i.asyncIterator || '@@asyncIterator',
+          f = i.toStringTag || '@@toStringTag';
+        function a(t, n, r) {
           return Object.defineProperty(t, n, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[n];
         }
         try {
-          f({}, '');
+          a({}, '');
         } catch (t) {
-          f = function(t, n, r) {
+          a = function(t, n, r) {
             return (t[n] = r);
           };
         }
-        function a(t, n, r, e) {
-          var o = n && n.prototype instanceof h ? n : h,
-            i = Object.create(o.prototype),
-            u = new E(e || []);
-          return (
-            (i._invoke = (function(t, n, r) {
-              var e = 'suspendedStart';
-              return function(o, i) {
-                if ('executing' === e) throw new Error('Generator is already running');
-                if ('completed' === e) {
-                  if ('throw' === o) throw i;
-                  return P();
-                }
-                for (r.method = o, r.arg = i; ; ) {
-                  var u = r.delegate;
-                  if (u) {
-                    var c = S(u, r);
-                    if (c) {
-                      if (c === l) continue;
-                      return c;
-                    }
-                  }
-                  if ('next' === r.method) r.sent = r._sent = r.arg;
-                  else if ('throw' === r.method) {
-                    if ('suspendedStart' === e) throw ((e = 'completed'), r.arg);
-                    r.dispatchException(r.arg);
-                  } else 'return' === r.method && r.abrupt('return', r.arg);
-                  e = 'executing';
-                  var f = s(t, n, r);
-                  if ('normal' === f.type) {
-                    if (((e = r.done ? 'completed' : 'suspendedYield'), f.arg === l)) continue;
-                    return { value: f.arg, done: r.done };
-                  }
-                  'throw' === f.type && ((e = 'completed'), (r.method = 'throw'), (r.arg = f.arg));
-                }
-              };
-            })(t, r, u)),
-            i
-          );
+        function s(t, n, r, e) {
+          var i = n && n.prototype instanceof p ? n : p,
+            u = Object.create(i.prototype),
+            c = new P(e || []);
+          return o(u, '_invoke', { value: w(t, r, c) }), u;
         }
-        function s(t, n, r) {
+        function l(t, n, r) {
           try {
             return { type: 'normal', arg: t.call(n, r) };
           } catch (t) {
             return { type: 'throw', arg: t };
           }
         }
-        t.wrap = a;
-        var l = {};
-        function h() {}
+        t.wrap = s;
+        var h = {};
         function p() {}
         function v() {}
-        var y = {};
-        f(y, i, function() {
+        function y() {}
+        var d = {};
+        a(d, u, function() {
           return this;
         });
-        var d = Object.getPrototypeOf,
-          g = d && d(d(O([])));
-        g && g !== r && e.call(g, i) && (y = g);
-        var m = (v.prototype = h.prototype = Object.create(y));
-        function b(t) {
+        var g = Object.getPrototypeOf,
+          m = g && g(g(F([])));
+        m && m !== r && e.call(m, u) && (d = m);
+        var b = (y.prototype = p.prototype = Object.create(d));
+        function x(t) {
           ['next', 'throw', 'return'].forEach(function(n) {
-            f(t, n, function(t) {
+            a(t, n, function(t) {
               return this._invoke(n, t);
             });
           });
         }
-        function x(t, r) {
-          var o;
-          this._invoke = function(i, u) {
-            function c() {
-              return new r(function(o, c) {
-                !(function o(i, u, c, f) {
-                  var a = s(t[i], t, u);
-                  if ('throw' !== a.type) {
-                    var l = a.arg,
-                      h = l.value;
-                    return h && 'object' === n(h) && e.call(h, '__await')
-                      ? r.resolve(h.__await).then(
-                          function(t) {
-                            o('next', t, c, f);
-                          },
-                          function(t) {
-                            o('throw', t, c, f);
-                          }
-                        )
-                      : r.resolve(h).then(
-                          function(t) {
-                            (l.value = t), c(l);
-                          },
-                          function(t) {
-                            return o('throw', t, c, f);
-                          }
-                        );
-                  }
-                  f(a.arg);
-                })(i, u, o, c);
-              });
+        function S(t, r) {
+          var i;
+          o(this, '_invoke', {
+            value: function(o, u) {
+              function c() {
+                return new r(function(i, c) {
+                  !(function o(i, u, c, f) {
+                    var a = l(t[i], t, u);
+                    if ('throw' !== a.type) {
+                      var s = a.arg,
+                        h = s.value;
+                      return h && 'object' === n(h) && e.call(h, '__await')
+                        ? r.resolve(h.__await).then(
+                            function(t) {
+                              o('next', t, c, f);
+                            },
+                            function(t) {
+                              o('throw', t, c, f);
+                            }
+                          )
+                        : r.resolve(h).then(
+                            function(t) {
+                              (s.value = t), c(s);
+                            },
+                            function(t) {
+                              return o('throw', t, c, f);
+                            }
+                          );
+                    }
+                    f(a.arg);
+                  })(o, u, i, c);
+                });
+              }
+              return (i = i ? i.then(c, c) : c());
+            },
+          });
+        }
+        function w(t, n, r) {
+          var e = 'suspendedStart';
+          return function(o, i) {
+            if ('executing' === e) throw new Error('Generator is already running');
+            if ('completed' === e) {
+              if ('throw' === o) throw i;
+              return M();
             }
-            return (o = o ? o.then(c, c) : c());
+            for (r.method = o, r.arg = i; ; ) {
+              var u = r.delegate;
+              if (u) {
+                var c = _(u, r);
+                if (c) {
+                  if (c === h) continue;
+                  return c;
+                }
+              }
+              if ('next' === r.method) r.sent = r._sent = r.arg;
+              else if ('throw' === r.method) {
+                if ('suspendedStart' === e) throw ((e = 'completed'), r.arg);
+                r.dispatchException(r.arg);
+              } else 'return' === r.method && r.abrupt('return', r.arg);
+              e = 'executing';
+              var f = l(t, n, r);
+              if ('normal' === f.type) {
+                if (((e = r.done ? 'completed' : 'suspendedYield'), f.arg === h)) continue;
+                return { value: f.arg, done: r.done };
+              }
+              'throw' === f.type && ((e = 'completed'), (r.method = 'throw'), (r.arg = f.arg));
+            }
           };
         }
-        function S(t, n) {
-          var r = t.iterator[n.method];
-          if (void 0 === r) {
-            if (((n.delegate = null), 'throw' === n.method)) {
-              if (t.iterator.return && ((n.method = 'return'), (n.arg = void 0), S(t, n), 'throw' === n.method)) return l;
-              (n.method = 'throw'), (n.arg = new TypeError("The iterator does not provide a 'throw' method"));
-            }
-            return l;
-          }
-          var e = s(r, t.iterator, n.arg);
-          if ('throw' === e.type) return (n.method = 'throw'), (n.arg = e.arg), (n.delegate = null), l;
-          var o = e.arg;
-          return o
-            ? o.done
-              ? ((n[t.resultName] = o.value), (n.next = t.nextLoc), 'return' !== n.method && ((n.method = 'next'), (n.arg = void 0)), (n.delegate = null), l)
-              : o
-            : ((n.method = 'throw'), (n.arg = new TypeError('iterator result is not an object')), (n.delegate = null), l);
+        function _(t, n) {
+          var r = n.method,
+            e = t.iterator[r];
+          if (void 0 === e)
+            return (
+              (n.delegate = null),
+              ('throw' === r && t.iterator.return && ((n.method = 'return'), (n.arg = void 0), _(t, n), 'throw' === n.method)) ||
+                ('return' !== r && ((n.method = 'throw'), (n.arg = new TypeError("The iterator does not provide a '" + r + "' method")))),
+              h
+            );
+          var o = l(e, t.iterator, n.arg);
+          if ('throw' === o.type) return (n.method = 'throw'), (n.arg = o.arg), (n.delegate = null), h;
+          var i = o.arg;
+          return i
+            ? i.done
+              ? ((n[t.resultName] = i.value), (n.next = t.nextLoc), 'return' !== n.method && ((n.method = 'next'), (n.arg = void 0)), (n.delegate = null), h)
+              : i
+            : ((n.method = 'throw'), (n.arg = new TypeError('iterator result is not an object')), (n.delegate = null), h);
         }
-        function w(t) {
+        function E(t) {
           var n = { tryLoc: t[0] };
           1 in t && (n.catchLoc = t[1]), 2 in t && ((n.finallyLoc = t[2]), (n.afterLoc = t[3])), this.tryEntries.push(n);
         }
-        function _(t) {
+        function O(t) {
           var n = t.completion || {};
           (n.type = 'normal'), delete n.arg, (t.completion = n);
         }
-        function E(t) {
-          (this.tryEntries = [{ tryLoc: 'root' }]), t.forEach(w, this), this.reset(!0);
+        function P(t) {
+          (this.tryEntries = [{ tryLoc: 'root' }]), t.forEach(E, this), this.reset(!0);
         }
-        function O(t) {
+        function F(t) {
           if (t) {
-            var n = t[i];
+            var n = t[u];
             if (n) return n.call(t);
             if ('function' == typeof t.next) return t;
             if (!isNaN(t.length)) {
@@ -5560,65 +5566,66 @@
               return (o.next = o);
             }
           }
-          return { next: P };
+          return { next: M };
         }
-        function P() {
+        function M() {
           return { value: void 0, done: !0 };
         }
         return (
-          (p.prototype = v),
-          f(m, 'constructor', v),
-          f(v, 'constructor', p),
-          (p.displayName = f(v, c, 'GeneratorFunction')),
+          (v.prototype = y),
+          o(b, 'constructor', { value: y, configurable: !0 }),
+          o(y, 'constructor', { value: v, configurable: !0 }),
+          (v.displayName = a(y, f, 'GeneratorFunction')),
           (t.isGeneratorFunction = function(t) {
             var n = 'function' == typeof t && t.constructor;
-            return !!n && (n === p || 'GeneratorFunction' === (n.displayName || n.name));
+            return !!n && (n === v || 'GeneratorFunction' === (n.displayName || n.name));
           }),
           (t.mark = function(t) {
-            return Object.setPrototypeOf ? Object.setPrototypeOf(t, v) : ((t.__proto__ = v), f(t, c, 'GeneratorFunction')), (t.prototype = Object.create(m)), t;
+            return Object.setPrototypeOf ? Object.setPrototypeOf(t, y) : ((t.__proto__ = y), a(t, f, 'GeneratorFunction')), (t.prototype = Object.create(b)), t;
           }),
           (t.awrap = function(t) {
             return { __await: t };
           }),
-          b(x.prototype),
-          f(x.prototype, u, function() {
+          x(S.prototype),
+          a(S.prototype, c, function() {
             return this;
           }),
-          (t.AsyncIterator = x),
+          (t.AsyncIterator = S),
           (t.async = function(n, r, e, o, i) {
             void 0 === i && (i = Promise);
-            var u = new x(a(n, r, e, o), i);
+            var u = new S(s(n, r, e, o), i);
             return t.isGeneratorFunction(r)
               ? u
               : u.next().then(function(t) {
                   return t.done ? t.value : u.next();
                 });
           }),
-          b(m),
-          f(m, c, 'Generator'),
-          f(m, i, function() {
+          x(b),
+          a(b, f, 'Generator'),
+          a(b, u, function() {
             return this;
           }),
-          f(m, 'toString', function() {
+          a(b, 'toString', function() {
             return '[object Generator]';
           }),
           (t.keys = function(t) {
-            var n = [];
-            for (var r in t) n.push(r);
+            var n = Object(t),
+              r = [];
+            for (var e in n) r.push(e);
             return (
-              n.reverse(),
-              function r() {
-                for (; n.length; ) {
-                  var e = n.pop();
-                  if (e in t) return (r.value = e), (r.done = !1), r;
+              r.reverse(),
+              function t() {
+                for (; r.length; ) {
+                  var e = r.pop();
+                  if (e in n) return (t.value = e), (t.done = !1), t;
                 }
-                return (r.done = !0), r;
+                return (t.done = !0), t;
               }
             );
           }),
-          (t.values = O),
-          (E.prototype = {
-            constructor: E,
+          (t.values = F),
+          (P.prototype = {
+            constructor: P,
             reset: function(t) {
               if (
                 ((this.prev = 0),
@@ -5628,7 +5635,7 @@
                 (this.delegate = null),
                 (this.method = 'next'),
                 (this.arg = void 0),
-                this.tryEntries.forEach(_),
+                this.tryEntries.forEach(O),
                 !t)
               )
                 for (var n in this) 't' === n.charAt(0) && e.call(this, n) && !isNaN(+n.slice(1)) && (this[n] = void 0);
@@ -5674,7 +5681,7 @@
               }
               i && ('break' === t || 'continue' === t) && i.tryLoc <= n && n <= i.finallyLoc && (i = null);
               var u = i ? i.completion : {};
-              return (u.type = t), (u.arg = n), i ? ((this.method = 'next'), (this.next = i.finallyLoc), l) : this.complete(u);
+              return (u.type = t), (u.arg = n), i ? ((this.method = 'next'), (this.next = i.finallyLoc), h) : this.complete(u);
             },
             complete: function(t, n) {
               if ('throw' === t.type) throw t.arg;
@@ -5684,13 +5691,13 @@
                   : 'return' === t.type
                   ? ((this.rval = this.arg = t.arg), (this.method = 'return'), (this.next = 'end'))
                   : 'normal' === t.type && n && (this.next = n),
-                l
+                h
               );
             },
             finish: function(t) {
               for (var n = this.tryEntries.length - 1; n >= 0; --n) {
                 var r = this.tryEntries[n];
-                if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), _(r), l;
+                if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), O(r), h;
               }
             },
             catch: function(t) {
@@ -5700,7 +5707,7 @@
                   var e = r.completion;
                   if ('throw' === e.type) {
                     var o = e.arg;
-                    _(r);
+                    O(r);
                   }
                   return o;
                 }
@@ -5708,7 +5715,7 @@
               throw new Error('illegal catch attempt');
             },
             delegateYield: function(t, n, r) {
-              return (this.delegate = { iterator: O(t), resultName: n, nextLoc: r }), 'next' === this.method && (this.arg = void 0), l;
+              return (this.delegate = { iterator: F(t), resultName: n, nextLoc: r }), 'next' === this.method && (this.arg = void 0), h;
             },
           }),
           t
@@ -5912,25 +5919,27 @@
     };
   },
   function(t, n) {
-    var r, e, o, i, u, c;
+    var r, e, o, i, u, c, f, a;
     (r = window.parent.document),
       (e = r.getElementById('certificate-select')),
       (o = r.getElementById('certificate-url-form')),
       (i = r.getElementById('document-select')),
       (u = r.getElementById('document-url-form')),
       (c = r.getElementById('file-picker')),
+      (f = r.getElementById('certificate-url')),
+      (a = r.getElementById('document-url')),
       window.addEventListener('viewerLoaded', function() {
         var t = window.instance,
           n = t.UI,
           r = n.VerificationOptions,
-          f = n.openElements,
-          a = n.loadDocument,
-          s = t.Core.documentViewer;
+          s = n.openElements,
+          l = n.loadDocument,
+          h = t.Core.documentViewer;
         r.addTrustedCertificates(['https://pdftron.s3.amazonaws.com/downloads/pl/waiver.cer']),
-          s.addEventListener(
+          h.addEventListener(
             'documentLoaded',
             function() {
-              f(['signaturePanel']);
+              s(['signaturePanel']);
             },
             { once: !0 }
           ),
@@ -5938,23 +5947,19 @@
             r.addTrustedCertificates([t.target.value]);
           }),
           o.addEventListener('submit', function(t) {
-            t.preventDefault(), (e.value = '');
-            var n = document.getElementById('certificate-url');
-            r.addTrustedCertificates([n.value]);
+            t.preventDefault(), (e.value = ''), r.addTrustedCertificates([f.value]);
           }),
           i.addEventListener('change', function(t) {
-            a(t.target.value);
+            l(t.target.value);
           }),
           u.addEventListener('submit', function(t) {
-            t.preventDefault(), (i.value = '');
-            var n = document.getElementById('document-url');
-            a(n.value);
+            t.preventDefault(), (i.value = ''), l(a.value);
           }),
           c.addEventListener('change', function(t) {
             var n = t.target.files[0];
             if (n) {
               var o = n.name.slice(n.name.lastIndexOf('.') + 1);
-              'cer' === o ? ((e.value = ''), r.addTrustedCertificates([n])) : 'pdf' === o && ((i.value = ''), a(n));
+              'cer' === o ? ((e.value = ''), r.addTrustedCertificates([n])) : 'pdf' === o && ((i.value = ''), l(n));
             }
           });
       });

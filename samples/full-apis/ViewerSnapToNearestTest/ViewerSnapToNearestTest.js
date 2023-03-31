@@ -85,7 +85,7 @@
   createSnapModesPanel();
 
   instance.Core.documentViewer.addEventListener('pageComplete', () => {
-    const lineAnnot = new Annotations.LineAnnotation();
+    const lineAnnot = new Core.Annotations.LineAnnotation();
     lineAnnot.setStartPoint(0, 0);
     lineAnnot.setEndPoint(0, 0);
     lineAnnot.PageNumber = 1;
@@ -112,10 +112,15 @@
               annotationManager.drawAnnotations(oldPageNumber);
             }
 
-            instance.Core.documentViewer.snapToNearest(pageNumber, pagePoint.x, pagePoint.y, snapMode).then(snapPoint => {
-              lineAnnot.setEndPoint(snapPoint.x, snapPoint.y);
-              annotationManager.redrawAnnotation(lineAnnot);
-            });
+            instance.Core.documentViewer
+              .snapToNearest(pageNumber, pagePoint.x, pagePoint.y, snapMode)
+              .then(snapPoint => {
+                lineAnnot.setEndPoint(snapPoint.x, snapPoint.y);
+                annotationManager.redrawAnnotation(lineAnnot);
+              })
+              .catch(e => {
+                console.warn(e);
+              });
           });
         }
 

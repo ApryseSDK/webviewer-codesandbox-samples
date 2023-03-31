@@ -286,6 +286,7 @@
       // get document
       let stillRunning = false;
       const documentViewer = instance.Core.documentViewer;
+      const Annotations = instance.Core.Annotations;
       const doc = documentViewer.getDocument();
       doc.getPDFDoc().then(pdfDoc => {
         if (prevListenerFunc) {

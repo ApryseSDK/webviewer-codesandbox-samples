@@ -5,6 +5,8 @@
   const docSelect = parentDocument.getElementById('document-select');
   const docUrlForm = parentDocument.getElementById('document-url-form');
   const filePicker = parentDocument.getElementById('file-picker');
+  const certUrl = parentDocument.getElementById('certificate-url');
+  const docUrl = parentDocument.getElementById('document-url');
 
   window.addEventListener('viewerLoaded', () => {
     const instance = window.instance;
@@ -28,10 +30,7 @@
 
     certUrlForm.addEventListener('submit', e => {
       e.preventDefault();
-
       certSelect.value = '';
-
-      const certUrl = document.getElementById('certificate-url');
       VerificationOptions.addTrustedCertificates([certUrl.value]);
     });
 
@@ -41,10 +40,7 @@
 
     docUrlForm.addEventListener('submit', e => {
       e.preventDefault();
-
       docSelect.value = '';
-
-      const docUrl = document.getElementById('document-url');
       loadDocument(docUrl.value);
     });
 

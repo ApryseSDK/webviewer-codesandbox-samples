@@ -103,7 +103,7 @@
 
   const syncDocumentContainerScrolls = (scrollLeftPercentage, scrollTopPercentage) => {
     instances.forEach(instance => {
-      const scrollView = instance.docViewer.getScrollViewElement();
+      const scrollView = instance.Core.documentViewer.getScrollViewElement();
       if (!scrollView) {
         return;
       }
@@ -128,7 +128,7 @@
 
   const syncRotation = rotation => {
     instances.forEach(instance => {
-      const documentViewer = instance.docViewer;
+      const documentViewer = instance.Core.documentViewer;
       if (documentViewer.getRotation() !== rotation) {
         documentViewer.setRotation(rotation);
       }
