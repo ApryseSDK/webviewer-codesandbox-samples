@@ -455,7 +455,9 @@
       "filters": "Filtres",
       "user": "Utilisateur",
       "type": "Taper",
-      "status": "Statut"
+      "status": "Statut",
+      "filterSettings": "Paramètres de filtre",
+      "filterDocument": "Filtrer le document et le panneau de commentaires"
     },
     "state": {
       "accepted": "Accepté",
@@ -615,6 +617,7 @@
     },
     "settings": {
       "settings": "Réglages",
+      "searchSettings": "Paramètres de recherche",
       "general": "Général",
       "language": "Langue",
       "theme": "Thème",
@@ -733,6 +736,10 @@
       "title": "Fermer sans télécharger?",
       "message": "Des modifications ont été apportées à ce document, êtes-vous sûr de vouloir le fermer sans télécharger votre travail ? Vous ne pouvez pas annuler cette action.",
       "rejectDownloadButton": "Fermer sans téléchargement"
+    },
+    "connectToURL": {
+      "title": "Avertissement de sécurité",
+      "message": "Ce document tente de se connecter à :\n\n{{-uri}}.\n\n Si vous faites confiance à ce document, cliquez sur Confirmer pour l'ouvrir."
     }
   },
   "shortcut": {
