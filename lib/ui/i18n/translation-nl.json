@@ -455,7 +455,9 @@
       "filters": "Filters",
       "user": "Gebruiker",
       "type": "Type",
-      "status": "Toestand"
+      "status": "Toestand",
+      "filterSettings": "Filterinstellingen",
+      "filterDocument": "Filter document en opmerkingenpaneel"
     },
     "state": {
       "accepted": "Geaccepteerd",
@@ -615,6 +617,7 @@
     },
     "settings": {
       "settings": "Instellingen",
+      "searchSettings": "Zoek instellingen",
       "general": "Algemeen",
       "language": "Taal",
       "theme": "Thema",
@@ -733,6 +736,10 @@
       "title": "Sluiten zonder te downloaden?",
       "message": "Er zijn wijzigingen aangebracht in dit document. Weet u zeker dat u het wilt sluiten zonder uw werk te downloaden? Je kunt deze actie niet ongedaan maken.",
       "rejectDownloadButton": "Sluiten zonder downloaden"
+    },
+    "connectToURL": {
+      "title": "Veiligheidswaarschuwing",
+      "message": "Dit document probeert verbinding te maken met:\n\n{{- uri}}.\n\n Als u dit document vertrouwt, klikt u op Bevestigen om het te openen."
     }
   },
   "shortcut": {

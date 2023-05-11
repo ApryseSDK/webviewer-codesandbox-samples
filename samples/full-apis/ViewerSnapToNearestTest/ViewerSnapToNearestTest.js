@@ -112,15 +112,10 @@
               annotationManager.drawAnnotations(oldPageNumber);
             }
 
-            instance.Core.documentViewer
-              .snapToNearest(pageNumber, pagePoint.x, pagePoint.y, snapMode)
-              .then(snapPoint => {
-                lineAnnot.setEndPoint(snapPoint.x, snapPoint.y);
-                annotationManager.redrawAnnotation(lineAnnot);
-              })
-              .catch(e => {
-                console.warn(e);
-              });
+            instance.Core.documentViewer.snapToNearest(pageNumber, pagePoint.x, pagePoint.y, snapMode).then(snapPoint => {
+              lineAnnot.setEndPoint(snapPoint.x, snapPoint.y);
+              annotationManager.redrawAnnotation(lineAnnot);
+            });
           });
         }
 

@@ -455,7 +455,9 @@
       "filters": "過濾器",
       "user": "用戶",
       "type": "類型",
-      "status": "地位"
+      "status": "地位",
+      "filterSettings": "過濾器設置",
+      "filterDocument": "過濾文檔和評論面板"
     },
     "state": {
       "accepted": "公認",
@@ -615,6 +617,7 @@
     },
     "settings": {
       "settings": "設置",
+      "searchSettings": "搜索設置",
       "general": "一般的",
       "language": "語",
       "theme": "主題",
@@ -733,6 +736,10 @@
       "title": "不下載就關閉？",
       "message": "此文檔有更改，您確定要關閉它而不下載您的工作嗎？您無法撤消此操作。",
       "rejectDownloadButton": "關閉而不下載"
+    },
+    "connectToURL": {
+      "title": "安全警告",
+      "message": "此文檔正在嘗試連接到：\n\n{{- uri}}。\n\n 如果您信任此文檔，請單擊“確認”將其打開。"
     }
   },
   "shortcut": {

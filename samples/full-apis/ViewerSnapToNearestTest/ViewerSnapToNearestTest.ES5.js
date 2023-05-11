@@ -5994,14 +5994,9 @@
                   (t.PageNumber = c),
                     t.setStartPoint(u.x, u.y),
                     c !== f && e.drawAnnotations(f),
-                    instance.Core.documentViewer
-                      .snapToNearest(c, u.x, u.y, r)
-                      .then(function(n) {
-                        t.setEndPoint(n.x, n.y), e.redrawAnnotation(t);
-                      })
-                      .catch(function(t) {
-                        console.warn(t);
-                      });
+                    instance.Core.documentViewer.snapToNearest(c, u.x, u.y, r).then(function(n) {
+                      t.setEndPoint(n.x, n.y), e.redrawAnnotation(t);
+                    });
                 }),
                 (i = !1);
             }, 100));
