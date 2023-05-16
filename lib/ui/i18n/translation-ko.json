@@ -455,7 +455,9 @@
       "filters": "필터",
       "user": "사용자",
       "type": "유형",
-      "status": "상태"
+      "status": "상태",
+      "filterSettings": "필터 설정",
+      "filterDocument": "문서 및 댓글 패널 필터링"
     },
     "state": {
       "accepted": "승인",
@@ -615,6 +617,7 @@
     },
     "settings": {
       "settings": "설정",
+      "searchSettings": "검색 설정",
       "general": "일반적인",
       "language": "언어",
       "theme": "주제",
@@ -733,6 +736,10 @@
       "title": "다운로드하지 않고 종료하시겠습니까?",
       "message": "이 문서에 변경 사항이 있습니다. 작업을 다운로드하지 않고 닫으시겠습니까? 이 작업은 취소할 수 없습니다.",
       "rejectDownloadButton": "다운로드하지 않고 닫기"
+    },
+    "connectToURL": {
+      "title": "보안 경고",
+      "message": "이 문서는 다음에 연결하려고 합니다.\n\n{{- 우리}}.\n\n 이 문서를 신뢰하는 경우 확인을 클릭하여 엽니다."
     }
   },
   "shortcut": {

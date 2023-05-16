@@ -22922,40 +22922,9 @@ declare namespace Core.PDFNet {
 
     
     /**
- * The TextGalley class
+ * This module contains the InfixCommandWrapper class
  */
-declare class TextGalley {
-}
-
-/**
- * The PdfBBox class which is used for creating bounding box object for galleys.
- */
-declare class PdfBBox {
-}
-
-/**
- * The PdfPoint class which is used for creating a set of xy coordinates.
- */
-declare class PdfPoint {
-}
-
-/**
- * The PdfQuad class used for creating the Quad object of a single character
- */
-declare class PdfQuad {
-}
-
-/**
- * The PDFContentBoxData class for creating text box data object.
- */
-declare class PDFContentBoxData {
-}
-
-/**
- * The PDFObjectBoxData class for creating PDF object box data object.
- */
-declare class PDFObjectBoxData {
-}
+declare module "Core ContentEdit v3" { }
 
 /**
  * The style tab in the annotation style popup window. See {@link UI.AnnotationStylePopupTabs} for valid style tabs.
@@ -23917,6 +23886,11 @@ declare namespace Core {
              * @param key - The key for which to delete the associated data.
              */
             deleteCustomData(key: string): void;
+            /**
+             * Checks if a content edit annotation is being edited and has focus.
+             * @returns Returns whether an annotation is on content edit focus mode or not
+             */
+            isInContentEditFocusMode(): boolean;
             /**
              * Gets the rich text style of the annotation.
              * @returns the current rich text style
@@ -28148,6 +28122,14 @@ declare namespace Core {
          */
         getSemanticDiffAnnotations(): void;
         /**
+         * Render and list detached replies (replies with a missing parent). This can only be called before a document is loaded.
+         */
+        showDetachedReplies(): void;
+        /**
+         * Hide and unlist detached replies (replies with a missing parent). This can only be called before a document is loaded.
+         */
+        hideDetachedReplies(): void;
+        /**
          * Triggered when an annotation or annotations have been changed (added, deleted, modified).
          * Attach like annotManager.addEventListener('annotationChanged', callback)
          * @param annotations - The annotations that were changed
@@ -28766,6 +28748,10 @@ declare namespace Core {
          * boxes from the document.
          */
         endContentEditMode(): void;
+        /**
+         * Toggles the visibility of invisible characters in the content edit boxes
+         */
+        toggleInvisibleCharacters(): void;
     }
     /**
      * Syncs the namespaces under the Core namespace attached to the <b>window only</b>.
@@ -30511,6 +30497,17 @@ declare namespace Core {
          */
         loadDocument(src: string | File | ArrayBuffer | Blob | Core.Document | Core.PDFNet.PDFDoc, options?: Core.LoadDocumentOptions): Promise<void>;
         /**
+         * Opens the given URI.
+         * @param uri - the uri to open
+         * @param isOpenInNewWindow - whether to open the uri in a new window
+         */
+        openURI(uri: string, isOpenInNewWindow: boolean): void;
+        /**
+         * Sets the open URI handler.
+         * @param openURIHandler - openURIHandler function that takes in a uri and a boolean indicating whether to open in a new window
+         */
+        setOpenURIHandler(openURIHandler: any): void;
+        /**
          * Gets a promise that resolves when the annotations in the current document have all been loaded
          * @returns Promise that resolves when the annotations in the current document have loaded.
          */
@@ -31241,11 +31238,13 @@ declare namespace Core {
          * @param documentViewer - Other documentViewer to diff with
          * @param [options.beforeColor = { R: 255, G: 73, B: 73, A: 0.4 }] - Color for the highlight annotations on the before document
          * @param [options.afterColor = { R: 21, G: 205, B: 131, A: 0.4 }] - Color for the highlight annotations on the after document
+         * @param [options.extraMoveHighlight = false] - Whether to highlight text in between short-distance moves
          * @returns returns an object with the following properties { doc1Annotations, doc2Annotations, diffCount }
          */
         startSemanticDiff(documentViewer: Core.DocumentViewer, options?: {
             beforeColor?: Core.Annotations.Color;
             afterColor?: Core.Annotations.Color;
+            extraMoveHighlight?: boolean;
         }): Promise<object>;
         /**
          * Triggered for the mouseLeftButtonDown event in the DocumentViewer's viewing area
@@ -31642,6 +31641,21 @@ declare namespace Core {
          */
         one(event: 'activeSearchResultChanged', callback: (result: any) => void): void;
         off(event?: 'activeSearchResultChanged', callback?: (result: any) => void): void;
+        /**
+         * Triggered when Core.DocumentViewer.startSemanticDiff is called
+         * @param doc1Annotations - Highlight annotations marking the difference on the first document
+         * @param doc2Annotations - Highlight annotations marking the difference on the second document
+         * @param diffCount - The number of differences between the two documents
+         */
+        on(event: 'compareAnnotationsLoaded', callback: (doc1Annotations: any, doc2Annotations: any, diffCount: any) => void): void;
+        /**
+         * Triggered when Core.DocumentViewer.startSemanticDiff is called
+         * @param doc1Annotations - Highlight annotations marking the difference on the first document
+         * @param doc2Annotations - Highlight annotations marking the difference on the second document
+         * @param diffCount - The number of differences between the two documents
+         */
+        one(event: 'compareAnnotationsLoaded', callback: (doc1Annotations: any, doc2Annotations: any, diffCount: any) => void): void;
+        off(event?: 'compareAnnotationsLoaded', callback?: (doc1Annotations: any, doc2Annotations: any, diffCount: any) => void): void;
         /**
          * @property ACTIVE_SEARCH_RESULT_CHANGED - {@link Core.DocumentViewer#event:activeSearchResultChanged Core.DocumentViewer.activeSearchResultChanged }
          * @property MOUSE_LEFT_UP - {@link Core.DocumentViewer#event:mouseLeftUp Core.DocumentViewer.mouseLeftUp }
@@ -34797,6 +34811,16 @@ declare namespace Core {
              */
             enableImperialMarks(): void;
             /**
+             * Disable the showing of imperial marks for the units of distance annotations created by this tool
+             * @example
+             * WebViewer(...).then(instance => {
+             *  const { Core } = instance;
+             *  const tool = Core.documentViewer.getTool(Core.Tools.ToolNames.DISTANCE_MEASUREMENT);
+             *  tool.disableImperialMarks();
+             * })
+             */
+            disableImperialMarks(): void;
+            /**
              * Check if imperial marks is enabled or disabled
              * @example
              * WebViewer(...).then(instance => {
@@ -34805,7 +34829,7 @@ declare namespace Core {
              * })
              * @returns Returns true if tool is imperial marks enabled
              */
-            disableImperialMarks(): boolean;
+            isImperialMarksEnabled(): boolean;
             /**
              * Gets the default options set for leader line functionality.
              * @example
@@ -38911,9 +38935,8 @@ declare namespace Core {
      * Begins setup of PDF Worker Object. This can be used to load the workers before a license key has been loaded.
      * @param pdfBackendType - object representing a PDF backend type ("asm", "ems" or "wasm-threads")
      * @param workerHandlers - object holding event and error handlers for the worker (workerLoadingProgress).
-     * @returns The worker object
      */
-    function preloadPDFWorker(pdfBackendType: string, workerHandlers: any): any;
+    function preloadPDFWorker(pdfBackendType: string, workerHandlers: any): void;
     /**
      * Begins setup of PDF Worker Object.
      * @param pdfBackendType - object representing an PDF backend type ("asm", "ems" or "wasm-threads")
@@ -38958,6 +38981,13 @@ declare namespace Core {
      * Get the location of the OfficeEditor worker files OfficeEditorModule.js, OfficeEditorWorkerWasm.br.js.mem and OfficeEditorWorkerWasm.br.wasm files
      */
     var getOfficeEditorWorkerPath: any;
+    /**
+     * Begins setup of OfficeEditor Worker Object.
+     * @param workerHandlers - object holding event and error handlers for the worker (workerLoadingProgress, emsWorkerError).
+     * @param l - The license key to use for this worker. If undefined, initialization will be done in demo mode.
+     * @returns a promise that will be resolved when worker transport initialization is complete.
+     */
+    function initOfficeEditorWorkerTransports(workerHandlers: any, l: string): any;
     /**
      * Set the location of the Office worker. This will override the location specified by Core.setWorkerPath for Office worker files.
      */
@@ -39526,13 +39556,28 @@ declare namespace UI {
          * Add a new tab to the UI
          * @example
          * WebViewer(...).then(function(instance) {
-         *   instance.UI.TabManager.addTab('http://www.example.com/pdf', {extension: "pdf", setActive: true, saveCurrentActiveTabState: true}); // Add a new tab with the URL http://www.example.com
+         *   // Adding a new tab with the URL http://www.example.com
+         *   instance.UI.TabManager.addTab(
+         *      'http://www.example.com/pdf',
+         *      {
+         *        extension: "pdf",
+         *        filename: 'Example',
+         *        withCredentials: true,
+         *        setActive: true,
+         *        saveCurrentActiveTabState: true
+         *      }
+         *    );
          * });
          * @param src - The source of the tab to be added (e.g. a URL, a blob, ArrayBuffer, or a File)
          * @param [options] - The options for the tab to be added
+         * @param [options.setActive] - Whether to set the new tab as active immediately after adding it (default: true)
+         * @param [options.saveCurrentActiveTabState] - Whether to save the current tab annotations, scroll position, and zoom level before adding the new tab (only used when setActive=true) (default: true)
          * @returns Resolves to the tab id of the newly added tab
          */
-        function addTab(src: string | File | Blob | Core.Document | Core.PDFNet.PDFDoc, options?: UI.addTabOptions): Promise<number>;
+        function addTab(src: string | File | Blob | Core.Document | Core.PDFNet.PDFDoc, options?: {
+            setActive?: boolean;
+            saveCurrentActiveTabState?: boolean;
+        }): Promise<number>;
         /**
          * Get the currently active tab id
          * @returns The current tab with the following properties: { id: Number, options: Object, src: string|Blob|File|ArrayBuffer }
@@ -39544,22 +39589,6 @@ declare namespace UI {
          */
         function getAllTabs(): object[];
     }
-    /**
-     */
-    type addTabOptions = {
-        /**
-         * The document loading options
-         */
-        loadDocumentOptions?: UI.loadDocumentOptions;
-        /**
-         * Whether to set the new tab as active immediately after adding it (default: true)
-         */
-        setActive?: boolean;
-        /**
-         * Whether to save the current tab annotations, scroll position, and zoom level before adding the new tab (only used when setActive=true) (default: true)
-         */
-        saveCurrentActiveTabState?: boolean;
-    };
     /**
      * Add custom modal element to WebViewer.
      * <br /><br />
@@ -42356,6 +42385,19 @@ declare namespace UI {
      */
     function setMinZoomLevel(zoomLevel: string | number): void;
     /**
+     * Set the scrolling behavior of sync scrolling in semantic compare mode.
+     * Must be one of the following values:
+     * - 'SYNC': scroll synchronously in both documents
+     * - 'SKIP_UNMATCHED': scroll according to the next matched position in both documents
+     * @example
+     * WebViewer(...)
+     *  .then(function(instance) {
+     *     instance.UI.setMultiViewerSyncScrollingMode('SYNC');
+     *   });
+     * @param multiViewerSyncScrollingMode - the scrolling behavior of sync scrolling in semantic comparing mode.
+     */
+    function setMultiViewerSyncScrollingMode(multiViewerSyncScrollingMode: string): void;
+    /**
      * Sets the format for displaying the date when a note is create/modified. A list of formats can be found {@link https://github.com/iamkun/dayjs/blob/master/docs/en/API-reference.md#format-formatstringwithtokens-string dayjs API}.
      * @example
      * WebViewer(...)
@@ -42595,6 +42637,16 @@ declare namespace UI {
      * @param theme - Theme of WebViewerInstance UI.
      */
     function setTheme(theme: string): void;
+    /**
+     * Sets the timezone that will be used in the UI anywhere a date is displayed.
+     * A list of timezone names can be found {@link https://momentjs.com/timezone/ at momentjs docs}.
+     * @example
+     * WebViewer(...)
+     *   .then(function(instance) {
+     *     instance.UI.setTimezone('Europe/London');
+     * @param timezone - Name of the timezone, e.g. "America/New_York", "America/Los_Angeles", "Europe/London".
+     */
+    function setTimezone(timezone: string): void;
     /**
      * Sets tool mode.
      * @example
@@ -42981,7 +43033,7 @@ declare namespace UI {
          * Unselect selected thumbnails
          * @example
          * WebViewer(...)
-         *   .then(function(instance) {
+         *  .then(function(instance) {
          *     const pageNumbersToUnselect = [1, 2];
          *     instance.UI.ThumbnailsPanel.unselectPages(pageNumbersToUnselect);
          *   });
@@ -43285,6 +43337,8 @@ declare namespace UI {
      * @property TAB_MOVED - {@link UI#event:tabMoved UI.Events.tabMoved}
      * @property LANGUAGE_CHANGED - {@link UI#event:tabMoved UI.Events.languageChanged}
      * @property MULTI_VIEWER_READY - {@link UI#event:multiViewerReady  UI.Events.multiViewerReady }
+     * @property COMPARE_ANNOTATIONS_LOADED - {@link UI#event:compareAnnotationsLoaded  UI.Events.compareAnnotationsLoaded }
+     * @property TAB_MANAGER_READY - {@link UI#event:onTabManagerReady  UI.Events.onTabManagerReady }
      */
     var Events: {
         /**
@@ -43383,12 +43437,20 @@ declare namespace UI {
          * {@link UI#event:multiViewerReady  UI.Events.multiViewerReady }
          */
         MULTI_VIEWER_READY: string;
+        /**
+         * {@link UI#event:compareAnnotationsLoaded  UI.Events.compareAnnotationsLoaded }
+         */
+        COMPARE_ANNOTATIONS_LOADED: string;
+        /**
+         * {@link UI#event:onTabManagerReady  UI.Events.onTabManagerReady }
+         */
+        TAB_MANAGER_READY: string;
     };
     /**
      * Contains string enums for all features for WebViewer UI
      * @example
      * WebViewer(...)
-     *   .then(function(instance) {
+     *  .then(function(instance) {
      *     var Feature = instance.UI.Feature;
      *     instance.UI.enableFeatures([Feature.Measurement]);
      *     instance.UI.disableFeatures([Feature.Copy]);
@@ -43424,6 +43486,7 @@ declare namespace UI {
      * @property WatermarkPanel - toggle feature to enable the watermark panel
      * @property WatermarkPanelImageTab - toggle feature to enable the image tab in watermark panel
      * @property ContentEdit - toggle feature to enable content editing in a pdf document
+     * @property LegacyRichTextPopup - Toggle legacy richTextPopup
      */
     var Feature: {
         /**
@@ -43550,6 +43613,10 @@ declare namespace UI {
          * toggle feature to enable content editing in a pdf document
          */
         ContentEdit: string;
+        /**
+         * Toggle legacy richTextPopup
+         */
+        LegacyRichTextPopup: string;
     };
     /**
      * Contains all possible modes for fitting/zooming pages to the viewer. The behavior may vary depending on the LayoutMode.
@@ -44543,6 +44610,11 @@ declare type WebViewerOptions = {
      */
     disableVirtualDisplayMode?: boolean;
     /**
+     * Whether to hide detached replies. These are replies that reference a parent annotation which no longer exists.
+     * @defaultValue true
+     */
+    hideDetachedReplies?: boolean;
+    /**
      * Extension of the document to be loaded. **Multi-tab** must be an array of documents ex: Webviewer({ initialDoc: ['pdf_doc', 'word_doc'], extension: ['pdf', 'docx'] }) OR Webviewer({ initialDoc: ['pdf_doc1', 'pdf_doc2'], extension: ['pdf'] })
      */
     extension?: string | string[];
@@ -44722,6 +44794,10 @@ declare type WorkerTypes = {
      * To preload the content edit worker object
      */
     CONTENT_EDIT: string;
+    /**
+     * To preload the office editor worker object
+     */
+    OFFICE_EDITOR: string;
     /**
      * To preload all the workers objects
      */
