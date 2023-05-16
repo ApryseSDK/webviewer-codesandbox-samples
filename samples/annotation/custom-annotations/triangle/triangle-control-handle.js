@@ -50,4 +50,4 @@
   exports.TriangleControlHandleFactory = {
     initialize: TriangleControlHandleFactory,
   };
-})(window);
+}(window));

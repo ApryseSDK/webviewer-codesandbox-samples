@@ -56,4 +56,4 @@
   exports.TriangleSelectionModelFactory = {
     initialize: TriangleSelectionModelFactory,
   };
-})(window);
+}(window));

@@ -15,11 +15,11 @@
 WebViewer(
   {
     path: '../../../lib',
-    webviewerServerURL: 'https://demo.pdftron.com/', // comment this out to do client-side only
+    /* PDFJS_IGNORE */ /* TEST_IGNORE */ webviewerServerURL: 'https://demo.pdftron.com/', // comment this out to do client-side only /* /TEST_IGNORE */ /* /PDFJS_IGNORE */
     initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf',
   },
   document.getElementById('viewer')
-).then(instance => {
+).then((instance) => {
   samplesSetup(instance);
   const { annotationManager } = instance.Core;
   const { openElements } = instance.UI;
@@ -27,12 +27,12 @@ WebViewer(
 
   const toggleVisibility = () => {
     const currentUser = annotationManager.getCurrentUser();
-    const allAnnotations = annotationManager.getAnnotationsList().filter(annot => annot.Listable);
+    const allAnnotations = annotationManager.getAnnotationsList().filter((annot) => annot.Listable);
     let annotationsToShow = allAnnotations;
     annotationManager.hideAnnotations(allAnnotations);
 
     if (!shouldShowAnnotFromOtherUsers) {
-      annotationsToShow = allAnnotations.filter(annot => annot.Author === currentUser);
+      annotationsToShow = allAnnotations.filter((annot) => annot.Author === currentUser);
     }
     annotationManager.showAnnotations(annotationsToShow);
   };
@@ -62,7 +62,7 @@ WebViewer(
     toggleVisibility();
   };
 
-  document.getElementById('display').onchange = e => {
+  document.getElementById('display').onchange = (e) => {
     shouldShowAnnotFromOtherUsers = e.target.checked;
     toggleVisibility();
   };

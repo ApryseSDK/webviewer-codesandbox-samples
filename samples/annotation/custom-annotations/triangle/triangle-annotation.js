@@ -38,7 +38,7 @@
         const deltaX = rect.x1 - annotRect.x1;
         const deltaY = rect.y1 - annotRect.y1;
         // shift the vertices by the amount the rect has shifted
-        this.vertices.forEach(vertex => vertex.translate(deltaX, deltaY));
+        this.vertices.forEach((vertex) => vertex.translate(deltaX, deltaY));
         this.setRect(rect);
       }
 
@@ -66,6 +66,6 @@
   exports.TriangleAnnotationFactory = {
     initialize: TriangleAnnotationFactory,
     TRIANGLE_ANNOT_ID,
-    ANNOT_TYPE,
+    ANNOT_TYPE
   };
-})(window);
+}(window));
