@@ -4,7 +4,7 @@ WebViewer(
     initialDoc: '../../full-apis/TestFiles/contract.pdf',
   },
   document.getElementById('viewer')
-).then(instance => {
+).then((instance) => {
   samplesSetup(instance);
 
   instance.UI.setToolbarGroup('toolbarGroup-Forms');

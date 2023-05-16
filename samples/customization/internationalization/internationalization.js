@@ -6,13 +6,13 @@ WebViewer(
     path: '../../../lib',
     additionalTranslations: {
       language: 'en',
-      translations: { 'option.toolbarGroup.toolbarGroup-View': 'Edited View Label' },
+      translations: { 'option.toolbarGroup.toolbarGroup-View': 'Edited View Label' }
     },
-    webviewerServerURL: 'https://demo.pdftron.com/', // comment this out to do client-side only
+    /* PDFJS_IGNORE */ /* TEST_IGNORE */ webviewerServerURL: 'https://demo.pdftron.com/', // comment this out to do client-side only /* /TEST_IGNORE */ /* /PDFJS_IGNORE */
     initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf',
   },
   document.getElementById('viewer')
-).then(instance => {
+).then((instance) => {
   samplesSetup(instance);
 
   const currentLanguage = instance.UI.getCurrentLanguage();
@@ -21,7 +21,7 @@ WebViewer(
     radioButton.checked = true;
   }
 
-  document.getElementById('form').onchange = e => {
+  document.getElementById('form').onchange = (e) => {
     // Set language
     instance.UI.setLanguage(e.target.id);
   };

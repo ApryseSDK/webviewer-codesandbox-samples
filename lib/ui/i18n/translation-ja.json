@@ -455,7 +455,9 @@
       "filters": "フィルタ",
       "user": "ユーザー",
       "type": "タイプ",
-      "status": "状態"
+      "status": "状態",
+      "filterSettings": "フィルター設定",
+      "filterDocument": "ドキュメントとコメント パネルをフィルター処理する"
     },
     "state": {
       "accepted": "承認",
@@ -615,6 +617,7 @@
     },
     "settings": {
       "settings": "設定",
+      "searchSettings": "検索設定",
       "general": "全般的",
       "language": "言語",
       "theme": "テーマ",
@@ -733,6 +736,10 @@
       "title": "ダウンロードせずに閉じますか？",
       "message": "このドキュメントに変更が加えられましたが、作業内容をダウンロードせずに閉じてもよろしいですか？このアクションを元に戻すことはできません。",
       "rejectDownloadButton": "ダウンロードせずに閉じる"
+    },
+    "connectToURL": {
+      "title": "セキュリティ警告",
+      "message": "このドキュメントは次の場所に接続しようとしています:\n\n{{- うり}}。\n\n このドキュメントが信頼できる場合は、[確認] をクリックして開きます。"
     }
   },
   "shortcut": {

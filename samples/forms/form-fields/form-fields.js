@@ -7,11 +7,11 @@
 WebViewer(
   {
     path: '../../../lib',
-    webviewerServerURL: 'https://demo.pdftron.com/', // comment this out to do client-side only
+    /* PDFJS_IGNORE */ /* TEST_IGNORE */ webviewerServerURL: 'https://demo.pdftron.com/', // comment this out to do client-side only /* /TEST_IGNORE */ /* /PDFJS_IGNORE */
     initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/form1.pdf',
   },
   document.getElementById('viewer')
-).then(instance => {
+).then((instance) => {
   samplesSetup(instance);
   const { documentViewer, annotationManager, Annotations } = instance.Core;
 
@@ -19,7 +19,7 @@ WebViewer(
     const pageCount = documentViewer.getPageCount();
     const defaultStyles = Annotations.WidgetAnnotation.getCustomStyles;
     const defaultContainerStyles = Annotations.WidgetAnnotation.getContainerCustomStyles;
-    const customStyles = widget => {
+    const customStyles = (widget) => {
       if (widget instanceof Annotations.TextWidgetAnnotation) {
         if (widget.fieldName === 'f1-1') {
           return {
@@ -39,15 +39,15 @@ WebViewer(
       }
     };
 
-    const customContainerStyles = widget => {
+    const customContainerStyles = (widget) => {
       if (widget instanceof Annotations.WidgetAnnotation) {
         return {
-          border: '2px solid green',
+          'border': '2px solid green',
         };
       }
     };
 
-    document.getElementById('form').onchange = e => {
+    document.getElementById('form').onchange = (e) => {
       if (e.target.id === 'custom') {
         // Change styles for widget annotations
         Annotations.WidgetAnnotation.getCustomStyles = customStyles;

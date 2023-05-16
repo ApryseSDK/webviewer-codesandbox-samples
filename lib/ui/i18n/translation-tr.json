@@ -455,7 +455,9 @@
       "filters": "filtreler",
       "user": "kullanıcı",
       "type": "Tip",
-      "status": "Durum"
+      "status": "Durum",
+      "filterSettings": "Filtre Ayarları",
+      "filterDocument": "Belge ve yorum panelini filtrele"
     },
     "state": {
       "accepted": "Kabul edilmiş",
@@ -615,6 +617,7 @@
     },
     "settings": {
       "settings": "Ayarlar",
+      "searchSettings": "Arama Ayarları",
       "general": "Genel",
       "language": "Dil",
       "theme": "Tema",
@@ -733,6 +736,10 @@
       "title": "İndirmeden kapatılsın mı?",
       "message": "Bu belgede yapılan değişiklikler var, çalışmanızı indirmeden kapatmak istediğinizden emin misiniz? Bu işlemi geri alamazsınız.",
       "rejectDownloadButton": "İndirmeden kapat"
+    },
+    "connectToURL": {
+      "title": "Güvenlik uyarısı",
+      "message": "Bu belge şuraya bağlanmaya çalışıyor:\n\n{{- uri}}.\n\n Bu belgeye güveniyorsanız açmak için Onayla'yı tıklayın."
     }
   },
   "shortcut": {
