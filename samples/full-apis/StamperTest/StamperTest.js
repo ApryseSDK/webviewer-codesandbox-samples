@@ -2,7 +2,7 @@
 // Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
-(exports => {
+((exports) => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFNet.PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
   // @link PDFNet.Stamper: https://docs.apryse.com/api/web/Core.PDFNet.Stamper.html
@@ -33,9 +33,9 @@
 
         const redColorPt = await PDFNet.ColorPt.init(1, 0, 0);
         stamper.setFontColor(redColorPt);
-        const pgSet = await PDFNet.PageSet.createRange(1, await doc.getPageCount());
+        const pgSet = await PDFNet.PageSet.createRange(1, (await doc.getPageCount()));
         stamper.stampText(doc, 'If you are reading this\nthis is an even page', pgSet);
-        const oddPgSet = await PDFNet.PageSet.createFilteredRange(1, await doc.getPageCount(), PDFNet.PageSet.Filter.e_odd);
+        const oddPgSet = await PDFNet.PageSet.createFilteredRange(1, (await doc.getPageCount()), PDFNet.PageSet.Filter.e_odd);
         // delete all text stamps in odd pages
         PDFNet.Stamper.deleteStamps(doc, oddPgSet);
 
@@ -97,7 +97,7 @@
 
         // put the image at the bottom right hand corner
         stamper.setAlignment(PDFNet.Stamper.HorizontalAlignment.e_horizontal_right, PDFNet.Stamper.VerticalAlignment.e_vertical_bottom);
-        const pgSet = await PDFNet.PageSet.createRange(1, await doc.getPageCount());
+        const pgSet = await PDFNet.PageSet.createRange(1, (await doc.getPageCount()));
         stamper.stampPage(doc, srcPage, pgSet);
 
         const docBuffer = await doc.saveMemoryBuffer(PDFNet.SDFDoc.SaveOptions.e_linearized);
@@ -206,7 +206,7 @@
         stamper.setPosition(10, 10);
 
         const img = await PDFNet.Image.createFromURL(doc, inputURL + 'peppers.jpg');
-        const pgSet = await PDFNet.PageSet.createFilteredRange(1, await doc.getPageCount(), PDFNet.PageSet.Filter.e_all);
+        const pgSet = await PDFNet.PageSet.createFilteredRange(1, (await doc.getPageCount()), PDFNet.PageSet.Filter.e_all);
         stamper.stampImage(doc, img, pgSet);
 
         const docBuffer = await doc.saveMemoryBuffer(PDFNet.SDFDoc.SaveOptions.e_linearized);

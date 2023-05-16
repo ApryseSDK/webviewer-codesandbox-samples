@@ -3,7 +3,7 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
-(exports => {
+((exports) => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFNet.runWithCleanup: https://docs.apryse.com/api/web/Core.PDFNet.html#.runWithCleanup__anchor
 
@@ -18,30 +18,27 @@
 
   const PDFNet = exports.Core.PDFNet;
 
-  const createFDFFromXFDFURL = url =>
-    new Promise((resolve, reject) => {
-      const xhttp = new XMLHttpRequest();
+  const createFDFFromXFDFURL = (url) => new Promise((resolve, reject) => {
+    const xhttp = new XMLHttpRequest();
 
-      xhttp.onreadystatechange = function() {
-        if (this.readyState === this.DONE) {
-          if (xhttp.status === 200) {
-            const data = xhttp.responseText;
-            PDFNet.FDFDoc.createFromXFDF(data).then(
-              fdfdoc => {
-                resolve(fdfdoc);
-              },
-              e => {
-                reject(e);
-              }
-            );
-          } else {
-            reject('Request for URL ' + url + ' received incorrect HTTP response code ' + xhttp.status);
-          }
+    xhttp.onreadystatechange = function() {
+      if (this.readyState === this.DONE) {
+        if (xhttp.status === 200) {
+          const data = xhttp.responseText;
+          PDFNet.FDFDoc.createFromXFDF(data).then((fdfdoc) => {
+            resolve(fdfdoc);
+          }, (e) => {
+            reject(e);
+          });
+        } else {
+          reject('Request for URL ' + url + ' received incorrect HTTP response code ' + xhttp.status);
         }
-      };
-      xhttp.open('GET', url, true);
-      xhttp.send();
-    });
+      }
+    };
+    xhttp.open('GET', url, true);
+    xhttp.send();
+  });
+
 
   exports.runFDFTest = () => {
     const main = async () => {

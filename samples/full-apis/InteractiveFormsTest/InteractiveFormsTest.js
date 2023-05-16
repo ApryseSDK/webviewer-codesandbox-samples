@@ -2,7 +2,7 @@
 // Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
-(exports => {
+((exports) => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFNet.PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
   // @link PDFNet.ElementWriter: https://docs.apryse.com/api/web/Core.PDFNet.ElementWriter.html
@@ -32,7 +32,7 @@
 
     const RenameAllFields = async (doc, name) => {
       let itr = await doc.getFieldIterator(name);
-      for (let counter = 0; await itr.hasNext(); itr = await doc.getFieldIterator(name), ++counter) {
+      for (let counter = 0; (await itr.hasNext()); itr = (await doc.getFieldIterator(name)), ++counter) {
         const f = await itr.current();
         f.rename(name + counter);
       }
@@ -47,39 +47,28 @@
       const builder = await PDFNet.ElementBuilder.create();
       const writer = await PDFNet.ElementWriter.create();
       writer.begin(doc);
-      writer.writeElement(await builder.createTextBegin());
+      writer.writeElement((await builder.createTextBegin()));
 
       let symbol;
       switch (style) {
-        case PDFNet.CheckStyle.e_circle:
-          symbol = '\x6C';
-          break;
-        case PDFNet.CheckStyle.e_diamond:
-          symbol = '\x75';
-          break;
-        case PDFNet.CheckStyle.e_cross:
-          symbol = '\x35';
-          break;
-        case PDFNet.CheckStyle.e_square:
-          symbol = '\x6E';
-          break;
-        case PDFNet.CheckStyle.e_star:
-          symbol = '\x48';
-          break;
+        case PDFNet.CheckStyle.e_circle: symbol = '\x6C'; break;
+        case PDFNet.CheckStyle.e_diamond: symbol = '\x75'; break;
+        case PDFNet.CheckStyle.e_cross: symbol = '\x35'; break;
+        case PDFNet.CheckStyle.e_square: symbol = '\x6E'; break;
+        case PDFNet.CheckStyle.e_star: symbol = '\x48'; break;
         // ...
         // See section D.4 "ZapfDingbats Set and Encoding" in PDF Reference Manual
         // (http://www.pdftron.com/downloads/PDFReference16.pdf) for the complete
         // graphical map for ZapfDingbats font. Please note that all character codes
         // are represented using the 'octal' notation.
-        default:
-          // e_check
+        default: // e_check
           symbol = '\x34';
       }
 
       const zapfDingbatsFont = await PDFNet.Font.create(doc, PDFNet.Font.StandardType1Font.e_zapf_dingbats);
       const checkmark = await builder.createTextRun(symbol, zapfDingbatsFont, 12);
       writer.writeElement(checkmark);
-      writer.writeElement(await builder.createTextEnd());
+      writer.writeElement((await builder.createTextEnd()));
 
       const stm = await writer.end();
       await stm.putRect('BBox', -0.2, -0.2, 1, 1); // Clip
@@ -100,18 +89,18 @@
       element.setPathStroke(false);
 
       let elementGState = await element.getGState();
-      elementGState.setFillColorSpace(await PDFNet.ColorSpace.createDeviceGray());
-      elementGState.setFillColorWithColorPt(await PDFNet.ColorPt.init(0.75));
+      elementGState.setFillColorSpace((await PDFNet.ColorSpace.createDeviceGray()));
+      elementGState.setFillColorWithColorPt((await PDFNet.ColorPt.init(0.75)));
       writer.writeElement(element);
 
       // Draw 'Submit' text
-      writer.writeElement(await builder.createTextBegin());
+      writer.writeElement((await builder.createTextBegin()));
 
       const text = 'Submit';
       const HelveticaBoldFont = await PDFNet.Font.create(doc, PDFNet.Font.StandardType1Font.e_helvetica_bold);
       element = await builder.createTextRun(text, HelveticaBoldFont, 12);
       elementGState = await element.getGState();
-      elementGState.setFillColorWithColorPt(await PDFNet.ColorPt.init(0));
+      elementGState.setFillColorWithColorPt((await PDFNet.ColorPt.init(0)));
 
       if (buttonDown) {
         element.setTextMatrixEntries(1, 0, 0, 1, 33, 10);
@@ -120,7 +109,7 @@
       }
       writer.writeElement(element);
 
-      writer.writeElement(await builder.createTextEnd());
+      writer.writeElement((await builder.createTextEnd()));
 
       const stm = await writer.end();
 
@@ -157,11 +146,11 @@
         // Create page annotations for the above fields.
 
         // Create text annotation
-        const annot1 = await PDFNet.WidgetAnnot.create(doc, await PDFNet.Rect.init(50, 550, 350, 600), empFirstName);
-        const annot2 = await PDFNet.WidgetAnnot.create(doc, await PDFNet.Rect.init(50, 450, 350, 500), empLastName);
+        const annot1 = await PDFNet.WidgetAnnot.create(doc, (await PDFNet.Rect.init(50, 550, 350, 600)), empFirstName);
+        const annot2 = await PDFNet.WidgetAnnot.create(doc, (await PDFNet.Rect.init(50, 450, 350, 500)), empLastName);
 
         // create checkbox annotation
-        const annot3 = await PDFNet.WidgetAnnot.create(doc, await PDFNet.Rect.init(64, 356, 120, 410), empLastCheck1);
+        const annot3 = await PDFNet.WidgetAnnot.create(doc, (await PDFNet.Rect.init(64, 356, 120, 410)), empLastCheck1);
         // Set the annotation appearance for the "Yes" state
         // NOTE: if we call refreshFieldAppearances after this the appearance will be discarded
         const checkMarkApp = await CreateCheckmarkAppearance(doc, PDFNet.CheckStyle.e_check);
@@ -169,7 +158,7 @@
         annot3.setAppearance(checkMarkApp, PDFNet.Annot.State.e_normal, 'Yes');
 
         // Create button annotation
-        const annot4 = await PDFNet.WidgetAnnot.create(doc, await PDFNet.Rect.init(64, 284, 163, 320), submit);
+        const annot4 = await PDFNet.WidgetAnnot.create(doc, (await PDFNet.Rect.init(64, 284, 163, 320)), submit);
         // Set the annotation appearances for the down and up state...
         const falseButtonApp = await CreateButtonAppearance(doc, false);
         const trueButtonApp = await CreateButtonAppearance(doc, true);
@@ -182,7 +171,7 @@
 
         // Associate the above action with 'Down' event in annotations action dictionary.
         const annotAction = await (await annot4.getSDFObj()).putDict('AA');
-        annotAction.put('D', await buttonAction.getSDFObj());
+        annotAction.put('D', (await buttonAction.getSDFObj()));
 
         blankPage.annotPushBack(annot1); // Add annotations to the page
         blankPage.annotPushBack(annot2);
@@ -238,7 +227,7 @@
         console.log('Sample 2 PDF document initialized and locked');
         const itr = await doc2.getFieldIteratorBegin();
 
-        for (; await itr.hasNext(); itr.next()) {
+        for (; (await itr.hasNext()); itr.next()) {
           const currentItr = await itr.current();
           console.log('Field name: ' + (await currentItr.getName()));
           console.log('Field partial name: ' + (await currentItr.getPartialName()));
@@ -248,32 +237,38 @@
           const strVal = await currentItr.getValueAsString();
 
           switch (type) {
-            case PDFNet.Field.Type.e_button: {
+            case PDFNet.Field.Type.e_button:
+            {
               console.log('Button');
               break;
             }
-            case PDFNet.Field.Type.e_radio: {
+            case PDFNet.Field.Type.e_radio:
+            {
               console.log('Radio button: Value = ' + strVal);
               break;
             }
-            case PDFNet.Field.Type.e_check: {
+            case PDFNet.Field.Type.e_check:
+            {
               const currItr = await itr.current();
               currItr.setValueAsBool(true);
               console.log('Check box: Value = ' + strVal);
               break;
             }
-            case PDFNet.Field.Type.e_text: {
+            case PDFNet.Field.Type.e_text:
+            {
               console.log('Text');
               // Edit all variable text in the document
               const currItr = await itr.current();
               currItr.setValueAsString('This is a new value. The old one was: ' + strVal);
               break;
             }
-            case PDFNet.Field.Type.e_choice: {
+            case PDFNet.Field.Type.e_choice:
+            {
               console.log('Choice');
               break;
             }
-            case PDFNet.Field.Type.e_signature: {
+            case PDFNet.Field.Type.e_signature:
+            {
               console.log('Signature');
               break;
             }
@@ -350,12 +345,11 @@
           doc4.flattenAnnotations();
         } else {
           // Manual flattening
-          for (let pitr = await doc4.getPageIterator(); await pitr.hasNext(); await pitr.next()) {
+          for (let pitr = await doc4.getPageIterator(); (await pitr.hasNext()); (await pitr.next())) {
             const page = await pitr.current();
             const annots = await page.getAnnots();
 
-            if (annots) {
-              // Look for all widget annotations (in reverse order)
+            if (annots) { // Look for all widget annotations (in reverse order)
               for (let i = parseInt(await annots.size(), 10) - 1; i >= 0; --i) {
                 const annotObj = await annots.getAt(i);
                 const annotObjSubtype = await annotObj.get('Subtype');

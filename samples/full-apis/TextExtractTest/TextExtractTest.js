@@ -3,7 +3,7 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
-(exports => {
+((exports) => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFNet.PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
   // @link PDFNet.TextExtractor: https://docs.apryse.com/api/web/Core.PDFNet.TextExtractor.html
@@ -14,7 +14,7 @@
 
   exports.runTextExtractTest = async () => {
     // A utility method used to dump all text content in the console window.
-    const dumpAllText = async reader => {
+    const dumpAllText = async (reader) => {
       let element;
       let bbox;
       let arr;
@@ -77,16 +77,15 @@
       return srchStr;
     };
 
-    const printStyle = async s => {
+    const printStyle = async (s) => {
       const rgb = await s.getColor();
       const rColorVal = await rgb.get(0);
       const gColorVal = await rgb.get(1);
       const bColorVal = await rgb.get(2);
       const fontName = await s.getFontName();
       const fontSize = await s.getFontSize();
-      const serifOutput = (await s.isSerif()) ? ' sans-serif; ' : ' ';
-      const returnString =
-        'style="font-family:' + fontName + ';font-size:' + fontSize + ';' + serifOutput + 'color: #' + rColorVal.toString(16) + ', ' + gColorVal.toString(16) + ', ' + bColorVal.toString(16) + ')"';
+      const serifOutput = ((await s.isSerif()) ? ' sans-serif; ' : ' ');
+      const returnString = 'style="font-family:' + fontName + ';font-size:' + fontSize + ';' + serifOutput + 'color: #' + rColorVal.toString(16) + ', ' + gColorVal.toString(16) + ', ' + bColorVal.toString(16) + ')"';
       return returnString;
     };
 
@@ -135,17 +134,15 @@
         }
 
         if (example2XML) {
-          text = await txt.getAsXML(
-            PDFNet.TextExtractor.XMLOutputFlags.e_words_as_elements | PDFNet.TextExtractor.XMLOutputFlags.e_output_bbox | PDFNet.TextExtractor.XMLOutputFlags.e_output_style_info
-          );
+          text = await txt.getAsXML(PDFNet.TextExtractor.XMLOutputFlags.e_words_as_elements | PDFNet.TextExtractor.XMLOutputFlags.e_output_bbox | PDFNet.TextExtractor.XMLOutputFlags.e_output_style_info);
           console.log('- GetAsXML  --------------------------' + text);
           console.log('-----------------------------------------------------------');
         }
 
         if (example3Wordlist) {
           line = await txt.getFirstLine();
-          for (; await line.isValid(); line = await line.getNextLine()) {
-            for (word = await line.getFirstWord(); await word.isValid(); word = await word.getNextWord()) {
+          for (; (await line.isValid()); line = (await line.getNextLine())) {
+            for (word = await line.getFirstWord(); (await word.isValid()); word = (await word.getNextWord())) {
               text = await word.getString();
               console.log(text);
             }
@@ -184,7 +181,7 @@
             b = await line.getBBox();
             const lineStyle = await line.getStyle();
             let outputStringLineBox = '<Line box="' + b.x1 + ', ' + b.y1 + ', ' + b.x2 + ', ' + b.y1 + '">';
-            outputStringLineBox += await printStyle(lineStyle);
+            outputStringLineBox += (await printStyle(lineStyle));
             const currentLineNum = await line.getCurrentNum();
             outputStringLineBox += ' cur_num="' + currentLineNum + '">';
             console.log(outputStringLineBox);
@@ -203,7 +200,7 @@
               // if the word style is different from the parent style, output the new style
               const sty = await word.getStyle();
               if (!(await sty.compare(lineStyle))) {
-                console.log(await printStyle(sty));
+                console.log((await printStyle(sty)));
               }
               outputStringWord += '>' + (await word.getString()) + '</Word>';
               console.log(outputStringWord);
@@ -224,6 +221,7 @@
         console.log(err);
         console.log(err.stack);
       }
+
 
       if (example5LowLevel) {
         try {
@@ -249,14 +247,15 @@
           console.log('Extract text based on the selection rectangle.');
           console.log('----------------------------------------------------');
 
+
           const firstPage = await (await doc.getPageIterator()).current();
-          let s1 = await readTextFromRect(firstPage, await PDFNet.Rect.init(27, 392, 563, 534), reader);
+          let s1 = await readTextFromRect(firstPage, (await PDFNet.Rect.init(27, 392, 563, 534)), reader);
           console.log('Field 1: ' + s1);
 
-          s1 = await readTextFromRect(firstPage, await PDFNet.Rect.init(28, 551, 106, 623), reader);
+          s1 = await readTextFromRect(firstPage, (await PDFNet.Rect.init(28, 551, 106, 623)), reader);
           console.log('Field 2: ' + s1);
 
-          s1 = await readTextFromRect(firstPage, await PDFNet.Rect.init(208, 550, 387, 621), reader);
+          s1 = await readTextFromRect(firstPage, (await PDFNet.Rect.init(208, 550, 387, 621)), reader);
           console.log('Field 3: ' + s1);
 
           // ...

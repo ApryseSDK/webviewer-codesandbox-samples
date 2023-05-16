@@ -3,7 +3,7 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
-(exports => {
+((exports) => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
   // @link Iterator: https://docs.apryse.com/api/web/Core.PDFNet.Iterator.html
@@ -28,7 +28,7 @@
       return str;
     };
 
-    const printOutlineTree = async item => {
+    const printOutlineTree = async (item) => {
       for (; item != null; item = await item.getNext()) {
         let IndentString = '';
         let ActionString = '';

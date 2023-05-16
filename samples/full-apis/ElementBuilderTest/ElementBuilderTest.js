@@ -1,4 +1,4 @@
-(exports => {
+((exports) => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
   // @link ElementBuilder: https://docs.apryse.com/api/web/Core.PDFNet.ElementBuilder.html
@@ -131,6 +131,7 @@
         writer.end(); // save changes to the current page
         doc.pagePushBack(page);
 
+
         // Start a new page ------------------------------------
         page = await doc.pageCreate(pageRect);
 
@@ -172,6 +173,7 @@
         gstate.setFillColorSpace(await PDFNet.ColorSpace.createDeviceCMYK());
         gstate.setFillColorWithColorPt(await PDFNet.ColorPt.init(1, 0, 0, 0)); // cyan
         writer.writeElement(element);
+
 
         writer.writeElement(await eb.createTextNewLine()); // New line
 
@@ -224,6 +226,7 @@
 
         doc.pagePushBack(page);
 
+
         // Start a new page ------------------------------------
         //
         // The example also shows how ElementReader can be used to copy and modify
@@ -257,6 +260,7 @@
         writer.end(); // save changes to the current page
         doc.pagePushBack(page);
 
+
         // Start a new page ------------------------------------
         page = await doc.pageCreate();
         // begin writing to this page
@@ -271,15 +275,15 @@
         (await element.getGState()).setLeading(15);
         writer.writeElement(element);
 
-        const para =
-          'A PDF text object consists of operators that can show ' +
-          'text strings, move the text position, and set text state and certain ' +
-          'other parameters. In addition, there are three parameters that are ' +
-          'defined only within a text object and do not persist from one text ' +
-          'object to the next: Tm, the text matrix, Tlm, the text line matrix, ' +
-          'Trm, the text rendering matrix, actually just an intermediate result ' +
-          'that combines the effects of text state parameters, the text matrix ' +
-          '(Tm), and the current transformation matrix';
+
+        const para = 'A PDF text object consists of operators that can show '
+                        + 'text strings, move the text position, and set text state and certain '
+                        + 'other parameters. In addition, there are three parameters that are '
+                        + 'defined only within a text object and do not persist from one text '
+                        + 'object to the next: Tm, the text matrix, Tlm, the text line matrix, '
+                        + 'Trm, the text rendering matrix, actually just an intermediate result '
+                        + 'that combines the effects of text state parameters, the text matrix '
+                        + '(Tm), and the current transformation matrix';
 
         const paraEnd = para.length;
         let textRun = 0;
@@ -380,6 +384,7 @@
         // begin writing to the page
         writer.beginOnPage(page);
 
+
         // INVESTIGATE THIS SECTION
 
         // Create the Image Mask
@@ -418,7 +423,7 @@
 
         {
           // This sample illustrates Explicit Masking.
-          const img = await PDFNet.Image.createFromURL(doc, inputUrl + 'peppers.jpg');
+          const img = await PDFNet.Image.createFromURL(doc, (inputUrl + 'peppers.jpg'));
 
           // mask is the explicit mask for the primary (base) image
           img.setMask(mask);

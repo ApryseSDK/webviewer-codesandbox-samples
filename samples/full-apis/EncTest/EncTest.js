@@ -2,7 +2,7 @@
 // Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
-(exports => {
+((exports) => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFNet.runWithCleanup: https://docs.apryse.com/api/web/Core.PDFNet.html#.runWithCleanup__anchor
 
@@ -15,6 +15,7 @@
   // @link PDFDoc.getSecurityHandler: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html#getSecurityHandler__anchor
   // @link PDFDoc.saveMemoryBuffer: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html#saveMemoryBuffer__anchor
   // @link PDFDoc.removeSecurity: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html#removeSecurity__anchor
+
 
   // @link Filter: https://docs.apryse.com/api/web/Core.PDFNet.Filter.html
   // @link Filter.createURLFilter: https://docs.apryse.com/api/web/Core.PDFNet.Filter.html#.createURLFilter__anchor
@@ -117,7 +118,7 @@
           for (let count = 0; count < passwordsToTry.length; count++) {
             const candidate = passwordsToTry[count];
             console.log("Trying password candidate: '" + candidate + "'");
-            if (await securedDoc.initStdSecurityHandlerUString(candidate)) {
+            if ((await securedDoc.initStdSecurityHandlerUString(candidate))) {
               success = true;
               console.log('The password is correct');
               break;

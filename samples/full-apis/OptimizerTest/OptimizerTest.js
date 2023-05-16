@@ -33,7 +33,7 @@
 // very simple representation (e.g. vector text on top of a background image).
 //---------------------------------------------------------------------------------------
 
-(exports => {
+((exports) => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFNet.PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
   const PDFNet = exports.Core.PDFNet;

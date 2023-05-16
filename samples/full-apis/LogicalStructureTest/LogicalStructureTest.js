@@ -3,6 +3,7 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
+
 //---------------------------------------------------------------------------------------
 // This sample explores the structure and content of a tagged PDF document and dumps
 // the structure information to the console window.
@@ -15,7 +16,8 @@
 // as text and images.
 //---------------------------------------------------------------------------------------
 
-(exports => {
+
+((exports) => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFNet.PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
   // @link PDFNet.Page: https://docs.apryse.com/api/web/Core.PDFNet.Page.html
@@ -47,6 +49,7 @@
       if (!(await element.isValid())) {
         return;
       }
+
 
       // Print out the type and title info, if any.
       PrintAndIndent(printState, indent++);
@@ -85,8 +88,7 @@
             default:
               break;
           }
-        } else {
-          // the kid is another StructElement node.
+        } else { // the kid is another StructElement node.
           await ProcessStructElement(await element.getAsStructElem(i), indent, printState);
         }
       }
@@ -95,8 +97,7 @@
     // Used in code snippet 2.
     const ProcessElements = async (reader, printState) => {
       let element;
-      while ((element = await reader.next())) {
-        // Read page contents
+      while (element = await reader.next()) { // Read page contents
         // In this sample we process only paths & text, but the code can be
         // extended to handle any element type.
         const type = await element.getType();
@@ -134,8 +135,7 @@
     // Used in code snippet 3.
     const ProcessElements2 = async (reader, mcidPageMap) => {
       let element;
-      while ((element = await reader.next())) {
-        // Read page contents
+      while (element = await reader.next()) { // Read page contents
         // In this sample we process only text, but the code can be extended
         // to handle paths, images, or any other Element type.
         const mcid = await element.getStructMCID();
@@ -178,8 +178,7 @@
               }
             }
           }
-        } else {
-          // the kid is another StructElement node.
+        } else { // the kid is another StructElement node.
           await ProcessStructElement2(await element.getAsStructElem(i), mcidDocMap, indent + 1, printState);
         }
       }
@@ -188,12 +187,12 @@
       printState.str += '</' + (await element.getType()) + '>';
     };
 
+
     const main = async () => {
       // Relative path to the folder containing test files.
       const inputPath = '../TestFiles/';
       const printState = { str: '' };
-      try {
-        // Extract logical structure from a PDF document
+      try { // Extract logical structure from a PDF document
         const doc = await PDFNet.PDFDoc.createFromURL(inputPath + 'tagged.pdf');
         doc.initSecurityHandler();
 

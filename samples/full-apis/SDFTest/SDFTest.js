@@ -3,7 +3,7 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
-(exports => {
+((exports) => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFNet.PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
   // @link PDFNet.SDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.SDFDoc.html
@@ -34,14 +34,14 @@
 
         let itr = await trailer.find('Info');
         let info;
-        if (await itr.hasNext()) {
+        if ((await itr.hasNext())) {
           info = await itr.value();
           // Modify 'Producer' entry.
           info.putString('Producer', 'PDFTron PDFNet');
 
           // read title entry if it is present
           itr = await info.find('Author');
-          if (await itr.hasNext()) {
+          if (await (itr.hasNext())) {
             const itrval = await itr.value();
             const oldstr = await itrval.getAsPDFText();
             info.putText('Author', oldstr + ' - Modified');
@@ -66,7 +66,7 @@
 
         // create indirect link to root
         const trailerRoot = await trailer.get('Root');
-        customArray.pushBack(await trailerRoot.value());
+        customArray.pushBack((await trailerRoot.value()));
 
         // Embed a custom stream (file mystream.txt).
         const embedFile = await PDFNet.Filter.createURLFilter(inputURL + 'my_stream.txt');

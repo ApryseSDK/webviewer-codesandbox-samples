@@ -7,7 +7,7 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
-(exports => {
+((exports) => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
   // @link ContentReplacer: https://docs.apryse.com/api/web/Core.PDFNet.ContentReplacer.html
