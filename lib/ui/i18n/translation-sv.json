@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Svara på valda kommentarer ({{count}})",
     "comparePages": "Jämför sidor",
     "startComparison": "Starta jämförelse",
+    "showComparison": "Visa jämförelse",
     "back": "Tillbaka",
     "clearSignature": "Tydlig signatur",
     "newDocument": "Nytt dokument"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "Numret du har angett är ogiltigt, du kan ange värden som 7,5 eller 7 1/2",
     "linkURLorPage": "Länka URL eller en sida",
     "warning": "Varning",
+    "svgMalicious": "SVG-skript ignoreras för säkerhets skull",
     "enterContentEditingMode": "Du är på väg att gå in i innehållsredigeringsläge.",
     "existingAnnotationWarning": "Befintliga kommentarer kanske inte matchar texten efter att den har redigerats.",
     "changesCannotBeUndone": "Eventuella ändringar kan inte ångras.",
@@ -455,7 +457,9 @@
       "filters": "Filter",
       "user": "Användare",
       "type": "Typ",
-      "status": "Status"
+      "status": "Status",
+      "filterSettings": "Filterinställningar",
+      "filterDocument": "Filtrera dokument och kommentarspanel"
     },
     "state": {
       "accepted": "Accepterad",
@@ -565,7 +569,8 @@
     "thumbnailPanel": {
       "delete": "Radera",
       "rotateClockwise": "Medurs",
-      "rotateCounterClockwise": "Moturs"
+      "rotateCounterClockwise": "Moturs",
+      "moreOptions": "Fler alternativ"
     },
     "thumbnailsControlOverlay": {
       "move": "Flytta sidor"
@@ -615,6 +620,7 @@
     },
     "settings": {
       "settings": "inställningar",
+      "searchSettings": "Sökinställningar",
       "general": "Allmän",
       "language": "Språk",
       "theme": "Tema",
@@ -733,6 +739,10 @@
       "title": "Stäng utan att ladda ner?",
       "message": "Det har gjorts ändringar i det här dokumentet, är du säker på att du vill stänga det utan att ladda ner ditt arbete? Du kan inte ångra den här åtgärden.",
       "rejectDownloadButton": "Stäng utan nedladdning"
+    },
+    "connectToURL": {
+      "title": "Säkerhetsvarning",
+      "message": "Det här dokumentet försöker ansluta till:\n\n{{- uri}}.\n\n Om du litar på det här dokumentet klickar du på Bekräfta för att öppna det."
     }
   },
   "shortcut": {
@@ -1084,7 +1094,6 @@
     "numberList": "Numrerad lista",
     "insertLink": "Infoga länk",
     "insertImage": "Infoga bild",
-    "notAvailableInDemoMode": "Ej tillgängligt i demoläge",
     "notSupportedOnMobile": "Office-redigering stöds inte på mobila enheter."
   },
   "insertPageModal": {

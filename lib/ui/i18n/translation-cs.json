@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Odpovědět na vybrané poznámky ({{count}})",
     "comparePages": "Porovnejte stránky",
     "startComparison": "Spusťte porovnávání",
+    "showComparison": "Zobrazit srovnání",
     "back": "Zadní",
     "clearSignature": "Jasný podpis",
     "newDocument": "Nový dokument"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "Zadané číslo je neplatné, můžete zadat hodnoty jako 7,5 nebo 7 1/2",
     "linkURLorPage": "Adresa URL odkazu nebo stránka",
     "warning": "Varování",
+    "svgMalicious": "Skript SVG je kvůli bezpečnosti ignorován",
     "enterContentEditingMode": "Chystáte se vstoupit do režimu úprav obsahu.",
     "existingAnnotationWarning": "Stávající anotace se po úpravě nemusí shodovat s textem.",
     "changesCannotBeUndone": "Jakékoli provedené změny nelze vrátit zpět.",
@@ -455,7 +457,9 @@
       "filters": "Filtry",
       "user": "Uživatel",
       "type": "Typ",
-      "status": "Postavení"
+      "status": "Postavení",
+      "filterSettings": "Nastavení filtru",
+      "filterDocument": "Panel filtrování dokumentů a komentářů"
     },
     "state": {
       "accepted": "Přijato",
@@ -565,7 +569,8 @@
     "thumbnailPanel": {
       "delete": "Vymazat",
       "rotateClockwise": "Ve směru hodinových ručiček",
-      "rotateCounterClockwise": "Proti směru hodinových ručiček"
+      "rotateCounterClockwise": "Proti směru hodinových ručiček",
+      "moreOptions": "Více možností"
     },
     "thumbnailsControlOverlay": {
       "move": "Přesunout stránky"
@@ -615,6 +620,7 @@
     },
     "settings": {
       "settings": "Nastavení",
+      "searchSettings": "Nastavení vyhledávání",
       "general": "Všeobecné",
       "language": "Jazyk",
       "theme": "Téma",
@@ -733,6 +739,10 @@
       "title": "Zavřít bez stahování?",
       "message": "V tomto dokumentu byly provedeny změny. Opravdu jej chcete zavřít bez stahování vaší práce? Tuto akci nelze vrátit zpět.",
       "rejectDownloadButton": "Zavřít bez stahování"
+    },
+    "connectToURL": {
+      "title": "Bezpečnostní varování",
+      "message": "Tento dokument se pokouší připojit k:\n\n{{- uri}}.\n\n Pokud tomuto dokumentu důvěřujete, otevřete jej kliknutím na Potvrdit."
     }
   },
   "shortcut": {
@@ -1084,7 +1094,6 @@
     "numberList": "Číslovaný seznam",
     "insertLink": "Vložit odkaz",
     "insertImage": "Vložit obrázek",
-    "notAvailableInDemoMode": "Není k dispozici v demo režimu",
     "notSupportedOnMobile": "Úpravy Office nejsou podporovány na mobilních zařízeních."
   },
   "insertPageModal": {

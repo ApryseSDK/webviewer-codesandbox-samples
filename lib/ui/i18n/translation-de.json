@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Auf ausgewählte Anmerkungen antworten ({{count}})",
     "comparePages": "Seiten vergleichen",
     "startComparison": "Vergleich starten",
+    "showComparison": "Vergleich anzeigen",
     "back": "Der Rücken",
     "clearSignature": "Klare Unterschrift",
     "newDocument": "Neues Dokument"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "Die eingegebene Nummer ist ungültig. Sie können Werte wie 7,5 oder 7 1/2 eingeben",
     "linkURLorPage": "Link URL oder eine Seite",
     "warning": "Warnung",
+    "svgMalicious": "SVG-Skript aus Sicherheitsgründen ignoriert",
     "enterContentEditingMode": "Sie sind dabei, in den Textbearbeitungsmodus zu wechseln.",
     "existingAnnotationWarning": "Vorhandene Anmerkungen stimmen möglicherweise nicht mit dem Text überein, nachdem dieser bearbeitet wurde.",
     "changesCannotBeUndone": "Vorgenommene Änderungen können nicht rückgängig gemacht werden.",
@@ -419,7 +421,7 @@
       "addStamp": "Neuen Stempel hinzufügen"
     },
     "signatureOverlay": {
-      "addSignature": "Eine Unterschrift hinzufügen",
+      "addSignature": "Unterschrift hinzufügen",
       "addSignatureOrInitials": "Unterschrift/Initialen"
     },
     "signatureModal": {
@@ -455,7 +457,9 @@
       "filters": "Filter",
       "user": "Benutzer",
       "type": "Typ",
-      "status": "Status"
+      "status": "Status",
+      "filterSettings": "Filtereinstellungen",
+      "filterDocument": "Dokument- und Kommentarbereich filtern"
     },
     "state": {
       "accepted": "Angenommen",
@@ -499,8 +503,8 @@
         "incorrectSyntax": "Falsche Syntax"
       },
       "scaleOverlay": {
-        "addNewScale": "Neue Waage hinzufügen",
-        "selectTwoPoints": "Wählen Sie zwei Punkte mit bekannter Abmessung zum Kalibrieren aus",
+        "addNewScale": "Neuen Maßstab hinzufügen",
+        "selectTwoPoints": "Zwei Punkte mit bekannten Abmessungen für die Kalibrierung auswählen",
         "inputKnowDimension": "Geben Sie bekannte Dimensionen und Einheiten zum Kalibrieren ein",
         "multipleScales": "Mehrere Skalen"
       },
@@ -565,7 +569,8 @@
     "thumbnailPanel": {
       "delete": "Löschen",
       "rotateClockwise": "Im Uhrzeigersinn",
-      "rotateCounterClockwise": "Gegen den Uhrzeigersinn"
+      "rotateCounterClockwise": "Gegen den Uhrzeigersinn",
+      "moreOptions": "Mehr Optionen"
     },
     "thumbnailsControlOverlay": {
       "move": "Seiten verschieben"
@@ -615,6 +620,7 @@
     },
     "settings": {
       "settings": "Einstellungen",
+      "searchSettings": "Sucheinstellungen",
       "general": "Allgemein",
       "language": "Sprache",
       "theme": "Thema",
@@ -733,6 +739,10 @@
       "title": "Ohne Download schließen?",
       "message": "An diesem Dokument wurden Änderungen vorgenommen. Möchten Sie es wirklich schließen, ohne Ihre Arbeit herunterzuladen? Sie können diese Aktion nicht rückgängig machen.",
       "rejectDownloadButton": "Ohne Download schließen"
+    },
+    "connectToURL": {
+      "title": "Sicherheitswarnung",
+      "message": "Dieses Dokument versucht, eine Verbindung herzustellen zu:\n\n{{-uri}}.\n\n Wenn Sie diesem Dokument vertrauen, klicken Sie auf Bestätigen, um es zu öffnen."
     }
   },
   "shortcut": {
@@ -782,7 +792,7 @@
   "link": {
     "url": "URL",
     "page": "Seite",
-    "enterurl": "Geben Sie die URL ein, zu der Sie einen Link erstellen möchten",
+    "enterurl": "URL eingeben, auf die der Link verweisen soll",
     "enterpage": "Wählen Sie die Seitennummer aus, zu der Sie einen Link erstellen möchten",
     "urlLink": "URL-Link"
   },
@@ -1084,7 +1094,6 @@
     "numberList": "Nummerierte Liste",
     "insertLink": "Verknüpfung einfügen",
     "insertImage": "Bild einfügen",
-    "notAvailableInDemoMode": "Im Demomodus nicht verfügbar",
     "notSupportedOnMobile": "Die Office-Bearbeitung wird auf Mobilgeräten nicht unterstützt."
   },
   "insertPageModal": {

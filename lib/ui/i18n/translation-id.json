@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Membalas anotasi yang dipilih ({{count}})",
     "comparePages": "Bandingkan halaman",
     "startComparison": "Mulai Perbandingan",
+    "showComparison": "Tampilkan Perbandingan",
     "back": "Kembali",
     "clearSignature": "Tanda tangan yang jelas",
     "newDocument": "Dokumen Baru"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "Nomor yang Anda masukkan tidak valid, Anda dapat memasukkan nilai seperti 7,5 atau 7 1/2",
     "linkURLorPage": "Tautan URL atau Halaman",
     "warning": "Peringatan",
+    "svgMalicious": "Skrip SVG diabaikan demi keamanan",
     "enterContentEditingMode": "Anda akan memasuki mode pengeditan konten.",
     "existingAnnotationWarning": "Anotasi yang ada mungkin tidak cocok dengan teks setelah diedit.",
     "changesCannotBeUndone": "Setiap perubahan yang dibuat tidak dapat dibatalkan.",
@@ -455,7 +457,9 @@
       "filters": "Filter",
       "user": "Pengguna",
       "type": "Jenis",
-      "status": "Status"
+      "status": "Status",
+      "filterSettings": "Pengaturan Filter",
+      "filterDocument": "Filter dokumen dan panel komentar"
     },
     "state": {
       "accepted": "Diterima",
@@ -565,7 +569,8 @@
     "thumbnailPanel": {
       "delete": "Menghapus",
       "rotateClockwise": "Searah jarum jam",
-      "rotateCounterClockwise": "Berlawanan arah jarum jam"
+      "rotateCounterClockwise": "Berlawanan arah jarum jam",
+      "moreOptions": "Lebih banyak pilihan"
     },
     "thumbnailsControlOverlay": {
       "move": "Pindahkan halaman"
@@ -615,6 +620,7 @@
     },
     "settings": {
       "settings": "Pengaturan",
+      "searchSettings": "Pengaturan pencarian",
       "general": "Umum",
       "language": "Bahasa",
       "theme": "Tema",
@@ -733,6 +739,10 @@
       "title": "Tutup tanpa mengunduh?",
       "message": "Ada perubahan yang dibuat pada dokumen ini, apakah Anda yakin ingin menutupnya tanpa mengunduh pekerjaan Anda? Anda tidak dapat mengurungkan tindakan ini.",
       "rejectDownloadButton": "Tutup tanpa unduh"
+    },
+    "connectToURL": {
+      "title": "Peringatan keamanan",
+      "message": "Dokumen ini mencoba terhubung ke:\n\n{{- uri}}.\n\n Jika Anda mempercayai dokumen ini, klik Konfirmasi untuk membukanya."
     }
   },
   "shortcut": {
@@ -1084,7 +1094,6 @@
     "numberList": "Daftar bernomor",
     "insertLink": "Sisipkan tautan",
     "insertImage": "Sisipkan gambar",
-    "notAvailableInDemoMode": "Tidak tersedia dalam mode demo",
     "notSupportedOnMobile": "Pengeditan Office tidak didukung di perangkat seluler."
   },
   "insertPageModal": {

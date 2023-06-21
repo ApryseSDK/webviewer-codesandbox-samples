@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Rispondi alle annotazioni selezionate ({{count}})",
     "comparePages": "Confronta le pagine",
     "startComparison": "Inizia il confronto",
+    "showComparison": "Mostra confronto",
     "back": "Di ritorno",
     "clearSignature": "Firma chiara",
     "newDocument": "Nuovo documento"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "Il numero che hai inserito non è valido, puoi inserire valori come 7,5 o 7 1/2",
     "linkURLorPage": "Link URL o una pagina",
     "warning": "Avvertimento",
+    "svgMalicious": "Script SVG ignorato per motivi di sicurezza",
     "enterContentEditingMode": "Stai per accedere alla modalità di modifica del testo.",
     "existingAnnotationWarning": "Le annotazioni esistenti potrebbero non corrispondere al testo dopo che è stato modificato.",
     "changesCannotBeUndone": "Eventuali modifiche apportate non possono essere annullate.",
@@ -455,7 +457,9 @@
       "filters": "Filtri",
       "user": "Utente",
       "type": "Tipo",
-      "status": "Stato"
+      "status": "Stato",
+      "filterSettings": "Impostazioni filtro",
+      "filterDocument": "Filtra il documento e il pannello dei commenti"
     },
     "state": {
       "accepted": "Accettato",
@@ -565,7 +569,8 @@
     "thumbnailPanel": {
       "delete": "Elimina",
       "rotateClockwise": "Senso orario",
-      "rotateCounterClockwise": "Antiorario"
+      "rotateCounterClockwise": "Antiorario",
+      "moreOptions": "Più opzioni"
     },
     "thumbnailsControlOverlay": {
       "move": "Sposta pagine"
@@ -615,6 +620,7 @@
     },
     "settings": {
       "settings": "Impostazioni",
+      "searchSettings": "Impostazioni di ricerca",
       "general": "Generale",
       "language": "Lingua",
       "theme": "Tema",
@@ -733,6 +739,10 @@
       "title": "Chiudere senza scaricare?",
       "message": "Sono state apportate modifiche a questo documento, sei sicuro di volerlo chiudere senza scaricare il tuo lavoro? Non puoi annullare questa azione.",
       "rejectDownloadButton": "Chiudi senza scaricare"
+    },
+    "connectToURL": {
+      "title": "Avviso di sicurezza",
+      "message": "Questo documento sta tentando di connettersi a:\n\n{{-uri}}.\n\n Se ritieni attendibile questo documento, fai clic su Conferma per aprirlo."
     }
   },
   "shortcut": {
@@ -1084,7 +1094,6 @@
     "numberList": "Elenco numerato",
     "insertLink": "Inserisci collegamento",
     "insertImage": "Inserisci immagine",
-    "notAvailableInDemoMode": "Non disponibile in modalità demo",
     "notSupportedOnMobile": "La modifica di Office non è supportata sui dispositivi mobili."
   },
   "insertPageModal": {

@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "ตอบกลับคำอธิบายประกอบที่เลือก ({{จำนวน}})",
     "comparePages": "เปรียบเทียบหน้า",
     "startComparison": "เริ่มการเปรียบเทียบ",
+    "showComparison": "แสดงการเปรียบเทียบ",
     "back": "กลับ",
     "clearSignature": "ลายเซ็นที่ชัดเจน",
     "newDocument": "เอกสารใหม่"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "ตัวเลขที่คุณป้อนไม่ถูกต้อง คุณสามารถป้อนค่าเช่น 7.5 หรือ 7 1/2",
     "linkURLorPage": "ลิงค์ URL หรือเพจ",
     "warning": "คำเตือน",
+    "svgMalicious": "สคริปต์ SVG ถูกละเว้นเพื่อความปลอดภัย",
     "enterContentEditingMode": "คุณกำลังจะเข้าสู่โหมดแก้ไขเนื้อหา",
     "existingAnnotationWarning": "คำอธิบายประกอบที่มีอยู่อาจไม่ตรงกับข้อความหลังจากแก้ไขแล้ว",
     "changesCannotBeUndone": "การเปลี่ยนแปลงที่ทำขึ้นไม่สามารถยกเลิกได้",
@@ -455,7 +457,9 @@
       "filters": "ตัวกรอง",
       "user": "ผู้ใช้",
       "type": "พิมพ์",
-      "status": "สถานะ"
+      "status": "สถานะ",
+      "filterSettings": "การตั้งค่าตัวกรอง",
+      "filterDocument": "กรองเอกสารและแผงความคิดเห็น"
     },
     "state": {
       "accepted": "ได้รับการยอมรับ",
@@ -565,7 +569,8 @@
     "thumbnailPanel": {
       "delete": "ลบ",
       "rotateClockwise": "ตามเข็มนาฬิกา",
-      "rotateCounterClockwise": "ทวนเข็มนาฬิกา"
+      "rotateCounterClockwise": "ทวนเข็มนาฬิกา",
+      "moreOptions": "ตัวเลือกเพิ่มเติม"
     },
     "thumbnailsControlOverlay": {
       "move": "ย้ายหน้า"
@@ -615,6 +620,7 @@
     },
     "settings": {
       "settings": "การตั้งค่า",
+      "searchSettings": "การตั้งค่าการค้นหา",
       "general": "ทั่วไป",
       "language": "ภาษา",
       "theme": "ธีม",
@@ -733,6 +739,10 @@
       "title": "ปิดโดยไม่ต้องดาวน์โหลด?",
       "message": "เอกสารนี้มีการเปลี่ยนแปลง คุณแน่ใจหรือไม่ว่าต้องการปิดโดยไม่ดาวน์โหลดงานของคุณ คุณไม่สามารถยกเลิกการดำเนินการนี้ได้",
       "rejectDownloadButton": "ปิดโดยไม่ต้องดาวน์โหลด"
+    },
+    "connectToURL": {
+      "title": "คำเตือนความปลอดภัย",
+      "message": "เอกสารนี้พยายามเชื่อมต่อกับ:\n\n{{-ยูริ}}.\n\n หากคุณเชื่อถือเอกสารนี้ ให้คลิกยืนยันเพื่อเปิด"
     }
   },
   "shortcut": {
@@ -1084,7 +1094,6 @@
     "numberList": "รายการหมายเลข",
     "insertLink": "ใส่ลิงค์",
     "insertImage": "แทรกรูปภาพ",
-    "notAvailableInDemoMode": "ไม่พร้อมใช้งานในโหมดสาธิต",
     "notSupportedOnMobile": "อุปกรณ์พกพาไม่รองรับการแก้ไข Office"
   },
   "insertPageModal": {
