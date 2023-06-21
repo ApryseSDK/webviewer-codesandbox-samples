@@ -116,11 +116,11 @@
       </div>`;
     renderSVGIcons(nudgeDiffToolElement);
     setUpEventListenersForTool(nudgeDiffToolElement);
+    const middlePanel = document.getElementById(MIDDLE_PANEL);
+    const middleWebComponent = middlePanel.getElementsByTagName('apryse-webviewer')[0];
 
-    const viewerElementBody = document
-      .getElementById(MIDDLE_PANEL)
-      .querySelector('iframe')
-      .contentDocument.querySelector('body');
+    const viewerElementBody = middleWebComponent && middleWebComponent.shadowRoot ? middleWebComponent.shadowRoot : middlePanel.querySelector('iframe').contentDocument.querySelector('body');
+
     viewerElementBody.insertBefore(nudgeDiffToolElement, viewerElementBody.firstChild);
   }
 

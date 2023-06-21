@@ -56,7 +56,7 @@ WebViewer(
           .getDocument()
           .getVideo()
           .getAllAnnotations();
-        const xfdfString = await annotationManager.exportAnnotations({ links: false, widgets: false, annotList: annotations });
+        const xfdfString = await annotationManager.exportAnnotations({ links: false, widgets: false, annotationList: annotations });
         await saveXfdfString(DOCUMENT_ID, xfdfString);
         alert('Annotations saved successfully.');
       },

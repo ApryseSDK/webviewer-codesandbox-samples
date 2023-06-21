@@ -188,8 +188,7 @@ let isLoading = false;
   function setupViewer(item) {
     return new Promise(resolve => {
       const viewerElement = document.getElementById(item.panel);
-
-      WebViewer(
+      window.WebViewer.WebComponent(
         {
           path: '../../../lib',
           css: './nudge-tool.css',
@@ -226,8 +225,9 @@ let isLoading = false;
               }
             });
           }
+          const panelNode = document.getElementById(`wc-${item.panel}`);
 
-          const documentContainer = viewerElement.querySelector('iframe').contentDocument.querySelector('.DocumentContainer');
+          const documentContainer = panelNode ? panelNode.shadowRoot.querySelector('.DocumentContainer') : viewerElement.querySelector('iframe').contentDocument.querySelector('.DocumentContainer');
 
           // Sync all WebViewer instances when scroll changes
           documentContainer.onscroll = () => {

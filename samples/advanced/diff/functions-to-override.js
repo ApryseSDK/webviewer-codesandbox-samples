@@ -175,7 +175,13 @@
       this.alignmentPageStates = new exports.PageMatrixTransformationState();
       this.nudgePageStates = new exports.PageMatrixTransformationState();
       if (baseDocument && documentToTransform) {
-        pageLength = Math.max(baseDocument.getPageCount(), documentToTransform.getPageCount());
+        // Office documents don't have all pages available onload, so we need to
+        // await both documents' documentCompletePromise before we can get the page count
+        const baseDocumentCompletePromise = baseDocument.getDocumentCompletePromise();
+        const documentToTransformCompletePromise = documentToTransform.getDocumentCompletePromise();
+        const baseDocumentPageCount = baseDocumentCompletePromise?.then(() => baseDocument.getPageCount());
+        const documentToTransformPageCount = documentToTransformCompletePromise?.then(() => documentToTransform.getPageCount());
+        pageLength = Math.max(await baseDocumentPageCount, await documentToTransformPageCount);
         for (let i = 1; i <= pageLength; i++) {
           const baseDocumentInfo = baseDocument.getPageInfo(i);
           const documentToTransformInfo = documentToTransform.getPageInfo(i);
