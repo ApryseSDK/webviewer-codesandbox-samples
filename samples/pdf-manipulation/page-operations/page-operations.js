@@ -14,6 +14,7 @@
 // @link Core: https://docs.apryse.com/api/web/Core.html
 
 // @link partRetriever: https://docs.apryse.com/api/web/Core.PartRetrievers.html
+// eslint-disable-next-line
 /* global saveAs */
 WebViewer(
   {
@@ -123,8 +124,8 @@ WebViewer(
           pagesToExtract.push(i);
         }
       });
-      const annotList = annotationManager.getAnnotationsList().filter(annot => pagesToExtract.indexOf(annot.PageNumber) > -1);
-      const xfdfString = await annotationManager.exportAnnotations({ annotList });
+      const annotationList = annotationManager.getAnnotationsList().filter(annot => pagesToExtract.indexOf(annot.PageNumber) > -1);
+      const xfdfString = await annotationManager.exportAnnotations({ annotationList });
       const data = await doc.extractPages(pagesToExtract, xfdfString);
       const arr = new Uint8Array(data);
       const blob = new Blob([arr], { type: 'application/pdf' });

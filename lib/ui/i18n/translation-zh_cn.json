@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "回复所选注释 ({{count}})",
     "comparePages": "比较页面",
     "startComparison": "开始比较",
+    "showComparison": "显示比较",
     "back": "后退",
     "clearSignature": "清晰的签名",
     "newDocument": "新建文件"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "您输入的数字无效，您可以输入7.5或7 1/2之类的值",
     "linkURLorPage": "链接网址或页面",
     "warning": "警告",
+    "svgMalicious": "出于安全原因忽略了 SVG 脚本",
     "enterContentEditingMode": "您即将进入文本编辑模式。",
     "existingAnnotationWarning": "现有注释在编辑后可能与文本不匹配。",
     "changesCannotBeUndone": "所做的任何更改都无法撤消。",
@@ -567,7 +569,8 @@
     "thumbnailPanel": {
       "delete": "删除",
       "rotateClockwise": "顺时针",
-      "rotateCounterClockwise": "逆时针方向"
+      "rotateCounterClockwise": "逆时针方向",
+      "moreOptions": "更多选择"
     },
     "thumbnailsControlOverlay": {
       "move": "移动页面"
@@ -1091,7 +1094,6 @@
     "numberList": "编号列表",
     "insertLink": "插入链接",
     "insertImage": "插入图片",
-    "notAvailableInDemoMode": "在演示模式下不可用",
     "notSupportedOnMobile": "移动设备不支持 Office 编辑。"
   },
   "insertPageModal": {
