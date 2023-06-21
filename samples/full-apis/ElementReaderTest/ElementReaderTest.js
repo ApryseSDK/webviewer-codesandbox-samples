@@ -3,7 +3,7 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
-((exports) => {
+(exports => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
   // @link ElementReader: https://docs.apryse.com/api/web/Core.PDFNet.ElementReader.html
@@ -11,7 +11,7 @@
   exports.runElementReaderTest = () => {
     const PDFNet = exports.Core.PDFNet;
 
-    const ProcessElements = async (reader) => {
+    const ProcessElements = async reader => {
       // Read page contents
       for (let element = await reader.next(); element !== null; element = await reader.next()) {
         const temp = await element.getType();
@@ -22,7 +22,7 @@
               /* eslint-disable no-unused-vars */
               const operators = data.operators;
               const points = data.points;
-            /* eslint-enable no-unused-vars */
+              /* eslint-enable no-unused-vars */
             }
             break;
           case PDFNet.Element.Type.e_text: // Process text strings...
@@ -50,7 +50,7 @@
       // Relative path to the folder containing test files.
       const inputUrl = '../TestFiles/';
 
-      const doc = await PDFNet.PDFDoc.createFromURL(inputUrl + 'newsletter.pdf');// await if there is ret that we care about.
+      const doc = await PDFNet.PDFDoc.createFromURL(inputUrl + 'newsletter.pdf'); // await if there is ret that we care about.
       doc.initSecurityHandler();
       doc.lock();
 

@@ -3,7 +3,7 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
-((exports) => {
+(exports => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFNet.TextSearch: https://docs.apryse.com/api/web/Core.PDFNet.TextSearch.html
   // @link PDFNet.PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
@@ -37,7 +37,8 @@
           const result = await txtSearch.run();
           let hlts;
           if (result.code === PDFNet.TextSearch.ResultCode.e_found) {
-            if (step === 0) { // Step 0: found "John Smith"
+            if (step === 0) {
+              // Step 0: found "John Smith"
               // note that, here, 'ambient_str' and 'highlights' are not written to,
               // as 'e_ambient_string' and 'e_highlight' are not set.
               console.log(result.out_str + "'s credit card number is: ");
@@ -57,7 +58,7 @@
               // output the highlight info of the credit card number.
               hlts = result.highlights;
               hlts.begin(doc);
-              while ((await hlts.hasNext())) {
+              while (await hlts.hasNext()) {
                 const highlightPageNum = await hlts.getCurrentPageNumber();
                 console.log('The current highlight is from page: ' + highlightPageNum);
                 await hlts.next();
@@ -87,8 +88,8 @@
               // add a link annotation based on the location of the found instance
               hlts = result.highlights;
               await hlts.begin(doc); // is await needed?
-              while ((await hlts.hasNext())) {
-                const curPage = await doc.getPage((await hlts.getCurrentPageNumber()));
+              while (await hlts.hasNext()) {
+                const curPage = await doc.getPage(await hlts.getCurrentPageNumber());
                 const quadArr = await hlts.getCurrentQuads();
                 for (let i = 0; i < quadArr.length; ++i) {
                   const currQuad = quadArr[i];
@@ -97,8 +98,8 @@
                   const y1 = Math.min(Math.min(Math.min(currQuad.p1y, currQuad.p2y), currQuad.p3y), currQuad.p4y);
                   const y2 = Math.max(Math.max(Math.max(currQuad.p1y, currQuad.p2y), currQuad.p3y), currQuad.p4y);
 
-                  const hyperLink = await PDFNet.LinkAnnot.create(doc, (await PDFNet.Rect.init(x1, y1, x2, y2)));
-                  await hyperLink.setAction((await PDFNet.Action.createURI(doc, 'http://www.apryse.com')));
+                  const hyperLink = await PDFNet.LinkAnnot.create(doc, await PDFNet.Rect.init(x1, y1, x2, y2));
+                  await hyperLink.setAction(await PDFNet.Action.createURI(doc, 'http://www.apryse.com'));
                   await curPage.annotPushBack(hyperLink);
                 }
                 hlts.next();

@@ -8,7 +8,6 @@ function saveBuffer(buf, name, mimetype) {
   saveAs(blob, name);
 }
 
-
 function saveBufferAsPDFDoc(buf, name) {
   saveBuffer(buf, name, 'application/pdf');
 }

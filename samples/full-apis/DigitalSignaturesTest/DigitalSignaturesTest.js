@@ -3,7 +3,7 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
-((exports) => {
+(exports => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
   // @link ElementBuilder: https://docs.apryse.com/api/web/Core.PDFNet.ElementBuilder.html
@@ -27,8 +27,11 @@
       const opts = await PDFNet.VerificationOptions.create(PDFNet.VerificationOptions.SecurityLevel.e_compatibility_and_archiving);
 
       // Add trust root to store of trusted certificates contained in VerificationOptions.
-      await opts.addTrustedCertificateFromURL(in_public_key_file_path, {},
-        PDFNet.VerificationOptions.CertificateTrustFlag.e_default_trust + PDFNet.VerificationOptions.CertificateTrustFlag.e_certification_trust);
+      await opts.addTrustedCertificateFromURL(
+        in_public_key_file_path,
+        {},
+        PDFNet.VerificationOptions.CertificateTrustFlag.e_default_trust + PDFNet.VerificationOptions.CertificateTrustFlag.e_certification_trust
+      );
 
       const result = await doc.verifySignedDigitalSignatures(opts);
       switch (result) {
@@ -66,8 +69,11 @@
 
       // Add trust root to store of trusted certificates contained in VerificationOptions.
       // Use trust level corresponding to an identity trusted even for certification signatures.
-      await opts.addTrustedCertificateFromURL(in_public_key_file_path, {},
-        PDFNet.VerificationOptions.CertificateTrustFlag.e_default_trust + PDFNet.VerificationOptions.CertificateTrustFlag.e_certification_trust);
+      await opts.addTrustedCertificateFromURL(
+        in_public_key_file_path,
+        {},
+        PDFNet.VerificationOptions.CertificateTrustFlag.e_default_trust + PDFNet.VerificationOptions.CertificateTrustFlag.e_certification_trust
+      );
 
       // Iterate over the signatures and verify all of them.
       const digsig_fitr = await doc.getDigitalSignatureFieldIteratorBegin();
@@ -76,9 +82,9 @@
         const curr = await digsig_fitr.current();
         const result = await curr.verify(opts);
         if (await result.getVerificationStatus()) {
-          console.log('Signature verified, objnum: ' + await (await curr.getSDFObj()).getObjNum());
+          console.log('Signature verified, objnum: ' + (await (await curr.getSDFObj()).getObjNum()));
         } else {
-          console.log('Signature verification failed, objnum: ' + await (await curr.getSDFObj()).getObjNum());
+          console.log('Signature verification failed, objnum: ' + (await (await curr.getSDFObj()).getObjNum()));
           verification_status = false;
         }
 
@@ -103,22 +109,27 @@
             break;
         }
 
-        console.log('Detailed verification result: \n\t'
-          + await result.getDocumentStatusAsString() + '\n\t'
-          + await result.getDigestStatusAsString() + '\n\t'
-          + await result.getTrustStatusAsString() + '\n\t'
-          + await result.getPermissionsStatusAsString());
+        console.log(
+          'Detailed verification result: \n\t' +
+            (await result.getDocumentStatusAsString()) +
+            '\n\t' +
+            (await result.getDigestStatusAsString()) +
+            '\n\t' +
+            (await result.getTrustStatusAsString()) +
+            '\n\t' +
+            (await result.getPermissionsStatusAsString())
+        );
 
         const changes = await result.getDisallowedChanges();
         for (let i = 0; i < changes.length; ++i) {
           const change = changes[i];
-          console.log('\tDisallowed change: ' + await change.getTypeAsString() + ', objnum: ' + await change.getObjNum());
+          console.log('\tDisallowed change: ' + (await change.getTypeAsString()) + ', objnum: ' + (await change.getObjNum()));
         }
 
         // Get and print all the detailed trust-related results, if they are available.
         if (await result.hasTrustVerificationResult()) {
           const trust_verification_result = await result.getTrustVerificationResult();
-          console.log(await trust_verification_result.wasSuccessful() ? 'Trust verified.' : 'Trust not verifiable.');
+          console.log((await trust_verification_result.wasSuccessful()) ? 'Trust verified.' : 'Trust not verifiable.');
           console.log(await trust_verification_result.getResultString());
 
           const tmp_time_t = await trust_verification_result.getTimeOfTrustVerification();
@@ -145,17 +156,17 @@
               console.log('\t\tIssuer names:');
               const issuer_dn = await (await full_cert.getIssuerField()).getAllAttributesAndValues();
               for (let j = 0; j < issuer_dn.length; j++) {
-                console.log('\t\t\t' + await issuer_dn[j].getStringValue());
+                console.log('\t\t\t' + (await issuer_dn[j].getStringValue()));
               }
               console.log('\t\tSubject names:');
               const subject_dn = await (await full_cert.getSubjectField()).getAllAttributesAndValues();
               for (let j = 0; j < subject_dn.length; j++) {
-                console.log('\t\t\t' + await subject_dn[j].getStringValue());
+                console.log('\t\t\t' + (await subject_dn[j].getStringValue()));
               }
               console.log('\t\tExtensions:');
               const extension_dn = await full_cert.getExtensions();
               for (let j = 0; j < extension_dn.length; j++) {
-                console.log('\t\t\t' + await extension_dn[j].toString());
+                console.log('\t\t\t' + (await extension_dn[j].toString()));
               }
             }
           }
@@ -178,7 +189,7 @@
       doc.initSecurityHandler();
       doc.lock();
 
-      console.log('PDFDoc has ' + (await doc.hasSignatures() ? 'signatures' : 'no signatures'));
+      console.log('PDFDoc has ' + ((await doc.hasSignatures()) ? 'signatures' : 'no signatures'));
 
       const page1 = await doc.getPage(1);
 
@@ -279,7 +290,7 @@
       return docbuf;
     };
 
-    const PrintSignaturesInfo = async (in_docbuffer) => {
+    const PrintSignaturesInfo = async in_docbuffer => {
       console.log('================================================================================');
       console.log('Reading and printing digital signature information');
 
@@ -293,14 +304,12 @@
       }
       console.log('Doc has signatures.');
 
-
       for (const fitr = await doc.getFieldIteratorBegin(); await fitr.hasNext(); await fitr.next()) {
         const field = await fitr.current();
         // eslint-disable-next-line no-unused-expressions
-        (await field.isLockedByDigitalSignature()) ? console.log('==========\nField locked by a digital signature') :
-          console.log('==========\nField not locked by a digital signature');
+        (await field.isLockedByDigitalSignature()) ? console.log('==========\nField locked by a digital signature') : console.log('==========\nField not locked by a digital signature');
 
-        console.log('Field name: ' + await field.getName());
+        console.log('Field name: ' + (await field.getName()));
         console.log('==========');
       }
 
@@ -310,13 +319,15 @@
       for (; await digsig_fitr.hasNext(); await digsig_fitr.next()) {
         console.log('==========');
         const digsigfield = await digsig_fitr.current();
-        console.log('Field name of digital signature: ' + await (await PDFNet.Field.create(await digsigfield.getSDFObj())).getName());
+        console.log('Field name of digital signature: ' + (await (await PDFNet.Field.create(await digsigfield.getSDFObj())).getName()));
 
         if (!(await digsigfield.hasCryptographicSignature())) {
-          console.log('Either digital signature field lacks a digital signature dictionary, ' +
-            'or digital signature dictionary lacks a cryptographic Contents entry. ' +
-            'Digital signature field is not presently considered signed.\n' +
-            '==========');
+          console.log(
+            'Either digital signature field lacks a digital signature dictionary, ' +
+              'or digital signature dictionary lacks a cryptographic Contents entry. ' +
+              'Digital signature field is not presently considered signed.\n' +
+              '=========='
+          );
           continue;
         }
 
@@ -332,16 +343,16 @@
         console.log('Subfilter type: ' + subfilter);
 
         if (subfilter !== PDFNet.DigitalSignatureField.SubFilterType.e_ETSI_RFC3161) {
-          console.log("Signature's signer: " + await digsigfield.getSignatureName());
+          console.log("Signature's signer: " + (await digsigfield.getSignatureName()));
 
           const signing_time = await digsigfield.getSigningTime();
           if (await signing_time.isValid()) {
             console.log('Signing time is valid.');
           }
 
-          console.log('Location: ' + await digsigfield.getLocation());
-          console.log('Reason: ' + await digsigfield.getReason());
-          console.log('Contact info: ' + await digsigfield.getContactInfo());
+          console.log('Location: ' + (await digsigfield.getLocation()));
+          console.log('Reason: ' + (await digsigfield.getReason()));
+          console.log('Contact info: ' + (await digsigfield.getContactInfo()));
         } else {
           console.log('SubFilter == e_ETSI_RFC3161 (DocTimeStamp; no signing info)');
         }
@@ -410,9 +421,9 @@
         console.log(await config_result.getString());
         if (await config_result.hasResponseVerificationResult()) {
           const tst_result = await config_result.getResponseVerificationResult();
-          console.log('CMS digest status: ' + await tst_result.getCMSDigestStatusAsString());
-          console.log('Message digest status: ' + await tst_result.getMessageImprintDigestStatusAsString());
-          console.log('Trust status: ' + await tst_result.getTrustStatusAsString());
+          console.log('CMS digest status: ' + (await tst_result.getCMSDigestStatusAsString()));
+          console.log('Message digest status: ' + (await tst_result.getMessageImprintDigestStatusAsString()));
+          console.log('Trust status: ' + (await tst_result.getTrustStatusAsString()));
         }
         return false;
       }
@@ -461,12 +472,14 @@
 
       // ////////////////// TEST 1: certify a PDF.
       try {
-        const docbuf = await CertifyPDF(input_path + 'waiver_withApprovalField.pdf',
+        const docbuf = await CertifyPDF(
+          input_path + 'waiver_withApprovalField.pdf',
           'PDFTronCertificationSig',
           input_path + 'pdftron.pfx',
           'password',
           input_path + 'pdftron.bmp',
-          'waiver_withApprovalField_certified_output.pdf');
+          'waiver_withApprovalField_certified_output.pdf'
+        );
         await PrintSignaturesInfo(docbuf);
       } catch (err) {
         console.log(err);
@@ -475,12 +488,14 @@
 
       // ////////////////// TEST 2: sign a PDF with a certification and an unsigned signature field in it.
       try {
-        const docbuf = await SignPDF(input_path + 'waiver_withApprovalField_certified.pdf',
+        const docbuf = await SignPDF(
+          input_path + 'waiver_withApprovalField_certified.pdf',
           'PDFTronApprovalSig',
           input_path + 'pdftron.pfx',
           'password',
           input_path + 'signature.jpg',
-          'waiver_withApprovalField_certified_approved_output.pdf');
+          'waiver_withApprovalField_certified_approved_output.pdf'
+        );
         await PrintSignaturesInfo(docbuf);
       } catch (err) {
         console.log(err);
@@ -489,9 +504,11 @@
 
       // ////////////////// TEST 3: Clear a certification from a document that is certified and has an approval signature.
       try {
-        const docbuf = await ClearSignature(input_path + 'waiver_withApprovalField_certified_approved.pdf',
+        const docbuf = await ClearSignature(
+          input_path + 'waiver_withApprovalField_certified_approved.pdf',
           'PDFTronCertificationSig',
-          'waiver_withApprovalField_certified_approved_certcleared_output.pdf');
+          'waiver_withApprovalField_certified_approved_certcleared_output.pdf'
+        );
         await PrintSignaturesInfo(docbuf);
       } catch (err) {
         console.log(err);

@@ -3,7 +3,7 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
-((exports) => {
+(exports => {
   exports.runAnnotationTest = async () => {
     // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
     // @link PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
@@ -44,7 +44,7 @@
     // @link Destination: https://docs.apryse.com/api/web/Core.PDFNet.Destination.html
 
     const PDFNet = exports.Core.PDFNet;
-    const AnnotationLowLevelAPI = async (doc) => {
+    const AnnotationLowLevelAPI = async doc => {
       try {
         await PDFNet.startDeallocateStack(); // start stack-based deallocation. All objects will be deallocated by end of function
         const itr = await doc.getPageIterator(1);
@@ -73,16 +73,16 @@
         // Create a Link annotation
         const link1 = await doc.createIndirectDict();
         await link1.putName('Subtype', 'Link');
-        const dest = await PDFNet.Destination.createFit((await doc.getPage(2)));
-        await link1.put('Dest', (await dest.getSDFObj()));
+        const dest = await PDFNet.Destination.createFit(await doc.getPage(2));
+        await link1.put('Dest', await dest.getSDFObj());
         await link1.putRect('Rect', 85, 705, 503, 661);
         await annots.pushBack(link1);
 
         // Create another Link annotation
         const link2 = await doc.createIndirectDict();
         await link2.putName('Subtype', 'Link');
-        const dest2 = await PDFNet.Destination.createFit((await doc.getPage(3)));
-        await link2.put('Dest', (await dest2.getSDFObj()));
+        const dest2 = await PDFNet.Destination.createFit(await doc.getPage(3));
+        await link2.put('Dest', await dest2.getSDFObj());
         await link2.putRect('Rect', 85, 638, 503, 594);
         await annots.pushBack(link2);
 
@@ -90,7 +90,7 @@
         const tenthPage = await doc.getPage(10);
         // XYZ destination stands for 'left', 'top' and 'zoom' coordinates
         const XYZDestination = await PDFNet.Destination.createXYZ(tenthPage, 100, 722, 10);
-        await link2.put('Dest', (await XYZDestination.getSDFObj()));
+        await link2.put('Dest', await XYZDestination.getSDFObj());
 
         // Create a third link annotation with a hyperlink action (all other
         // annotation types can be created in a similar way)
@@ -110,7 +110,7 @@
       }
     };
 
-    const AnnotationHighLevelAPI = async (doc) => {
+    const AnnotationHighLevelAPI = async doc => {
       await PDFNet.startDeallocateStack(); // start stack-based deallocation. All objects will be deallocated by end of function
       let firstPage = await doc.getPage(1);
 
@@ -121,7 +121,7 @@
 
       let pageNum = 0;
       const itr = await doc.getPageIterator(1);
-      for (itr; (await itr.hasNext()); (await itr.next())) {
+      for (itr; await itr.hasNext(); await itr.next()) {
         pageNum += 1;
         console.log('Page ' + pageNum + ': ');
         const page = await itr.current();
@@ -192,7 +192,7 @@
       // Create an intra-document link...
       const page3 = await doc.getPage(3);
       const gotoPage3 = await PDFNet.Action.createGoto(await PDFNet.Destination.createFitH(page3, 0));
-      const link = await PDFNet.LinkAnnot.create(doc, (new PDFNet.Rect(85, 458, 503, 502)));
+      const link = await PDFNet.LinkAnnot.create(doc, new PDFNet.Rect(85, 458, 503, 502));
       await link.setAction(gotoPage3);
 
       // Set the annotation border width to 3 points...
@@ -203,12 +203,11 @@
       await firstPage.annotPushBack(link);
 
       // Create a stamp annotation ...
-      const stamp = await PDFNet.RubberStampAnnot.create(doc, (new PDFNet.Rect(30, 30, 300, 200)));
+      const stamp = await PDFNet.RubberStampAnnot.create(doc, new PDFNet.Rect(30, 30, 300, 200));
       await stamp.setIconName('Draft');
       await firstPage.annotPushBack(stamp);
 
-
-      const ink = await PDFNet.InkAnnot.create(doc, (new PDFNet.Rect(110, 10, 300, 200)));
+      const ink = await PDFNet.InkAnnot.create(doc, new PDFNet.Rect(110, 10, 300, 200));
       const pt3 = new PDFNet.Point(110, 10);
       await ink.setPoint(0, 0, pt3);
       pt3.x = 150;
@@ -245,7 +244,7 @@
       await PDFNet.endDeallocateStack();
     };
 
-    const CreateTestAnnots = async (doc) => {
+    const CreateTestAnnots = async doc => {
       await PDFNet.startDeallocateStack();
       const ew = await PDFNet.ElementWriter.create(); // elementWriter
       const eb = await PDFNet.ElementBuilder.create(); // elementBuilder
@@ -359,7 +358,7 @@
         line.setEndPoint(new PDFNet.Point(370, 60));
         line.setStartStyle(PDFNet.LineAnnot.EndingStyle.e_Butt);
         line.setEndStyle(PDFNet.LineAnnot.EndingStyle.e_OpenArrow);
-        line.setColor((await PDFNet.ColorPt.init(0, 0, 1)), 3);
+        line.setColor(await PDFNet.ColorPt.init(0, 0, 1), 3);
         line.setContents('Regular Caption');
         line.setShowCaption(true);
         line.setCapPos(PDFNet.LineAnnot.CapPos.e_Top);
@@ -373,8 +372,8 @@
         line.setStartStyle(PDFNet.LineAnnot.EndingStyle.e_Circle);
         line.setEndStyle(PDFNet.LineAnnot.EndingStyle.e_Diamond);
         line.setContents('Circle to Diamond');
-        line.setColor((await PDFNet.ColorPt.init(0, 0, 1)), 3);
-        line.setInteriorColor((await PDFNet.ColorPt.init(0, 1, 0)), 3);
+        line.setColor(await PDFNet.ColorPt.init(0, 0, 1), 3);
+        line.setInteriorColor(await PDFNet.ColorPt.init(0, 1, 0), 3);
         line.setShowCaption(true);
         line.setCapPos(PDFNet.LineAnnot.CapPos.e_Top);
         line.refreshAppearance();
@@ -387,8 +386,8 @@
         line.setStartStyle(PDFNet.LineAnnot.EndingStyle.e_Slash);
         line.setEndStyle(PDFNet.LineAnnot.EndingStyle.e_ClosedArrow);
         line.setContents('Slash to CArrow');
-        line.setColor((await PDFNet.ColorPt.init(1, 0, 0)), 3);
-        line.setInteriorColor((await PDFNet.ColorPt.init(0, 1, 1)), 3);
+        line.setColor(await PDFNet.ColorPt.init(1, 0, 0), 3);
+        line.setInteriorColor(await PDFNet.ColorPt.init(0, 1, 1), 3);
         line.setShowCaption(true);
         line.setCapPos(PDFNet.LineAnnot.CapPos.e_Top);
         line.refreshAppearance();
@@ -401,8 +400,8 @@
         line.setStartStyle(PDFNet.LineAnnot.EndingStyle.e_RClosedArrow);
         line.setEndStyle(PDFNet.LineAnnot.EndingStyle.e_ROpenArrow);
         line.setContents('ROpen & RClosed arrows');
-        line.setColor((await PDFNet.ColorPt.init(0, 0, 1)), 3);
-        line.setInteriorColor((await PDFNet.ColorPt.init(0, 1, 0)), 3);
+        line.setColor(await PDFNet.ColorPt.init(0, 0, 1), 3);
+        line.setInteriorColor(await PDFNet.ColorPt.init(0, 1, 0), 3);
         line.setShowCaption(true);
         line.setCapPos(PDFNet.LineAnnot.CapPos.e_Top);
         line.refreshAppearance();
@@ -421,9 +420,9 @@
         line.setEndPoint(new PDFNet.Point(155, 300));
         line.setStartStyle(PDFNet.LineAnnot.EndingStyle.e_Circle);
         line.setEndStyle(PDFNet.LineAnnot.EndingStyle.e_Circle);
-        line.setContents(("Caption that's longer than its line."));
-        line.setColor((await PDFNet.ColorPt.init(1, 0, 1)), 3);
-        line.setInteriorColor((await PDFNet.ColorPt.init(0, 1, 0)), 3);
+        line.setContents("Caption that's longer than its line.");
+        line.setColor(await PDFNet.ColorPt.init(1, 0, 1), 3);
+        line.setInteriorColor(await PDFNet.ColorPt.init(0, 1, 0), 3);
         line.setShowCaption(true);
         line.setCapPos(PDFNet.LineAnnot.CapPos.e_Top);
         line.refreshAppearance();
@@ -433,7 +432,7 @@
         const line = await PDFNet.LineAnnot.create(doc, new PDFNet.Rect(300, 200, 390, 234));
         line.setStartPoint(new PDFNet.Point(310, 210));
         line.setEndPoint(new PDFNet.Point(380, 220));
-        line.setColor((await PDFNet.ColorPt.init(0, 0, 0)), 3);
+        line.setColor(await PDFNet.ColorPt.init(0, 0, 0), 3);
         line.refreshAppearance();
         page.annotPushBack(line);
       }
@@ -443,33 +442,33 @@
       doc.pagePushBack(page3);
       {
         const circle = await PDFNet.CircleAnnot.create(doc, new PDFNet.Rect(300, 300, 390, 350));
-        circle.setColor((await PDFNet.ColorPt.init(0, 0, 0)), 3);
+        circle.setColor(await PDFNet.ColorPt.init(0, 0, 0), 3);
         circle.refreshAppearance();
         page3.annotPushBack(circle);
       }
       {
         const circle = await PDFNet.CircleAnnot.create(doc, new PDFNet.Rect(100, 100, 200, 200));
-        circle.setColor((await PDFNet.ColorPt.init(0, 1, 0)), 3);
-        circle.setInteriorColor((await PDFNet.ColorPt.init(0, 0, 1)), 3);
+        circle.setColor(await PDFNet.ColorPt.init(0, 1, 0), 3);
+        circle.setInteriorColor(await PDFNet.ColorPt.init(0, 0, 1), 3);
         const dash = [2, 4];
-        circle.setBorderStyle((await PDFNet.AnnotBorderStyle.createWithDashPattern(PDFNet.AnnotBorderStyle.Style.e_dashed, 3, 0, 0, dash)));
+        circle.setBorderStyle(await PDFNet.AnnotBorderStyle.createWithDashPattern(PDFNet.AnnotBorderStyle.Style.e_dashed, 3, 0, 0, dash));
         circle.setPadding(new PDFNet.Rect(2, 2, 2, 2));
         circle.refreshAppearance();
         page3.annotPushBack(circle);
       }
       {
         const sq = await PDFNet.SquareAnnot.create(doc, new PDFNet.Rect(10, 200, 80, 300));
-        sq.setColor((await PDFNet.ColorPt.init(0, 0, 0)), 3);
+        sq.setColor(await PDFNet.ColorPt.init(0, 0, 0), 3);
         sq.refreshAppearance();
         page3.annotPushBack(sq);
       }
 
       {
         const sq = await PDFNet.SquareAnnot.create(doc, new PDFNet.Rect(500, 200, 580, 300));
-        sq.setColor((await PDFNet.ColorPt.init(1, 0, 0)), 3);
-        sq.setInteriorColor((await PDFNet.ColorPt.init(0, 1, 1)), 3);
+        sq.setColor(await PDFNet.ColorPt.init(1, 0, 0), 3);
+        sq.setInteriorColor(await PDFNet.ColorPt.init(0, 1, 1), 3);
         const dash = [4, 2];
-        sq.setBorderStyle((await PDFNet.AnnotBorderStyle.createWithDashPattern(PDFNet.AnnotBorderStyle.Style.e_dashed, 6, 0, 0, dash)));
+        sq.setBorderStyle(await PDFNet.AnnotBorderStyle.createWithDashPattern(PDFNet.AnnotBorderStyle.Style.e_dashed, 6, 0, 0, dash));
         sq.setPadding(new PDFNet.Rect(4, 4, 4, 4));
         sq.refreshAppearance();
         page3.annotPushBack(sq);
@@ -477,8 +476,8 @@
 
       {
         const poly = await PDFNet.PolygonAnnot.create(doc, new PDFNet.Rect(5, 500, 125, 590));
-        poly.setColor((await PDFNet.ColorPt.init(1, 0, 0)), 3);
-        poly.setInteriorColor((await PDFNet.ColorPt.init(1, 1, 0)), 3);
+        poly.setColor(await PDFNet.ColorPt.init(1, 0, 0), 3);
+        poly.setInteriorColor(await PDFNet.ColorPt.init(1, 1, 0), 3);
         poly.setVertex(0, new PDFNet.Point(12, 510));
         poly.setVertex(1, new PDFNet.Point(100, 510));
         poly.setVertex(2, new PDFNet.Point(100, 555));
@@ -491,8 +490,8 @@
       }
       {
         const poly = await PDFNet.PolyLineAnnot.create(doc, new PDFNet.Rect(400, 10, 500, 90));
-        poly.setColor((await PDFNet.ColorPt.init(1, 0, 0)), 3);
-        poly.setInteriorColor((await PDFNet.ColorPt.init(0, 1, 0)), 3);
+        poly.setColor(await PDFNet.ColorPt.init(1, 0, 0), 3);
+        poly.setInteriorColor(await PDFNet.ColorPt.init(0, 1, 0), 3);
         poly.setVertex(0, new PDFNet.Point(405, 20));
         poly.setVertex(1, new PDFNet.Point(440, 40));
         poly.setVertex(2, new PDFNet.Point(410, 60));
@@ -525,12 +524,12 @@
         element = await eb.createTextRun('Some random text on the page', font, 16);
         element.setTextMatrixEntries(1, 0, 0, 1, 100, 500);
         ew.writeElement(element);
-        ew.writeElement((await eb.createTextEnd()));
+        ew.writeElement(await eb.createTextEnd());
         ew.end();
       }
       {
         const hl = await PDFNet.HighlightAnnot.create(doc, new PDFNet.Rect(100, 490, 150, 515));
-        hl.setColor((await PDFNet.ColorPt.init(0, 1, 0)), 3);
+        hl.setColor(await PDFNet.ColorPt.init(0, 1, 0), 3);
         hl.refreshAppearance();
         page4.annotPushBack(hl);
       }
@@ -543,12 +542,11 @@
       }
       {
         const cr = await PDFNet.CaretAnnot.create(doc, new PDFNet.Rect(100, 40, 129, 69));
-        cr.setColor((await PDFNet.ColorPt.init(0, 0, 1)), 3);
+        cr.setColor(await PDFNet.ColorPt.init(0, 0, 1), 3);
         cr.setSymbol('P');
         cr.refreshAppearance();
         page4.annotPushBack(cr);
       }
-
 
       const page5 = await doc.pageCreate(new PDFNet.Rect(0, 0, 600, 600));
       ew.beginOnPage(page5); // begin writing to the page
@@ -565,7 +563,7 @@
           if (!(iann > PDFNet.FileAttachmentAnnot.Icon.e_Tag)) {
             const fa = await PDFNet.FileAttachmentAnnot.createWithFileSpec(doc, new PDFNet.Rect(50 + 50 * iann, 100, 70 + 50 * iann, 120), fs, iann);
             if (ipage) {
-              fa.setColor((await PDFNet.ColorPt.init(1, 1, 0)));
+              fa.setColor(await PDFNet.ColorPt.init(1, 1, 0));
             }
             fa.refreshAppearance();
             if (ipage === 0) {
@@ -579,9 +577,9 @@
           }
           const txt = await PDFNet.TextAnnot.create(doc, new PDFNet.Rect(10 + iann * 50, 200, 30 + iann * 50, 220));
           txt.setIcon(iann);
-          txt.setContents((await txt.getIconName()));
+          txt.setContents(await txt.getIconName());
           if (ipage) {
-            txt.setColor((await PDFNet.ColorPt.init(1, 1, 0)));
+            txt.setColor(await PDFNet.ColorPt.init(1, 1, 0));
           }
           txt.refreshAppearance();
           if (ipage === 0) {
@@ -595,13 +593,13 @@
         const txt = await PDFNet.TextAnnot.create(doc, new PDFNet.Rect(10, 20, 30, 40));
         txt.setIconName('UserIcon');
         txt.setContents('User defined icon, unrecognized by appearance generator');
-        txt.setColor((await PDFNet.ColorPt.init(0, 1, 0)));
+        txt.setColor(await PDFNet.ColorPt.init(0, 1, 0));
         txt.refreshAppearance();
         page6.annotPushBack(txt);
       }
       {
         const ink = await PDFNet.InkAnnot.create(doc, new PDFNet.Rect(100, 400, 200, 550));
-        ink.setColor((await PDFNet.ColorPt.init(0, 0, 1)));
+        ink.setColor(await PDFNet.ColorPt.init(0, 0, 1));
         ink.setPoint(1, 3, new PDFNet.Point(220, 505));
         ink.setPoint(1, 0, new PDFNet.Point(100, 490));
         ink.setPoint(0, 1, new PDFNet.Point(120, 410));
@@ -613,7 +611,6 @@
         page6.annotPushBack(ink);
       }
 
-
       const page7 = await doc.pageCreate(new PDFNet.Rect(0, 0, 600, 600));
       ew.beginOnPage(page7); // begin writing to the page
       ew.end(); // save changes to the current page
@@ -621,14 +618,14 @@
 
       {
         const snd = await PDFNet.SoundAnnot.create(doc, new PDFNet.Rect(100, 500, 120, 520));
-        snd.setColor((await PDFNet.ColorPt.init(1, 1, 0)));
+        snd.setColor(await PDFNet.ColorPt.init(1, 1, 0));
         snd.setIcon(PDFNet.SoundAnnot.Icon.e_Speaker);
         snd.refreshAppearance();
         page7.annotPushBack(snd);
       }
       {
         const snd = await PDFNet.SoundAnnot.create(doc, new PDFNet.Rect(200, 500, 220, 520));
-        snd.setColor((await PDFNet.ColorPt.init(1, 1, 0)));
+        snd.setColor(await PDFNet.ColorPt.init(1, 1, 0));
         snd.setIcon(PDFNet.SoundAnnot.Icon.e_Mic);
         snd.refreshAppearance();
         page7.annotPushBack(snd);
@@ -645,7 +642,7 @@
         for (let istamp = PDFNet.RubberStampAnnot.Icon.e_Approved; istamp <= PDFNet.RubberStampAnnot.Icon.e_Draft; istamp++) {
           const st = await PDFNet.RubberStampAnnot.create(doc, new PDFNet.Rect(1, 1, 100, 100));
           st.setIcon(istamp);
-          st.setContents((await st.getIconName()));
+          st.setContents(await st.getIconName());
           st.setRect(new PDFNet.Rect(px, py, px + 100, py + 25));
           py -= 100;
           if (py < 0) {
@@ -677,7 +674,6 @@
         const doc = await PDFNet.PDFDoc.createFromURL(inputPath + 'numbered.pdf');
         doc.initSecurityHandler();
         doc.lock();
-
 
         await AnnotationLowLevelAPI(doc);
         const docbuf = await doc.saveMemoryBuffer(PDFNet.SDFDoc.SaveOptions.e_linearized);

@@ -7,7 +7,7 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
-((exports) => {
+(exports => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
   // @link ElementBuilder: https://docs.apryse.com/api/web/Core.PDFNet.ElementBuilder.html
@@ -50,19 +50,19 @@
 
         // Add a PNG to output file
         img = await PDFNet.Image.createFromURL(doc, inputURL + 'butterfly.png');
-        matrix = await PDFNet.Matrix2D.create((await img.getImageWidth()), 0, 0, (await img.getImageHeight()), 300, 500);
+        matrix = await PDFNet.Matrix2D.create(await img.getImageWidth(), 0, 0, await img.getImageHeight(), 300, 500);
         element = await builder.createImageFromMatrix(img, matrix);
         writer.writePlacedElement(element);
 
         // Add a GIF image to the output file
         img = await PDFNet.Image.createFromURL(doc, inputURL + 'pdfnet.gif');
-        matrix = await PDFNet.Matrix2D.create((await img.getImageWidth()), 0, 0, (await img.getImageHeight()), 50, 350);
+        matrix = await PDFNet.Matrix2D.create(await img.getImageWidth(), 0, 0, await img.getImageHeight(), 50, 350);
         element = await builder.createImageFromMatrix(img, matrix);
         writer.writePlacedElement(element);
 
         // Add a TIFF image to the output file
         img = await PDFNet.Image.createFromURL(doc, inputURL + 'grayscale.tif');
-        matrix = await PDFNet.Matrix2D.create((await img.getImageWidth()), 0, 0, (await img.getImageHeight()), 10, 50);
+        matrix = await PDFNet.Matrix2D.create(await img.getImageWidth(), 0, 0, await img.getImageHeight(), 10, 50);
         element = await builder.createImageFromMatrix(img, matrix);
         writer.writePlacedElement(element);
         writer.end();
@@ -89,7 +89,7 @@
         writer.beginOnPage(page, 1, true, true);
 
         img = await PDFNet.Image.createFromURL(doc, inputURL + 'palm.jp2');
-        matrix = await PDFNet.Matrix2D.create((await img.getImageWidth()), 0, 0, (await img.getImageHeight()), 96, 80);
+        matrix = await PDFNet.Matrix2D.create(await img.getImageWidth(), 0, 0, await img.getImageHeight(), 96, 80);
         element = await builder.createImageFromMatrix(img, matrix);
         writer.writePlacedElement(element);
 
@@ -98,7 +98,7 @@
         writer.writeElement(await builder.createTextBeginWithFont(timesFont, 32));
         element = await builder.createTextRun('JPEG2000 Sample', timesFont, 32);
         matrix = await PDFNet.Matrix2D.create(1, 0, 0, 1, 190, 30);
-        element.setTextMatrix(matrix);// await?
+        element.setTextMatrix(matrix); // await?
         writer.writeElement(element);
         const element2 = await builder.createTextEnd();
         writer.writeElement(element2);

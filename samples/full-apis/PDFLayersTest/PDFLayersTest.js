@@ -2,7 +2,7 @@
 // Copyright (c) 2001-2023 by Apryse Software Inc. All Rights Reserved.
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
-((exports) => {
+(exports => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFNet.PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
   // @link PDFNet.OCG: https://docs.apryse.com/api/web/Core.PDFNet.OCG.html
@@ -159,7 +159,6 @@
       return grpObj;
     };
 
-
     const main = async () => {
       console.log('Beginning Test');
       let doc = null;
@@ -180,11 +179,11 @@
         const writer = await PDFNet.ElementWriter.create();
         writer.beginOnPage(page);
 
-        const groupObj = await CreateGroup1(doc, (await imageLayer.getSDFObj()));
+        const groupObj = await CreateGroup1(doc, await imageLayer.getSDFObj());
         let element = await builder.createFormFromStream(groupObj);
         writer.writeElement(element);
 
-        const groupObj2 = await CreateGroup2(doc, (await vectorLayer.getSDFObj()));
+        const groupObj2 = await CreateGroup2(doc, await vectorLayer.getSDFObj());
         element = await builder.createFormFromStream(groupObj2);
         writer.writeElement(element);
 
@@ -198,16 +197,16 @@
           ocgs.pushBack(await vectorLayer.getSDFObj());
           ocgs.PushBack(await textLayer.getSDFObj());
           const textOcmd = await PDFNet.OCMD.create(doc, ocgs, PDFNet.OCMD.VisibilityPolicyType.e_AllOn);
-          element = await builder.createFormFromStream(await CreateGroup3(doc, (await textOcmd.getSDFObj())));
+          element = await builder.createFormFromStream(await CreateGroup3(doc, await textOcmd.getSDFObj()));
         } else {
           // let SDFObj = await textLayer.getSDFObj();
-          element = await builder.createFormFromStream(await CreateGroup3(doc, (await textLayer.getSDFObj())));
+          element = await builder.createFormFromStream(await CreateGroup3(doc, await textLayer.getSDFObj()));
         }
         writer.writeElement(element);
 
         // Add some content to the page that does not belong to any layer...
         // In this case this is a rectangle representing the page border.
-        element = await builder.createRect(0, 0, (await page.getPageWidth()), (await page.getPageHeight()));
+        element = await builder.createRect(0, 0, await page.getPageWidth(), await page.getPageHeight());
         element.setPathFill(false);
         element.setPathStroke(true);
         const elementGState = await element.getGState();

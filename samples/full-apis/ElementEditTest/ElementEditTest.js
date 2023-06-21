@@ -3,7 +3,7 @@
 // Consult legal.txt regarding legal and license information.
 //---------------------------------------------------------------------------------------
 
-((exports) => {
+(exports => {
   // @link PDFNet: https://docs.apryse.com/api/web/Core.PDFNet.html
   // @link PDFDoc: https://docs.apryse.com/api/web/Core.PDFNet.PDFDoc.html
   // @link ElementBuilder: https://docs.apryse.com/api/web/Core.PDFNet.ElementBuilder.html
@@ -28,17 +28,17 @@
         switch (elementType) {
           case PDFNet.Element.Type.e_image:
           case PDFNet.Element.Type.e_inline_image:
-          // remove all images by skipping them
+            // remove all images by skipping them
             break;
           case PDFNet.Element.Type.e_path:
-          // Set all paths to red
+            // Set all paths to red
             gs = await element.getGState();
             gs.setFillColorSpace(colorspace);
             gs.setFillColorWithColorPt(redColor);
             writer.writeElement(element);
             break;
           case PDFNet.Element.Type.e_text:
-          // Set all text to blue
+            // Set all text to blue
             gs = await element.getGState();
             gs.setFillColorSpace(colorspace);
             gs.setFillColorWithColorPt(blueColor);
@@ -50,7 +50,7 @@
             formObjNum = formObj.getObjNum();
             // if XObject not yet processed
             if (visited.indexOf(formObjNum) === -1) {
-            // Set Replacement
+              // Set Replacement
               const insertedObj = await formObj.getObjNum();
               if (!visited.includes(insertedObj)) {
                 visited.push(insertedObj);
