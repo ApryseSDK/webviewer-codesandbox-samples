@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "चयनित टिप्पणियों का उत्तर दें",
     "comparePages": "पृष्ठों की तुलना करें",
     "startComparison": "तुलना शुरू करें",
+    "showComparison": "तुलना दिखाएँ",
     "back": "पीछे",
     "clearSignature": "स्पष्ट हस्ताक्षर",
     "newDocument": "नया दस्तावेज़"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "आपके द्वारा दर्ज किया गया नंबर अमान्य है, आप 7.5 या 7 1/2 . जैसे मान दर्ज कर सकते हैं",
     "linkURLorPage": "लिंक यूआरएल या पेज",
     "warning": "चेतावनी",
+    "svgMalicious": "सुरक्षा के लिए SVG स्क्रिप्ट को नज़रअंदाज़ किया गया",
     "enterContentEditingMode": "आप सामग्री संपादन मोड में प्रवेश करने वाले हैं।",
     "existingAnnotationWarning": "संपादित किए जाने के बाद मौजूदा एनोटेशन टेक्स्ट से मेल नहीं खा सकते हैं।",
     "changesCannotBeUndone": "किए गए किसी भी परिवर्तन को पूर्ववत नहीं किया जा सकता है।",
@@ -455,7 +457,9 @@
       "filters": "फिल्टर",
       "user": "उपयोगकर्ता",
       "type": "टाइप",
-      "status": "दर्जा"
+      "status": "दर्जा",
+      "filterSettings": "फ़िल्टर सेटिंग्स",
+      "filterDocument": "दस्तावेज़ और टिप्पणी पैनल फ़िल्टर करें"
     },
     "state": {
       "accepted": "स्वीकार किया हुआ",
@@ -565,7 +569,8 @@
     "thumbnailPanel": {
       "delete": "हटाएं",
       "rotateClockwise": "दक्षिणावर्त",
-      "rotateCounterClockwise": "वामावर्त"
+      "rotateCounterClockwise": "वामावर्त",
+      "moreOptions": "अधिक विकल्प"
     },
     "thumbnailsControlOverlay": {
       "move": "पन्ने ले जाएँ"
@@ -615,6 +620,7 @@
     },
     "settings": {
       "settings": "समायोजन",
+      "searchSettings": "खोज सेंटिंग",
       "general": "सामान्य",
       "language": "भाषा",
       "theme": "थीम",
@@ -733,6 +739,10 @@
       "title": "डाउनलोड किए बिना बंद करें?",
       "message": "इस दस्तावेज़ में परिवर्तन किए गए हैं, क्या आप वाकई अपना काम डाउनलोड किए बिना इसे बंद करना चाहते हैं? आप इस क्रिया को पूर्ववत नहीं कर सकते।",
       "rejectDownloadButton": "डाउनलोड के बिना बंद करें"
+    },
+    "connectToURL": {
+      "title": "सुरक्षा चेतावनी",
+      "message": "यह दस्तावेज़ इससे कनेक्ट करने का प्रयास कर रहा है:\n\n{{- उरी}}।\n\n यदि आप इस दस्तावेज़ पर भरोसा करते हैं, तो इसे खोलने के लिए पुष्टि करें पर क्लिक करें।"
     }
   },
   "shortcut": {
@@ -1084,7 +1094,6 @@
     "numberList": "क्रमांकित सूची",
     "insertLink": "लिंक डालें",
     "insertImage": "चित्र डालें",
-    "notAvailableInDemoMode": "डेमो मोड में उपलब्ध नहीं है",
     "notSupportedOnMobile": "कार्यालय संपादन मोबाइल उपकरणों पर समर्थित नहीं है।"
   },
   "insertPageModal": {

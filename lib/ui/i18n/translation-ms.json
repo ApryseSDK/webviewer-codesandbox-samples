@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Balas kepada anotasi yang dipilih ({{count}})",
     "comparePages": "Bandingkan halaman",
     "startComparison": "Mulakan Perbandingan",
+    "showComparison": "Tunjukkan Perbandingan",
     "back": "belakang",
     "clearSignature": "Tandatangan yang jelas",
     "newDocument": "Dokumen Baharu"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "Nombor yang anda masukkan tidak sah, anda boleh memasukkan nilai seperti 7.5 atau 7 1/2",
     "linkURLorPage": "Pautan URL atau Halaman",
     "warning": "Amaran",
+    "svgMalicious": "Skrip SVG diabaikan untuk keselamatan",
     "enterContentEditingMode": "Anda akan memasuki mod penyuntingan kandungan.",
     "existingAnnotationWarning": "Anotasi sedia ada mungkin tidak sepadan dengan teks selepas ia diedit.",
     "changesCannotBeUndone": "Sebarang perubahan yang dibuat tidak boleh dibuat asal.",
@@ -455,7 +457,9 @@
       "filters": "Penapis",
       "user": "pengguna",
       "type": "taip",
-      "status": "Status"
+      "status": "Status",
+      "filterSettings": "Tetapan Penapis",
+      "filterDocument": "Tapis dokumen dan panel ulasan"
     },
     "state": {
       "accepted": "Diterima",
@@ -565,7 +569,8 @@
     "thumbnailPanel": {
       "delete": "Padam",
       "rotateClockwise": "ikut arah jam",
-      "rotateCounterClockwise": "lawan jam"
+      "rotateCounterClockwise": "lawan jam",
+      "moreOptions": "Lebih banyak pilihan"
     },
     "thumbnailsControlOverlay": {
       "move": "Pindahkan halaman"
@@ -615,6 +620,7 @@
     },
     "settings": {
       "settings": "tetapan",
+      "searchSettings": "Tetapan Carian",
       "general": "Umum",
       "language": "Bahasa",
       "theme": "Tema",
@@ -733,6 +739,10 @@
       "title": "Tutup tanpa memuat turun?",
       "message": "Terdapat perubahan yang dibuat pada dokumen ini, adakah anda pasti mahu menutupnya tanpa memuat turun kerja anda? Anda tidak boleh membuat asal tindakan ini.",
       "rejectDownloadButton": "Tutup tanpa muat turun"
+    },
+    "connectToURL": {
+      "title": "Amaran keselamatan",
+      "message": "Dokumen ini cuba disambungkan ke:\n\n{{- uri}}.\n\n Jika anda mempercayai dokumen ini, klik Sahkan untuk membukanya."
     }
   },
   "shortcut": {
@@ -1084,7 +1094,6 @@
     "numberList": "Senarai bernombor",
     "insertLink": "Sisipkan pautan",
     "insertImage": "Sisipkan imej",
-    "notAvailableInDemoMode": "Tidak tersedia dalam mod demo",
     "notSupportedOnMobile": "Penyuntingan pejabat tidak disokong pada peranti mudah alih."
   },
   "insertPageModal": {

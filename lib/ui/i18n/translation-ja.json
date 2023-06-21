@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "選択した注釈に返信 ({{count}})",
     "comparePages": "ページを比較する",
     "startComparison": "比較を開始",
+    "showComparison": "比較を表示",
     "back": "戻る",
     "clearSignature": "明確な署名",
     "newDocument": "新しいドキュメント"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "入力した数値は無効です。7.5や7 1/2などの値を入力できます",
     "linkURLorPage": "ページまたはURLのリンクを挿入",
     "warning": "警告",
+    "svgMalicious": "セキュリティのために無視される SVG スクリプト",
     "enterContentEditingMode": "編集モードを開始しようとしています。",
     "existingAnnotationWarning": "編集内容が既存の注釈と一致しない場合があります。",
     "changesCannotBeUndone": "行った変更は元に戻せません。",
@@ -455,7 +457,9 @@
       "filters": "フィルタ",
       "user": "ユーザー",
       "type": "タイプ",
-      "status": "状態"
+      "status": "状態",
+      "filterSettings": "フィルター設定",
+      "filterDocument": "ドキュメントとコメント パネルをフィルター処理する"
     },
     "state": {
       "accepted": "承認",
@@ -565,7 +569,8 @@
     "thumbnailPanel": {
       "delete": "削除",
       "rotateClockwise": "右90°回転",
-      "rotateCounterClockwise": "左90°回転"
+      "rotateCounterClockwise": "左90°回転",
+      "moreOptions": "より多くのオプション"
     },
     "thumbnailsControlOverlay": {
       "move": "ページを移動する"
@@ -615,6 +620,7 @@
     },
     "settings": {
       "settings": "設定",
+      "searchSettings": "検索設定",
       "general": "全般的",
       "language": "言語",
       "theme": "テーマ",
@@ -733,6 +739,10 @@
       "title": "ダウンロードせずに閉じますか？",
       "message": "このドキュメントに変更が加えられましたが、作業内容をダウンロードせずに閉じてもよろしいですか？このアクションを元に戻すことはできません。",
       "rejectDownloadButton": "ダウンロードせずに閉じる"
+    },
+    "connectToURL": {
+      "title": "セキュリティ警告",
+      "message": "このドキュメントは次の場所に接続しようとしています:\n\n{{- うり}}。\n\n このドキュメントが信頼できる場合は、[確認] をクリックして開きます。"
     }
   },
   "shortcut": {
@@ -1084,7 +1094,6 @@
     "numberList": "番号付きリスト",
     "insertLink": "リンクを挿入",
     "insertImage": "画像を挿入",
-    "notAvailableInDemoMode": "デモモードでは利用できません",
     "notSupportedOnMobile": "Office 編集は、モバイル デバイスではサポートされていません。"
   },
   "insertPageModal": {
