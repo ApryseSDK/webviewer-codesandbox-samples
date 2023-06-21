@@ -26,7 +26,6 @@ Firebase rule
 
 */
 
-
 (function() {
   /* eslint-disable-next-line no-unused-vars */
   class Server {
@@ -76,25 +75,23 @@ Firebase rule
       this.documentsRef = firebase
         .database()
         .ref()
-        .child('documents').child(documentId);
+        .child('documents')
+        .child(documentId);
 
       this.annotationsRef = this.documentsRef.child('annotations');
     }
 
     // Check if the author exists and open an appropriate popup
     checkAuthor(authorId, openReturningAuthorPopup, openNewAuthorPopup) {
-      this.authorsRef.once(
-        'value',
-        (authors) => {
-          if (authors.hasChild(authorId)) {
-            this.authorsRef.child(authorId).once('value', (author) => {
-              openReturningAuthorPopup(author.val().authorName);
-            });
-          } else {
-            openNewAuthorPopup();
-          }
+      this.authorsRef.once('value', authors => {
+        if (authors.hasChild(authorId)) {
+          this.authorsRef.child(authorId).once('value', author => {
+            openReturningAuthorPopup(author.val().authorName);
+          });
+        } else {
+          openNewAuthorPopup();
         }
-      );
+      });
     }
 
     // Sign in
@@ -102,7 +99,7 @@ Firebase rule
       firebase
         .auth()
         .signInAnonymously()
-        .catch((error) => {
+        .catch(error => {
           if (error.code === 'auth/operation-not-allowed') {
             alert('You must enable Anonymous auth in the Firebase Console.');
           } else {
@@ -130,4 +127,4 @@ Firebase rule
   }
 
   window.Server = Server;
-}());
+})();

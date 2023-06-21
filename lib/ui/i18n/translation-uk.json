@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Відповідь на вибрані анотації ({{count}})",
     "comparePages": "Порівняти сторінки",
     "startComparison": "Почати порівняння",
+    "showComparison": "Показати порівняння",
     "back": "Назад",
     "clearSignature": "Чіткий підпис",
     "newDocument": "Новий документ"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "Введене число недійсне, ви можете ввести такі значення, як 7,5 або 7 1/2",
     "linkURLorPage": "URL-адреса посилання або сторінка",
     "warning": "Увага",
+    "svgMalicious": "Сценарій SVG ігнорується з міркувань безпеки",
     "enterContentEditingMode": "Ви збираєтеся увійти в режим редагування вмісту.",
     "existingAnnotationWarning": "Існуючі анотації можуть не збігатися з текстом після його редагування.",
     "changesCannotBeUndone": "Будь-які внесені зміни не можна скасувати.",
@@ -567,7 +569,8 @@
     "thumbnailPanel": {
       "delete": "Видалити",
       "rotateClockwise": "За годинниковою стрілкою",
-      "rotateCounterClockwise": "Проти годинникової стрілки"
+      "rotateCounterClockwise": "Проти годинникової стрілки",
+      "moreOptions": "Більше варіантів"
     },
     "thumbnailsControlOverlay": {
       "move": "Переміщення сторінок"
@@ -1091,7 +1094,6 @@
     "numberList": "Нумерований список",
     "insertLink": "Вставте посилання",
     "insertImage": "Вставте зображення",
-    "notAvailableInDemoMode": "Недоступно в демонстраційному режимі",
     "notSupportedOnMobile": "Редагування Office не підтримується на мобільних пристроях."
   },
   "insertPageModal": {

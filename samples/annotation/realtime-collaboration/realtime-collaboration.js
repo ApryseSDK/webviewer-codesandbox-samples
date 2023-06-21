@@ -23,12 +23,12 @@ const initialDoc = 'https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated
 WebViewer(
   {
     path: '../../../lib',
-    /* PDFJS_IGNORE */ /* TEST_IGNORE */ webviewerServerURL: 'https://demo.pdftron.com/', // comment this out to do client-side only /* /TEST_IGNORE */ /* /PDFJS_IGNORE */
+    webviewerServerURL: 'https://demo.pdftron.com/', // comment this out to do client-side only
     initialDoc,
-    documentId: IDS[initialDoc]
+    documentId: IDS[initialDoc],
   },
   document.getElementById('viewer')
-).then((instance) => {
+).then(instance => {
   samplesSetup(instance);
 
   const { documentViewer, annotationManager } = instance.Core;
@@ -50,8 +50,7 @@ WebViewer(
     xhttp.open('GET', '/ip', true);
     xhttp.send();
   } else {
-    /* PDFJS_IGNORE */urlInput.value = 'https://docs.apryse.com/samples/web/samples/annotation/realtime-collaboration/';/* /PDFJS_IGNORE */
-    /* WEBVIEWER_IGNORE */urlInput.value = 'https://pdfjs.express/samples/annotation/realtime-collaboration/';/* /WEBVIEWER_IGNORE */
+    urlInput.value = 'https://docs.apryse.com/samples/web/samples/annotation/realtime-collaboration/';
   }
 
   copyButton.onclick = () => {
@@ -65,7 +64,7 @@ WebViewer(
 
     server.selectDocument(documentId);
 
-    const onAnnotationCreated = async (data) => {
+    const onAnnotationCreated = async data => {
       // Import the annotation based on xfdf command
       const annotations = await annotationManager.importAnnotationCommand(data.val().xfdf);
       const annotation = annotations[0];
@@ -78,7 +77,7 @@ WebViewer(
       }
     };
 
-    const onAnnotationUpdated = async (data) => {
+    const onAnnotationUpdated = async data => {
       // Import the annotation based on xfdf command
       const annotations = await annotationManager.importAnnotationCommand(data.val().xfdf);
       const annotation = annotations[0];
@@ -90,14 +89,14 @@ WebViewer(
       }
     };
 
-    const onAnnotationDeleted = (data) => {
+    const onAnnotationDeleted = data => {
       // data.key would return annotationId since our server method is designed as
       // annotationsRef.child(annotationId).set(annotationData)
       const command = `<delete><id>${data.key}</id></delete>`;
       annotationManager.importAnnotationCommand(command);
     };
 
-    const openReturningAuthorPopup = (authorName) => {
+    const openReturningAuthorPopup = authorName => {
       if (hasSeenPopup) {
         return;
       }
@@ -108,7 +107,7 @@ WebViewer(
       hasSeenPopup = true;
     };
 
-    const updateAuthor = (authorName) => {
+    const updateAuthor = authorName => {
       // The author name will be used for both WebViewer and annotations in PDF
       annotationManager.setCurrentUser(authorName);
       // Create/update author information in the server
@@ -125,7 +124,7 @@ WebViewer(
 
     // Bind server-side authorization state change to a callback function
     // The event is triggered in the beginning as well to check if author has already signed in
-    server.bind('onAuthStateChanged', (user) => {
+    server.bind('onAuthStateChanged', user => {
       // Author is logged in
       if (user) {
         // Using uid property from Firebase Database as an author id
@@ -154,14 +153,13 @@ WebViewer(
 
     const xfdf = await annotationManager.exportAnnotationCommand();
     // Iterate through all annotations and call appropriate server methods
-    annotations.forEach((annotation) => {
+    annotations.forEach(annotation => {
       let parentAuthorId = null;
       if (type === 'add') {
         // In case of replies, add extra field for server-side permission to be granted to the
         // parent annotation's author
         if (annotation.InReplyTo) {
-          parentAuthorId =
-            annotationManager.getAnnotationById(annotation.InReplyTo).authorId || 'default';
+          parentAuthorId = annotationManager.getAnnotationById(annotation.InReplyTo).authorId || 'default';
         }
 
         if (authorId) {
@@ -177,8 +175,7 @@ WebViewer(
         // In case of replies, add extra field for server-side permission to be granted to the
         // parent annotation's author
         if (annotation.InReplyTo) {
-          parentAuthorId =
-            annotationManager.getAnnotationById(annotation.InReplyTo).authorId || 'default';
+          parentAuthorId = annotationManager.getAnnotationById(annotation.InReplyTo).authorId || 'default';
         }
         server.updateAnnotation(annotation.Id, {
           authorId,
@@ -194,12 +191,9 @@ WebViewer(
   // Overwrite client-side permission check method on the annotation manager
   // The default was set to compare the authorName
   // Instead of the authorName, we will compare authorId created from the server
-  annotationManager.setPermissionCheckCallback(
-    (author, annotation) => annotation.authorId === authorId
-  );
+  annotationManager.setPermissionCheckCallback((author, annotation) => annotation.authorId === authorId);
 
-
-  document.getElementById('select').onchange = (e) => {
+  document.getElementById('select').onchange = e => {
     const documentId = IDS[e.target.value];
     instance.UI.loadDocument(e.target.value, { documentId });
   };
