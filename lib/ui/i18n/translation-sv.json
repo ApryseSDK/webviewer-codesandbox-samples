@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Svara på valda kommentarer ({{count}})",
     "comparePages": "Jämför sidor",
     "startComparison": "Starta jämförelse",
+    "showComparison": "Visa jämförelse",
     "back": "Tillbaka",
     "clearSignature": "Tydlig signatur",
     "newDocument": "Nytt dokument"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "Numret du har angett är ogiltigt, du kan ange värden som 7,5 eller 7 1/2",
     "linkURLorPage": "Länka URL eller en sida",
     "warning": "Varning",
+    "svgMalicious": "SVG-skript ignoreras för säkerhets skull",
     "enterContentEditingMode": "Du är på väg att gå in i innehållsredigeringsläge.",
     "existingAnnotationWarning": "Befintliga kommentarer kanske inte matchar texten efter att den har redigerats.",
     "changesCannotBeUndone": "Eventuella ändringar kan inte ångras.",
@@ -567,7 +569,8 @@
     "thumbnailPanel": {
       "delete": "Radera",
       "rotateClockwise": "Medurs",
-      "rotateCounterClockwise": "Moturs"
+      "rotateCounterClockwise": "Moturs",
+      "moreOptions": "Fler alternativ"
     },
     "thumbnailsControlOverlay": {
       "move": "Flytta sidor"
@@ -1091,7 +1094,6 @@
     "numberList": "Numrerad lista",
     "insertLink": "Infoga länk",
     "insertImage": "Infoga bild",
-    "notAvailableInDemoMode": "Ej tillgängligt i demoläge",
     "notSupportedOnMobile": "Office-redigering stöds inte på mobila enheter."
   },
   "insertPageModal": {

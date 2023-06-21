@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Απάντηση σε επιλεγμένους σχολιασμούς ({{count}})",
     "comparePages": "Συγκρίνετε σελίδες",
     "startComparison": "Έναρξη σύγκρισης",
+    "showComparison": "Εμφάνιση σύγκρισης",
     "back": "Πίσω",
     "clearSignature": "Καθαρή υπογραφή",
     "newDocument": "Νέο Έγγραφο"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "Ο αριθμός που έχετε εισαγάγει δεν είναι έγκυρος, μπορείτε να εισαγάγετε τιμές όπως 7,5 ή 7 1/2",
     "linkURLorPage": "URL σύνδεσης ή σελίδας",
     "warning": "Προειδοποίηση",
+    "svgMalicious": "Το σενάριο SVG αγνοήθηκε για ασφάλεια",
     "enterContentEditingMode": "Πρόκειται να μπείτε σε λειτουργία επεξεργασίας περιεχομένου.",
     "existingAnnotationWarning": "Οι υπάρχοντες σχολιασμοί ενδέχεται να μην ταιριάζουν με το κείμενο μετά την επεξεργασία του.",
     "changesCannotBeUndone": "Τυχόν αλλαγές που έγιναν δεν μπορούν να αναιρεθούν.",
@@ -567,7 +569,8 @@
     "thumbnailPanel": {
       "delete": "Διαγράφω",
       "rotateClockwise": "Δεξιόστροφος",
-      "rotateCounterClockwise": "Αριστερόστροφα"
+      "rotateCounterClockwise": "Αριστερόστροφα",
+      "moreOptions": "Περισσότερες επιλογές"
     },
     "thumbnailsControlOverlay": {
       "move": "Μετακίνηση σελίδων"
@@ -1091,7 +1094,6 @@
     "numberList": "Αριθμημένη λίστα",
     "insertLink": "Εισαγωγή συνδέσμου",
     "insertImage": "Εισαγωγή εικόνας",
-    "notAvailableInDemoMode": "Δεν είναι διαθέσιμο σε λειτουργία επίδειξης",
     "notSupportedOnMobile": "Η επεξεργασία του Office δεν υποστηρίζεται σε κινητές συσκευές."
   },
   "insertPageModal": {

@@ -10,15 +10,15 @@
 WebViewer(
   {
     path: '../../../lib',
-    /* PDFJS_IGNORE */ /* TEST_IGNORE */ webviewerServerURL: 'https://demo.pdftron.com/', // comment this out to do client-side only /* /TEST_IGNORE */ /* /PDFJS_IGNORE */
+    webviewerServerURL: 'https://demo.pdftron.com/', // comment this out to do client-side only
     initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf',
   },
   document.getElementById('viewer')
-).then((instance) => {
+).then(instance => {
   samplesSetup(instance);
   const { setHeaderItems, enableElements, disableElements, enableFeatures, disableFeatures, setTheme, Feature, Theme } = instance.UI;
 
-  const findFirstDividerIndex = (items) => {
+  const findFirstDividerIndex = items => {
     for (let i = 0; i < items.length; ++i) {
       if (items[i].type === 'divider') {
         return i;
@@ -28,7 +28,7 @@ WebViewer(
 
   const reverseHeaderItems = () => {
     // Change header items
-    setHeaderItems((header) => {
+    setHeaderItems(header => {
       const items = header.getItems();
       // reverse all items after first divider
       const indexAfterFirstDivider = findFirstDividerIndex(items) + 1;
@@ -58,13 +58,13 @@ WebViewer(
     HTMLCollection.prototype.forEach = Array.prototype.forEach;
   }
 
-  document.getElementsByName('header').forEach((radioInput) => {
+  document.getElementsByName('header').forEach(radioInput => {
     radioInput.onchange = () => {
       reverseHeaderItems();
     };
   });
 
-  document.getElementById('ribbons').onchange = (e) => {
+  document.getElementById('ribbons').onchange = e => {
     // Enable/disable ribbons
     if (e.target.checked) {
       enableFeatures([Feature.Ribbons]);
@@ -73,7 +73,7 @@ WebViewer(
     }
   };
 
-  document.getElementById('text-selection').onchange = (e) => {
+  document.getElementById('text-selection').onchange = e => {
     // Enable/disable text selection
     if (e.target.checked) {
       enableFeatures([Feature.TextSelection]);
@@ -82,7 +82,7 @@ WebViewer(
     }
   };
 
-  document.getElementById('annotations').onchange = (e) => {
+  document.getElementById('annotations').onchange = e => {
     // Enable/disable annotations
     if (e.target.checked) {
       enableFeatures([Feature.Annotations]);
@@ -91,7 +91,7 @@ WebViewer(
     }
   };
 
-  document.getElementById('notes-panel').onchange = (e) => {
+  document.getElementById('notes-panel').onchange = e => {
     // Enable/disable notes panel
     if (e.target.checked) {
       enableFeatures([Feature.NotesPanel]);
@@ -100,7 +100,7 @@ WebViewer(
     }
   };
 
-  document.getElementById('file-picker').onchange = (e) => {
+  document.getElementById('file-picker').onchange = e => {
     // Enable/disable file picker
     if (e.target.checked) {
       enableFeatures([Feature.FilePicker]);
@@ -109,7 +109,7 @@ WebViewer(
     }
   };
 
-  document.getElementById('print').onchange = (e) => {
+  document.getElementById('print').onchange = e => {
     // Enable/disable print
     if (e.target.checked) {
       enableFeatures([Feature.Print]);
@@ -118,7 +118,7 @@ WebViewer(
     }
   };
 
-  document.getElementById('download').onchange = (e) => {
+  document.getElementById('download').onchange = e => {
     // Enable/disable download
     if (e.target.checked) {
       enableFeatures([Feature.Download]);
@@ -127,36 +127,36 @@ WebViewer(
     }
   };
 
-  document.getElementById('view-controls').onchange = (e) => {
+  document.getElementById('view-controls').onchange = e => {
     toggleElement(e, 'viewControlsButton');
   };
 
-  document.getElementById('search').onchange = (e) => {
+  document.getElementById('search').onchange = e => {
     toggleElement(e, 'searchButton');
   };
 
-  document.getElementById('pan-tool').onchange = (e) => {
+  document.getElementById('pan-tool').onchange = e => {
     toggleElement(e, 'panToolButton');
   };
 
-  document.getElementById('page-nav').onchange = (e) => {
+  document.getElementById('page-nav').onchange = e => {
     toggleElement(e, 'pageNavOverlay');
   };
 
-  document.getElementById('default').onchange = (e) => {
+  document.getElementById('default').onchange = e => {
     if (e.target.checked) {
       reverseHeaderItems();
     }
   };
 
-  document.getElementById('reverse').onchange = (e) => {
+  document.getElementById('reverse').onchange = e => {
     if (e.target.checked) {
       reverseHeaderItems();
     }
   };
 
-  document.getElementsByName('theme').forEach((radioInput) => {
-    radioInput.onchange = (e) => {
+  document.getElementsByName('theme').forEach(radioInput => {
+    radioInput.onchange = e => {
       if (e.target.id === 'light' && e.target.checked) {
         setTheme(Theme.LIGHT);
       } else {
