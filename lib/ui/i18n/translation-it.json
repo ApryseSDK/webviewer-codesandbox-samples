@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Rispondi alle annotazioni selezionate ({{count}})",
     "comparePages": "Confronta le pagine",
     "startComparison": "Inizia il confronto",
+    "showComparison": "Mostra confronto",
     "back": "Di ritorno",
     "clearSignature": "Firma chiara",
     "newDocument": "Nuovo documento"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "Il numero che hai inserito non è valido, puoi inserire valori come 7,5 o 7 1/2",
     "linkURLorPage": "Link URL o una pagina",
     "warning": "Avvertimento",
+    "svgMalicious": "Script SVG ignorato per motivi di sicurezza",
     "enterContentEditingMode": "Stai per accedere alla modalità di modifica del testo.",
     "existingAnnotationWarning": "Le annotazioni esistenti potrebbero non corrispondere al testo dopo che è stato modificato.",
     "changesCannotBeUndone": "Eventuali modifiche apportate non possono essere annullate.",
@@ -433,12 +435,10 @@
       "drawSignature": "Disegna firma*",
       "drawInitial": "Disegna le iniziali*",
       "pickInitialsFile": "Scegli Iniziali",
-      "noSignatures": "Al momento non ci sono firme salvate."
+      "noSignatures": "Al momento non ci sono firme salvate.",
+      "fontStyle": "stile carattere"
     },
     "pageReplacementModal": {
-      "dragAndDrop": "Trascina e rilascia il tuo file qui",
-      "selectFile": "Seleziona qui il tuo file",
-      "or": "O",
       "yourFiles": "I tuoi file",
       "chooseFile": "Scegli un file",
       "localFile": "File locale",
@@ -455,7 +455,9 @@
       "filters": "Filtri",
       "user": "Utente",
       "type": "Tipo",
-      "status": "Stato"
+      "status": "Stato",
+      "filterSettings": "Impostazioni filtro",
+      "filterDocument": "Filtra il documento e il pannello dei commenti"
     },
     "state": {
       "accepted": "Accettato",
@@ -520,6 +522,12 @@
         "ifToContinue": "Sei sicuro di voler continuare?"
       }
     },
+    "contentEdit": {
+      "deletionModal": {
+        "title": "Elimina contenuto",
+        "message": "Sei sicuro di voler eliminare il contenuto selezionato? Questo non può essere annullato."
+      }
+    },
     "stylePopup": {
       "textStyle": "Stile di testo",
       "colors": "Colori",
@@ -565,7 +573,8 @@
     "thumbnailPanel": {
       "delete": "Elimina",
       "rotateClockwise": "Senso orario",
-      "rotateCounterClockwise": "Antiorario"
+      "rotateCounterClockwise": "Antiorario",
+      "moreOptions": "Più opzioni"
     },
     "thumbnailsControlOverlay": {
       "move": "Sposta pagine"
@@ -615,6 +624,7 @@
     },
     "settings": {
       "settings": "Impostazioni",
+      "searchSettings": "Impostazioni di ricerca",
       "general": "Generale",
       "language": "Lingua",
       "theme": "Tema",
@@ -733,6 +743,10 @@
       "title": "Chiudere senza scaricare?",
       "message": "Sono state apportate modifiche a questo documento, sei sicuro di volerlo chiudere senza scaricare il tuo lavoro? Non puoi annullare questa azione.",
       "rejectDownloadButton": "Chiudi senza scaricare"
+    },
+    "connectToURL": {
+      "title": "Avviso di sicurezza",
+      "message": "Questo documento sta tentando di connettersi a:\n\n{{-uri}}.\n\n Se ritieni attendibile questo documento, fai clic su Conferma per aprirlo."
     }
   },
   "shortcut": {
@@ -1067,6 +1081,14 @@
     "watermarkOptions": "Opzioni filigrana",
     "watermarks": "Filigrane"
   },
+  "portfolioPanel": {
+    "portfolioPanelTitle": "Portafoglio PDF",
+    "portfolioAddFile": "Aggiungi file",
+    "portfolioAddFolder": "Aggiungi cartella",
+    "portfolioCreateFolder": "Creare una cartella",
+    "portfolioNewFolder": "Nuova cartella",
+    "portfolioNewFolderPlaceholder": "Nome della cartella"
+  },
   "languageModal": {
     "selectLanguage": "Seleziona la lingua"
   },
@@ -1084,7 +1106,6 @@
     "numberList": "Elenco numerato",
     "insertLink": "Inserisci collegamento",
     "insertImage": "Inserisci immagine",
-    "notAvailableInDemoMode": "Non disponibile in modalità demo",
     "notSupportedOnMobile": "La modifica di Office non è supportata sui dispositivi mobili."
   },
   "insertPageModal": {
@@ -1169,6 +1190,19 @@
     "watermark": "Filigrana",
     "addWatermark": "Aggiungi filigrana",
     "save": "Salvare il file",
-    "pageError": "Pagina non valida. Gli intervalli di pagine validi sono compresi tra 1 -"
+    "pageError": "Pagina non valida. Gli intervalli di pagine validi sono compresi tra 1 -",
+    "fileNameCannotBeEmpty": "Il nome del file non può essere vuoto"
+  },
+  "portfolio": {
+    "createPDFPortfolio": "Crea portafoglio PDF",
+    "uploadFiles": "Caricare files",
+    "uploadFolder": "Carica cartella",
+    "addFiles": "Aggiungere i file",
+    "addFolder": "Aggiungi cartella"
+  },
+  "filePicker": {
+    "dragAndDrop": "Trascina e rilascia qui il tuo file",
+    "selectFile": "Seleziona qui il tuo file",
+    "or": "O"
   }
 }

@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "चयनित टिप्पणियों का उत्तर दें",
     "comparePages": "पृष्ठों की तुलना करें",
     "startComparison": "तुलना शुरू करें",
+    "showComparison": "तुलना दिखाएँ",
     "back": "पीछे",
     "clearSignature": "स्पष्ट हस्ताक्षर",
     "newDocument": "नया दस्तावेज़"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "आपके द्वारा दर्ज किया गया नंबर अमान्य है, आप 7.5 या 7 1/2 . जैसे मान दर्ज कर सकते हैं",
     "linkURLorPage": "लिंक यूआरएल या पेज",
     "warning": "चेतावनी",
+    "svgMalicious": "सुरक्षा के लिए SVG स्क्रिप्ट को नज़रअंदाज़ किया गया",
     "enterContentEditingMode": "आप सामग्री संपादन मोड में प्रवेश करने वाले हैं।",
     "existingAnnotationWarning": "संपादित किए जाने के बाद मौजूदा एनोटेशन टेक्स्ट से मेल नहीं खा सकते हैं।",
     "changesCannotBeUndone": "किए गए किसी भी परिवर्तन को पूर्ववत नहीं किया जा सकता है।",
@@ -433,12 +435,10 @@
       "drawSignature": "हस्ताक्षर बनाएं*",
       "drawInitial": "आद्याक्षर ड्रा करें*",
       "pickInitialsFile": "आद्याक्षर चुनें",
-      "noSignatures": "वर्तमान में कोई सहेजे गए हस्ताक्षर नहीं हैं।"
+      "noSignatures": "वर्तमान में कोई सहेजे गए हस्ताक्षर नहीं हैं।",
+      "fontStyle": "लिपि शैली"
     },
     "pageReplacementModal": {
-      "dragAndDrop": "अपनी फ़ाइल को यहां खींचें और छोड़ें",
-      "selectFile": "यहां अपनी फाइल चुनें",
-      "or": "या",
       "yourFiles": "आपकी फ़ाइलें",
       "chooseFile": "एक फ़ाइल चुनें",
       "localFile": "स्थानीय फ़ाइल",
@@ -455,7 +455,9 @@
       "filters": "फिल्टर",
       "user": "उपयोगकर्ता",
       "type": "टाइप",
-      "status": "दर्जा"
+      "status": "दर्जा",
+      "filterSettings": "फ़िल्टर सेटिंग्स",
+      "filterDocument": "दस्तावेज़ और टिप्पणी पैनल फ़िल्टर करें"
     },
     "state": {
       "accepted": "स्वीकार किया हुआ",
@@ -520,6 +522,12 @@
         "ifToContinue": "क्या आप वाकई जारी रखना चाहते हैं?"
       }
     },
+    "contentEdit": {
+      "deletionModal": {
+        "title": "सामग्री हटाएं",
+        "message": "क्या आप वाकई चयनित सामग्री को हटाना चाहते हैं? इसे पूर्ववत नहीं किया जा सकता."
+      }
+    },
     "stylePopup": {
       "textStyle": "पाठ शैली",
       "colors": "रंग की",
@@ -565,7 +573,8 @@
     "thumbnailPanel": {
       "delete": "हटाएं",
       "rotateClockwise": "दक्षिणावर्त",
-      "rotateCounterClockwise": "वामावर्त"
+      "rotateCounterClockwise": "वामावर्त",
+      "moreOptions": "अधिक विकल्प"
     },
     "thumbnailsControlOverlay": {
       "move": "पन्ने ले जाएँ"
@@ -615,6 +624,7 @@
     },
     "settings": {
       "settings": "समायोजन",
+      "searchSettings": "खोज सेंटिंग",
       "general": "सामान्य",
       "language": "भाषा",
       "theme": "थीम",
@@ -733,6 +743,10 @@
       "title": "डाउनलोड किए बिना बंद करें?",
       "message": "इस दस्तावेज़ में परिवर्तन किए गए हैं, क्या आप वाकई अपना काम डाउनलोड किए बिना इसे बंद करना चाहते हैं? आप इस क्रिया को पूर्ववत नहीं कर सकते।",
       "rejectDownloadButton": "डाउनलोड के बिना बंद करें"
+    },
+    "connectToURL": {
+      "title": "सुरक्षा चेतावनी",
+      "message": "यह दस्तावेज़ इससे कनेक्ट करने का प्रयास कर रहा है:\n\n{{- उरी}}।\n\n यदि आप इस दस्तावेज़ पर भरोसा करते हैं, तो इसे खोलने के लिए पुष्टि करें पर क्लिक करें।"
     }
   },
   "shortcut": {
@@ -1067,6 +1081,14 @@
     "watermarkOptions": "वॉटरमार्क विकल्प",
     "watermarks": "वाटरमार्क"
   },
+  "portfolioPanel": {
+    "portfolioPanelTitle": "पीडीएफ पोर्टफोलियो",
+    "portfolioAddFile": "फ़ाइल जोड़ें",
+    "portfolioAddFolder": "फ़ोल्डर जोड़ें",
+    "portfolioCreateFolder": "फोल्डर बनाएं",
+    "portfolioNewFolder": "नया फ़ोल्डर",
+    "portfolioNewFolderPlaceholder": "फ़ोल्डर का नाम"
+  },
   "languageModal": {
     "selectLanguage": "भाषा का चयन करें"
   },
@@ -1084,7 +1106,6 @@
     "numberList": "क्रमांकित सूची",
     "insertLink": "लिंक डालें",
     "insertImage": "चित्र डालें",
-    "notAvailableInDemoMode": "डेमो मोड में उपलब्ध नहीं है",
     "notSupportedOnMobile": "कार्यालय संपादन मोबाइल उपकरणों पर समर्थित नहीं है।"
   },
   "insertPageModal": {
@@ -1169,6 +1190,19 @@
     "watermark": "वाटर-मार्क",
     "addWatermark": "वॉटरमार्क जोड़िए",
     "save": "फाइल सुरक्षित करें",
-    "pageError": "अमान्य पृष्ठ। मान्य पृष्ठ श्रेणियां 1 के बीच हैं -"
+    "pageError": "अमान्य पृष्ठ। मान्य पृष्ठ श्रेणियां 1 के बीच हैं -",
+    "fileNameCannotBeEmpty": "फ़ाइल नाम रिक्त नहीं हो सकता"
+  },
+  "portfolio": {
+    "createPDFPortfolio": "पीडीएफ पोर्टफोलियो बनाएं",
+    "uploadFiles": "फाइलें अपलोड करें",
+    "uploadFolder": "फ़ोल्डर अपलोड करें",
+    "addFiles": "फाइलें जोड़ो",
+    "addFolder": "फ़ोल्डर जोड़ें"
+  },
+  "filePicker": {
+    "dragAndDrop": "अपनी फ़ाइल को यहां खींचें और छोड़ें",
+    "selectFile": "यहां अपनी फ़ाइल चुनें",
+    "or": "या"
   }
 }

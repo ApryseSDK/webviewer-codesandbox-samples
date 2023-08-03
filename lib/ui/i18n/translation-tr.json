@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Seçili ek açıklamaları yanıtla ({{count}})",
     "comparePages": "Sayfaları karşılaştır",
     "startComparison": "Karşılaştırmayı Başlat",
+    "showComparison": "Karşılaştırmayı Göster",
     "back": "Geri",
     "clearSignature": "İmzayı temizle",
     "newDocument": "Yeni belge"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "Girdiğiniz sayı geçersiz, 7,5 veya 7 1/2 gibi değerler girebilirsiniz.",
     "linkURLorPage": "Bağlantı URL'si veya Sayfa",
     "warning": "Uyarı",
+    "svgMalicious": "SVG betiği güvenlik nedeniyle yok sayıldı",
     "enterContentEditingMode": "İçerik düzenleme moduna girmek üzeresiniz.",
     "existingAnnotationWarning": "Mevcut ek açıklamalar, düzenlendikten sonra metinle eşleşmeyebilir.",
     "changesCannotBeUndone": "Yapılan herhangi bir değişiklik geri alınamaz.",
@@ -433,12 +435,10 @@
       "drawSignature": "İmza Çek*",
       "drawInitial": "Baş Harflerini Çiz*",
       "pickInitialsFile": "Baş Harfleri Seçin",
-      "noSignatures": "Şu anda kayıtlı imza yok."
+      "noSignatures": "Şu anda kayıtlı imza yok.",
+      "fontStyle": "yazı stili"
     },
     "pageReplacementModal": {
-      "dragAndDrop": "Dosyanızı buraya sürükleyip bırakın",
-      "selectFile": "Dosyanızı buradan seçin",
-      "or": "Veya",
       "yourFiles": "Dosyalarınız",
       "chooseFile": "Bir dosya seçin",
       "localFile": "Yerel dosya",
@@ -455,7 +455,9 @@
       "filters": "filtreler",
       "user": "kullanıcı",
       "type": "Tip",
-      "status": "Durum"
+      "status": "Durum",
+      "filterSettings": "Filtre Ayarları",
+      "filterDocument": "Belge ve yorum panelini filtrele"
     },
     "state": {
       "accepted": "Kabul edilmiş",
@@ -520,6 +522,12 @@
         "ifToContinue": "Devam etmek istediğinizden emin misiniz?"
       }
     },
+    "contentEdit": {
+      "deletionModal": {
+        "title": "İçeriği Sil",
+        "message": "Seçilen içeriği silmek istediğinizden emin misiniz? Bu geri alınamaz."
+      }
+    },
     "stylePopup": {
       "textStyle": "Yazı stili",
       "colors": "Renkler",
@@ -565,7 +573,8 @@
     "thumbnailPanel": {
       "delete": "Silmek",
       "rotateClockwise": "Saat yönünde",
-      "rotateCounterClockwise": "saat yönünün tersine"
+      "rotateCounterClockwise": "saat yönünün tersine",
+      "moreOptions": "Daha fazla seçenek"
     },
     "thumbnailsControlOverlay": {
       "move": "Sayfaları taşı"
@@ -615,6 +624,7 @@
     },
     "settings": {
       "settings": "Ayarlar",
+      "searchSettings": "Arama Ayarları",
       "general": "Genel",
       "language": "Dil",
       "theme": "Tema",
@@ -733,6 +743,10 @@
       "title": "İndirmeden kapatılsın mı?",
       "message": "Bu belgede yapılan değişiklikler var, çalışmanızı indirmeden kapatmak istediğinizden emin misiniz? Bu işlemi geri alamazsınız.",
       "rejectDownloadButton": "İndirmeden kapat"
+    },
+    "connectToURL": {
+      "title": "Güvenlik uyarısı",
+      "message": "Bu belge şuraya bağlanmaya çalışıyor:\n\n{{- uri}}.\n\n Bu belgeye güveniyorsanız açmak için Onayla'yı tıklayın."
     }
   },
   "shortcut": {
@@ -1067,6 +1081,14 @@
     "watermarkOptions": "Filigran Seçenekleri",
     "watermarks": "filigranlar"
   },
+  "portfolioPanel": {
+    "portfolioPanelTitle": "PDF Portföyü",
+    "portfolioAddFile": "Dosya Ekle",
+    "portfolioAddFolder": "Klasörü eklemek",
+    "portfolioCreateFolder": "Klasör oluşturun",
+    "portfolioNewFolder": "Yeni dosya",
+    "portfolioNewFolderPlaceholder": "Klasör adı"
+  },
   "languageModal": {
     "selectLanguage": "Dil Seçin"
   },
@@ -1084,7 +1106,6 @@
     "numberList": "Numaralı liste",
     "insertLink": "Bağlantı ekle",
     "insertImage": "Resim ekle",
-    "notAvailableInDemoMode": "Demo modunda kullanılamaz",
     "notSupportedOnMobile": "Office düzenlemesi mobil cihazlarda desteklenmez."
   },
   "insertPageModal": {
@@ -1169,6 +1190,19 @@
     "watermark": "Filigran",
     "addWatermark": "Filigran ekle",
     "save": "Dosyayı kaydet",
-    "pageError": "Geçersiz sayfa. Geçerli sayfa aralıkları 1 -"
+    "pageError": "Geçersiz sayfa. Geçerli sayfa aralıkları 1 -",
+    "fileNameCannotBeEmpty": "Dosya Adı boş olamaz"
+  },
+  "portfolio": {
+    "createPDFPortfolio": "PDF Portföyü Oluştur",
+    "uploadFiles": "Dosyaları yükle",
+    "uploadFolder": "Klasörü Yükle",
+    "addFiles": "Dosya Ekle",
+    "addFolder": "Klasörü eklemek"
+  },
+  "filePicker": {
+    "dragAndDrop": "Dosyanızı buraya sürükleyip bırakın",
+    "selectFile": "dosyanızı buradan seçin",
+    "or": "Veya"
   }
 }

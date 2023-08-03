@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "回复所選註釋 ({{count}})",
     "comparePages": "比較頁面",
     "startComparison": "開始比較",
+    "showComparison": "顯示比較",
     "back": "後退",
     "clearSignature": "清晰的簽名",
     "newDocument": "新建文件"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "您輸入的數字無效，您可以輸入7.5或7 1/2之類的值",
     "linkURLorPage": "鏈接網址或頁面",
     "warning": "警告",
+    "svgMalicious": "出於安全原因忽略了 SVG 腳本",
     "enterContentEditingMode": "您即將進入文本編輯模式。",
     "existingAnnotationWarning": "現有註釋在編輯後可能與文本不匹配。",
     "changesCannotBeUndone": "所做的任何更改都無法撤消。",
@@ -433,12 +435,10 @@
       "drawSignature": "繪製簽名*",
       "drawInitial": "畫首字母*",
       "pickInitialsFile": "選擇縮寫",
-      "noSignatures": "當前沒有保存的簽名。"
+      "noSignatures": "當前沒有保存的簽名。",
+      "fontStyle": "字體樣式"
     },
     "pageReplacementModal": {
-      "dragAndDrop": "將您的文件拖放到此處",
-      "selectFile": "在此處選擇您的文件",
-      "or": "或者",
       "yourFiles": "您的文件",
       "chooseFile": "選擇一個文件",
       "localFile": "本地文件",
@@ -455,7 +455,9 @@
       "filters": "過濾器",
       "user": "用戶",
       "type": "類型",
-      "status": "地位"
+      "status": "地位",
+      "filterSettings": "過濾器設置",
+      "filterDocument": "過濾文檔和評論面板"
     },
     "state": {
       "accepted": "公認",
@@ -520,6 +522,12 @@
         "ifToContinue": "您確定要繼續嗎？"
       }
     },
+    "contentEdit": {
+      "deletionModal": {
+        "title": "刪除內容",
+        "message": "您確定要刪除所選內容嗎？這無法撤消。"
+      }
+    },
     "stylePopup": {
       "textStyle": "文字樣式",
       "colors": "顏色",
@@ -565,7 +573,8 @@
     "thumbnailPanel": {
       "delete": "刪除",
       "rotateClockwise": "順時針",
-      "rotateCounterClockwise": "逆時針方向"
+      "rotateCounterClockwise": "逆時針方向",
+      "moreOptions": "更多選擇"
     },
     "thumbnailsControlOverlay": {
       "move": "移動頁面"
@@ -615,6 +624,7 @@
     },
     "settings": {
       "settings": "設置",
+      "searchSettings": "搜索設置",
       "general": "一般的",
       "language": "語",
       "theme": "主題",
@@ -733,6 +743,10 @@
       "title": "不下載就關閉？",
       "message": "此文檔有更改，您確定要關閉它而不下載您的工作嗎？您無法撤消此操作。",
       "rejectDownloadButton": "關閉而不下載"
+    },
+    "connectToURL": {
+      "title": "安全警告",
+      "message": "此文檔正在嘗試連接到：\n\n{{- uri}}。\n\n 如果您信任此文檔，請單擊“確認”將其打開。"
     }
   },
   "shortcut": {
@@ -1067,6 +1081,14 @@
     "watermarkOptions": "水印選項",
     "watermarks": "水印"
   },
+  "portfolioPanel": {
+    "portfolioPanelTitle": "PDF 作品集",
+    "portfolioAddFile": "添加文件",
+    "portfolioAddFolder": "新增文件夾",
+    "portfolioCreateFolder": "創建文件夾",
+    "portfolioNewFolder": "新建文件夾",
+    "portfolioNewFolderPlaceholder": "文件夾名稱"
+  },
   "languageModal": {
     "selectLanguage": "選擇語言"
   },
@@ -1084,7 +1106,6 @@
     "numberList": "編號列表",
     "insertLink": "插入鏈接",
     "insertImage": "插入圖片",
-    "notAvailableInDemoMode": "在演示模式下不可用",
     "notSupportedOnMobile": "移動設備不支持 Office 編輯。"
   },
   "insertPageModal": {
@@ -1169,6 +1190,19 @@
     "watermark": "水印",
     "addWatermark": "加水印",
     "save": "保存存檔",
-    "pageError": "無效頁面。有效頁面範圍介於 1 -"
+    "pageError": "無效頁面。有效頁面範圍介於 1 -",
+    "fileNameCannotBeEmpty": "文件名不能為空"
+  },
+  "portfolio": {
+    "createPDFPortfolio": "創建 PDF 包",
+    "uploadFiles": "上傳文件",
+    "uploadFolder": "上傳文件夾",
+    "addFiles": "添加文件",
+    "addFolder": "新增文件夾"
+  },
+  "filePicker": {
+    "dragAndDrop": "將您的文件拖放到此處",
+    "selectFile": "在這裡選擇您的文件",
+    "or": "或者"
   }
 }

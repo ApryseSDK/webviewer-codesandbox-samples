@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Responder às anotações selecionadas ({{count}})",
     "comparePages": "Comparar páginas",
     "startComparison": "Iniciar comparação",
+    "showComparison": "Mostrar comparação",
     "back": "De volta",
     "clearSignature": "Assinatura clara",
     "newDocument": "Novo Documento"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "O número inserido é inválido, você pode inserir valores como 7,5 ou 7 1/2",
     "linkURLorPage": "URL do link ou uma página",
     "warning": "Aviso",
+    "svgMalicious": "Script SVG ignorado por segurança",
     "enterContentEditingMode": "Você está prestes a entrar no modo de edição de texto.",
     "existingAnnotationWarning": "As anotações existentes podem não corresponder ao texto após sua edição.",
     "changesCannotBeUndone": "Quaisquer alterações feitas não podem ser desfeitas.",
@@ -433,12 +435,10 @@
       "drawSignature": "Desenhar Assinatura*",
       "drawInitial": "Desenhe iniciais*",
       "pickInitialsFile": "Escolha as iniciais",
-      "noSignatures": "No momento, não há assinaturas salvas."
+      "noSignatures": "No momento, não há assinaturas salvas.",
+      "fontStyle": "estilo de fonte"
     },
     "pageReplacementModal": {
-      "dragAndDrop": "Arraste e solte seu arquivo aqui",
-      "selectFile": "Selecione seu arquivo aqui",
-      "or": "Ou",
       "yourFiles": "Seus arquivos",
       "chooseFile": "Escolha um arquivo",
       "localFile": "Arquivo local",
@@ -455,7 +455,9 @@
       "filters": "Filtros",
       "user": "Do utilizador",
       "type": "Modelo",
-      "status": "Status"
+      "status": "Status",
+      "filterSettings": "Configurações de filtro",
+      "filterDocument": "Filtrar documento e painel de comentários"
     },
     "state": {
       "accepted": "Aceito",
@@ -520,6 +522,12 @@
         "ifToContinue": "Tem certeza de que deseja continuar?"
       }
     },
+    "contentEdit": {
+      "deletionModal": {
+        "title": "Excluir conteúdo",
+        "message": "Tem certeza de que deseja excluir o conteúdo selecionado? Isso não pode ser desfeito."
+      }
+    },
     "stylePopup": {
       "textStyle": "Estilo de Texto",
       "colors": "Cores",
@@ -565,7 +573,8 @@
     "thumbnailPanel": {
       "delete": "Excluir",
       "rotateClockwise": "Sentido horário",
-      "rotateCounterClockwise": "Sentido anti-horário"
+      "rotateCounterClockwise": "Sentido anti-horário",
+      "moreOptions": "Mais opções"
     },
     "thumbnailsControlOverlay": {
       "move": "Mover páginas"
@@ -615,6 +624,7 @@
     },
     "settings": {
       "settings": "Definições",
+      "searchSettings": "Configurações de pesquisa",
       "general": "Em geral",
       "language": "Linguagem",
       "theme": "Tema",
@@ -733,6 +743,10 @@
       "title": "Fechar sem baixar?",
       "message": "Foram feitas alterações neste documento. Tem certeza de que deseja fechá-lo sem baixar seu trabalho? Você não pode desfazer esta ação.",
       "rejectDownloadButton": "Fechar sem baixar"
+    },
+    "connectToURL": {
+      "title": "Aviso de segurança",
+      "message": "Este documento está tentando se conectar a:\n\n{{- uri}}.\n\n Se você confia neste documento, clique em Confirmar para abri-lo."
     }
   },
   "shortcut": {
@@ -1067,6 +1081,14 @@
     "watermarkOptions": "Opções de marca d'água",
     "watermarks": "Marcas d'água"
   },
+  "portfolioPanel": {
+    "portfolioPanelTitle": "Portfólio PDF",
+    "portfolioAddFile": "Adicionar ficheiro",
+    "portfolioAddFolder": "Adicionar pasta",
+    "portfolioCreateFolder": "Criar pasta",
+    "portfolioNewFolder": "Nova pasta",
+    "portfolioNewFolderPlaceholder": "Nome da pasta"
+  },
   "languageModal": {
     "selectLanguage": "Selecione o idioma"
   },
@@ -1084,7 +1106,6 @@
     "numberList": "lista numerada",
     "insertLink": "Inserir link",
     "insertImage": "Inserir Imagem",
-    "notAvailableInDemoMode": "Não disponível no modo de demonstração",
     "notSupportedOnMobile": "A edição do Office não é suportada em dispositivos móveis."
   },
   "insertPageModal": {
@@ -1169,6 +1190,19 @@
     "watermark": "Marca d'água",
     "addWatermark": "Adicione uma Marca D'água",
     "save": "Salvar Arquivo",
-    "pageError": "Página inválida. Os intervalos de páginas válidos estão entre 1 -"
+    "pageError": "Página inválida. Os intervalos de páginas válidos estão entre 1 -",
+    "fileNameCannotBeEmpty": "O nome do arquivo não pode estar vazio"
+  },
+  "portfolio": {
+    "createPDFPortfolio": "Criar Portfólio PDF",
+    "uploadFiles": "Fazer upload de arquivos",
+    "uploadFolder": "Carregar Pasta",
+    "addFiles": "Adicionar arquivos",
+    "addFolder": "Adicionar pasta"
+  },
+  "filePicker": {
+    "dragAndDrop": "Arraste e solte seu arquivo aqui",
+    "selectFile": "Selecione seu arquivo aqui",
+    "or": "Ou"
   }
 }

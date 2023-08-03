@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Odpovědět na vybrané poznámky ({{count}})",
     "comparePages": "Porovnejte stránky",
     "startComparison": "Spusťte porovnávání",
+    "showComparison": "Zobrazit srovnání",
     "back": "Zadní",
     "clearSignature": "Jasný podpis",
     "newDocument": "Nový dokument"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "Zadané číslo je neplatné, můžete zadat hodnoty jako 7,5 nebo 7 1/2",
     "linkURLorPage": "Adresa URL odkazu nebo stránka",
     "warning": "Varování",
+    "svgMalicious": "Skript SVG je kvůli bezpečnosti ignorován",
     "enterContentEditingMode": "Chystáte se vstoupit do režimu úprav obsahu.",
     "existingAnnotationWarning": "Stávající anotace se po úpravě nemusí shodovat s textem.",
     "changesCannotBeUndone": "Jakékoli provedené změny nelze vrátit zpět.",
@@ -433,12 +435,10 @@
       "drawSignature": "Nakreslit podpis*",
       "drawInitial": "Kreslit iniciály*",
       "pickInitialsFile": "Vyberte Iniciály",
-      "noSignatures": "Momentálně nejsou žádné uložené podpisy."
+      "noSignatures": "Momentálně nejsou žádné uložené podpisy.",
+      "fontStyle": "styl fontu"
     },
     "pageReplacementModal": {
-      "dragAndDrop": "Přetáhněte soubor sem",
-      "selectFile": "Zde vyberte svůj soubor",
-      "or": "Nebo",
       "yourFiles": "Vaše soubory",
       "chooseFile": "Vyberte soubor",
       "localFile": "Místní soubor",
@@ -455,7 +455,9 @@
       "filters": "Filtry",
       "user": "Uživatel",
       "type": "Typ",
-      "status": "Postavení"
+      "status": "Postavení",
+      "filterSettings": "Nastavení filtru",
+      "filterDocument": "Panel filtrování dokumentů a komentářů"
     },
     "state": {
       "accepted": "Přijato",
@@ -520,6 +522,12 @@
         "ifToContinue": "Opravdu chcete pokračovat?"
       }
     },
+    "contentEdit": {
+      "deletionModal": {
+        "title": "Smazat obsah",
+        "message": "Opravdu chcete smazat vybraný obsah? Toto nelze vrátit zpět."
+      }
+    },
     "stylePopup": {
       "textStyle": "Styl textu",
       "colors": "Barvy",
@@ -565,7 +573,8 @@
     "thumbnailPanel": {
       "delete": "Vymazat",
       "rotateClockwise": "Ve směru hodinových ručiček",
-      "rotateCounterClockwise": "Proti směru hodinových ručiček"
+      "rotateCounterClockwise": "Proti směru hodinových ručiček",
+      "moreOptions": "Více možností"
     },
     "thumbnailsControlOverlay": {
       "move": "Přesunout stránky"
@@ -615,6 +624,7 @@
     },
     "settings": {
       "settings": "Nastavení",
+      "searchSettings": "Nastavení vyhledávání",
       "general": "Všeobecné",
       "language": "Jazyk",
       "theme": "Téma",
@@ -733,6 +743,10 @@
       "title": "Zavřít bez stahování?",
       "message": "V tomto dokumentu byly provedeny změny. Opravdu jej chcete zavřít bez stahování vaší práce? Tuto akci nelze vrátit zpět.",
       "rejectDownloadButton": "Zavřít bez stahování"
+    },
+    "connectToURL": {
+      "title": "Bezpečnostní varování",
+      "message": "Tento dokument se pokouší připojit k:\n\n{{- uri}}.\n\n Pokud tomuto dokumentu důvěřujete, otevřete jej kliknutím na Potvrdit."
     }
   },
   "shortcut": {
@@ -1067,6 +1081,14 @@
     "watermarkOptions": "Možnosti vodoznaku",
     "watermarks": "Vodoznaky"
   },
+  "portfolioPanel": {
+    "portfolioPanelTitle": "Portfolio PDF",
+    "portfolioAddFile": "Přidat soubor",
+    "portfolioAddFolder": "Přidat složku",
+    "portfolioCreateFolder": "Vytvořit složku",
+    "portfolioNewFolder": "Nová složka",
+    "portfolioNewFolderPlaceholder": "Název složky"
+  },
   "languageModal": {
     "selectLanguage": "Zvolte jazyk"
   },
@@ -1084,7 +1106,6 @@
     "numberList": "Číslovaný seznam",
     "insertLink": "Vložit odkaz",
     "insertImage": "Vložit obrázek",
-    "notAvailableInDemoMode": "Není k dispozici v demo režimu",
     "notSupportedOnMobile": "Úpravy Office nejsou podporovány na mobilních zařízeních."
   },
   "insertPageModal": {
@@ -1169,6 +1190,19 @@
     "watermark": "Vodoznak",
     "addWatermark": "Přidat vodoznak",
     "save": "Uložení souboru",
-    "pageError": "Neplatná stránka. Platné rozsahy stránek jsou mezi 1 -"
+    "pageError": "Neplatná stránka. Platné rozsahy stránek jsou mezi 1 -",
+    "fileNameCannotBeEmpty": "Název souboru nesmí být prázdný"
+  },
+  "portfolio": {
+    "createPDFPortfolio": "Vytvořte portfolio PDF",
+    "uploadFiles": "Nahrát soubory",
+    "uploadFolder": "Nahrát složku",
+    "addFiles": "Přidat soubory",
+    "addFolder": "Přidat složku"
+  },
+  "filePicker": {
+    "dragAndDrop": "Sem přetáhněte soubor",
+    "selectFile": "Zde vyberte svůj soubor",
+    "or": "Nebo"
   }
 }

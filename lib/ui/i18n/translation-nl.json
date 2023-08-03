@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Reageren op geselecteerde annotaties ({{count}})",
     "comparePages": "Vergelijk pagina's",
     "startComparison": "Vergelijking starten",
+    "showComparison": "Toon vergelijking",
     "back": "Rug",
     "clearSignature": "Duidelijke handtekening",
     "newDocument": "Nieuw document"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "Het getal dat je hebt ingevoerd is ongeldig, je kunt waarden invoeren zoals 7,5 of 7 1/2",
     "linkURLorPage": "Link-URL of een pagina",
     "warning": "Waarschuwing",
+    "svgMalicious": "SVG-script genegeerd om veiligheidsredenen",
     "enterContentEditingMode": "U staat op het punt om naar de tekstbewerkingsmodus te gaan.",
     "existingAnnotationWarning": "Bestaande annotaties komen mogelijk niet overeen met de tekst nadat deze is bewerkt.",
     "changesCannotBeUndone": "Aangebrachte wijzigingen kunnen niet ongedaan worden gemaakt.",
@@ -433,12 +435,10 @@
       "drawSignature": "Handtekening tekenen*",
       "drawInitial": "Initialen tekenen*",
       "pickInitialsFile": "Kies initialen",
-      "noSignatures": "Er zijn momenteel geen opgeslagen handtekeningen."
+      "noSignatures": "Er zijn momenteel geen opgeslagen handtekeningen.",
+      "fontStyle": "lettertype"
     },
     "pageReplacementModal": {
-      "dragAndDrop": "Sleep en zet uw bestand hier neer",
-      "selectFile": "Selecteer hier uw bestand",
-      "or": "Of",
       "yourFiles": "Uw bestanden",
       "chooseFile": "Kies een bestand",
       "localFile": "Lokaal bestand",
@@ -455,7 +455,9 @@
       "filters": "Filters",
       "user": "Gebruiker",
       "type": "Type",
-      "status": "Toestand"
+      "status": "Toestand",
+      "filterSettings": "Filterinstellingen",
+      "filterDocument": "Filter document en opmerkingenpaneel"
     },
     "state": {
       "accepted": "Geaccepteerd",
@@ -520,6 +522,12 @@
         "ifToContinue": "Weet je zeker dat je wilt doorgaan?"
       }
     },
+    "contentEdit": {
+      "deletionModal": {
+        "title": "Inhoud verwijderen",
+        "message": "Weet u zeker dat u de geselecteerde inhoud wilt verwijderen? Dit kan niet ongedaan worden gemaakt."
+      }
+    },
     "stylePopup": {
       "textStyle": "Tekststijl",
       "colors": "Kleuren",
@@ -565,7 +573,8 @@
     "thumbnailPanel": {
       "delete": "Verwijderen",
       "rotateClockwise": "Met de klok mee",
-      "rotateCounterClockwise": "Tegen de klok in"
+      "rotateCounterClockwise": "Tegen de klok in",
+      "moreOptions": "Meer opties"
     },
     "thumbnailsControlOverlay": {
       "move": "Pagina's verplaatsen"
@@ -615,6 +624,7 @@
     },
     "settings": {
       "settings": "Instellingen",
+      "searchSettings": "Zoek instellingen",
       "general": "Algemeen",
       "language": "Taal",
       "theme": "Thema",
@@ -733,6 +743,10 @@
       "title": "Sluiten zonder te downloaden?",
       "message": "Er zijn wijzigingen aangebracht in dit document. Weet u zeker dat u het wilt sluiten zonder uw werk te downloaden? Je kunt deze actie niet ongedaan maken.",
       "rejectDownloadButton": "Sluiten zonder downloaden"
+    },
+    "connectToURL": {
+      "title": "Veiligheidswaarschuwing",
+      "message": "Dit document probeert verbinding te maken met:\n\n{{- uri}}.\n\n Als u dit document vertrouwt, klikt u op Bevestigen om het te openen."
     }
   },
   "shortcut": {
@@ -1067,6 +1081,14 @@
     "watermarkOptions": "Watermerkopties",
     "watermarks": "Watermerken"
   },
+  "portfolioPanel": {
+    "portfolioPanelTitle": "PDF-portfolio",
+    "portfolioAddFile": "Bestand toevoegen",
+    "portfolioAddFolder": "Map toevoegen",
+    "portfolioCreateFolder": "Map aanmaken",
+    "portfolioNewFolder": "Nieuwe map",
+    "portfolioNewFolderPlaceholder": "Naam van de map"
+  },
   "languageModal": {
     "selectLanguage": "Selecteer taal"
   },
@@ -1084,7 +1106,6 @@
     "numberList": "Genummerde lijst",
     "insertLink": "Koppeling invoegen",
     "insertImage": "Voeg afbeelding in",
-    "notAvailableInDemoMode": "Niet beschikbaar in demo-modus",
     "notSupportedOnMobile": "Office-bewerking wordt niet ondersteund op mobiele apparaten."
   },
   "insertPageModal": {
@@ -1169,6 +1190,19 @@
     "watermark": "Watermerk",
     "addWatermark": "Voeg een watermerk toe",
     "save": "Sla bestand op",
-    "pageError": "Ongeldige pagina. Geldige paginabereiken liggen tussen 1 -"
+    "pageError": "Ongeldige pagina. Geldige paginabereiken liggen tussen 1 -",
+    "fileNameCannotBeEmpty": "Bestandsnaam mag niet leeg zijn"
+  },
+  "portfolio": {
+    "createPDFPortfolio": "PDF-portfolio maken",
+    "uploadFiles": "Upload bestanden",
+    "uploadFolder": "Map uploaden",
+    "addFiles": "Bestanden toevoegen",
+    "addFolder": "Map toevoegen"
+  },
+  "filePicker": {
+    "dragAndDrop": "Sleep uw bestand hierheen",
+    "selectFile": "Selecteer hier uw bestand",
+    "or": "Of"
   }
 }

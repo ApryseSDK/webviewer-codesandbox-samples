@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "নির্বাচিত টীকাগুলির উত্তর দিন ({{count}})",
     "comparePages": "পৃষ্ঠাগুলির তুলনা করুন",
     "startComparison": "তুলনা শুরু করুন",
+    "showComparison": "তুলনা দেখান",
     "back": "পেছনে",
     "clearSignature": "সাফ স্বাক্ষর",
     "newDocument": "নতুন নথি"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "আপনি যে নম্বরটি লিখেছেন সেটি অবৈধ, আপনি 7.5 বা 7 1/2 এর মতো মান লিখতে পারেন",
     "linkURLorPage": "লিঙ্ক URL বা একটি পৃষ্ঠা",
     "warning": "সতর্কতা",
+    "svgMalicious": "নিরাপত্তার জন্য SVG স্ক্রিপ্ট উপেক্ষা করা হয়েছে",
     "enterContentEditingMode": "আপনি বিষয়বস্তু সম্পাদনা মোডে প্রবেশ করতে চলেছেন৷",
     "existingAnnotationWarning": "বিদ্যমান টীকাগুলি সম্পাদনা করার পরে পাঠ্যের সাথে নাও মিলতে পারে।",
     "changesCannotBeUndone": "করা কোনো পরিবর্তন পূর্বাবস্থায় ফেরানো যাবে না.",
@@ -433,12 +435,10 @@
       "drawSignature": "স্বাক্ষর আঁক*",
       "drawInitial": "আঁকুন আদ্যক্ষর*",
       "pickInitialsFile": "আদ্যক্ষর নির্বাচন করুন",
-      "noSignatures": "বর্তমানে কোনো সংরক্ষিত স্বাক্ষর নেই।"
+      "noSignatures": "বর্তমানে কোনো সংরক্ষিত স্বাক্ষর নেই।",
+      "fontStyle": "ফন্ট-স্টাইল"
     },
     "pageReplacementModal": {
-      "dragAndDrop": "এখানে আপনার ফাইল টানুন এবং ড্রপ করুন",
-      "selectFile": "এখানে আপনার ফাইল নির্বাচন করুন",
-      "or": "বা",
       "yourFiles": "আপনার ফাইল",
       "chooseFile": "একটি ফাইল নির্বাচন করুন",
       "localFile": "স্থানীয় ফাইল",
@@ -455,7 +455,9 @@
       "filters": "ফিল্টার",
       "user": "ব্যবহারকারী",
       "type": "টাইপ",
-      "status": "স্ট্যাটাস"
+      "status": "স্ট্যাটাস",
+      "filterSettings": "ফিল্টার সেটিংস",
+      "filterDocument": "নথি এবং মন্তব্য প্যানেল ফিল্টার করুন"
     },
     "state": {
       "accepted": "গৃহীত",
@@ -520,6 +522,12 @@
         "ifToContinue": "আপনি কি চালিয়ে যাওয়ার বিষয়ে নিশ্চিত?"
       }
     },
+    "contentEdit": {
+      "deletionModal": {
+        "title": "কন্টেন্ট মুছুন",
+        "message": "আপনি কি নির্বাচিত বিষয়বস্তু মুছতে চান? এটি পূর্বাবস্থায় ফেরানো যাবে না।"
+      }
+    },
     "stylePopup": {
       "textStyle": "পাঠ্য শৈলী",
       "colors": "রং",
@@ -565,7 +573,8 @@
     "thumbnailPanel": {
       "delete": "মুছে ফেলা",
       "rotateClockwise": "ঘড়ির কাঁটার দিকে",
-      "rotateCounterClockwise": "ঘড়ির কাঁটার বিপরীত দিকে"
+      "rotateCounterClockwise": "ঘড়ির কাঁটার বিপরীত দিকে",
+      "moreOptions": "আরও বিকল্প"
     },
     "thumbnailsControlOverlay": {
       "move": "পৃষ্ঠাগুলি সরান"
@@ -615,6 +624,7 @@
     },
     "settings": {
       "settings": "সেটিংস",
+      "searchSettings": "অনুসন্ধান সেটিংস",
       "general": "সাধারণ",
       "language": "ভাষা",
       "theme": "থিম",
@@ -733,6 +743,10 @@
       "title": "ডাউনলোড না করেই বন্ধ করবেন?",
       "message": "এই নথিতে কিছু পরিবর্তন করা হয়েছে, আপনি কি আপনার কাজ ডাউনলোড না করেই এটি বন্ধ করতে চান? আপনি এই ক্রিয়াটিকে পূর্বাবস্থায় ফেরাতে পারবেন না৷",
       "rejectDownloadButton": "ডাউনলোড ছাড়াই বন্ধ করুন"
+    },
+    "connectToURL": {
+      "title": "নিরাপত্তা সতর্কতা",
+      "message": "এই নথিতে সংযোগ করার চেষ্টা করছে:\n\n{{- উরি}}।\n\n আপনি যদি এই নথিতে বিশ্বাস করেন তবে এটি খুলতে নিশ্চিত করুন ক্লিক করুন৷"
     }
   },
   "shortcut": {
@@ -1067,6 +1081,14 @@
     "watermarkOptions": "ওয়াটারমার্ক বিকল্প",
     "watermarks": "জলছাপ"
   },
+  "portfolioPanel": {
+    "portfolioPanelTitle": "পিডিএফ পোর্টফোলিও",
+    "portfolioAddFile": "নথি যুক্ত করা",
+    "portfolioAddFolder": "ফোল্ডার যোগ করুন",
+    "portfolioCreateFolder": "ফোল্ডার তৈরি করুন",
+    "portfolioNewFolder": "নতুন ফোল্ডার",
+    "portfolioNewFolderPlaceholder": "ফোল্ডারের নাম"
+  },
   "languageModal": {
     "selectLanguage": "ভাষা নির্বাচন কর"
   },
@@ -1084,7 +1106,6 @@
     "numberList": "সংখ্যাযুক্ত তালিকা",
     "insertLink": "লিঙ্ক ঢোকান",
     "insertImage": "ছবি ঢোকান",
-    "notAvailableInDemoMode": "ডেমো মোডে উপলব্ধ নয়",
     "notSupportedOnMobile": "অফিস সম্পাদনা মোবাইল ডিভাইসে সমর্থিত নয়।"
   },
   "insertPageModal": {
@@ -1169,6 +1190,19 @@
     "watermark": "জলছাপ",
     "addWatermark": "জলছাপ যোগ করুন",
     "save": "ফাইল সংরক্ষণ",
-    "pageError": "অবৈধ পৃষ্ঠা। বৈধ পৃষ্ঠা পরিসীমা 1-এর মধ্যে"
+    "pageError": "অবৈধ পৃষ্ঠা। বৈধ পৃষ্ঠা পরিসীমা 1-এর মধ্যে",
+    "fileNameCannotBeEmpty": "ফাইলের নাম খালি থাকতে পারে না"
+  },
+  "portfolio": {
+    "createPDFPortfolio": "PDF পোর্টফোলিও তৈরি করুন",
+    "uploadFiles": "ফাইল আপলোড",
+    "uploadFolder": "আপলোড ফোল্ডার",
+    "addFiles": "ফাইল যোগ করুন",
+    "addFolder": "ফোল্ডার যোগ করুন"
+  },
+  "filePicker": {
+    "dragAndDrop": "এখানে আপনার ফাইল টানুন এবং ড্রপ করুন",
+    "selectFile": "এখানে আপনার ফাইল নির্বাচন করুন",
+    "or": "বা"
   }
 }
