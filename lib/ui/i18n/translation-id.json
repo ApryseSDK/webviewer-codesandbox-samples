@@ -435,12 +435,10 @@
       "drawSignature": "Gambar Tanda Tangan*",
       "drawInitial": "Gambar Inisial*",
       "pickInitialsFile": "Pilih Inisial",
-      "noSignatures": "Saat ini tidak ada tanda tangan yang disimpan."
+      "noSignatures": "Saat ini tidak ada tanda tangan yang disimpan.",
+      "fontStyle": "gaya tulisan"
     },
     "pageReplacementModal": {
-      "dragAndDrop": "Seret & Jatuhkan file Anda di sini",
-      "selectFile": "Pilih file Anda di sini",
-      "or": "Atau",
       "yourFiles": "File Anda",
       "chooseFile": "Pilih file",
       "localFile": "File Lokal",
@@ -522,6 +520,12 @@
         "ifChangeScale": "Jika Anda mengubah skala untuk pengukuran atau alat yang dipilih, skala",
         "notUsedWillDelete": " tidak akan lagi digunakan oleh pengukuran atau alat apa pun dan akan dihapus. Penghapusan tidak dapat diubah.",
         "ifToContinue": "Anda yakin ingin melanjutkan?"
+      }
+    },
+    "contentEdit": {
+      "deletionModal": {
+        "title": "Hapus Konten",
+        "message": "Apakah Anda yakin ingin menghapus konten yang dipilih? Ini tidak dapat diurungkan."
       }
     },
     "stylePopup": {
@@ -1077,6 +1081,14 @@
     "watermarkOptions": "Opsi Tanda Air",
     "watermarks": "Tanda air"
   },
+  "portfolioPanel": {
+    "portfolioPanelTitle": "Portofolio PDF",
+    "portfolioAddFile": "Tambah berkas",
+    "portfolioAddFolder": "Tambah Folder",
+    "portfolioCreateFolder": "Membuat folder",
+    "portfolioNewFolder": "Folder baru",
+    "portfolioNewFolderPlaceholder": "Nama folder"
+  },
   "languageModal": {
     "selectLanguage": "Pilih bahasa"
   },
@@ -1178,6 +1190,19 @@
     "watermark": "Tanda air",
     "addWatermark": "Tambahkan Tanda Air",
     "save": "Menyimpan file",
-    "pageError": "Halaman tidak valid. Rentang halaman yang valid adalah antara 1 -"
+    "pageError": "Halaman tidak valid. Rentang halaman yang valid adalah antara 1 -",
+    "fileNameCannotBeEmpty": "Nama File tidak boleh kosong"
+  },
+  "portfolio": {
+    "createPDFPortfolio": "Buat Portofolio PDF",
+    "uploadFiles": "Unggah berkas",
+    "uploadFolder": "Unggah Folder",
+    "addFiles": "Tambahkan File",
+    "addFolder": "Tambah Folder"
+  },
+  "filePicker": {
+    "dragAndDrop": "Seret & Jatuhkan file Anda di sini",
+    "selectFile": "Pilih file Anda di sini",
+    "or": "Atau"
   }
 }
