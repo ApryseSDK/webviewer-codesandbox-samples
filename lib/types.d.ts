@@ -187,7 +187,7 @@ declare namespace Core.PDFNet {
     /**
      * The Optimizer class provides functionality for optimizing/shrinking
     output PDF files.
-
+    
     'pdftron.PDF.Optimizer' is an optional PDFNet Add-On utility class that can be
     used to optimize PDF documents by reducing the file size, removing redundant
     information, and compressing data streams using the latest in image compression
@@ -198,10 +198,10 @@ declare namespace Core.PDFNet {
     - Optionally down-sample large images to a given resolution.
     - Optionally compress or recompress PDF images using JBIG2 and JPEG2000 compression formats.
     - Compress uncompressed streams and remove unused PDF objects.
-
+    
     Note: 'Optimizer' is available as a separately licensable add-on to PDFNet
     core license.
-
+    
     Note: See 'pdftron.PDF.Flattener' for alternate approach to optimize PDFs for fast
     viewing on mobile devices and the Web.
      */
@@ -2254,59 +2254,20 @@ declare namespace Core.PDFNet {
         o: PDFNet.Obj;
         p: PDFNet.Obj;
     }
-
     /**
-     * ContentNodeIterator is an iterator type that can be used to traverse a list of
-     * Content Elements in a ContentNode.
+     * Base class for all elements in the document content tree that can contain
+     * other content elements.
      */
     class ContentNode extends PDFNet.ContentElement {
         /**
-         * {Promise<PDFNet.Iterator<PDFNet.ContentNode>>} A promise that resolves to  Retrieve a ContentNodeIterator object from the content node
+         * Retrieve a ContentElementIterator object from the content node
          *
          * <p>
-         * The ContentNodeIterator object can be used to traverse the children
+         * The ContentElementIterator object can be used to traverse the children
          * of the content node.
-         * @returns The ContentNodeIterator object
+         * @returns A promise that resolves to the ContentElementIterator object
          */
-        getContentNodeIterator(): any;
-        /**
-         * @returns A promise that resolves to an object of type: "PDFNet.TextRun"
-         */
-        asTextRun(): Promise<PDFNet.TextRun>;
-        /**
-         * @returns A promise that resolves to an object of type: "PDFNet.ContentNode"
-         */
-        asContentNode(): Promise<PDFNet.ContentNode>;
-        /**
-         * @returns A promise that resolves to an object of type: "PDFNet.Paragraph"
-         */
-        asParagraph(): Promise<PDFNet.Paragraph>;
-        /**
-         * @returns A promise that resolves to an object of type: "PDFNet.Table"
-         */
-        asTable(): Promise<PDFNet.Table>;
-        /**
-         * @returns A promise that resolves to an object of type: "PDFNet.TableRow"
-         */
-        asTableRow(): Promise<PDFNet.TableRow>;
-        /**
-         * @returns A promise that resolves to an object of type: "PDFNet.TableCell"
-         */
-        asTableCell(): Promise<PDFNet.TableCell>;
-        /**
-         * @returns A promise that resolves to an object of type: "PDFNet.List"
-         */
-        asList(): Promise<PDFNet.List>;
-        /**
-         * @returns A promise that resolves to an object of type: "PDFNet.ListItem"
-         */
-        asListItem(): Promise<PDFNet.ListItem>;
-        /**
-         * Retrieve the TextStyledElement object for manipulating the text
-         * style of this content element.
-         * @returns A promise that resolves to the TextStyledElement object
-         */
-        getTextStyledElement(): Promise<PDFNet.TextStyledElement>;
+        getContentNodeIterator(): Promise<PDFNet.Iterator<PDFNet.ContentElement>>;
     }
     /**
      * ContentReplacer is a utility class for replacing content (text and images)
@@ -3279,7 +3240,7 @@ declare namespace Core.PDFNet {
         the signer will be first, and issuers come after it in order of the issuer of the previous certificate.
         The default behaviour is to return a sub-path for each marginal issuer in a max-length path.
          * @returns A promise that resolves to a container of X509Certificate objects
-
+        
         Note: This function does not verify the paths. It merely extracts certificates and constructs paths.
         This function only works when the build has support for verification-related APIs.
          */
@@ -3725,19 +3686,19 @@ declare namespace Core.PDFNet {
         Note: GetTextData() returns the raw text data and not a Unicode string.
         In PDF text can be encoded using various encoding schemes so it is necessary
         to consider Font encoding while processing the content of this buffer.
-
+        
         Note: Most of the time GetTextString() is what you are looking for instead.
         GetTextString() maps the raw text directly into Unicode (as specified by Adobe
         Glyph List (AGL) ). Even if you would prefer to decode text yourself it is more
         convenient to use CharIterators returned by CharBegin()/CharEnd() and
         PDF::Font code mapping methods.
-
+        
         Note: the buffer owner is the current element (i.e. ElementReader or ElementBuilder).
          */
         getTextData(): Promise<number>;
         /**
          * Obtains the bounding box for a graphical element.
-
+        
         Calculates the bounding box for a graphical element (i.e. an Element that belongs
         to one of following types: e_path, e_text, e_image, e_inline_image, e_shading e_form).
         The returned bounding box is guaranteed to encompass the Element, but is not guaranteed
@@ -4092,10 +4053,10 @@ declare namespace Core.PDFNet {
         /**
          * Create a new Unicode text run.
          * @param text_data - the Unicode text
-
+        
         Note: you must set the current Font and font size before calling this function
         and the font must be a CID/Unicode font.
-
+        
         Note: a text run can be created only within a text block
          * @returns A promise that resolves to an object of type: "PDFNet.Element"
          */
@@ -4608,6 +4569,11 @@ declare namespace Core.PDFNet {
      * electronically, and imported back into the corresponding PDF interactive form.
      * In addition, beginning in PDF 1.3, FDF can be used to define a container for
      * annotations that are separate from the PDF document to which they apply.
+     *
+     * Note: While the constructor does not, a few methods in FDFDoc will
+     * cause it to count as a document for the consumption-based licensing
+     * if was not created through PDFDoc::FDFExtract().
+     * Please consult individual API documentation for exact details.
      */
     class FDFDoc extends PDFNet.Destroyable {
         /**
@@ -7780,7 +7746,7 @@ declare namespace Core.PDFNet {
          * @param [encoder_hints] - An optional parameter that can be used to fine tune
          * compression or to select a different compression algorithm. See Image::Create()
          * for details.
-         * @returns A promise that resolves to pDF::Image object representing the embedded image.
+         * @returns A promise that resolves to PDF::Image object representing the embedded image.
          */
         static createFromMemory(doc: PDFNet.PDFDoc | PDFNet.SDFDoc | PDFNet.FDFDoc, buf: ArrayBuffer | Int8Array | Uint8Array | Uint8ClampedArray, width: number, height: number, bpc: number, color_space: PDFNet.ColorSpace, encoder_hints?: PDFNet.Obj): Promise<PDFNet.Image>;
         /**
@@ -7823,7 +7789,7 @@ declare namespace Core.PDFNet {
          * @param [encoder_hints] - An optional parameter that can be used to fine tune
          * compression or to select a different compression algorithm. See Image::Create()
          * for details.
-         * @returns A promise that resolves to pDF::Image object representing the embedded ImageMask.
+         * @returns A promise that resolves to PDF::Image object representing the embedded ImageMask.
          */
         static createImageMask(doc: PDFNet.PDFDoc | PDFNet.SDFDoc | PDFNet.FDFDoc, buf: ArrayBuffer | Int8Array | Uint8Array | Uint8ClampedArray, width: number, height: number, encoder_hints?: PDFNet.Obj): Promise<PDFNet.Image>;
         /**
@@ -7885,7 +7851,7 @@ declare namespace Core.PDFNet {
          * </pre>
          * Image::InputFilter describing the format of pre-compressed
          * image data.
-         * @returns A promise that resolves to pDF::Image object representing the embedded image.
+         * @returns A promise that resolves to PDF::Image object representing the embedded image.
          */
         static createDirectFromMemory(doc: PDFNet.PDFDoc | PDFNet.SDFDoc | PDFNet.FDFDoc, buf: ArrayBuffer | Int8Array | Uint8Array | Uint8ClampedArray, width: number, height: number, bpc: number, color_space: PDFNet.ColorSpace, input_format: number): Promise<PDFNet.Image>;
         /**
@@ -8701,9 +8667,14 @@ declare namespace Core.PDFNet {
          */
         continueList(): Promise<void>;
         /**
-         * @returns A promise that resolves to an object of type: "PDFNet.Iterator<PDFNet.ContentNode>"
+         * Retrieve a ContentElementIterator object from the list
+         *
+         * <p>
+         * The ContentElementIterator object can be used to traverse the children
+         * of the list.
+         * @returns A promise that resolves to the ContentElementIterator object
          */
-        getContentNodeIterator(): Promise<PDFNet.Iterator<PDFNet.ContentNode>>;
+        getContentNodeIterator(): Promise<PDFNet.Iterator<PDFNet.ContentElement>>;
         /**
          * @returns A promise that resolves to an object of type: "PDFNet.TextStyledElement"
          */
@@ -8819,9 +8790,14 @@ declare namespace Core.PDFNet {
          */
         getItemIndex(): Promise<number>;
         /**
-         * @returns A promise that resolves to an object of type: "PDFNet.Iterator<PDFNet.ContentNode>"
+         * Retrieve a ContentElementIterator object from the list item
+         *
+         * <p>
+         * The ContentElementIterator object can be used to traverse the children
+         * of the list item.
+         * @returns A promise that resolves to the ContentElementIterator object
          */
-        getContentNodeIterator(): Promise<PDFNet.Iterator<PDFNet.ContentNode>>;
+        getContentNodeIterator(): Promise<PDFNet.Iterator<PDFNet.ContentElement>>;
         /**
          * @returns A promise that resolves to an object of type: "PDFNet.TextStyledElement"
          */
@@ -10648,7 +10624,7 @@ declare namespace Core.PDFNet {
         getDecodedStream(): Promise<PDFNet.Filter>;
         /**
          * Convert the SDF/Cos String object to 'PDF Text String' (a Unicode string).
-
+        
         PDF Text Strings are not used to represent page content, however they
         are used in text annotations, bookmark names, article names, document
         information etc. These strings are encoded in either PDFDocEncoding or
@@ -11847,11 +11823,11 @@ declare namespace Core.PDFNet {
      * open existing PDF documents, or to create new PDF documents from scratch.
      *
      * The class offers a number of entry points into the document. For example,
-     *  - To access pages use pdfdoc.getPageIterator() or pdfdoc.getPage(page_num).
-     *  - To access form fields use pdfdoc.getFieldIterator(), pdfdoc.getFieldIterator(name) or pdfdoc.getField(name).
-     *  - To access document's meta-data use pdfdoc.getDocInfo().
-     *  - To access the outline tree use pdfdoc.getFirstBookmark().
-     *  - To access low-level Document Catalog use pdfdoc.getRoot().
+     *  - To access pages use pdfdoc.GetPageIterator() or pdfdoc.GetPage(page_num).
+     *  - To access form fields use pdfdoc.GetFieldIterator(), pdfdoc.GetFieldIterator(name) or pdfdoc.GetField(name).
+     *  - To access document's meta-data use pdfdoc.GetDocInfo().
+     *  - To access the outline tree use pdfdoc.GetFirstBookmark().
+     *  - To access low-level Document Catalog use pdfdoc.GetRoot().
      *  ...
      *
      * The class also offers utility methods to slit and merge PDF pages,
@@ -12860,11 +12836,11 @@ declare namespace Core.PDFNet {
         works with Standard and Custom PDF security and can be used in situations where
         the password is obtained dynamically via user feedback. See EncTest sample for
         example code.
-
+        
         This function should be called immediately after an encrypted
         document is opened. The function does not have any side effects on
         documents that are not encrypted.
-
+        
         If the security handler was successfully initialized it can be later obtained
         using GetSecurityHandler() method.
          * @returns A promise that resolves to true if the SecurityHandler was successfully initialized (this
@@ -12877,11 +12853,11 @@ declare namespace Core.PDFNet {
         password. This version of InitSecurityHandler() assumes that
         document uses Standard security and that a password is specified
         directly.
-
+        
         This function should be called immediately after an encrypted
         document is opened. The function does not have any side effects on
         documents that are not encrypted.
-
+        
         If the security handler was successfully initialized, it can be later
         obtained using GetSecurityHandler() method.
          * @param password - Specifies the password used to open the document without
@@ -12961,7 +12937,7 @@ declare namespace Core.PDFNet {
         until during the execution of the PDFNetJS script, all operations will need to be unlocked
         with PDFNet.finishOperation() and [PDFDoc].unlock() before [PDFDoc].requirePage() can be called,
         and relocked again with PDFNet.beginOperation() and [PDFDoc].lock()
-
+        
         <pre>
         doc.unlock();
         yield PDFNet.finishOperation();
@@ -13721,12 +13697,12 @@ declare namespace Core.PDFNet {
                        expense of some image quality.
            - "TIFF"  : Tag Image File Format (TIFF) image format.
            - "TIFF8" : Tag Image File Format (TIFF) image format (with 8-bit palete).
-
+        
         By default, the function exports to PNG.
          * @param [encoder_params] - An optional SDF dictionary object containing key/value
         pairs representing optional encoder parameters. The following table list possible
         parameters for corresponding export filters:
-
+        
          <table border="1">
             <tr>
                 <td>Parameter/Key</td>
@@ -15809,7 +15785,7 @@ declare namespace Core.PDFNet {
          * @param [appearance] - optional parameter used to customize the appearance of the redaction overlay.
         To create an appearance object, create an empty javascript object {} and add entries
         containing values to it. The following entries are handled by redact:
-
+        
         <pre>
         app.redaction_overlay = boolean
         If redaction_overlay is set to true, redactor will draw an overlay
@@ -15817,56 +15793,56 @@ declare namespace Core.PDFNet {
         appearance object defines visual properties of the overlay.
         If false the overlay region will not be drawn.
         Defaults to true.
-
+        
         app.positive_overlay_color = ColorPt object
         positive_overlay_color defines the overlay background color in RGB color space for positive redactions.
         Defaults to white (PDFNet.ColorPt(1, 1, 1, 0));
-
+        
         app.negative_overlay_color = ColorPt object
         negative_overlay_color defines the overlay background color in RGB color space for negative redactions.
         Defaults to white (PDFNet.ColorPt(1, 1, 1, 0));
-
+        
         app.border = boolean
         border specifies if the overlay will be surrounded by a border.
         Defaults to true.
-
+        
         app.font = Font object
         font specifies the font used to represent the text in the overlay.
         Defaults to true.
-
+        
         app.min_font_size = int
         min_font_size specifies the minimum font size used to represent the text in the overlay
         Defaults to 2.
-
+        
         app.max_font_size = int
         max_font_size specifies the maximum font size used to represent the text in the overlay
         Defaults to 24.
-
+        
         app.text_color = ColorPt object
         text_color specifies the color used to paint the text in the overlay (in RGB).
         Defaults to dark green (PDFNet.ColorPt(0, 0.5, 0, 0));
-
+        
         app.horiz_text_alignment = int
         horiz_text_alignment specifies the horizontal text alignment in the overlay:
             align<0	 -> text will be left aligned.
             align==0 -> text will be center aligned.
             align>0	 -> text will be right aligned.
         Defaults to -1.
-
+        
         app.vert_text_alignment = int
         vert_text_alignment specifies the vertical text alignment in the overlay:
             align<0	 -> text will be top aligned.
             align==0 -> text will be center aligned.
             align>0	 -> text will be bottom aligned.
         Defaults to 1.
-
+        
         app.show_redacted_content_regions = boolean
         show_redacted_content_regions specifies whether an overlay should be drawn in place of
         the redacted content. This option can be used to indicate the areas where the content
         was removed from without revealing the content itself. Defaults to false. Uses
         RedactedContentColor as a fill color.
         Defaults to false.
-
+        
         app.redacted_content_color = ColorPt object
         Specifies the color used to paint the regions where content was removed.
         Only useful when ShowRedactedContentRegions == true.
@@ -16569,11 +16545,11 @@ declare namespace Core.PDFNet {
         works with Standard and Custom PDF security and can be used in situations where
         the password is obtained dynamically via user feedback. See EncTest sample for
         example code.
-
+        
         This function should be called immediately after an encrypted
         document is opened. The function does not have any side effects on
         documents that are not encrypted.
-
+        
         If the security handler was successfully initialized it can be later obtained
         using GetSecurityHandler() method.
          * @returns A promise that resolves to true if the SecurityHandler was successfully initialized (this
@@ -16586,11 +16562,11 @@ declare namespace Core.PDFNet {
         password. This version of InitSecurityHandler() assumes that
         document uses Standard security and that a password is specified
         directly.
-
+        
         This function should be called immediately after an encrypted
         document is opened. The function does not have any side effects on
         documents that are not encrypted.
-
+        
         If the security handler was successfully initialized, it can be later
         obtained using GetSecurityHandler() method.
          * @param password - Specifies the password used to open the document without
@@ -18262,20 +18238,20 @@ declare namespace Core.PDFNet {
      */
     class TableCell extends PDFNet.ContentNode {
         /**
-         * {Promise<PDFNet.Paragraph>} A promise that resolves to  Add an empty paragraph to the cell
-         * @returns The paragraph that was added
+         * Add an empty paragraph to the cell
+         * @returns A promise that resolves to the paragraph that was added
          */
-        addParagraph(): any;
+        addParagraph(): Promise<PDFNet.Paragraph>;
         /**
-         * {Promise<PDFNet.Paragraph>} A promise that resolves to  Add a paragraph with text to the cell
-         * @returns The paragraph that was added
+         * Add a paragraph with text to the cell
+         * @returns A promise that resolves to the paragraph that was added
          */
-        addParagraphWithText(text: string): any;
+        addParagraphWithText(text: string): Promise<PDFNet.Paragraph>;
         /**
-         * {Promise<PDFNet.Table>} A promise that resolves to  Add a nested table to the cell
-         * @returns The table that was added
+         * Add a nested table to the cell
+         * @returns A promise that resolves to the table that was added
          */
-        addTable(): any;
+        addTable(): Promise<PDFNet.Table>;
         /**
          * Merge the cell with the specified number of cells to the right
          * @returns A promise that resolves to the merged cell
@@ -19262,7 +19238,7 @@ declare namespace Core.PDFNet {
          * Runs a search on the document for a certain string. Make sure to call
         TextSearch.begin(doc, pattern, mode) with the proper parameters
         before calling TextSearch.run()
-
+        
         The resolved object that TextSearch.run() returns contains the following objects:
         page_num - The number of the page with the match
         out_str - The string that matches the search parameter
@@ -19282,12 +19258,20 @@ declare namespace Core.PDFNet {
      * ContentElement.
      */
     class TextStyledElement extends PDFNet.ContentElement {
+        /**
+         * Set the font face name to be used for the style
+         * @param font_name - The font face name to use for the style
+         */
         setFontFace(font_name: string): Promise<void>;
         /**
          * Get the font face name used for the style
          * @returns A promise that resolves to the font face name used for the style
          */
         getFontFace(): Promise<string>;
+        /**
+         * Set font size of the style
+         * @param font_size - The font size to use for the style
+         */
         setFontSize(font_size: number): Promise<void>;
         /**
          * Get the font size of the style
@@ -19321,6 +19305,12 @@ declare namespace Core.PDFNet {
          * @param blue - The blue component of the text color
          */
         setTextColor(red: number, green: number, blue: number): Promise<void>;
+        /**
+         * Set the background color for the style
+         * @param red - The red component of the text color
+         * @param green - The green component of the text color
+         * @param blue - The blue component of the text color
+         */
         setBackgroundColor(red: number, green: number, blue: number): Promise<void>;
     }
     /**
@@ -21013,13 +21003,13 @@ declare namespace Core.PDFNet {
     }
     /**
      * QuadPoint
-
+    
     A QuadpPoint struct contains 8 values representing the (x,y) coordinates of four points in a rectangle..
-
+    
     --------------------
     Since QuadPoint is a struct, it can be created manually by calling "new PDFNet.QuadPoint(p1x, p1y, p2x, p2y, p3x, p3y, p4x, p4y)"
     eg. var myfoo = new PDFNet.QuadPoint(1, 2, 3, 4, 5, 6, 7, 8)
-
+    
     Default values for a Point struct are:
     p1x = 0
     p1y = 0
@@ -21043,13 +21033,13 @@ declare namespace Core.PDFNet {
     }
     /**
      * 2D Point
-
+    
     A Point represents an (x,y) coordinate point.
-
+    
     --------------------
     Since Point is a struct, it can be created manually by calling "new PDFNet.Point(x, y)"
     eg. var myfoo = new PDFNet.Point(1,2);
-
+    
     Default values for a Point struct are:
     x = 0
     y = 0
@@ -23469,7 +23459,7 @@ declare namespace Core.PDFNet {
      */
     function setViewerCache(max_cache_size: number, on_disk: boolean): Promise<void>;
     /**
-     * @returns A promise that resolves to pDFNet version number.
+     * @returns A promise that resolves to PDFNet version number.
      */
     function getVersion(): Promise<number>;
     /**
@@ -23491,9 +23481,14 @@ declare namespace Core.PDFNet {
      * @returns A promise that resolves to a JSON list of fonts accessible to PDFNet
      */
     function getSystemFontList(): Promise<string>;
+    /**
+     * Add PDFTron Custom Security handler
+     * @param custom_id - The user's custom id. The id should match what was used to create PDFTronCustomSecurityHandler when encrypting the document.
+     * Note: calling this function is a requirement to load files encrypted with PDFTronCustomSecurityHandler.
+     */
     function addPDFTronCustomHandler(custom_id: number): Promise<void>;
     /**
-     * @returns A promise that resolves to an object of type: "string"
+     * @returns A promise that resolves to PDFNet version as a string.
      */
     function getVersionString(): Promise<string>;
     /**
@@ -23608,19 +23603,9 @@ declare namespace Core.PDFNet {
     function initialize(licenseKey?: string, pdfBackendType?: string): Promise<void>;
 }
 
-    
-    /**
- * Generates the character code
- * @param character - the character
- * @param characterCount - the character count
- * @returns the character code
- */
-declare function generateCharacterCode(character: string, characterCount: number): number;
 
-/**
- * An XFDF string for no annotations.
- */
-declare const EMPTY_XFDF: string;
+    
+    declare namespace CursorGeometry { }
 
 /**
  * The style tab in the annotation style popup window. See {@link UI.AnnotationStylePopupTabs} for valid style tabs.
@@ -24764,6 +24749,21 @@ declare namespace Core {
              * @param pageMatrix - the page matrix used to convert PDF coordinates to XOD coordinates.
              */
             deserialize(element: Element, pageMatrix: any): void;
+            /**
+             * Set the x and y zoom reference point for NoZoom annotation. When this value is set, the NoZoom annotation will stay relative to the given point after the page zoom changes.
+             * @param referencePoint - The proportional factor for calculating the reference point which is relative to the top left of the annotation. For example, setting this value to {x:0.5, y:1} will set the reference point to the center bottom of the annotation.
+             * @param referencePoint.x - The x value of the reference point. Needs to be a value between 0 and 1.
+             * @param referencePoint.y - The y value of the reference point. Needs to be a value between 0 and 1.
+             */
+            setNoZoomReferencePoint(referencePoint: {
+                x: number;
+                y: number;
+            }): void;
+            /**
+             * Gets the x and y zoom reference point for NoZoom annotation.
+             * @returns The (x, y) no zoom reference factor.
+             */
+            getNoZoomReferencePoint(): Core.Math.Point;
             /**
              * Sets the number to be associated with this annotation.
              * @param number - The number to be associated with this annotation.
@@ -26034,6 +26034,12 @@ declare namespace Core {
              * @param rotationPoint - The rotation point to do the rotation around. The default is the center point of the annotation
              */
             rotate(angle: number, rotationPoint: Core.Math.Point): void;
+        }
+        /**
+         * Represents a PDF custom annotation such as Headers or Footers. This class is not meant to be instantiated directly.
+         * For creating custom annotations please use the CustomAnnotation class.
+         */
+        class PDFCustomAnnotation extends Annotations.Annotation {
         }
         /**
          * Represents a line annotation.
@@ -28849,6 +28855,27 @@ declare namespace Core {
          */
         hideDetachedReplies(): void;
         /**
+         * [PDF Document only] Sets the desired tab order of widgets in the document. This requires the full API.
+         * @example
+         * annotManager.setTabOrder(instance.Core.AnnotationManager.TabbingOrders.ROW);
+         * @param tabOrder - The desired tab order
+         * @returns A promise that resolves when complete.
+         */
+        setTabOrder(tabOrder: string): Promise<void>;
+        /**
+         * [PDF Document only] Gets the tab order in the document.
+         * @returns The tab order.
+         */
+        getTabOrder(): string;
+        /**
+         * [PDF Document only] Enables document tab ordering APIs and automatically reading the widget tab order from the document on document loaded.
+         */
+        enableWidgetTabOrdering(): void;
+        /**
+         * [PDF Document only] Disables document tab ordering APIs and automatically reading the widget tab order from the document on document loaded.
+         */
+        disableWidgetTabOrdering(): void;
+        /**
          * Triggered when an annotation or annotations have been changed (added, deleted, modified).
          * Attach like annotManager.addEventListener('annotationChanged', callback)
          * @param annotations - The annotations that were changed
@@ -28995,29 +29022,31 @@ declare namespace Core {
         off(event?: 'annotationsDrawn', callback?: (pageNumber: any) => void): void;
         /**
          * Triggered after the file attachment data is available after double clicking on the annotation
+         * @param annotation - The annotation that was double clicked
          * @param fileInfo - Information of the file attachment
          * @param fileInfo.fileData - The blob data of the file attachment
          * @param fileInfo.filename - The name of the file attachment
          * @param fileInfo.mimeType - The mimetype attribute of the file attachment
          */
-        on(event: 'fileAttachmentDataAvailable', callback: (fileInfo: {
+        on(event: 'fileAttachmentDataAvailable', callback: (annotation: Core.Annotations.Annotation, fileInfo: {
             fileData: Blob;
             filename: string;
             mimeType: string;
         }) => void): void;
         /**
          * Triggered after the file attachment data is available after double clicking on the annotation
+         * @param annotation - The annotation that was double clicked
          * @param fileInfo - Information of the file attachment
          * @param fileInfo.fileData - The blob data of the file attachment
          * @param fileInfo.filename - The name of the file attachment
          * @param fileInfo.mimeType - The mimetype attribute of the file attachment
          */
-        one(event: 'fileAttachmentDataAvailable', callback: (fileInfo: {
+        one(event: 'fileAttachmentDataAvailable', callback: (annotation: Core.Annotations.Annotation, fileInfo: {
             fileData: Blob;
             filename: string;
             mimeType: string;
         }) => void): void;
-        off(event?: 'fileAttachmentDataAvailable', callback?: (fileInfo: {
+        off(event?: 'fileAttachmentDataAvailable', callback?: (annotation: Core.Annotations.Annotation, fileInfo: {
             fileData: Blob;
             filename: string;
             mimeType: string;
@@ -29203,6 +29232,14 @@ declare namespace Core {
             SNAP_ROTATION,
             FREEFORM_ROTATION
         }
+        /**
+         * Represents the types of tabbing orders available to set on widgets in the document.
+         */
+        enum TabbingOrders {
+            STRUCTURE,
+            ROW,
+            COLUMN
+        }
     }
     /**
      * Forces a higher level of accuracy in image downsampling at the expense of rendering performance.
@@ -29369,6 +29406,24 @@ declare namespace Core {
          * Draws the content box galley canvas
          */
         function drawContentBoxCanvas(): void;
+        /**
+         * Sets the active text attributes to be applied to new text
+         * @param attributes - The attributes to set
+         * @param attributes.fontName - The font name
+         * @param attributes.fontSize - The font size
+         * @param attributes.bold - Whether the text is bold
+         * @param attributes.italic - Whether the text is italic
+         * @param attributes.underline - Whether the text is underlined
+         * @param attributes.fontColor - The hex color of the text
+         */
+        function setTextAttributes(attributes: {
+            fontName: string;
+            fontSize: string;
+            bold: boolean;
+            italic: boolean;
+            underline: boolean;
+            fontColor: string;
+        }): void;
         /**
          * The ContentBox class which includes a control handle and an HTML text edit element.
          */
@@ -30729,11 +30784,6 @@ declare namespace Core {
              * @param withFormatting - Whether to paste with formatting or not.
              */
             pasteText(withFormatting: boolean): void;
-            /**
-             * Gets the embedded fonts in the document.
-             * @returns Returns a promise that resolves to array containing the embedded fonts metadata
-             */
-            getEmbeddedFonts(): Promise<Core.Document.EmbeddedFontMetaData>;
         }
         /**
          */
@@ -30750,22 +30800,6 @@ declare namespace Core {
              * The spacing of the selected lines.
              */
             lineSpacing?: number;
-        };
-        /**
-         */
-        type EmbeddedFontMetaData = {
-            /**
-             * The name of the font face.
-             */
-            name?: boolean;
-            /**
-             * Whether the font is bold or not.
-             */
-            bold?: boolean;
-            /**
-             * Whether the font is italic or not.
-             */
-            italic?: boolean;
         };
         /**
          * An enum representing the toggleable text styles in Office Editor.
@@ -31086,6 +31120,10 @@ declare namespace Core {
         EXTRACT_USING_ZORDER: number;
     };
     /**
+     * An XFDF string for no annotations.
+     */
+    var EMPTY_XFDF: string;
+    /**
      * Load document options.
      */
     type LoadDocumentOptions = {
@@ -31107,7 +31145,7 @@ declare namespace Core {
          */
         docId?: string;
         /**
-         * A callback function for loading progress, function signature function(percent) {}.
+         * A callback function for loading progress (Only for files loaded over network), function signature: function(percent) {}.
          */
         onLoadingProgress?: (...params: any[]) => any;
         /**
@@ -31208,6 +31246,7 @@ declare namespace Core {
             doTemplatePrep?: boolean;
             disableBrowserFontSubstitution?: boolean;
             formatOptions?: {
+                hideTotalNumberOfPages?: boolean;
                 applyPageBreaksToSheet?: boolean;
                 displayChangeTracking?: boolean;
                 excelDefaultCellBorderWidth?: number;
@@ -31256,6 +31295,10 @@ declare namespace Core {
          * If disabled then any URLs detected in the document text will not automatically be linked.
          */
         disableAutomaticLinking(): void;
+        /**
+         * Load a blank word document for editing
+         */
+        loadBlankOfficeEditorDocument(): void;
         /**
          * Initialize the viewer and load the given file into the viewer.
          * @param src - Source parameter, path/url to document or File.
@@ -31331,10 +31374,15 @@ declare namespace Core {
          */
         getMeasurementManager(): Core.MeasurementManager;
         /**
+         * Returns the AnnotationHistoryManager used by this DocumentViewer
+         * @returns An instance of AnnotationHistoryManager
+         */
+        getAnnotationHistoryManager(): Core.AnnotationHistoryManager;
+        /**
          * Returns the ContentEditHistoryManager used by this DocumentViewer
          * @returns An instance of ContentEditHistoryManager
          */
-        getAnnotationHistoryManager(): Core.AnnotationHistoryManager;
+        getContentEditHistoryManager(): Core.AnnotationHistoryManager;
         /**
          * Set the options that are used when importing annotations from a document asynchronously.
          * These are the options that will be passed to AnnotationManager.importAnnotations.
@@ -31905,6 +31953,19 @@ declare namespace Core {
          * @returns Whether grayscale annotation mode is enabled or not
          */
         isGrayscaleAnnotationsModeEnabled(): boolean;
+        /**
+         * Enables printing the annotations always in color. By default, if grayscale mode is enabled, annotations are printed in grayscale.
+         */
+        enableAlwaysPrintAnnotationsInColor(): void;
+        /**
+         * Disables printing the annotations always in color.
+         */
+        disableAlwaysPrintAnnotationsInColor(): void;
+        /**
+         * Returns whether always print annotations in color is enabled for printing the document
+         * @returns Whether print annotations in color is enabled or not
+         */
+        isAlwaysPrintAnnotationsInColorEnabled(): boolean;
         /**
          * Sets watermark to be added to documents. Instead of an options object you can also pass a Promise
          * that resolves with the watermark options object. If the document hasn't been loaded yet then
@@ -40365,11 +40426,72 @@ declare namespace UI {
          * @param [options] - The options for the tab to be added
          * @param [options.setActive] - Whether to set the new tab as active immediately after adding it (default: true)
          * @param [options.saveCurrentActiveTabState] - Whether to save the current tab annotations, scroll position, and zoom level before adding the new tab (only used when setActive=true) (default: true)
+         * @param [options.extension] - The extension of the file. If file is a blob/file object or a URL without an extension then this is necessary so that WebViewer knows what type of file to load.
+         * @param [options.filename] - Filename of the document, which is used when downloading the PDF.
+         * @param [options.customHeaders] - An object of custom HTTP headers to use when retrieving the document from the specified url.
+         * @param [options.webViewerServerCustomQuerypropertyeters] - An object of custom query propertyeters to be appended to every WebViewer Server request.
+         * @param [options.documentId] - Unique id of the document.
+         * @param [options.withCredentials] - Whether or not cross-site requests should be made using credentials.
+         * @param [options.cacheKey] - A key that will be used for caching the document on WebViewer Server.
+         * @param [options.officeOptions] - An object that contains the options for an Office document.
+         * @param [options.rasterizerOptions] - An object that contains the rasterizer options for WebViewer Server.
+         * @param [options.officeOptions.templateValues] - If set, will perform template replacement with the data specified by this parameter
+         * @param [options.officeOptions.doTemplatePrep] - If set, it will interpret the office document as a template document and compile all of the template tags in the document
+         * @param [options.officeOptions.disableBrowserFontSubstitution] - By default, office viewing takes a lightweight approach to font substitution, allowing the browser to select fonts when they are not embedded in the document itself.
+         * While this means that WebViewer has access to all the fonts on the user's system, it also means that an office document may have a different "look" on different systems (depending on the fonts available) and when it is converted to PDF (as the PDF conversion routine cannot obtain low-level access to user fonts, for security reasons).
+         * disableBrowserFontSubstitution prevents this browser substitution, forcing the WebViewer backend to handle all fonts. This means that viewing and conversion to PDF will be 100% consistent from system-to-system, at the expense of a slightly slower initial viewing time and higher bandwidth usage.
+         * Using https://docs.apryse.com/documentation/web/faq/self-serve-substitute-fonts/ along with this option allows you to fully customize the substitution behaviour for all office files.
+         * @param [options.officeOptions.formatOptions] - An object that contains formatting options for an Office document. Same options as allowed here {@link Core.PDFNet.Convert.OfficeToPDFOptions}.
+         * @param [options.officeOptions.formatOptions.hideTotalNumberOfPages] - If true will hide total number of pages from page number labels (i.e, Page 1, Page 2, vs Page 1 of 2, Page 2 of 2)
+         * @param [options.officeOptions.formatOptions.applyPageBreaksToSheet] - If true will split Excel worksheets into pages so that the output resembles print output.
+         * @param [options.officeOptions.formatOptions.displayChangeTracking] - If true will display office change tracking markup present in the document (i.e, red strikethrough of deleted content and underlining of new content). Otherwise displays the resolved document content, with no markup. Defaults to true.
+         * @param [options.officeOptions.formatOptions.excelDefaultCellBorderWidth] - Cell border width for table cells that would normally be drawn with no border. In units of points. Can be used to achieve a similar effect to the "show gridlines" display option within Microsoft Excel.
+         * @param [options.officeOptions.formatOptions.excelMaxAllowedCellCount] - An exception will be thrown if the number of cells in an Excel document is above the value. Used for early termination of resource intensive documents. Setting this value to 250000 will allow the vast majority of Excel documents to convert without issue, while keeping RAM usage to a reasonable level. By default there is no limit to the number of allowed cells.
+         * @param [options.officeOptions.formatOptions.locale] - Sets the value for Locale in the options object ISO 639-1 code of the current system locale. For example: 'en-US', 'ar-SA', 'de-DE', etc.
+         * @param [options.enableOfficeEditing] - If true, will load docx files with editing capabilities.
+         * @param [options.password] - A string that will be used to as the password to load a password protected document.
+         * @param [options.onError] - A callback function that will be called when error occurs in the process of loading a document. The function signature is `function(e) {}`
+         * @param [options.xodOptions] - An object that contains the options for a XOD document.
+         * @param [options.xoddecrypt] - Function to be called to decrypt a part of the XOD file. For default XOD AES encryption pass Core.Encryption.decrypt.
+         * @param [options.xoddecryptOptions] - An object with options for the decryption e.g. {p: "pass", type: "aes"} where is p is the password.
+         * @param [options.xodstreaming] - A boolean indicating whether to use http or streaming PartRetriever, it is recommended to keep streaming false for better performance. https://docs.apryse.com/documentation/web/guides/streaming-option/.
+         * @param [options.xodazureWorkaround] - Whether or not to workaround the issue of Azure not accepting range requests of a certain type. Enabling the workaround will add an extra HTTP request of overhead but will still allow documents to be loaded from other locations.
+         * @param [options.xodstartOffline] - Whether to start loading the document in offline mode or not. This can be set to true if the document had previously been saved to an offline database using WebViewer APIs. You'll need to use this option to load from a completely offline state.
          * @returns Resolves to the tab id of the newly added tab
          */
         function addTab(src: string | File | Blob | Core.Document | Core.PDFNet.PDFDoc, options?: {
             setActive?: boolean;
             saveCurrentActiveTabState?: boolean;
+            extension?: string;
+            filename?: string;
+            customHeaders?: any;
+            webViewerServerCustomQuerypropertyeters?: any;
+            documentId?: string;
+            withCredentials?: boolean;
+            cacheKey?: string;
+            officeOptions?: {
+                templateValues?: Core.TemplateData;
+                doTemplatePrep?: boolean;
+                disableBrowserFontSubstitution?: boolean;
+                formatOptions?: {
+                    hideTotalNumberOfPages?: boolean;
+                    applyPageBreaksToSheet?: boolean;
+                    displayChangeTracking?: boolean;
+                    excelDefaultCellBorderWidth?: number;
+                    excelMaxAllowedCellCount?: number;
+                    locale?: string;
+                };
+            };
+            rasterizerOptions?: any;
+            enableOfficeEditing?: boolean;
+            password?: string;
+            onError?: (...params: any[]) => any;
+            xodOptions?: any;
+            xoddecrypt?: boolean;
+            xoddecryptOptions?: boolean;
+            xodstreaming?: boolean;
+            xodazureWorkaround?: boolean;
+            xodstartOffline?: boolean;
         }): Promise<number>;
         /**
          * Get the currently active tab id
@@ -40381,6 +40503,15 @@ declare namespace UI {
          * @returns Array of tab objects containing the following properties: { id: Number, options: Object, src: string|Blob|File|ArrayBuffer }
          */
         function getAllTabs(): object[];
+        /**
+         * Disable the warning when deleting a tab in multi-tab mode
+         * @example
+         * WebViewer(...)
+         *   .then(function (instance) {
+         *     instance.UI.TabManager.disableDeleteTabWarning();
+         *   });
+         */
+        function disableDeleteTabWarning(): void;
     }
     /**
      * Add custom modal element to WebViewer.
@@ -40884,7 +41015,7 @@ declare namespace UI {
      * @example
      * WebViewer(...)
      *   .then(function(instance) {
-     *     instance.UI.disableFeatures(instance.Feature.Measurement);
+     *     instance.UI.disableFeatures(instance.UI.Feature.Measurement);
      *   });
      * @param features - Array of features to disable.
      */
@@ -41103,7 +41234,7 @@ declare namespace UI {
      * @example
      * WebViewer(...)
      *   .then(function(instance) {
-     *     instance.UI.enableFeatures(instance.Feature.Measurement);
+     *     instance.UI.enableFeatures(instance.UI.Feature.Measurement);
      *   });
      * @param features - Array of features to enable.
      */
@@ -41429,6 +41560,16 @@ declare namespace UI {
      */
     function getMinZoomLevel(): number;
     /**
+     * Gets the multiplier used when creating typed, text signatures.
+     * @example
+     * WebViewer(...)
+     *   .then(function(instance) {
+     *     instance.UI.getTextSignatureQuality(4);
+     *   });
+     * @returns The multiplier value
+     */
+    function getTextSignatureQuality(): number;
+    /**
      * Return the current tool object.
      * @example
      * WebViewer(...)
@@ -41564,6 +41705,7 @@ declare namespace UI {
      */
     function isToolDisabled(toolName: string): boolean;
     /**
+     * inherits from {@link Core.loadDocumentOptions}
      */
     type loadDocumentOptions = {
         /**
@@ -41583,9 +41725,22 @@ declare namespace UI {
          */
         webViewerServerCustomQuerypropertyeters?: any;
         /**
-         * Unique id of the document.
+         * Unique id of the document. Same as docId (For backward compatibility).
          */
         documentId?: string;
+        /**
+         * Unique id of the document.
+         */
+        docId?: string;
+        /**
+         * Whether to load document with or without annotations.
+         * @defaultValue true
+         */
+        loadAnnotations?: boolean;
+        /**
+         * A callback function for loading progress (Only for files loaded over network), function signature: function(percent) {}.
+         */
+        onLoadingProgress?: (...params: any[]) => any;
         /**
          * Whether or not cross-site requests should be made using credentials.
          */
@@ -42180,6 +42335,28 @@ declare namespace UI {
          * @param handler - The handler function
          */
         function setAttachmentHandler(handler: UI.NotesPanel.attachmentHandler): void;
+        /**
+         * Enables the capability to filter by different measurement types in the comments panel filter.
+         * For example, line annotations can also be distance measurements. Enabling this API would allow you to
+         * filter by line annotations and distance measurements separately.
+         * This API is disabled by default.
+         * @example
+         * WebViewer(...)
+         * .then(function(instance) {
+         *   instance.UI.NotesPanel.enableMeasurementAnnotationFilter();
+         * });
+         */
+        function enableMeasurementAnnotationFilter(): void;
+        /**
+         * Disables the capability to filter by different measurement types in the comments panel filter.
+         * For example, if your document has line annotations and distance measurement annotations, they would be consolidated into one filter option: Line Annotation.
+         * @example
+         * WebViewer(...)
+         *   .then(function(instance) {
+         *     instance.UI.NotesPanel.disableMeasurementAnnotationFilter();
+         *   });
+         */
+        function disableMeasurementAnnotationFilter(): void;
     }
     /**
      * Sets visibility states of the elements to be visible. Note that openElements works only for panel/overlay/popup/modal elements.
@@ -43121,12 +43298,13 @@ declare namespace UI {
      * Set the language of WebViewer UI.
      * @example
      * WebViewer(...)
-     *   .then(function(instance) {
+     *  .then(function(instance) {
      *     instance.UI.setLanguage('fr'); // set the language to French
      *   });
      * @param language - The language WebViewer UI will use. By default, following languages are supported: en, zh_cn, fr.
+     * @returns A promise which is resolved after the language is set.
      */
-    function setLanguage(language: string): void;
+    function setLanguage(language: string): Promise<void>;
     /**
      * Sets the layout mode of the viewer.
      * @example
@@ -43429,6 +43607,15 @@ declare namespace UI {
      * @param swipeOrientation - The swipe orientation to navigate between pages. Available orientations are: horizontal, vertical and both.
      */
     function setSwipeOrientation(swipeOrientation: string): void;
+    /**
+     * Sets the multiplier used when creating typed, text signatures. This improves the quality of the rendered signature at the cost of more memory.
+     * @example
+     * WebViewer(...)
+     *   .then(function(instance) {
+     *     instance.UI.setTextSignatureQuality(2);
+     * @param multiplier - The multiplier value used to scale the image output
+     */
+    function setTextSignatureQuality(multiplier: number): void;
     /**
      * Sets the theme of WebViewer UI. Please note that this does not work in IE11.
      * @example
@@ -43929,7 +44116,7 @@ declare namespace UI {
      */
     function unregisterTool(toolName: string): void;
     /**
-     * Update an element in the viewer.
+     * Update a button element in the viewer.
      * @example
      * WebViewer(...)
      *   .then(function(instance) {
@@ -43938,7 +44125,8 @@ declare namespace UI {
      *       title: 'new_tooltip',
      *     })
      *   });
-     * @param dataElement - the data element of the element that will be updated. Only the data element of HTML elements that have 'Button' in the class name will work.
+     * @param dataElement - the data element of the button element that will be updated. Only the data element of HTML elements that are of the type 'button' will work.
+     * If you added a custom button, please ensure it is one of the following: <a href="https://docs.apryse.com/documentation/web/guides/customizing-header/#actionbutton" target="_blank">button types</a>
      * @param props - An object that is used to override an existing item's properties.
      */
     function updateElement(dataElement: string, props: any): void;
@@ -44979,6 +45167,7 @@ declare namespace UI {
      * @property EDIT - Sets the current toolbar as the edit group.
      * @property FILL_AND_SIGN - Sets the current toolbar as the fill and sign group.
      * @property FORMS - Sets the current toolbar as the forms group.
+     * @property REDACT - Sets the current toolbar as the redact group.
      */
     var ToolbarGroup: {
         /**
@@ -45013,6 +45202,10 @@ declare namespace UI {
          * Sets the current toolbar as the forms group.
          */
         FORMS: string;
+        /**
+         * Sets the current toolbar as the redact group.
+         */
+        REDACT: string;
     };
     namespace MentionsManager {
         /**
