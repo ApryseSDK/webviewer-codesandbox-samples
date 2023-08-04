@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "ตอบกลับคำอธิบายประกอบที่เลือก ({{จำนวน}})",
     "comparePages": "เปรียบเทียบหน้า",
     "startComparison": "เริ่มการเปรียบเทียบ",
+    "showComparison": "แสดงการเปรียบเทียบ",
     "back": "กลับ",
     "clearSignature": "ลายเซ็นที่ชัดเจน",
     "newDocument": "เอกสารใหม่"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "ตัวเลขที่คุณป้อนไม่ถูกต้อง คุณสามารถป้อนค่าเช่น 7.5 หรือ 7 1/2",
     "linkURLorPage": "ลิงค์ URL หรือเพจ",
     "warning": "คำเตือน",
+    "svgMalicious": "สคริปต์ SVG ถูกละเว้นเพื่อความปลอดภัย",
     "enterContentEditingMode": "คุณกำลังจะเข้าสู่โหมดแก้ไขเนื้อหา",
     "existingAnnotationWarning": "คำอธิบายประกอบที่มีอยู่อาจไม่ตรงกับข้อความหลังจากแก้ไขแล้ว",
     "changesCannotBeUndone": "การเปลี่ยนแปลงที่ทำขึ้นไม่สามารถยกเลิกได้",
@@ -433,12 +435,10 @@
       "drawSignature": "วาดลายเซ็น*",
       "drawInitial": "วาดชื่อย่อ*",
       "pickInitialsFile": "เลือกชื่อย่อ",
-      "noSignatures": "ขณะนี้ไม่มีลายเซ็นที่บันทึกไว้"
+      "noSignatures": "ขณะนี้ไม่มีลายเซ็นที่บันทึกไว้",
+      "fontStyle": "รูปแบบตัวอักษร"
     },
     "pageReplacementModal": {
-      "dragAndDrop": "ลากและวางไฟล์ของคุณที่นี่",
-      "selectFile": "เลือกไฟล์ของคุณที่นี่",
-      "or": "หรือ",
       "yourFiles": "ไฟล์ของคุณ",
       "chooseFile": "เลือกไฟล์",
       "localFile": "ไฟล์ในเครื่อง",
@@ -522,6 +522,12 @@
         "ifToContinue": "คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ"
       }
     },
+    "contentEdit": {
+      "deletionModal": {
+        "title": "ลบเนื้อหา",
+        "message": "คุณแน่ใจหรือไม่ว่าต้องการลบเนื้อหาที่เลือก สิ่งนี้ไม่สามารถยกเลิกได้"
+      }
+    },
     "stylePopup": {
       "textStyle": "สไตล์ข้อความ",
       "colors": "สี",
@@ -567,7 +573,8 @@
     "thumbnailPanel": {
       "delete": "ลบ",
       "rotateClockwise": "ตามเข็มนาฬิกา",
-      "rotateCounterClockwise": "ทวนเข็มนาฬิกา"
+      "rotateCounterClockwise": "ทวนเข็มนาฬิกา",
+      "moreOptions": "ตัวเลือกเพิ่มเติม"
     },
     "thumbnailsControlOverlay": {
       "move": "ย้ายหน้า"
@@ -1074,6 +1081,14 @@
     "watermarkOptions": "ตัวเลือกลายน้ำ",
     "watermarks": "ลายน้ำ"
   },
+  "portfolioPanel": {
+    "portfolioPanelTitle": "ไฟล์ PDF",
+    "portfolioAddFile": "เพิ่มไฟล์",
+    "portfolioAddFolder": "เพิ่มกล่องเก็บไฟล์",
+    "portfolioCreateFolder": "สร้างโฟลเดอร์",
+    "portfolioNewFolder": "แฟ้มใหม่",
+    "portfolioNewFolderPlaceholder": "ชื่อโฟลเดอร์"
+  },
   "languageModal": {
     "selectLanguage": "เลือกภาษา"
   },
@@ -1091,7 +1106,6 @@
     "numberList": "รายการหมายเลข",
     "insertLink": "ใส่ลิงค์",
     "insertImage": "แทรกรูปภาพ",
-    "notAvailableInDemoMode": "ไม่พร้อมใช้งานในโหมดสาธิต",
     "notSupportedOnMobile": "อุปกรณ์พกพาไม่รองรับการแก้ไข Office"
   },
   "insertPageModal": {
@@ -1176,6 +1190,19 @@
     "watermark": "ลายน้ำ",
     "addWatermark": "ใส่ลายน้ำ",
     "save": "บันทึกไฟล์",
-    "pageError": "หน้าไม่ถูกต้อง ช่วงหน้าที่ถูกต้องอยู่ระหว่าง 1 -"
+    "pageError": "หน้าไม่ถูกต้อง ช่วงหน้าที่ถูกต้องอยู่ระหว่าง 1 -",
+    "fileNameCannotBeEmpty": "ชื่อไฟล์ต้องไม่ว่างเปล่า"
+  },
+  "portfolio": {
+    "createPDFPortfolio": "สร้างผลงาน PDF",
+    "uploadFiles": "อัพโหลดไฟล์",
+    "uploadFolder": "อัปโหลดโฟลเดอร์",
+    "addFiles": "เพิ่มไฟล์",
+    "addFolder": "เพิ่มกล่องเก็บไฟล์"
+  },
+  "filePicker": {
+    "dragAndDrop": "ลากและวางไฟล์ของคุณที่นี่",
+    "selectFile": "เลือกไฟล์ของคุณที่นี่",
+    "or": "หรือ"
   }
 }

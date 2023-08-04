@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Balas kepada anotasi yang dipilih ({{count}})",
     "comparePages": "Bandingkan halaman",
     "startComparison": "Mulakan Perbandingan",
+    "showComparison": "Tunjukkan Perbandingan",
     "back": "belakang",
     "clearSignature": "Tandatangan yang jelas",
     "newDocument": "Dokumen Baharu"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "Nombor yang anda masukkan tidak sah, anda boleh memasukkan nilai seperti 7.5 atau 7 1/2",
     "linkURLorPage": "Pautan URL atau Halaman",
     "warning": "Amaran",
+    "svgMalicious": "Skrip SVG diabaikan untuk keselamatan",
     "enterContentEditingMode": "Anda akan memasuki mod penyuntingan kandungan.",
     "existingAnnotationWarning": "Anotasi sedia ada mungkin tidak sepadan dengan teks selepas ia diedit.",
     "changesCannotBeUndone": "Sebarang perubahan yang dibuat tidak boleh dibuat asal.",
@@ -433,12 +435,10 @@
       "drawSignature": "Lukis Tandatangan*",
       "drawInitial": "Lukis Huruf Awal*",
       "pickInitialsFile": "Pilih Inisial",
-      "noSignatures": "Pada masa ini tiada tandatangan yang disimpan."
+      "noSignatures": "Pada masa ini tiada tandatangan yang disimpan.",
+      "fontStyle": "gaya fon"
     },
     "pageReplacementModal": {
-      "dragAndDrop": "Seret & Lepaskan fail anda di sini",
-      "selectFile": "Pilih fail anda di sini",
-      "or": "Ataupun",
       "yourFiles": "Fail Anda",
       "chooseFile": "Pilih fail",
       "localFile": "Fail Tempatan",
@@ -522,6 +522,12 @@
         "ifToContinue": "Adakah anda pasti mahu meneruskan?"
       }
     },
+    "contentEdit": {
+      "deletionModal": {
+        "title": "Padamkan Kandungan",
+        "message": "Adakah anda pasti mahu memadamkan kandungan yang dipilih? Ini tidak boleh dibuat asal."
+      }
+    },
     "stylePopup": {
       "textStyle": "Gaya Teks",
       "colors": "Warna",
@@ -567,7 +573,8 @@
     "thumbnailPanel": {
       "delete": "Padam",
       "rotateClockwise": "ikut arah jam",
-      "rotateCounterClockwise": "lawan jam"
+      "rotateCounterClockwise": "lawan jam",
+      "moreOptions": "Lebih banyak pilihan"
     },
     "thumbnailsControlOverlay": {
       "move": "Pindahkan halaman"
@@ -1074,6 +1081,14 @@
     "watermarkOptions": "Pilihan Tera Air",
     "watermarks": "Tera air"
   },
+  "portfolioPanel": {
+    "portfolioPanelTitle": "Portfolio PDF",
+    "portfolioAddFile": "Tambah fail",
+    "portfolioAddFolder": "Tambah folder",
+    "portfolioCreateFolder": "Buat Folder",
+    "portfolioNewFolder": "Fail baharu",
+    "portfolioNewFolderPlaceholder": "Nama folder"
+  },
   "languageModal": {
     "selectLanguage": "Pilih Bahasa"
   },
@@ -1091,7 +1106,6 @@
     "numberList": "Senarai bernombor",
     "insertLink": "Sisipkan pautan",
     "insertImage": "Sisipkan imej",
-    "notAvailableInDemoMode": "Tidak tersedia dalam mod demo",
     "notSupportedOnMobile": "Penyuntingan pejabat tidak disokong pada peranti mudah alih."
   },
   "insertPageModal": {
@@ -1176,6 +1190,19 @@
     "watermark": "Tera air",
     "addWatermark": "Tambah Tera Air",
     "save": "Simpan fail",
-    "pageError": "Halaman tidak sah. Julat halaman yang sah adalah antara 1 -"
+    "pageError": "Halaman tidak sah. Julat halaman yang sah adalah antara 1 -",
+    "fileNameCannotBeEmpty": "Nama Fail tidak boleh kosong"
+  },
+  "portfolio": {
+    "createPDFPortfolio": "Cipta Portfolio PDF",
+    "uploadFiles": "Memuat naik fail",
+    "uploadFolder": "Muat naik Folder",
+    "addFiles": "Menambah fail",
+    "addFolder": "Tambah folder"
+  },
+  "filePicker": {
+    "dragAndDrop": "Seret & Lepaskan fail anda di sini",
+    "selectFile": "Pilih fail anda di sini",
+    "or": "Ataupun"
   }
 }

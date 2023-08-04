@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Répondre aux annotations sélectionnées ({{count}})",
     "comparePages": "Comparer les pages",
     "startComparison": "Commencer la comparaison",
+    "showComparison": "Afficher la comparaison",
     "back": "Retour",
     "clearSignature": "Signature claire",
     "newDocument": "Nouveau document"
@@ -190,8 +191,8 @@
     "searchPanel": "Chercher",
     "menuOverlay": "Menu",
     "notesPanel": "Remarques",
-    "outlinePanel": "Présenter",
-    "outlinesPanel": "Contours",
+    "outlinePanel": "Élément",
+    "outlinesPanel": "Plan",
     "newOutlineTitle": "Nouveau titre de plan",
     "outlineTitle": "Titre du plan",
     "destination": "Destination",
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "Le nombre que vous avez entré est invalide, vous pouvez entrer des valeurs comme 7,5 ou 7 1/2",
     "linkURLorPage": "Lien URL ou une page",
     "warning": "Avertissement",
+    "svgMalicious": "Script SVG ignoré pour des raisons de sécurité",
     "enterContentEditingMode": "Vous êtes sur le point d'entrer en mode d'édition de texte.",
     "existingAnnotationWarning": "Les annotations existantes peuvent ne pas correspondre au texte une fois qu'il a été modifié.",
     "changesCannotBeUndone": "Toute modification apportée ne peut être annulée.",
@@ -379,7 +381,7 @@
       "all": "Toutes",
       "current": "Page actuelle",
       "pages": "Pages",
-      "specifyPages": "Spécifiez les pages",
+      "specifyPages": "Spécifier les pages",
       "view": "Vue actuelle",
       "pageQuality": "Qualité d'impression",
       "qualityNormal": "Ordinaire",
@@ -433,12 +435,10 @@
       "drawSignature": "Tirage au sort Signature*",
       "drawInitial": "Dessiner des initiales*",
       "pickInitialsFile": "Choisissez les initiales",
-      "noSignatures": "Il n'y a actuellement aucune signature enregistrée."
+      "noSignatures": "Il n'y a actuellement aucune signature enregistrée.",
+      "fontStyle": "Police"
     },
     "pageReplacementModal": {
-      "dragAndDrop": "Glissez & Déposez votre fichier ici",
-      "selectFile": "Sélectionnez votre fichier ici",
-      "or": "Ou",
       "yourFiles": "Vos fichiers",
       "chooseFile": "Choisissez un fichier",
       "localFile": "Fichier local",
@@ -468,7 +468,7 @@
       "setBy": "attribué par",
       "none": "Aucun",
       "marked": "Marqué",
-      "unmarked": "Mon marqué"
+      "unmarked": "Non marqué"
     },
     "measurementOverlay": {
       "scale": "Échelle",
@@ -522,6 +522,12 @@
         "ifToContinue": "Voulez-vous vraiment continuer ?"
       }
     },
+    "contentEdit": {
+      "deletionModal": {
+        "title": "Supprimer le contenu",
+        "message": "Voulez-vous vraiment supprimer le contenu sélectionné ? Cela ne peut pas être annulé."
+      }
+    },
     "stylePopup": {
       "textStyle": "Style de texte",
       "colors": "Couleurs",
@@ -567,7 +573,8 @@
     "thumbnailPanel": {
       "delete": "Supprimer",
       "rotateClockwise": "Rotation horaire",
-      "rotateCounterClockwise": "Rotation antihoraire"
+      "rotateCounterClockwise": "Rotation antihoraire",
+      "moreOptions": "Plus d'options"
     },
     "thumbnailsControlOverlay": {
       "move": "Déplacer des pages"
@@ -592,14 +599,14 @@
       "Username": "Nom d'utilisateur",
       "Date": "Date",
       "Time": "heure",
-      "fontStyle": "Font style",
+      "fontStyle": "Police",
       "dateFormat": "Format de date",
       "month": "Mois",
       "day": "Jour",
       "year": "An",
       "hour": "Heure",
       "minute": "Minute",
-      "second": "Deuxième",
+      "second": "Seconde",
       "textColor": "Couleur du texte",
       "backgroundColor": "Couleur de l'arrière plan"
     },
@@ -607,7 +614,7 @@
       "addMark": "Ajouter une marque",
       "pageSelection": "Sélection de pages",
       "current": "Page actuelle",
-      "specify": "Spécifiez les pages",
+      "specify": "Spécifier les pages",
       "odd": "Pages impaires seulement",
       "even": "Seulement les pages paires",
       "header": "Marquer la rédaction des pages"
@@ -722,7 +729,7 @@
     },
     "selectPage": {
       "selectTitle": "Aucune page sélectionnée",
-      "selectMessage": "Veuillez sélectionner des pages et réessayer."
+      "selectMessage": "Veuillez sélectionner des pages et réessayez."
     },
     "colorPicker": {
       "deleteTitle": "Supprimer la couleur personnalisée",
@@ -856,19 +863,19 @@
       "6": "sam."
     },
     "today": "Aujourd'hui",
-    "invalidDateTime": "Date/heure non valide : l'entrée doit correspondre au format"
+    "invalidDateTime": "Date/heure non valide : l'entrée doit correspondre au format"
   },
   "formField": {
     "formFieldPopup": {
-      "fieldName": "Nom de domaine",
+      "fieldName": "Nom de champ",
       "fieldValue": "Valeur par défaut",
-      "readOnly": "Lecture seulement",
+      "readOnly": "Lecture seule",
       "multiSelect": "Sélection multiple",
       "required": "Obligatoire",
       "multiLine": "Multiligne",
       "apply": "Appliquer",
       "cancel": "Annuler",
-      "flags": "Drapeaux de terrain",
+      "flags": "Caractéristiques",
       "options": "Options",
       "radioGroups": "Les boutons radio avec le même nom de champ appartiendront au même groupement.",
       "nameRequired": "Le nom du champ est obligatoire",
@@ -957,7 +964,7 @@
     "by": "par",
     "on": "le",
     "disallowedChange": "Modification interdite: {{type}}, objnum: {{objnum}}",
-    "unsignedSignatureField": "Champ de signature non signé : {{fieldName}}",
+    "unsignedSignatureField": "Champ de signature non signé : {{fieldName}}",
     "signatureProperties": "Propriétés des signatures",
     "trustVerification": {
       "current": "L'heure de vérification utilisée était l'heure courante",
@@ -1006,7 +1013,7 @@
       "noSigningTime": "Aucune heure de signature trouvée"
     },
     "panelMessages": {
-      "noSignatureFields": "Ce document n'a pas de champs de signature",
+      "noSignatureFields": "Ce document n'a pas de champ de signature",
       "certificateDownloadError": "Erreur rencontrée lors de la tentative de téléchargement d'un certificat de confiance",
       "localCertificateError": "Il y a quelques problèmes avec la lecture d'un certificat local"
     },
@@ -1026,10 +1033,10 @@
       "autoTrim": "Trim automatique"
     },
     "cropModal": {
-      "applyTitle": "Appliquer la culture ?",
-      "applyMessage": "Cette action recadrera de manière permanente toutes les pages sélectionnées sélectionnées. Ça ne peut pas être défait.",
-      "cancelTitle": "Annuler le recadrage ?",
-      "cancelMessage": "Voulez-vous vraiment annuler le recadrage de toutes les pages sélectionnées ?"
+      "applyTitle": "Appliquer le recadrage ?",
+      "applyMessage": "Cette action recadrera de manière permanente toutes les pages sélectionnées. Cette action ne pourra pas être annulée.",
+      "cancelTitle": "Annuler le recadrage?",
+      "cancelMessage": "Voulez-vous vraiment annuler le recadrage de toutes les pages sélectionnées?"
     }
   },
   "textEditingPanel": {
@@ -1074,6 +1081,14 @@
     "watermarkOptions": "Options de filigrane",
     "watermarks": "Filigranes"
   },
+  "portfolioPanel": {
+    "portfolioPanelTitle": "Portfolio PDF",
+    "portfolioAddFile": "Ajouter le fichier",
+    "portfolioAddFolder": "Ajouter le dossier",
+    "portfolioCreateFolder": "Créer le dossier",
+    "portfolioNewFolder": "Nouveau dossier",
+    "portfolioNewFolderPlaceholder": "Nom de dossier"
+  },
   "languageModal": {
     "selectLanguage": "Choisir la langue"
   },
@@ -1091,7 +1106,6 @@
     "numberList": "Liste numérotée",
     "insertLink": "Insérer un lien",
     "insertImage": "Insérer une image",
-    "notAvailableInDemoMode": "Non disponible en mode démo",
     "notSupportedOnMobile": "L'édition Office n'est pas prise en charge sur les appareils mobiles."
   },
   "insertPageModal": {
@@ -1176,6 +1190,19 @@
     "watermark": "Filigrane",
     "addWatermark": "Ajouter un filigrane",
     "save": "Enregistrer le fichier",
-    "pageError": "Page invalide. Les plages de pages valides sont comprises entre 1 et"
+    "pageError": "Page invalide. Les plages de pages valides sont comprises entre 1 et",
+    "fileNameCannotBeEmpty": "Le nom du fichier ne peut pas être vide"
+  },
+  "portfolio": {
+    "createPDFPortfolio": "Créer un portfolio PDF",
+    "uploadFiles": "Télécharger des fichiers",
+    "uploadFolder": "Télécharger le dossier",
+    "addFiles": "Ajouter des fichiers",
+    "addFolder": "Ajouter le dossier"
+  },
+  "filePicker": {
+    "dragAndDrop": "Faites glisser et déposez votre fichier ici",
+    "selectFile": "Sélectionnez votre dossier ici",
+    "or": "Ou"
   }
 }

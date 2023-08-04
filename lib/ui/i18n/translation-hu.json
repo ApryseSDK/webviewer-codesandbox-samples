@@ -100,6 +100,7 @@
     "multiReplyAnnotations": "Válasz a kiválasztott megjegyzésekre ({{count}})",
     "comparePages": "Oldalak összehasonlítása",
     "startComparison": "Indítsa el az összehasonlítást",
+    "showComparison": "Összehasonlítás megjelenítése",
     "back": "Vissza",
     "clearSignature": "Világos aláírás",
     "newDocument": "Új dokumentum"
@@ -257,6 +258,7 @@
     "errorEnterMeasurement": "A megadott szám érvénytelen, olyan értékeket adhat meg, mint 7,5 vagy 7 1/2",
     "linkURLorPage": "Link URL vagy oldal",
     "warning": "Figyelem",
+    "svgMalicious": "Az SVG-szkriptet a biztonság érdekében figyelmen kívül hagyták",
     "enterContentEditingMode": "A tartalomszerkesztő módba lép.",
     "existingAnnotationWarning": "Előfordulhat, hogy a meglévő megjegyzések nem egyeznek a szöveggel a szerkesztés után.",
     "changesCannotBeUndone": "A végrehajtott változtatások nem vonhatók vissza.",
@@ -433,12 +435,10 @@
       "drawSignature": "Aláírás rajzolása*",
       "drawInitial": "Rajz kezdőbetűi*",
       "pickInitialsFile": "Válassza a Kezdőbetűket",
-      "noSignatures": "Jelenleg nincsenek mentett aláírások."
+      "noSignatures": "Jelenleg nincsenek mentett aláírások.",
+      "fontStyle": "betű stílus"
     },
     "pageReplacementModal": {
-      "dragAndDrop": "Drag & Drop ide a fájlt",
-      "selectFile": "Válassza ki a fájlt itt",
-      "or": "Vagy",
       "yourFiles": "Az Ön Fájljai",
       "chooseFile": "Válasszon egy fájlt",
       "localFile": "Helyi fájl",
@@ -522,6 +522,12 @@
         "ifToContinue": "Biztos, hogy folytatni szeretnéd?"
       }
     },
+    "contentEdit": {
+      "deletionModal": {
+        "title": "Tartalom törlése",
+        "message": "Biztosan törli a kiválasztott tartalmat? Ezt nem lehet visszavonni."
+      }
+    },
     "stylePopup": {
       "textStyle": "Szöveg stílusa",
       "colors": "Színek",
@@ -567,7 +573,8 @@
     "thumbnailPanel": {
       "delete": "Töröl",
       "rotateClockwise": "Óramutató járásával megegyező",
-      "rotateCounterClockwise": "Óramutató járásával ellentétes irányban"
+      "rotateCounterClockwise": "Óramutató járásával ellentétes irányban",
+      "moreOptions": "Több lehetőség"
     },
     "thumbnailsControlOverlay": {
       "move": "Oldalak mozgatása"
@@ -1074,6 +1081,14 @@
     "watermarkOptions": "Vízjel opciók",
     "watermarks": "Vízjelek"
   },
+  "portfolioPanel": {
+    "portfolioPanelTitle": "PDF portfólió",
+    "portfolioAddFile": "Fájl hozzáadása",
+    "portfolioAddFolder": "Mappa hozzáadása",
+    "portfolioCreateFolder": "Mappa létrehozás",
+    "portfolioNewFolder": "Új mappa",
+    "portfolioNewFolderPlaceholder": "Mappa neve"
+  },
   "languageModal": {
     "selectLanguage": "Válasszon nyelvet"
   },
@@ -1091,7 +1106,6 @@
     "numberList": "Számozott lista",
     "insertLink": "Link beszúrása",
     "insertImage": "Kép beszúrása",
-    "notAvailableInDemoMode": "Demo módban nem elérhető",
     "notSupportedOnMobile": "Az irodai szerkesztés nem támogatott mobileszközökön."
   },
   "insertPageModal": {
@@ -1176,6 +1190,19 @@
     "watermark": "Vízjel",
     "addWatermark": "Vízjel hozzáadása",
     "save": "Fájl mentése",
-    "pageError": "Érvénytelen oldal. Az érvényes oldaltartományok 1 -"
+    "pageError": "Érvénytelen oldal. Az érvényes oldaltartományok 1 -",
+    "fileNameCannotBeEmpty": "A fájlnév nem lehet üres"
+  },
+  "portfolio": {
+    "createPDFPortfolio": "PDF-portfólió létrehozása",
+    "uploadFiles": "Fájlok feltöltése",
+    "uploadFolder": "Mappa feltöltése",
+    "addFiles": "Fájlok hozzáadása",
+    "addFolder": "Mappa hozzáadása"
+  },
+  "filePicker": {
+    "dragAndDrop": "Drag & Drop ide a fájlt",
+    "selectFile": "Válassza ki a fájlt itt",
+    "or": "Vagy"
   }
 }
