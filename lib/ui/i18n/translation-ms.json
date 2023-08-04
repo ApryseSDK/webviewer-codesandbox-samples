@@ -435,12 +435,10 @@
       "drawSignature": "Lukis Tandatangan*",
       "drawInitial": "Lukis Huruf Awal*",
       "pickInitialsFile": "Pilih Inisial",
-      "noSignatures": "Pada masa ini tiada tandatangan yang disimpan."
+      "noSignatures": "Pada masa ini tiada tandatangan yang disimpan.",
+      "fontStyle": "gaya fon"
     },
     "pageReplacementModal": {
-      "dragAndDrop": "Seret & Lepaskan fail anda di sini",
-      "selectFile": "Pilih fail anda di sini",
-      "or": "Ataupun",
       "yourFiles": "Fail Anda",
       "chooseFile": "Pilih fail",
       "localFile": "Fail Tempatan",
@@ -522,6 +520,12 @@
         "ifChangeScale": "Jika anda menukar skala untuk ukuran atau alat yang dipilih, skala",
         "notUsedWillDelete": " tidak akan digunakan lagi oleh sebarang ukuran atau alat dan akan dipadamkan. Pemadaman tidak dapat dipulihkan.",
         "ifToContinue": "Adakah anda pasti mahu meneruskan?"
+      }
+    },
+    "contentEdit": {
+      "deletionModal": {
+        "title": "Padamkan Kandungan",
+        "message": "Adakah anda pasti mahu memadamkan kandungan yang dipilih? Ini tidak boleh dibuat asal."
       }
     },
     "stylePopup": {
@@ -1077,6 +1081,14 @@
     "watermarkOptions": "Pilihan Tera Air",
     "watermarks": "Tera air"
   },
+  "portfolioPanel": {
+    "portfolioPanelTitle": "Portfolio PDF",
+    "portfolioAddFile": "Tambah fail",
+    "portfolioAddFolder": "Tambah folder",
+    "portfolioCreateFolder": "Buat Folder",
+    "portfolioNewFolder": "Fail baharu",
+    "portfolioNewFolderPlaceholder": "Nama folder"
+  },
   "languageModal": {
     "selectLanguage": "Pilih Bahasa"
   },
@@ -1178,6 +1190,19 @@
     "watermark": "Tera air",
     "addWatermark": "Tambah Tera Air",
     "save": "Simpan fail",
-    "pageError": "Halaman tidak sah. Julat halaman yang sah adalah antara 1 -"
+    "pageError": "Halaman tidak sah. Julat halaman yang sah adalah antara 1 -",
+    "fileNameCannotBeEmpty": "Nama Fail tidak boleh kosong"
+  },
+  "portfolio": {
+    "createPDFPortfolio": "Cipta Portfolio PDF",
+    "uploadFiles": "Memuat naik fail",
+    "uploadFolder": "Muat naik Folder",
+    "addFiles": "Menambah fail",
+    "addFolder": "Tambah folder"
+  },
+  "filePicker": {
+    "dragAndDrop": "Seret & Lepaskan fail anda di sini",
+    "selectFile": "Pilih fail anda di sini",
+    "or": "Ataupun"
   }
 }
