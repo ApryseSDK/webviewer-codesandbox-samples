@@ -59,6 +59,17 @@ WebViewer(
       .getDocument()
       .getTemplateKeys('schema')
       .catch(e => UI.displayErrorMessage(e.message));
+
+    if (Object.keys(schema['keys']).length === 0) {
+      // WebViewer can handle templates that don't contain any tags, but it is not useful in a demo so we report an error.
+      UI.showWarningMessage({
+        title: 'No tags',
+        message: 'The selected document does not contain any template tags.  Please choose another document.',
+      });
+      pageModificationsAfterLoadError();
+      return;
+    }
+
     const jsonSchema = templateSchemaToJsonSchema(schema);
     await updateAnnotations(instance);
 
