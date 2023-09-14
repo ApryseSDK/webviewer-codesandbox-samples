@@ -7,7 +7,6 @@
 
     <script src="../../../lib/webviewer.min.js"></script>
     <script src="../../old-browser-checker.js"></script>
-    <script src="../../modernizr.custom.min.js"></script>
   </head>
 
   <body>
@@ -48,19 +47,7 @@
     <div id="viewer" style="overflow: hidden;"></div>
 
     <script>
-      /* global Modernizr */
       var viewerElement = document.getElementById('viewer');
-      Modernizr.addTest('async', function() {
-        try {
-          var result;
-          // eslint-disable-next-line no-eval
-          eval('var a = () => {result = "success"}; var b = async () => {await a()}; b()');
-          return result === 'success';
-        } catch (e) {
-          return false;
-        }
-      });
-      var script = Modernizr.async ? 'ViewerDigitalSignatureValidationTest.js' : 'ViewerDigitalSignatureValidationTest.ES5.js';
 
       WebViewer(
         {
@@ -70,7 +57,7 @@
           showLocalFilePicker: true,
           annotationAdmin: true,
           fullAPI: true,
-          config: script,
+          config: 'ViewerDigitalSignatureValidationTest.js',
         },
         viewerElement
       ).then(function(instance) {});
