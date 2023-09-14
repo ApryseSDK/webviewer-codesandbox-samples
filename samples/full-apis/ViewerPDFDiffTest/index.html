@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="./style.css" />
     <script src="../../../lib/webviewer.min.js"></script>
     <script src="../../old-browser-checker.js"></script>
-    <script src="../../modernizr.custom.min.js"></script>
     <!--ga-tag-->
   </head>
   <body>
@@ -64,25 +63,11 @@
     <div id="viewer"></div>
     <script src="../../menu-button.js"></script>
     <script>
-      /* global Modernizr */
-      Modernizr.addTest('async', function() {
-        try {
-          var result;
-          // eslint-disable-next-line no-eval
-          eval('let a = () => {result = "success"}; let b = async () => {await a()}; b()');
-          return result === 'success';
-        } catch (e) {
-          return false;
-        }
-      });
-
-      var script = Modernizr.async ? 'ViewerPDFDiffTest.js' : 'ViewerPDFDiffTest.ES5.js';
-
       const viewerElement = document.getElementById('viewer');
       WebViewer(
         {
           path: '../../../lib',
-          config: script,
+          config: 'ViewerPDFDiffTest.js',
           fullAPI: true,
         },
         viewerElement
