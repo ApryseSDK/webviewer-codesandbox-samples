@@ -11,7 +11,6 @@
     <script src="../../../lib/core/pdf/PDFNet.js"></script>
     <script src="../../old-browser-checker.js"></script>
     <script src="../../global.js"></script>
-    <script src="../../modernizr.custom.min.js"></script>
   </head>
   <body>
     <header>
@@ -79,39 +78,19 @@
     <script src="https://unpkg.com/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
     <script src="https://unpkg.com/@turf/turf@5.1.6/turf.min.js"></script>
     <script src="external-libraries/paper-core.min.js"></script>
+    <script src="normalize-point-to-zero-rotation-space.js"></script>
+    <script src="util.js"></script>
+    <script src="canvas-helper.js"></script>
+    <script src="alignment.js"></script>
+    <script src="page-matrix-transformation-state.js"></script>
+    <script src="public-apis-for-compare-docs.js"></script>
+    <script src="functions-to-override.js"></script>
+    <script src="compare-document-manager.js"></script>
 
-    <script>
-      Modernizr.addTest('async', function() {
-        try {
-          var result;
-          eval('let a = () => {result = "success"}; let b = async () => {await a()}; b()');
-          return result === 'success';
-        } catch (e) {
-          return false;
-        }
-      });
+    <script src="diff-overlay-slider.js"></script>
+    <script src="diff-alignment-tool.js"></script>
+    <script src="nudge-tool.js"></script>
 
-      // test for async and fall back to code compiled to ES5 if they are not supported
-      [
-        'normalize-point-to-zero-rotation-space.js',
-        'util.js',
-        'canvas-helper.js',
-        'alignment.js',
-        'page-matrix-transformation-state.js',
-        'public-apis-for-compare-docs.js',
-        'functions-to-override.js',
-        'compare-document-manager.js',
-        'diff-overlay-slider.js',
-        'diff-alignment-tool.js',
-        'nudge-tool.js',
-        'diff.js',
-      ].forEach(function(js) {
-        var script = Modernizr.async ? js : js.replace('.js', '.ES5.js');
-        var scriptTag = document.createElement('script');
-        scriptTag.src = script;
-        scriptTag.type = 'text/javascript';
-        document.getElementsByTagName('head')[0].appendChild(scriptTag);
-      });
-    </script>
+    <script src="diff.js"></script>
   </body>
 </html>
