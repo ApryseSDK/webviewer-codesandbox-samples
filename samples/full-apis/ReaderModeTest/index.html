@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="../../style.css" />
     <script src="../../../lib/webviewer.min.js"></script>
     <script src="../../old-browser-checker.js"></script>
-    <script src="../../modernizr.custom.min.js"></script>
     <title>Reader Mode Sample</title>
   </head>
 
@@ -35,19 +34,7 @@
     <script src="../../menu-button.js"></script>
 
     <script>
-      /* global Modernizr */
       const viewerElement = document.getElementById('viewer');
-      Modernizr.addTest('async', function() {
-        try {
-          var result;
-          // eslint-disable-next-line no-eval
-          eval('var a = () => {result = "success"}; var b = async () => {await a()}; b()');
-          return result === 'success';
-        } catch (e) {
-          return false;
-        }
-      });
-      const script = Modernizr.async ? 'ReaderModeTest.js' : 'ReaderModeTest.ES5.js';
 
       WebViewer(
         {
@@ -55,7 +42,7 @@
           documentType: 'pdf',
           initialDoc: '../TestFiles/Table_sample_01.pdf',
           fullAPI: true,
-          config: script,
+          config: 'ReaderModeTest.js',
         },
         viewerElement
       ).then(function(instance) {});

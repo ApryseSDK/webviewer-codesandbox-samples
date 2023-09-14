@@ -45,24 +45,11 @@
     <script src="../../../lib/core/webviewer-core.min.js"></script>
     <script src="../../../lib/core/pdf/PDFNet.js"></script>
     <script src="../Setup.js"></script>
-    <!-- Detect whether the browser supports generators, if not downgrade to ES5 compiled version of the sample code -->
     <script>
-      /* global Modernizr */
       $(function() {
-        Modernizr.addTest('async', function() {
-          try {
-            let result;
-            // eslint-disable-next-line no-eval
-            eval('let a = () => {result = "success"}; let b = async () => {await a()}; b()');
-            return result === 'success';
-          } catch (e) {
-            return false;
-          }
-        });
-
-        const script = Modernizr.async ? 'render.js' : 'render.ES5.js';
+        const script = 'render.js';
         $.getScript(script, function() {
-          const viewerScript = Modernizr.async ? 'viewer.js' : 'viewer.ES5.js';
+          const viewerScript = 'viewer.js';
           $.getScript(viewerScript, function() {});
         });
       });

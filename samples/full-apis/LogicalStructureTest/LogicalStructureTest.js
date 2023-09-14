@@ -31,55 +31,131 @@
 
     const PrintAndIndent = (printState, indent) => {
       if (printState.str) {
-        let indentStr = '';
-        const lastIndent = printState.indent;
-        for (let i = 0; i < lastIndent; ++i) {
-          indentStr += '  ';
-        }
+        const indentStr = ' '.repeat(printState.indent * 2);
         console.log(indentStr + printState.str);
       }
       printState.str = '';
       printState.indent = indent;
     };
 
-    // Used in code snippet 1.
-    const ProcessStructElement = async (element, indent, printState) => {
+    // Read the structure recursively
+    const ReadDocumentStructure = async (element, parent) => {
       if (!(await element.isValid())) {
         return;
       }
 
-      // Print out the type and title info, if any.
-      PrintAndIndent(printState, indent++);
-      printState.str += 'Type: ' + (await element.getType());
+      const [type, numKids] = await Promise.all([element.getType(), element.getNumKids()]);
+
+      const elementData = {
+        type,
+        numKids,
+        isLeaf: false,
+        children: [],
+      };
+
       if (await element.hasTitle()) {
-        printState.str += '. Title: ' + (await element.getTitle());
+        elementData.title = await element.getTitle();
       }
 
-      const num = await element.getNumKids();
-      for (let i = 0; i < num; ++i) {
+      parent.children.push(elementData);
+
+      for (let i = 0; i < elementData.numKids; ++i) {
         // Check is the kid is a leaf node (i.e. it is a ContentItem).
-        if (await element.isContentItem(i)) {
+        const contentItem = {
+          isLeaf: await element.isContentItem(i),
+        };
+        if (contentItem.isLeaf) {
           const cont = await element.getAsContentItem(i);
-          const type = await cont.getType();
+          const [type, page] = await Promise.all([cont.getType(), cont.getPage()]);
+          const pageNum = await page.getIndex();
 
-          const page = await cont.getPage();
+          contentItem.type = type;
+          contentItem.pageNum = pageNum;
 
-          PrintAndIndent(printState, indent);
-          printState.str += 'Content Item. Part of page #' + (await page.getIndex());
-
-          PrintAndIndent(printState, indent);
           switch (type) {
             case PDFNet.ContentItem.Type.e_MCID:
             case PDFNet.ContentItem.Type.e_MCR:
-              printState.str += 'MCID: ' + (await cont.getMCID());
+              contentItem.mcid = await cont.getMCID();
               break;
             case PDFNet.ContentItem.Type.e_OBJR:
               {
-                printState.str += 'OBJR ';
                 const refObj = await cont.getRefObj();
                 if (refObj) {
-                  printState.str += '- Referenced Object#: ' + refObj.getObjNum();
+                  contentItem.objNum = refObj.getObjNum();
                 }
+              }
+              break;
+            default:
+              break;
+          }
+          elementData.children.push(contentItem);
+        } else {
+          // the kid is another StructElement node.
+          await ReadDocumentStructure(await element.getAsStructElem(i), elementData);
+        }
+      }
+    };
+
+    // Read the elements sequentially with a reader
+    const ReadElements = async doc => {
+      const elements = [];
+      const reader = await PDFNet.ElementReader.create();
+      for (let itr = await doc.getPageIterator(); await itr.hasNext(); itr.next()) {
+        const page = await itr.current();
+        reader.beginOnPage(page);
+        const pageNum = await page.getIndex();
+        let element;
+        while ((element = await reader.next())) {
+          // Read page contents
+          const readElement = {
+            type: await element.getType(),
+            pageNum,
+          };
+          if (readElement.type === PDFNet.Element.Type.e_path || readElement.type === PDFNet.Element.Type.e_text || readElement.type === PDFNet.Element.Type.e_path) {
+            readElement.text = await element.getTextString();
+            // Check if the element is associated with any structural element.
+            // Content items are leaf nodes of the structure tree.
+            const structParent = await element.getParentStructElement();
+            readElement.isValid = await structParent.isValid();
+            if (readElement.isValid) {
+              readElement.structType = await structParent.getType();
+              readElement.mcid = await element.getStructMCID();
+              if (await structParent.hasTitle()) {
+                readElement.title = await structParent.getTitle();
+              }
+              readElement.objNum = await (await structParent.getSDFObj()).getObjNum();
+            }
+            elements.push(readElement);
+          }
+        }
+        reader.end();
+      }
+      return elements;
+    };
+
+    // Used in code snippet 1.
+    const ProcessStructElement = (element, indent, printState) => {
+      // Print out the type and title info, if any.
+      PrintAndIndent(printState, indent++);
+      printState.str += `Type: ${element.type}${element.title ? `. Title: ${element.title}` : ''}`;
+
+      for (let i = 0; i < element.numKids; ++i) {
+        const child = element.children[i];
+        // Check is the kid is a leaf node (i.e. it is a ContentItem).
+        if (child.isLeaf) {
+          PrintAndIndent(printState, indent);
+          printState.str += `Content Item. Part of page #${child.pageNum}`;
+
+          PrintAndIndent(printState, indent);
+          switch (child.type) {
+            case PDFNet.ContentItem.Type.e_MCID:
+            case PDFNet.ContentItem.Type.e_MCR:
+              printState.str += `MCID: ${child.mcid}`;
+              break;
+            case PDFNet.ContentItem.Type.e_OBJR:
+              printState.str += 'OBJR ';
+              if (child.objNum) {
+                printState.str += `- Referenced Object#: ${child.objNum}`;
               }
               break;
             default:
@@ -87,26 +163,25 @@
           }
         } else {
           // the kid is another StructElement node.
-          await ProcessStructElement(await element.getAsStructElem(i), indent, printState);
+          ProcessStructElement(child, indent, printState);
         }
       }
     };
 
     // Used in code snippet 2.
-    const ProcessElements = async (reader, printState) => {
-      let element;
-      while ((element = await reader.next())) {
+    const ProcessElementsArray = (elementsArray, printState) => {
+      for (let i = 0; i < elementsArray.length; i++) {
         // Read page contents
+        const element = elementsArray[i];
         // In this sample we process only paths & text, but the code can be
         // extended to handle any element type.
-        const type = await element.getType();
-        if (type === PDFNet.Element.Type.e_path || type === PDFNet.Element.Type.e_text || type === PDFNet.Element.Type.e_path) {
-          switch (type) {
+        if (element.type === PDFNet.Element.Type.e_path || element.type === PDFNet.Element.Type.e_text || element.type === PDFNet.Element.Type.e_path) {
+          switch (element.type) {
             case PDFNet.Element.Type.e_path: // Process path ...
               printState.str += '\nPATH: ';
               break;
             case PDFNet.Element.Type.e_text: // Process text ...
-              printState.str += '\nTEXT: ' + (await element.getTextString()) + '\n';
+              printState.str += `\nTEXT: ${element.text}\n`;
               break;
             case PDFNet.Element.Type.e_form: // Process form XObjects
               printState.str += '\nFORM XObject: ';
@@ -116,63 +191,52 @@
               break;
           }
 
-          // Check if the element is associated with any structural element.
-          // Content items are leaf nodes of the structure tree.
-          const structParent = await element.getParentStructElement();
-          if (await structParent.isValid()) {
+          if (element.isValid) {
             // Print out the parent structural element's type, title, and object number.
-            printState.str += ' Type: ' + (await structParent.getType()) + ', MCID: ' + (await element.getStructMCID());
-            if (await structParent.hasTitle()) {
-              printState.str += '. Title: ' + (await structParent.getTitle());
+            printState.str += ` Type: ${element.structType}, MCID: ${element.mcid}`;
+            if (element.title) {
+              printState.str += `. Title: ${element.title}`;
             }
-            printState.str += ', Obj#: ' + (await (await structParent.getSDFObj()).getObjNum());
+            printState.str += `, Obj#: ${element.objNum}`;
           }
         }
       }
     };
 
     // Used in code snippet 3.
-    const ProcessElements2 = async (reader, mcidPageMap) => {
-      let element;
-      while ((element = await reader.next())) {
-        // Read page contents
-        // In this sample we process only text, but the code can be extended
-        // to handle paths, images, or any other Element type.
-        const mcid = await element.getStructMCID();
-        if (mcid >= 0 && (await element.getType()) === PDFNet.Element.Type.e_text) {
-          const val = await element.getTextString();
-          if (mcid in mcidPageMap) {
-            mcidPageMap[mcid] += val;
+    const CreateMCIDDocMap = elementsArray => {
+      const mcidDocMap = {};
+      for (let i = 0; i < elementsArray.length; i++) {
+        const element = elementsArray[i];
+        if (!mcidDocMap[element.pageNum]) {
+          mcidDocMap[element.pageNum] = {};
+        }
+        const pageMcidMap = mcidDocMap[element.pageNum];
+        if (element.mcid >= 0 && element.type === PDFNet.Element.Type.e_text) {
+          if (element.mcid in pageMcidMap) {
+            pageMcidMap[element.mcid] += element.text;
           } else {
-            mcidPageMap[mcid] = val;
+            pageMcidMap[element.mcid] = element.text;
           }
         }
       }
+      return mcidDocMap;
     };
 
     // Used in code snippet 3.
-    const ProcessStructElement2 = async (element, mcidDocMap, indent, printState) => {
-      if (!(await element.isValid())) {
-        return;
-      }
-
+    const ProcessStructElement2 = (element, mcidDocMap, indent, printState) => {
       // Print out the type and title info, if any.
       PrintAndIndent(printState, indent);
-      printState.str += '<' + (await element.getType());
-      if (await element.hasTitle()) {
-        printState.str += ' title="' + (await element.getTitle()) + '"';
-      }
-      printState.str += '>';
+      printState.str += `<${element.type}${element.title ? ` title="${element.title}"` : ''}>`;
 
-      const num = await element.getNumKids();
-      for (let i = 0; i < num; ++i) {
-        if (await element.isContentItem(i)) {
-          const cont = await element.getAsContentItem(i);
-          if ((await cont.getType()) === PDFNet.ContentItem.Type.e_MCID) {
-            const pageNum = await (await cont.getPage()).getIndex();
+      for (let i = 0; i < element.numKids; ++i) {
+        const child = element.children[i];
+        if (child.isLeaf) {
+          if (child.type === PDFNet.ContentItem.Type.e_MCID) {
+            const pageNum = child.pageNum;
             const mcidPageMap = mcidDocMap[pageNum];
             if (mcidPageMap) {
-              const mcid = await cont.getMCID();
+              const mcid = child.mcid;
               if (mcid in mcidPageMap) {
                 printState.str += mcidPageMap[mcid];
               }
@@ -180,12 +244,12 @@
           }
         } else {
           // the kid is another StructElement node.
-          await ProcessStructElement2(await element.getAsStructElem(i), mcidDocMap, indent + 1, printState);
+          ProcessStructElement2(child, mcidDocMap, indent + 1, printState);
         }
       }
 
       PrintAndIndent(printState, indent);
-      printState.str += '</' + (await element.getType()) + '>';
+      printState.str += `</${element.type}>`;
     };
 
     const main = async () => {
@@ -194,23 +258,39 @@
       const printState = { str: '' };
       try {
         // Extract logical structure from a PDF document
-        const doc = await PDFNet.PDFDoc.createFromURL(inputPath + 'tagged.pdf');
+        const doc = await PDFNet.PDFDoc.createFromURL(`${inputPath}tagged.pdf`);
         doc.initSecurityHandler();
 
-        let reader = null;
-        let tree = null;
+        const tree = await doc.getStructTree();
+        const hasValidTree = await tree.isValid();
+        const numKidsFromRoot = await tree.getNumKids();
+        const structRoot = {
+          children: [],
+        };
+        let elementsArray = [];
+
+        if (hasValidTree) {
+          console.log('Document has a StructTree root.');
+          const [, elementsArr] = await Promise.all([
+            new Promise(async res => {
+              for (let i = 0, numKids = numKidsFromRoot; i < numKids; ++i) {
+                // Recursively get structure info for all child elements.
+                await ReadDocumentStructure(await tree.getKid(i), structRoot);
+              }
+              res();
+            }),
+            ReadElements(doc),
+          ]);
+          elementsArray = elementsArr;
+        } else {
+          console.log('This document does not contain any logical structure.');
+        }
 
         console.log('____________________________________________________________');
         console.log('Sample 1 - Traverse logical structure tree...');
-        tree = await doc.getStructTree();
-        if (await tree.isValid()) {
-          console.log('Document has a StructTree root.');
-          for (let i = 0, numKids = await tree.getNumKids(); i < numKids; ++i) {
-            // Recursively get structure info for all child elements.
-            await ProcessStructElement(await tree.getKid(i), 0, printState);
-          }
-        } else {
-          console.log('This document does not contain any logical structure.');
+        for (let i = 0; i < structRoot.children.length; ++i) {
+          // Recursively get structure info for all child elements.
+          ProcessStructElement(structRoot.children[i], 0, printState);
         }
         PrintAndIndent(printState, 0);
         console.log('Done 1.');
@@ -218,33 +298,17 @@
         console.log('____________________________________________________________');
         console.log('Sample 2 - Get parent logical structure elements from');
         console.log('layout elements.');
-        reader = await PDFNet.ElementReader.create();
-        for (let itr = await doc.getPageIterator(); await itr.hasNext(); itr.next()) {
-          reader.beginOnPage(await itr.current());
-          await ProcessElements(reader, printState);
-          reader.end();
-        }
+        ProcessElementsArray(elementsArray, printState);
         PrintAndIndent(printState, 0);
         console.log('Done 2.');
 
         console.log('____________________________________________________________');
         console.log("Sample 3 - 'XML style' extraction of PDF logical structure and page content.");
         {
-          const mcidDocMap = {};
-          for (let itr = await doc.getPageIterator(); await itr.hasNext(); itr.next()) {
-            const page = await itr.current();
-            reader.beginOnPage(page);
-            const pageNum = await page.getIndex();
-            const pageMcidMap = {};
-            mcidDocMap[pageNum] = pageMcidMap;
-            await ProcessElements2(reader, pageMcidMap);
-            reader.end();
-          }
-
-          tree = await doc.getStructTree();
-          if (await tree.isValid()) {
-            for (let i = 0, numKids = await tree.getNumKids(); i < numKids; ++i) {
-              await ProcessStructElement2(await tree.getKid(i), mcidDocMap, 0, printState);
+          const mcidDocMap = CreateMCIDDocMap(elementsArray);
+          if (hasValidTree) {
+            for (let i = 0, numKids = numKidsFromRoot; i < numKids; ++i) {
+              ProcessStructElement2(structRoot.children[i], mcidDocMap, 0, printState);
             }
           }
         }
